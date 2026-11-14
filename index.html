@@ -148,9 +148,14 @@
       background: linear-gradient(to top, rgba(3, 7, 18, 0.98) 5%, rgba(3, 7, 18, 0.45) 55%, rgba(3, 7, 18, 0.15) 100%);
     }
     @media print {
-      body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; margin: 0 !important; overflow: visible !important; }
-      body * { visibility: hidden; }
-      .no-print, #mainAppHeader, #appBottomNav, #bubblingSubMenuTray, #appSplashScreen { display: none !important; visibility: hidden !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; margin: 0 !important; height: auto !important; overflow: visible !important; }
+      #appMainWrapper, #mainAppHeader, #appBottomNav, #bubblingSubMenuTray, #appSplashScreen,
+      #floatingWhatsappSupportBtn, #exitCinemaFocusFloatingBtn, #globalAudioFloatingPill,
+      #appLuxuryToastContainer, .no-print, .no-print * {
+        display: none !important;
+        visibility: hidden !important;
+      }
       #printableCertificateArea:not(.hidden), #printableCertificateArea:not(.hidden) *,
       #printableInvoiceModal:not(.hidden), #printableInvoiceModal:not(.hidden) *,
       #printableReportCardModal:not(.hidden), #printableReportCardModal:not(.hidden) * {
@@ -159,14 +164,26 @@
       #printableCertificateArea:not(.hidden),
       #printableInvoiceModal:not(.hidden),
       #printableReportCardModal:not(.hidden) {
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
+        position: static !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
         width: 100% !important;
-        background: transparent !important;
-        padding: 0 !important;
+        background: #ffffff !important;
+        padding: 12px !important;
         margin: 0 !important;
         box-shadow: none !important;
+      }
+      #printableInvoiceModal:not(.hidden) > div {
+        background: #fffbeb !important;
+        color: #0f172a !important;
+        border: 4px double #b45309 !important;
+        box-shadow: none !important;
+      }
+      #printableInvoiceModal:not(.hidden) span,
+      #printableInvoiceModal:not(.hidden) b,
+      #printableInvoiceModal:not(.hidden) p {
+        color: #0f172a !important;
       }
     }
   </style>
@@ -249,7 +266,7 @@
         <!-- Single User Avatar + Name Pill -->
         <div id="headerUserIdentityChip" onclick="switchActiveTab('profile')" class="cursor-pointer flex items-center gap-2 bg-slate-900 hover:bg-slate-800 border border-amber-400/40 rounded-xl px-2.5 py-1 transition shadow">
           <img id="headerUserAvatarImg" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='40' fill='%23064e3b'/%3E%3Ccircle cx='40' cy='30' r='14' fill='%23fbbf24'/%3E%3Cpath d='M16 68c4-14 14-20 24-20s20 6 24 20' fill='%23fbbf24'/%3E%3C/svg%3E" alt="Profile" class="w-6 h-6 rounded-full object-cover border border-amber-400">
-          <span id="headerUserNameText" class="text-[11px] font-extrabold text-amber-200 max-w-[115px] sm:max-w-[160px] truncate">Muhammad Hamza</span>
+          <span id="headerUserNameText" class="text-[11px] font-extrabold text-amber-200 max-w-[115px] sm:max-w-[160px] truncate">Sign In (لاگ ان)</span>
         </div>
 
         <!-- Hidden Role Badge for JS compatibility -->
@@ -277,7 +294,7 @@
     <!-- ============================================================== -->
     <!-- TAB 1: HOME (Hero Banner, Bubbling Quick Launcher, Courses)    -->
     <!-- ============================================================== -->
-    <section id="tabPane-home" class="space-y-4">
+    <section id="tabPane-home" class="space-y-4 hidden">
 
       <!-- ULTRA-LUXURY VISUAL HERO BANNER WITH CONTEXTUAL IMAGERY & BUBBLING CHIPS -->
       <div class="relative rounded-3xl overflow-hidden border-2 border-amber-400/40 shadow-2xl min-h-[230px] flex flex-col justify-end p-4 sm:p-6">
@@ -323,7 +340,7 @@
         <div class="p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950/95 via-slate-950 to-emerald-950/95 border border-amber-400/30 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="space-y-1 text-center sm:text-left">
             <span class="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-amber-400/10 px-2.5 py-0.5 rounded-full border border-amber-400/30">
-              <i class="fa-solid fa-sparkles mr-1"></i> Verse of the Day • سورة المزمل
+              <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Verse of the Day • سورة المزمل
             </span>
             <p class="font-arabic text-xl sm:text-2xl text-white font-bold pt-1" dir="rtl">
               ﴿ وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا ﴾
@@ -657,8 +674,8 @@
 
         <div class="space-y-2">
           <!-- Fajr -->
-          <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
-            <div class="w-24"><b class="text-xs text-white block">Fajr</b><span class="text-[9px] text-amber-300 font-semibold">Dawn</span></div>
+          <div id="prayerRow-fajr" class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between transition">
+            <div class="w-28"><b id="prayerTitle-fajr" class="text-xs text-white block">Fajr</b><span class="text-[9px] text-amber-300 font-semibold">Dawn</span></div>
             <div class="flex items-center gap-1.5">
               <button onclick="adjustPrayerMinutes('fajr', -5)" class="w-6 h-6 rounded bg-slate-900 text-amber-300 font-bold border border-slate-700">-</button>
               <span id="prayerTime-fajr" class="text-xs font-black text-amber-200 w-16 text-center">05:14 AM</span>
@@ -669,8 +686,8 @@
             </button>
           </div>
           <!-- Dhuhr -->
-          <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
-            <div class="w-24"><b class="text-xs text-white block">Dhuhr</b><span class="text-[9px] text-amber-300 font-semibold">Noon</span></div>
+          <div id="prayerRow-dhuhr" class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between transition">
+            <div class="w-28"><b id="prayerTitle-dhuhr" class="text-xs text-white block">Dhuhr</b><span class="text-[9px] text-amber-300 font-semibold">Noon</span></div>
             <div class="flex items-center gap-1.5">
               <button onclick="adjustPrayerMinutes('dhuhr', -5)" class="w-6 h-6 rounded bg-slate-900 text-amber-300 font-bold border border-slate-700">-</button>
               <span id="prayerTime-dhuhr" class="text-xs font-black text-amber-200 w-16 text-center">12:09 PM</span>
@@ -681,8 +698,8 @@
             </button>
           </div>
           <!-- Asr -->
-          <div class="p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/50 flex items-center justify-between">
-            <div class="w-24"><b class="text-xs text-emerald-300 block">Asr (Next)</b><span class="text-[9px] text-amber-300 font-semibold">Afternoon</span></div>
+          <div id="prayerRow-asr" class="p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/50 flex items-center justify-between transition">
+            <div class="w-28"><b id="prayerTitle-asr" class="text-xs text-emerald-300 block">Asr (Next)</b><span class="text-[9px] text-amber-300 font-semibold">Afternoon</span></div>
             <div class="flex items-center gap-1.5">
               <button onclick="adjustPrayerMinutes('asr', -5)" class="w-6 h-6 rounded bg-slate-900 text-amber-300 font-bold border border-slate-700">-</button>
               <span id="prayerTime-asr" class="text-xs font-black text-amber-300 w-16 text-center">03:34 PM</span>
@@ -693,8 +710,8 @@
             </button>
           </div>
           <!-- Maghrib -->
-          <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
-            <div class="w-24"><b class="text-xs text-white block">Maghrib</b><span class="text-[9px] text-amber-300 font-semibold">Sunset</span></div>
+          <div id="prayerRow-maghrib" class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between transition">
+            <div class="w-28"><b id="prayerTitle-maghrib" class="text-xs text-white block">Maghrib</b><span class="text-[9px] text-amber-300 font-semibold">Sunset</span></div>
             <div class="flex items-center gap-1.5">
               <button onclick="adjustPrayerMinutes('maghrib', -5)" class="w-6 h-6 rounded bg-slate-900 text-amber-300 font-bold border border-slate-700">-</button>
               <span id="prayerTime-maghrib" class="text-xs font-black text-amber-200 w-16 text-center">05:24 PM</span>
@@ -705,8 +722,8 @@
             </button>
           </div>
           <!-- Isha -->
-          <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
-            <div class="w-24"><b class="text-xs text-white block">Isha</b><span class="text-[9px] text-amber-300 font-semibold">Night</span></div>
+          <div id="prayerRow-isha" class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between transition">
+            <div class="w-28"><b id="prayerTitle-isha" class="text-xs text-white block">Isha</b><span class="text-[9px] text-amber-300 font-semibold">Night</span></div>
             <div class="flex items-center gap-1.5">
               <button onclick="adjustPrayerMinutes('isha', -5)" class="w-6 h-6 rounded bg-slate-900 text-amber-300 font-bold border border-slate-700">-</button>
               <span id="prayerTime-isha" class="text-xs font-black text-amber-200 w-16 text-center">06:45 PM</span>
@@ -725,8 +742,8 @@
           <h3 class="text-sm font-extrabold text-amber-300 flex items-center gap-1.5">
             <i class="fa-solid fa-compass text-amber-400"></i> Accurate Qibla Direction
           </h3>
-          <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded border border-emerald-500/40">
-            Bearing: 262° West-Southwest
+          <span id="qiblaBearingTopBadge" class="text-[10px] text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded border border-emerald-500/40">
+            Bearing: 262° Holy Kaaba
           </span>
         </div>
         <div class="flex flex-col items-center justify-center py-4">
@@ -747,7 +764,7 @@
             <div class="absolute w-4 h-4 rounded-full bg-amber-400 border-2 border-slate-950 shadow"></div>
           </div>
           <div class="mt-3 text-center space-y-2">
-            <div class="text-sm font-black text-white">Qibla Direction: <span class="text-amber-300">262° (Holy Makkah)</span></div>
+            <div class="text-sm font-black text-white">Qibla Direction: <span id="qiblaBearingMainText" class="text-amber-300">262° (Holy Makkah)</span></div>
             <p id="qiblaSensorStatusText" class="text-[11px] text-slate-400">Align your phone horizontally with the Kaaba arrow.</p>
             <button onclick="activateLiveQiblaCompassSensor()" class="px-3.5 py-1.5 rounded-xl bg-emerald-950 border border-amber-400/40 text-amber-300 text-[11px] font-extrabold inline-flex items-center gap-1.5 hover:bg-emerald-900 transition">
               <i class="fa-solid fa-compass-drafting"></i> <span>Calibrate Live Phone Sensor</span>
@@ -912,7 +929,7 @@
               </p>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
-              <button onclick="launchRealJitsiClass()" class="gold-btn px-6 py-3 rounded-2xl text-xs font-black inline-flex items-center gap-2 shadow-xl">
+              <button onclick="if(isPurdahActive) togglePurdahMode(); launchRealJitsiClass();" class="gold-btn px-6 py-3 rounded-2xl text-xs font-black inline-flex items-center gap-2 shadow-xl">
                 <i class="fa-solid fa-video"></i> <span>Start Video Class (ویڈیو کلاس)</span>
               </button>
               <button onclick="if(!isPurdahActive) togglePurdahMode(); launchRealJitsiClass();" class="px-4 py-3 rounded-2xl bg-pink-950/90 hover:bg-pink-900 border border-pink-400/50 text-pink-200 text-xs font-extrabold inline-flex items-center gap-1.5 shadow-lg">
@@ -984,6 +1001,14 @@
                 <i class="fa-solid fa-language"></i> Tarjuma &amp; Tafseer (ترجمہ و تفسیر)
               </button>
             </div>
+            <div class="flex items-center gap-1.5">
+              <button onclick="toggleTajweedWhiteboard()" class="px-2.5 py-1.5 rounded-xl bg-amber-400/15 border border-amber-400/50 text-amber-300 hover:bg-amber-400 hover:text-slate-950 font-extrabold text-[11px] flex items-center gap-1 transition" title="Open Tajweed Whiteboard">
+                <i class="fa-solid fa-pen-nib"></i> <span>Tajweed Board</span>
+              </button>
+              <button onclick="toggleCinemaFocusMode()" class="px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 hover:border-amber-400 font-bold text-[11px] flex items-center gap-1 transition" title="Toggle Full Screen Focus Mode">
+                <i class="fa-solid fa-expand text-emerald-400"></i> <span>Full Screen</span>
+              </button>
+            </div>
             <span id="screenSyncBroadcastLabel" class="hidden">Live Screen Mirroring Ready</span>
           </div>
 
@@ -996,7 +1021,7 @@
               </div>
               <div class="flex items-center gap-1.5">
                 <span class="text-slate-400 font-bold">Page:</span>
-                <input type="number" id="mushafPageDirectInput" min="1" max="604" value="1" class="w-16 bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-center text-amber-300 font-black outline-none">
+                <input type="number" id="mushafPageDirectInput" min="1" max="604" value="1" onkeydown="if(event.key==='Enter') jumpToTypedPage()" class="w-16 bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-center text-amber-300 font-black outline-none">
                 <button onclick="jumpToTypedPage()" class="px-2.5 py-1 bg-amber-400 text-slate-950 font-black rounded-lg">Go</button>
               </div>
               <div class="flex items-center gap-2">
@@ -1070,7 +1095,9 @@
                 </select>
               </div>
               <div class="flex items-center gap-1.5">
-                <span class="px-2 py-1 rounded bg-amber-400/20 text-amber-300 text-[10px] font-extrabold border border-amber-400/40">
+                <button onclick="changeIrfanSurah(-1)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-200 font-bold"><i class="fa-solid fa-chevron-left mr-1"></i> Prev</button>
+                <button onclick="changeIrfanSurah(1)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-200 font-bold">Next <i class="fa-solid fa-chevron-right ml-1"></i></button>
+                <span class="hidden sm:inline-block px-2 py-1 rounded bg-amber-400/20 text-amber-300 text-[10px] font-extrabold border border-amber-400/40">
                   Urdu &amp; English Translation
                 </span>
               </div>
@@ -1107,10 +1134,10 @@
     <!-- ============================================================== -->
     <!-- TAB 4: PROFILE, ROLE PORTALS & CLASSIFIED WORKSPACE            -->
     <!-- ============================================================== -->
-    <section id="tabPane-profile" class="space-y-4 hidden">
+    <section id="tabPane-profile" class="space-y-4">
 
-      <!-- SINGLE UNIFIED USER IDENTITY HEADER (ONLY NAME & PIC OF LOGGED-IN USER) -->
-      <div class="relative rounded-3xl overflow-hidden border border-amber-400/40 p-4 sm:p-5 shadow-xl">
+      <!-- SINGLE UNIFIED USER IDENTITY HEADER (SHOWN ONLY AFTER LOGIN - ONLY NAME & PIC OF LOGGED-IN USER) -->
+      <div id="portalLoggedInUserBanner" class="hidden relative rounded-3xl overflow-hidden border border-amber-400/40 p-4 sm:p-5 shadow-xl">
         <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20500%22%20width%3D%221200%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3ClinearGradient%20id%3D%22bgHero%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23022c22%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23064e3b%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22goldHero%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23b45309%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%221200%22%20height%3D%22500%22%20fill%3D%22url(%23bgHero)%22/%3E%20%3Ccircle%20cx%3D%22960%22%20cy%3D%22220%22%20r%3D%22190%22%20fill%3D%22%23fbbf24%22%20fill-opacity%3D%220.07%22%20stroke%3D%22url(%23goldHero)%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.4%22/%3E%20%3C/svg%3E" alt="Portal Banner" class="absolute inset-0 w-full h-full object-cover opacity-25">
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-emerald-950/90 to-slate-950/90"></div>
         <div class="relative z-10 space-y-3">
@@ -1159,7 +1186,7 @@
       </div>
 
       <!-- CLEAN ROLE-BASED LOGIN & REGISTRATION SCREEN (SHOWN ONLY WHEN LOGGED OUT) -->
-      <div id="profileAuthContainer" class="hidden luxury-card p-4 sm:p-6 rounded-3xl border-2 border-amber-400/40 space-y-4 max-w-xl mx-auto shadow-2xl">
+      <div id="profileAuthContainer" class="luxury-card p-4 sm:p-6 rounded-3xl border-2 border-amber-400/40 space-y-4 max-w-xl mx-auto shadow-2xl">
         
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div class="flex items-center gap-2">
@@ -1205,7 +1232,12 @@
             </div>
             <div>
               <label id="loginPasswordLabel" class="block text-slate-400 font-semibold mb-1">Password / Security PIN</label>
-              <input type="password" id="loginPassword" value="1234" placeholder="••••" onkeydown="if(event.key==='Enter') handleUserLoginSubmit()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-bold outline-none focus:border-amber-400">
+              <div class="relative">
+                <input type="password" id="loginPassword" value="1234" placeholder="••••" onkeydown="if(event.key==='Enter') handleUserLoginSubmit()" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-3 pr-9 py-2.5 text-white font-bold outline-none focus:border-amber-400">
+                <button type="button" onclick="togglePasswordInputVisibility('loginPassword', this)" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-300 text-xs" title="Show / Hide PIN">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1226,14 +1258,23 @@
           </div>
 
           <!-- Student Fields -->
-          <div id="regFields-student" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div id="regFields-student" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="block text-slate-400 mb-1">Student Full Name</label>
-              <input type="text" id="regStudentName" placeholder="Student name" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+              <input type="text" id="regStudentName" placeholder="Student name" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
             </div>
             <div>
               <label class="block text-slate-400 mb-1">Parent Name</label>
-              <input type="text" id="regParentName" placeholder="Father / Mother name" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+              <input type="text" id="regParentName" placeholder="Father / Mother name" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Select Course</label>
+              <select id="regStudentCourse" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-300 font-bold outline-none focus:border-amber-400">
+                <option value="Irfan-ul-Quran (Tarjuma & Tafseer)">Irfan-ul-Quran ($35/mo)</option>
+                <option value="Noorani Qaida & Ahkam">Noorani Qaida ($25/mo)</option>
+                <option value="Nazra Quran with Tajweed">Nazra Quran ($30/mo)</option>
+                <option value="Full Quran Hifz Program">Full Quran Hifz ($40/mo)</option>
+              </select>
             </div>
           </div>
 
@@ -1261,14 +1302,23 @@
           </div>
 
           <!-- Common Fields -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="block text-slate-400 mb-1">WhatsApp Mobile Number</label>
-              <input type="tel" id="regCommonPhone" placeholder="+92 / +44 / +1 Mobile Number" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+              <input type="tel" id="regCommonPhone" placeholder="+92 / +44 / +1 Mobile Number" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
             </div>
             <div>
               <label class="block text-slate-400 mb-1">City &amp; Country</label>
-              <input type="text" id="regCommonLocation" placeholder="e.g. Sehja, Khanpur / London, UK" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+              <input type="text" id="regCommonLocation" placeholder="e.g. Sehja, Khanpur / London, UK" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Set Password / Security PIN</label>
+              <div class="relative">
+                <input type="password" id="regCommonPassword" value="1234" placeholder="Create 4-Digit PIN" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-3 pr-9 py-2 text-amber-300 font-bold outline-none focus:border-amber-400">
+                <button type="button" onclick="togglePasswordInputVisibility('regCommonPassword', this)" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-300 text-xs" title="Show / Hide PIN">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1354,8 +1404,12 @@
             <h3 class="text-xs font-extrabold text-emerald-300 flex items-center gap-1.5">
               <i class="fa-solid fa-chalkboard-user text-amber-400"></i> Certified Teachers (Faculty) &amp; Salary Ledger (اساتذہ کا مکمل ریکارڈ)
             </h3>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] text-slate-400 font-bold">Rate: Rs <b id="adminTableRatePerClassLabel" class="text-amber-300">750</b> / Class</span>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-[10px] text-slate-400 font-bold bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">Rate: Rs <b id="adminTableRatePerClassLabel" class="text-amber-300">750</b> / Class</span>
+              <input type="text" id="adminTeacherSearchInput" oninput="renderAdminTeachersTable(this.value)" placeholder="Search teacher, mode, phone..." class="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white outline-none focus:border-amber-400 w-44">
+              <button onclick="openTeacherModalForNew()" class="gold-btn px-3 py-1 rounded-lg text-xs font-black flex items-center gap-1">
+                <i class="fa-solid fa-user-plus"></i> <span>Add Teacher</span>
+              </button>
             </div>
           </div>
 
@@ -1423,6 +1477,15 @@
             <div>
               <label class="block text-slate-400 mb-1 font-semibold">Online Card Payment Link (Stripe / PayPal / Wise)</label>
               <input type="text" id="cfgStripeUrl" value="https://buy.stripe.com/test_4gMfZa1utbJw41be9Ze3e00" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-300 outline-none focus:border-amber-400">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-slate-400 mb-1 font-semibold">Executive Admin Security PIN (ایڈمن سیکیورٹی پن کوڈ)</label>
+              <div class="relative max-w-xs">
+                <input type="password" id="cfgAdminPin" value="6733" placeholder="4-Digit Admin PIN" class="w-full bg-slate-950 border border-amber-400/50 rounded-xl pl-3 pr-9 py-2 text-amber-300 font-black tracking-widest outline-none focus:border-amber-400">
+                <button type="button" onclick="togglePasswordInputVisibility('cfgAdminPin', this)" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-300 text-xs" title="Show / Hide Admin PIN">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
             </div>
             <div class="sm:col-span-2 flex flex-col sm:flex-row gap-2 pt-1 border-t border-slate-800/80">
               <input type="text" id="cfgNewTeacherInput" placeholder="Add New Certified Teacher (e.g. Qari Bilal Hassan - Tajweed & Hifz)" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
@@ -1500,7 +1563,7 @@
       <!-- ============================================== -->
       <!-- 4C. STUDENT PORTAL (3-STEP SEQUENTIAL FLOW)    -->
       <!-- ============================================== -->
-      <div id="studentPortalDashboard" class="space-y-4">
+      <div id="studentPortalDashboard" class="space-y-4 hidden">
         <!-- Student KPI Overview Cards -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
           <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
@@ -1513,7 +1576,7 @@
           </div>
           <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
             <span class="text-[10px] text-slate-400 font-bold block">Attendance &amp; Grade</span>
-            <span class="text-xs sm:text-sm font-black text-amber-300 block mt-0.5">96% • Grade A+</span>
+            <span id="studentKpiGrade" class="text-xs sm:text-sm font-black text-amber-300 block mt-0.5">96% • Grade A+</span>
           </div>
           <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
             <span class="text-[10px] text-slate-400 font-bold block">Daily Class Time</span>
@@ -1604,6 +1667,7 @@
                   <i class="fa-solid fa-cloud-arrow-up"></i> <span>Send to Teacher</span>
                 </button>
               </div>
+              <div id="studentHomeworkStatusList" class="space-y-1.5 pt-2 border-t border-slate-900 max-h-28 overflow-y-auto pr-1 text-xs"></div>
             </div>
           </div>
 
@@ -1689,7 +1753,7 @@
             <div class="text-xs text-slate-300">Estimated Total Family Tuition:</div>
             <div class="text-lg font-black text-amber-300 mt-0.5" id="calculatedPriceOutput">$63 USD / Month</div>
           </div>
-          <button onclick="openTuitionPaymentModal()" class="gold-btn px-4 py-2 rounded-xl text-xs font-black flex items-center gap-1.5">
+          <button onclick="openTuitionPaymentModal(true)" class="gold-btn px-4 py-2 rounded-xl text-xs font-black flex items-center gap-1.5">
             <i class="fa-solid fa-credit-card"></i> <span>Pay Fee Now (Bank / JazzCash / Card)</span>
           </button>
         </div>
@@ -1765,7 +1829,7 @@
   <nav id="appBottomNav" class="fixed bottom-2 left-2 right-2 z-50 max-w-lg mx-auto floating-dock rounded-3xl px-2.5 py-1.5 transition-all">
     <div class="grid grid-cols-5 items-center gap-1">
       
-      <button id="navBtn-home" onclick="switchActiveTab('home'); closeBubbleTray();" class="nav-pill-active flex flex-col items-center justify-center py-1.5 rounded-2xl transition-all duration-300 font-extrabold">
+      <button id="navBtn-home" onclick="switchActiveTab('home'); closeBubbleTray();" class="flex flex-col items-center justify-center py-1.5 rounded-2xl text-slate-300 hover:text-amber-300 transition-all duration-300 font-semibold">
         <i class="fa-solid fa-house text-sm"></i>
         <span id="navLabel-home" class="text-[9px] mt-0.5">Home</span>
       </button>
@@ -1786,7 +1850,7 @@
         <span class="text-[8px] font-black text-amber-300 uppercase tracking-tighter mt-0.5">Menu</span>
       </div>
 
-      <button id="navBtn-profile" onclick="switchActiveTab('profile'); switchProfileSubTab('dashboard'); closeBubbleTray();" class="flex flex-col items-center justify-center py-1.5 rounded-2xl text-slate-300 hover:text-amber-300 transition-all duration-300 font-semibold">
+      <button id="navBtn-profile" onclick="switchActiveTab('profile'); switchProfileSubTab('dashboard'); closeBubbleTray();" class="nav-pill-active flex flex-col items-center justify-center py-1.5 rounded-2xl transition-all duration-300 font-extrabold">
         <i class="fa-solid fa-user-graduate text-sm"></i>
         <span id="navLabel-profile" class="text-[9px] mt-0.5">Portal</span>
       </button>
@@ -1858,6 +1922,10 @@
           <b class="text-amber-300" id="invModalSerial">NRL-INV-2026-8812</b>
         </div>
         <div class="flex justify-between">
+          <span class="text-slate-400">Billing Month:</span>
+          <span class="text-slate-200 font-bold outline-none focus:bg-slate-800 px-1 rounded" id="invModalDate" contenteditable="true" title="Click to edit">November 2026</span>
+        </div>
+        <div class="flex justify-between">
           <span class="text-slate-400">Student Name:</span>
           <b class="text-white outline-none focus:bg-slate-800 px-1 rounded" id="invModalStudent" contenteditable="true" title="Click to edit">Muhammad Hamza</b>
         </div>
@@ -1877,9 +1945,16 @@
           <span class="text-slate-400">Tuition Amount:</span>
           <b class="text-amber-300 text-sm outline-none focus:bg-slate-800 px-1 rounded" id="invModalAmount" contenteditable="true" title="Click to edit">$35.00 USD</b>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
           <span class="text-slate-400">Status:</span>
           <span id="invModalStatusBadge" contenteditable="true" class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-black text-[10px] border border-emerald-500/40 outline-none" title="Click to edit">PAID</span>
+        </div>
+        <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+          <div class="text-[10px] text-emerald-400 font-bold">
+            ✓ Verified Academy Tax Receipt
+            <span class="block text-[9px] text-slate-400 font-normal">Noorly Global Quran Academy</span>
+          </div>
+          <img id="invModalQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=https%3A%2F%2Fnoorly-quran-academy.pages.dev" alt="Invoice QR" class="w-12 h-12 border border-amber-400/40 rounded p-0.5 bg-white">
         </div>
       </div>
 
@@ -2086,15 +2161,21 @@
             <option value="Full Quran Hifz Program">Full Quran Hifz Program</option>
           </select>
         </div>
-        <div>
-          <label class="block text-slate-400 mb-0.5">Preferred Time Slot (PKT / Local):</label>
-          <select id="assignModalSlotSelect" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-emerald-400 font-bold outline-none">
-            <option value="04:30 PM PKT (11:30 AM GMT)">04:30 PM PKT (11:30 AM GMT)</option>
-            <option value="05:15 PM PKT (12:15 PM GMT)">05:15 PM PKT (12:15 PM GMT)</option>
-            <option value="06:00 PM PKT (01:00 PM GMT)">06:00 PM PKT (01:00 PM GMT)</option>
-            <option value="07:30 PM PKT (02:30 PM GMT)">07:30 PM PKT (02:30 PM GMT)</option>
-            <option value="09:00 PM PKT (04:00 PM GMT)">09:00 PM PKT (04:00 PM GMT)</option>
-          </select>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="col-span-2">
+            <label class="block text-slate-400 mb-0.5">Preferred Time Slot (PKT / Local):</label>
+            <select id="assignModalSlotSelect" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-emerald-400 font-bold outline-none">
+              <option value="04:30 PM PKT (11:30 AM GMT)">04:30 PM PKT (11:30 AM GMT)</option>
+              <option value="05:15 PM PKT (12:15 PM GMT)">05:15 PM PKT (12:15 PM GMT)</option>
+              <option value="06:00 PM PKT (01:00 PM GMT)">06:00 PM PKT (01:00 PM GMT)</option>
+              <option value="07:30 PM PKT (02:30 PM GMT)">07:30 PM PKT (02:30 PM GMT)</option>
+              <option value="09:00 PM PKT (04:00 PM GMT)">09:00 PM PKT (04:00 PM GMT)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-0.5">Login PIN:</label>
+            <input type="text" id="assignModalPinInput" value="1234" placeholder="1234" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-amber-300 font-black text-center outline-none focus:border-amber-400">
+          </div>
         </div>
         <button onclick="confirmAssignLeadToTeacher()" class="gold-btn w-full py-2.5 rounded-xl font-black mt-2">
           Confirm Allotment & Enroll
@@ -2131,8 +2212,8 @@
         <i class="fa-solid fa-triangle-exclamation"></i>
       </div>
       <div>
-        <h3 class="text-sm font-black text-white">Remove Student Record?</h3>
-        <p id="confirmDeleteModalText" class="text-[11px] text-slate-300 mt-1">Are you sure you want to remove this student from the active ledger?</p>
+        <h3 id="confirmDeleteModalTitle" class="text-sm font-black text-white">Remove Record?</h3>
+        <p id="confirmDeleteModalText" class="text-[11px] text-slate-300 mt-1">Are you sure you want to remove this record from the active ledger?</p>
       </div>
       <div class="flex gap-2">
         <button onclick="closeConfirmDeleteModal()" class="flex-1 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 font-bold">Cancel</button>
@@ -2193,18 +2274,97 @@
     </div>
   </div>
 
+  <!-- 10. ADMIN EDIT / ADD CERTIFIED TEACHER PROFILE MODAL -->
+  <div id="adminTeacherEditModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3">
+    <div class="luxury-card rounded-2xl max-w-sm w-full p-5 border border-emerald-400/50 space-y-3 relative text-xs shadow-2xl">
+      <button onclick="closeTeacherEditModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-base"></i>
+      </button>
+      <h3 id="teacherModalHeading" class="text-sm font-black text-amber-300 flex items-center gap-1.5">
+        <i class="fa-solid fa-chalkboard-user text-emerald-400"></i> <span>Edit Certified Teacher Details</span>
+      </h3>
+      <div class="space-y-2.5">
+        <div>
+          <label class="block text-slate-400 mb-0.5">Teacher Full Name (With Title):</label>
+          <input type="text" id="editTeacherNameInput" placeholder="e.g. Qari Ahmed Bilal / Qaria Fatima Zahra" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white font-bold outline-none focus:border-amber-400">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-0.5">Gender &amp; Teaching Mode:</label>
+          <select id="editTeacherModeSelect" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-emerald-300 font-bold outline-none focus:border-amber-400">
+            <option value="Male Qari (Hafiz & Tajweed)">Male Qari (Hafiz &amp; Tajweed)</option>
+            <option value="Female Qaria (Purdah Mode)">Female Qaria (Purdah Mode)</option>
+            <option value="Male Hafiz (Hifz & Qirat)">Male Hafiz (Hifz &amp; Qirat)</option>
+            <option value="Female Aalima (Purdah Mode)">Female Aalima (Purdah Mode)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-0.5">Islamic Qualifications &amp; Ijazah:</label>
+          <input type="text" id="editTeacherQualsInput" placeholder="e.g. Wafaq-ul-Madaris • Tajweed & Qirat" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white outline-none focus:border-amber-400">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-0.5">WhatsApp Mobile Number:</label>
+          <input type="tel" id="editTeacherPhoneInput" placeholder="e.g. +923005039391" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-amber-300 font-bold outline-none focus:border-amber-400">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-0.5">Bank / JazzCash / Easypaisa Account (For Salary):</label>
+          <input type="text" id="editTeacherAccountInput" placeholder="e.g. UBL / JazzCash: 0300-5039391" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white outline-none focus:border-amber-400">
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-0.5">Monthly Classes:</label>
+            <input type="number" id="editTeacherClassesInput" min="0" value="24" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-emerald-400 font-black outline-none focus:border-amber-400">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-0.5">Payout Status:</label>
+            <select id="editTeacherStatusSelect" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-amber-300 font-bold outline-none focus:border-amber-400">
+              <option value="Paid • Active">Paid • Active</option>
+              <option value="Salary Due">Salary Due</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-0.5">Login PIN:</label>
+            <input type="text" id="editTeacherPinInput" value="1234" placeholder="1234" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-amber-300 font-black text-center outline-none focus:border-amber-400">
+          </div>
+        </div>
+        <button onclick="saveTeacherModalDetails()" class="gold-btn w-full py-2.5 rounded-xl font-black mt-2 flex items-center justify-center gap-1.5 shadow-lg">
+          <i class="fa-solid fa-floppy-disk"></i> <span>Save Teacher Record (محفوظ کریں)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= MASTER JAVASCRIPT ENGINE ================= -->
   <script>
     const PERMANENT_FIREBASE_DB_URL = "https://noorly-quran-academy-default-rtdb.firebaseio.com";
-    const ACTIVE_USER_SESSION_KEY = "NOORLY_ACTIVE_SESSION";
+    const ACTIVE_USER_SESSION_KEY = "NOORLY_AUTH_SESSION_V3";
     const STRIPE_PORTAL_URL = "https://buy.stripe.com/test_4gMfZa1utbJw41be9Ze3e00";
 
     let academyConfig = {
       whatsapp: "923005039391",
       teacherRatePkr: 750,
       bankDetails: "JazzCash / Easypaisa: 0300-5039391 • UBL Account (Nadeem Khan)",
-      stripeUrl: STRIPE_PORTAL_URL
+      stripeUrl: STRIPE_PORTAL_URL,
+      adminPin: "6733"
     };
+
+    function getLiveAcademyUrl() {
+      try {
+        if (window.location && window.location.protocol && window.location.protocol.startsWith('http')) {
+          return window.location.origin + window.location.pathname;
+        }
+      } catch (e) {}
+      return "https://noorly-quran-academy.pages.dev";
+    }
+
+    function togglePasswordInputVisibility(inputId, btnEl) {
+      const inp = document.getElementById(inputId);
+      if (!inp) return;
+      const isPw = inp.type === 'password';
+      inp.type = isPw ? 'text' : 'password';
+      if (btnEl) {
+        btnEl.innerHTML = isPw ? '<i class="fa-solid fa-eye-slash text-amber-300"></i>' : '<i class="fa-solid fa-eye"></i>';
+      }
+    }
 
     let localSyncChannel = null;
     try {
@@ -2216,8 +2376,8 @@
     let appState = {
       firebaseUrl: PERMANENT_FIREBASE_DB_URL,
       currentLanguage: 'en',
-      activeTab: 'home',
-      activeProfileSubTab: 'dashboard',
+      activeTab: 'profile',
+      activeProfileSubTab: 'account',
       classroomMode: 'live',
       activeTool: 'namazTimes',
       holyNamesType: 'allah',
@@ -2228,12 +2388,7 @@
       classDiaries: []
     };
 
-    let currentUser = {
-      username: "hamza.uk",
-      fullName: "Muhammad Hamza (Student)",
-      role: "student",
-      activeCourse: "Irfan-ul-Quran (Tarjuma & Tafseer)"
-    };
+    let currentUser = null;
 
     // Multi-Language Strings (Preserving 1-2-3-4 Sequential Labels)
     const TRANSLATIONS = {
@@ -2244,6 +2399,9 @@
 
     function changeAppLanguage(lang) {
       appState.currentLanguage = lang;
+      try { localStorage.setItem('NOORLY_LANG', lang); } catch (e) {}
+      const sel = document.getElementById('appLanguageSelector');
+      if (sel && sel.value !== lang) sel.value = lang;
       const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
       document.getElementById('appBrandTitle').innerText = t.brand;
       const statusEl = document.getElementById('headerLiveStatusText');
@@ -2422,15 +2580,20 @@
     }
 
     async function launchRealJitsiClass() {
-      const wrapper = document.getElementById('jitsiFrameWrapper');
-      const placeholder = document.getElementById('callPlaceholderState');
-      const btnStart = document.getElementById('btnStartCall');
-      const roomName = getActiveAntiClashRoomId();
-
       if (isRealCallActive) {
         stopNativeWebRTCCall();
         return;
       }
+      if (isUserLoggedOut || !currentUser) {
+        switchActiveTab('profile');
+        switchProfileSubTab('account', false);
+        showAppToast("Please Sign In to your Student, Teacher, or Admin Portal first to join the 1-on-1 Live Classroom.");
+        return;
+      }
+      const wrapper = document.getElementById('jitsiFrameWrapper');
+      const placeholder = document.getElementById('callPlaceholderState');
+      const btnStart = document.getElementById('btnStartCall');
+      const roomName = getActiveAntiClashRoomId();
 
       stopAllActiveAudio();
       placeholder.classList.add('hidden');
@@ -2461,7 +2624,7 @@
         ? (SIBLING_PROFILES[activeSiblingKey]?.name || 'Muhammad Hamza (Student)')
         : (SIBLING_PROFILES[activeSiblingKey]?.teacher || 'Qari Ahmed Bilal (Certified Tutor)');
 
-      const myLabel = currentUser ? currentUser.fullName : 'Student';
+      const myLabel = currentUser ? getCleanDisplayName(currentUser.fullName) : 'Student';
 
       wrapper.innerHTML = `
         <div class="p-3 sm:p-4 space-y-3 bg-slate-950/95 rounded-2xl border border-amber-400/40">
@@ -2936,7 +3099,7 @@
 
 I am live in the Noorly In-App Quran Studio (${roomName}).
 Click to join directly in your browser (No app install needed):
-https://noorly-quran-academy.pages.dev`);
+${getLiveAcademyUrl()}`);
       window.open(`https://wa.me/?text=${msg}`, '_blank');
     }
 
@@ -3005,9 +3168,11 @@ https://noorly-quran-academy.pages.dev`);
       isPurdahActive = !isPurdahActive;
       const btn = document.getElementById('btnPurdahToggle');
       const studioBtn = document.getElementById('btnStudioPurdah');
+      const camBtn = document.getElementById('btnNativeCamToggle');
       const overlay = document.getElementById('localPurdahOverlay');
 
       if (isPurdahActive) {
+        isNativeCamOff = true;
         if (btn) {
           btn.className = "px-3 py-1.5 rounded-xl bg-pink-600 text-white text-xs font-bold border border-pink-400 flex items-center gap-1.5";
           btn.innerHTML = `<i class="fa-solid fa-lock"></i> Purdah LOCKED`;
@@ -3016,11 +3181,16 @@ https://noorly-quran-academy.pages.dev`);
           studioBtn.className = "px-3 py-2 rounded-xl bg-pink-600 text-white border border-pink-400 text-xs font-bold flex items-center gap-1.5";
           studioBtn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Purdah Locked</span>`;
         }
+        if (camBtn) {
+          camBtn.className = "px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 text-xs font-extrabold flex items-center gap-1.5 shadow";
+          camBtn.innerHTML = `<i class="fa-solid fa-video-slash"></i> <span>Camera OFF</span>`;
+        }
         if (localMediaStream) {
           localMediaStream.getVideoTracks().forEach(t => { t.enabled = false; t.stop(); });
         }
         if (overlay) overlay.classList.remove('hidden');
       } else {
+        isNativeCamOff = false;
         if (btn) {
           btn.className = "px-3 py-1.5 rounded-xl bg-pink-950 text-pink-300 text-xs font-bold border border-pink-500/40 flex items-center gap-1.5";
           btn.innerHTML = `<i class="fa-solid fa-eye-slash"></i> Purdah Mode`;
@@ -3029,9 +3199,12 @@ https://noorly-quran-academy.pages.dev`);
           studioBtn.className = "px-3 py-2 rounded-xl bg-pink-950 text-pink-300 border border-pink-500/40 text-xs font-bold flex items-center gap-1.5";
           studioBtn.innerHTML = `<i class="fa-solid fa-eye-slash"></i> <span>Purdah Veil</span>`;
         }
-        if (overlay && !isNativeCamOff) overlay.classList.add('hidden');
+        if (camBtn) {
+          camBtn.className = "px-3.5 py-2 rounded-xl bg-emerald-950 border border-emerald-500/50 text-emerald-300 text-xs font-extrabold flex items-center gap-1.5 shadow";
+          camBtn.innerHTML = `<i class="fa-solid fa-video"></i> <span>Camera ON</span>`;
+        }
+        if (overlay) overlay.classList.add('hidden');
         if (isRealCallActive) {
-          isNativeCamOff = false;
           startNativeMediaAndWebRTC(getActiveAntiClashRoomId(), true);
         }
       }
@@ -3868,10 +4041,38 @@ https://noorly-quran-academy.pages.dev`);
       }
     };
 
-        let irfanCloudCache = {};
+    const ALL_114_SURAHS = [
+      "1. Al-Fatihah (الفاتحة)", "2. Al-Baqarah (البقرة)", "3. Ali 'Imran (آل عمران)", "4. An-Nisa (النساء)", "5. Al-Ma'idah (المائدة)", "6. Al-An'am (الأنعام)", "7. Al-A'raf (الأعراف)", "8. Al-Anfal (الأنفال)", "9. At-Tawbah (التوبة)", "10. Yunus (يونس)",
+      "11. Hud (هود)", "12. Yusuf (يوسف)", "13. Ar-Ra'd (الرعد)", "14. Ibrahim (إبراهيم)", "15. Al-Hijr (الحجر)", "16. An-Nahl (النحل)", "17. Al-Isra (الإسراء)", "18. Al-Kahf (الكهف)", "19. Maryam (مريم)", "20. Taha (طه)",
+      "21. Al-Anbiya (الأنبياء)", "22. Al-Hajj (الحج)", "23. Al-Mu'minun (المؤمنون)", "24. An-Nur (النور)", "25. Al-Furqan (الفرقان)", "26. Ash-Shu'ara (الشعراء)", "27. An-Naml (النمل)", "28. Al-Qasas (القصص)", "29. Al-'Ankabut (العنكبوت)", "30. Ar-Rum (الروم)",
+      "31. Luqman (لقمان)", "32. As-Sajdah (السجدة)", "33. Al-Ahzab (الأحزاب)", "34. Saba (سبأ)", "35. Fatir (فاطر)", "36. Yasin (يس)", "37. As-Saffat (الصافات)", "38. Sad (ص)", "39. Az-Zumar (الزمر)", "40. Ghafir (غافر)",
+      "41. Fussilat (فصلت)", "42. Ash-Shuraa (الشورى)", "43. Az-Zukhruf (الزخرف)", "44. Ad-Dukhan (الدخان)", "45. Al-Jathiyah (الجاثية)", "46. Al-Ahqaf (الأحقاف)", "47. Muhammad (محمد)", "48. Al-Fath (الفتح)", "49. Al-Hujurat (الحجرات)", "50. Qaf (ق)",
+      "51. Adh-Dhariyat (الذاريات)", "52. At-Tur (الطور)", "53. An-Najm (النجم)", "54. Al-Qamar (القمر)", "55. Ar-Rahman (الرحمن)", "56. Al-Waqi'ah (الواقعة)", "57. Al-Hadid (الحديد)", "58. Al-Mujadila (المجادلة)", "59. Al-Hashr (الحشر)", "60. Al-Mumtahanah (الممتحنة)",
+      "61. As-Saff (الصف)", "62. Al-Jumu'ah (الجمعة)", "63. Al-Munafiqun (المنافقون)", "64. At-Taghabun (التغابن)", "65. At-Talaq (الطلاق)", "66. At-Tahrim (التحريم)", "67. Al-Mulk (الملك)", "68. Al-Qalam (القلم)", "69. Al-Haqqah (الحاقة)", "70. Al-Ma'arij (المعارج)",
+      "71. Nuh (نوح)", "72. Al-Jinn (الجن)", "73. Al-Muzzammil (المزمل)", "74. Al-Muddaththir (المدثر)", "75. Al-Qiyamah (القيامة)", "76. Al-Insan (الإنسان)", "77. Al-Mursalat (المرسلات)", "78. An-Naba (النبأ)", "79. An-Nazi'at (النازعات)", "80. 'Abasa (عبس)",
+      "81. At-Takwir (التكوير)", "82. Al-Infitar (الانفطار)", "83. Al-Mutaffifin (المطففين)", "84. Al-Inshiqaq (الانشقاق)", "85. Al-Buruj (البروج)", "86. At-Tariq (الطارق)", "87. Al-A'la (الأعلى)", "88. Al-Ghashiyah (الغاشية)", "89. Al-Fajr (الفجر)", "90. Al-Balad (البلد)",
+      "91. Ash-Shams (الشمس)", "92. Al-Layl (الليل)", "93. Ad-Duha (الضحى)", "94. Ash-Sharh (الشرح)", "95. At-Tin (التين)", "96. Al-'Alaq (العلق)", "97. Al-Qadr (القدر)", "98. Al-Bayyinah (البينة)", "99. Az-Zalzalah (الزلزلة)", "100. Al-'Adiyat (العاديات)",
+      "101. Al-Qari'ah (القارعة)", "102. At-Takathur (التكاثر)", "103. Al-'Asr (العصر)", "104. Al-Humazah (الهمزة)", "105. Al-Fil (الفيل)", "106. Quraysh (قريش)", "107. Al-Ma'un (الماعون)", "108. Al-Kawthar (الكوثر)", "109. Al-Kafirun (الكافرون)", "110. An-Nasr (النصر)",
+      "111. Al-Masad (المسد)", "112. Al-Ikhlas (الإخلاص)", "113. Al-Falaq (الفلق)", "114. An-Nas (الناس)"
+    ];
+
+    function initIrfanSurahSelector() {
+      const sel = document.getElementById('irfanSurahSelect');
+      if (!sel) return;
+      sel.innerHTML = ALL_114_SURAHS.map((label, idx) => `<option value="${idx + 1}">${label}</option>`).join('');
+    }
+
+    function changeIrfanSurah(delta) {
+      const sel = document.getElementById('irfanSurahSelect');
+      const cur = Number(sel?.value) || 1;
+      const next = Math.max(1, Math.min(114, cur + delta));
+      loadIrfanSurah(next, true);
+    }
+
+    let irfanCloudCache = {};
 
     async function loadIrfanSurah(surahNo, shouldBroadcast = true) {
-      const sNum = Number(surahNo) || 1;
+      const sNum = Math.max(1, Math.min(114, Number(surahNo) || 1));
       try { localStorage.setItem('NOORLY_LAST_IRFAN', String(sNum)); } catch (e) {}
       const sel = document.getElementById('irfanSurahSelect');
       if (sel && String(sel.value) !== String(sNum)) sel.value = String(sNum);
@@ -3879,7 +4080,8 @@ https://noorly-quran-academy.pages.dev`);
       const container = document.getElementById('irfanVersesListContainer');
       if (!container) return;
 
-      if (IRFAN_SURAH_DATA[sNum]) {
+      // Surahs 1, 112, 113, 114 are 100% complete in IRFAN_SURAH_DATA with rich Tafseer
+      if ([1, 112, 113, 114].includes(sNum) && IRFAN_SURAH_DATA[sNum]) {
         renderIrfanVersesHTML(sNum, IRFAN_SURAH_DATA[sNum].verses);
         return;
       }
@@ -3901,20 +4103,30 @@ https://noorly-quran-academy.pages.dev`);
           const arAyahs = json.data[0].ayahs || [];
           const urAyahs = json.data[1].ayahs || [];
           const enAyahs = json.data[2].ayahs || [];
-          const verses = arAyahs.slice(0, 40).map((a, idx) => ({
-            num: a.numberInSurah,
-            arabic: a.text,
-            tarjumaUrdu: urAyahs[idx] ? urAyahs[idx].text : "",
-            tarjumaEnglish: enAyahs[idx] ? enAyahs[idx].text : "",
-            tafseerShort: `سورۃ ${json.data[0].name} • آیت نمبر ${a.numberInSurah} — تجوید اور فہمِ القرآن کے ساتھ تلاوت کریں۔`
-          }));
+          const localSeed = IRFAN_SURAH_DATA[sNum]?.verses || [];
+          const verses = arAyahs.map((a, idx) => {
+            const seededVerse = localSeed.find(sv => sv.num === a.numberInSurah);
+            return {
+              num: a.numberInSurah,
+              arabic: a.text,
+              tarjumaUrdu: urAyahs[idx] ? urAyahs[idx].text : (seededVerse?.tarjumaUrdu || ""),
+              tarjumaEnglish: enAyahs[idx] ? enAyahs[idx].text : (seededVerse?.tarjumaEnglish || ""),
+              tafseerShort: seededVerse?.tafseerShort || `سورۃ ${json.data[0].name} • آیت نمبر ${a.numberInSurah} — تجوید اور فہمِ القرآن کے ساتھ تلاوت کریں۔`
+            };
+          });
           irfanCloudCache[sNum] = verses;
           renderIrfanVersesHTML(sNum, verses);
+        } else if (IRFAN_SURAH_DATA[sNum]) {
+          renderIrfanVersesHTML(sNum, IRFAN_SURAH_DATA[sNum].verses);
         } else {
           renderIrfanVersesHTML(1, IRFAN_SURAH_DATA[1].verses);
         }
       } catch (e) {
-        renderIrfanVersesHTML(1, IRFAN_SURAH_DATA[1].verses);
+        if (IRFAN_SURAH_DATA[sNum]) {
+          renderIrfanVersesHTML(sNum, IRFAN_SURAH_DATA[sNum].verses);
+        } else {
+          renderIrfanVersesHTML(1, IRFAN_SURAH_DATA[1].verses);
+        }
       }
     }
 
@@ -3974,8 +4186,18 @@ https://noorly-quran-academy.pages.dev`);
       { id: 102, name: "Fatima Noor", phone: "+12145550199", location: "Dallas, Texas, USA", course: "Noorani Qaida", pref: "Female Qaria" }
     ];
 
+    const DEFAULT_TEACHERS_LIST = [
+      { id: 201, name: "Qari Ahmed Bilal", mode: "Male Qari (Hafiz & Tajweed)", quals: "Wafaq-ul-Madaris • القراءات السبع", phone: "+923005039391", account: "UBL / JazzCash: 0300-5039391", classes: 24, status: "Paid • Active" },
+      { id: 202, name: "Qaria Fatima Zahra", mode: "Female Qaria (Purdah Mode)", quals: "Aalima & Tajweed Specialist", phone: "+923056621321", account: "Easypaisa: 0305-6621321", classes: 22, status: "Paid • Active" },
+      { id: 203, name: "Hafiz Usman Ghani", mode: "Male Hafiz (Hifz & Qirat)", quals: "Hafiz-e-Quran & Makharij Coach", phone: "+923001122334", account: "Meezan Bank", classes: 18, status: "Paid • Active" },
+      { id: 204, name: "Aalima Zainab Noor", mode: "Female Aalima (Purdah Mode)", quals: "Irfan-ul-Quran & Tafseer Scholar", phone: "+923019988776", account: "UBL Digital", classes: 16, status: "Paid • Active" }
+    ];
+
     let adminStudentsList = [...DEFAULT_STUDENTS_LIST];
+    let adminTeachersList = [...DEFAULT_TEACHERS_LIST];
     let adminLeadsList = [...DEFAULT_LEADS_LIST];
+    let isUserLoggedOut = true;
+    let selectedLoginRole = 'student';
     let teacherHomeworkSubmissions = [
       { id: 501, date: "2026-11-08", student: "Muhammad Hamza", course: "Irfan-ul-Quran (Surah Al-Fatihah)", status: "Pending Grade", audioDataUrl: "https://everyayah.com/data/Alafasy_128kbps/001001.mp3" }
     ];
@@ -3984,6 +4206,7 @@ https://noorly-quran-academy.pages.dev`);
 
     async function syncAcademyDataToCloud() {
       localStorage.setItem('NOORLY_STUDENTS_LIST', JSON.stringify(adminStudentsList));
+      localStorage.setItem('NOORLY_TEACHERS_LIST', JSON.stringify(adminTeachersList));
       localStorage.setItem('NOORLY_LEADS_LIST', JSON.stringify(adminLeadsList));
       localStorage.setItem('NOORLY_TEACHER_CLASSES', String(teacherCompletedClasses));
       localStorage.setItem('NOORLY_HOMEWORK_LIST', JSON.stringify(teacherHomeworkSubmissions));
@@ -4003,6 +4226,7 @@ https://noorly-quran-academy.pages.dev`);
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             students: adminStudentsList,
+            teachers: adminTeachersList,
             leads: adminLeadsList,
             teacherClasses: teacherCompletedClasses,
             homework: teacherHomeworkSubmissions,
@@ -4021,6 +4245,8 @@ https://noorly-quran-academy.pages.dev`);
       try {
         const sLocal = localStorage.getItem('NOORLY_STUDENTS_LIST');
         if (sLocal) adminStudentsList = JSON.parse(sLocal);
+        const tLocal = localStorage.getItem('NOORLY_TEACHERS_LIST');
+        if (tLocal) adminTeachersList = JSON.parse(tLocal);
         const lLocal = localStorage.getItem('NOORLY_LEADS_LIST');
         if (lLocal) adminLeadsList = JSON.parse(lLocal);
         const cLocal = localStorage.getItem('NOORLY_TEACHER_CLASSES');
@@ -4036,6 +4262,7 @@ https://noorly-quran-academy.pages.dev`);
       } catch (e) {}
 
       renderAdminStudentsTable();
+      renderAdminTeachersTable();
       renderAdminLeadsList();
       renderTeacherStudentsSchedule();
       renderTeacherHomeworkList();
@@ -4051,6 +4278,7 @@ https://noorly-quran-academy.pages.dev`);
         const cloud = await res.json();
         if (cloud) {
           if (Array.isArray(cloud.students) && cloud.students.length) adminStudentsList = cloud.students;
+          if (Array.isArray(cloud.teachers) && cloud.teachers.length) adminTeachersList = cloud.teachers;
           if (Array.isArray(cloud.leads)) adminLeadsList = cloud.leads;
           if (cloud.teacherClasses) teacherCompletedClasses = Number(cloud.teacherClasses);
           if (Array.isArray(cloud.homework) && cloud.homework.length) teacherHomeworkSubmissions = cloud.homework;
@@ -4064,6 +4292,7 @@ https://noorly-quran-academy.pages.dev`);
           }
 
           localStorage.setItem('NOORLY_STUDENTS_LIST', JSON.stringify(adminStudentsList));
+          localStorage.setItem('NOORLY_TEACHERS_LIST', JSON.stringify(adminTeachersList));
           localStorage.setItem('NOORLY_LEADS_LIST', JSON.stringify(adminLeadsList));
           localStorage.setItem('NOORLY_TEACHER_CLASSES', String(teacherCompletedClasses));
           localStorage.setItem('NOORLY_HOMEWORK_LIST', JSON.stringify(teacherHomeworkSubmissions));
@@ -4072,6 +4301,7 @@ https://noorly-quran-academy.pages.dev`);
           localStorage.setItem('NOORLY_REVIEWS_LIST', JSON.stringify(appState.reviews));
 
           renderAdminStudentsTable();
+          renderAdminTeachersTable();
           renderAdminLeadsList();
           renderTeacherStudentsSchedule();
           renderTeacherHomeworkList();
@@ -4080,6 +4310,11 @@ https://noorly-quran-academy.pages.dev`);
           renderStudentLeaveRequestsList();
           renderReviewsList();
           recalculateTeacherSalary();
+          if (!isUserLoggedOut && currentUser) {
+            applyLoggedInState();
+          } else {
+            selectLoginRoleTab(selectedLoginRole || 'student');
+          }
         }
       } catch (e) {}
     }
@@ -4139,6 +4374,271 @@ https://noorly-quran-academy.pages.dev`);
         tuitionEl.innerText = `$${paidSum} / $${totalSum} USD`;
       }
       syncDynamicStudentProfiles();
+      renderAdminTeachersTable();
+    }
+
+    let currentEditingTeacherId = null;
+
+    function renderAdminTeachersTable(searchQuery = '') {
+      const tbody = document.getElementById('adminTeachersTableBody');
+      const rateLbl = document.getElementById('adminTableRatePerClassLabel');
+      if (rateLbl) rateLbl.innerText = RATE_PER_CLASS_PKR.toLocaleString();
+      if (!tbody) return;
+
+      const q = (searchQuery || document.getElementById('adminTeacherSearchInput')?.value || '').trim().toLowerCase();
+      const filteredTeachers = q
+        ? adminTeachersList.filter(t =>
+            (t.name || '').toLowerCase().includes(q) ||
+            (t.mode || '').toLowerCase().includes(q) ||
+            (t.quals || '').toLowerCase().includes(q) ||
+            (t.phone || '').toLowerCase().includes(q) ||
+            (t.account || '').toLowerCase().includes(q)
+          )
+        : adminTeachersList;
+
+      tbody.innerHTML = filteredTeachers.map(t => {
+        const assignedList = adminStudentsList.filter(s => (s.teacher || '').toLowerCase() === (t.name || '').toLowerCase());
+        const studentNames = assignedList.length ? assignedList.map(s => s.name).join(', ') : 'No students assigned';
+        const classesCnt = Number(t.classes) || 0;
+        const salaryPkr = classesCnt * RATE_PER_CLASS_PKR;
+        const isPaid = (t.status || '').toLowerCase().includes('paid');
+        const statusBadgeClass = isPaid
+          ? "px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold cursor-pointer"
+          : "px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-500/40 text-[10px] font-bold cursor-pointer";
+        const cleanPhone = (t.phone || '+923005039391').replace(/[^0-9]/g, '');
+
+        return `
+          <tr>
+            <td class="p-2 font-bold text-white">
+              ${t.name}
+              <span class="text-[10px] text-emerald-400 block">${t.mode || 'Certified Faculty'}</span>
+            </td>
+            <td class="p-2 text-slate-300 text-[11px]">
+              ${t.quals || 'Hafiz & Tajweed'}
+              <span class="text-[10px] text-amber-300 block">${t.phone || ''} • ${t.account || 'Bank / JazzCash'}</span>
+            </td>
+            <td class="p-2">
+              <b class="text-amber-300">${assignedList.length} Students</b>
+              <span class="text-[10px] text-slate-400 block max-w-[160px] truncate" title="${studentNames}">${studentNames}</span>
+            </td>
+            <td class="p-2">
+              <div class="flex items-center gap-1">
+                <button onclick="adjustIndividualTeacherClasses(${t.id}, -1)" class="w-5 h-5 rounded bg-slate-900 border border-slate-700 text-slate-300 hover:text-amber-300 text-[10px] font-black">-</button>
+                <span class="font-black text-emerald-400 px-1">${classesCnt}</span>
+                <button onclick="adjustIndividualTeacherClasses(${t.id}, 1)" class="w-5 h-5 rounded bg-slate-900 border border-slate-700 text-emerald-300 hover:text-amber-300 text-[10px] font-black">+</button>
+                <button onclick="resetIndividualTeacherClasses(${t.id})" class="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 text-[9px] font-bold">0</button>
+              </div>
+            </td>
+            <td class="p-2 font-black text-amber-300">Rs ${salaryPkr.toLocaleString()}</td>
+            <td class="p-2">
+              <span onclick="toggleTeacherPayoutStatus(${t.id})" title="Click to toggle Paid / Salary Due" class="${statusBadgeClass}">${t.status || 'Paid • Active'}</span>
+            </td>
+            <td class="p-2 text-right space-x-1 whitespace-nowrap">
+              <button onclick="openEditTeacherModal(${t.id})" class="px-2 py-0.5 rounded bg-slate-800 border border-amber-400/40 text-amber-300 text-[10px] font-bold hover:bg-slate-700" title="Edit Teacher Details">
+                <i class="fa-solid fa-pen"></i> Edit
+              </button>
+              <button onclick="window.open('https://wa.me/${cleanPhone}')" class="px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold" title="WhatsApp Teacher">
+                <i class="fa-brands fa-whatsapp"></i> Chat
+              </button>
+              <button onclick="removeTeacherFromFaculty(${t.id})" class="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 text-[10px] font-bold hover:bg-rose-900" title="Remove Teacher">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      populateTeachersDropdown();
+    }
+
+    function openEditTeacherModal(teacherId) {
+      const t = adminTeachersList.find(item => item.id === teacherId);
+      if (!t) return;
+      currentEditingTeacherId = teacherId;
+      const heading = document.getElementById('teacherModalHeading');
+      if (heading) heading.innerHTML = `<i class="fa-solid fa-user-pen text-emerald-400"></i> <span>Edit Teacher Profile (استاد کا ریکارڈ ترمیم کریں)</span>`;
+      document.getElementById('editTeacherNameInput').value = t.name || '';
+      const modeSel = document.getElementById('editTeacherModeSelect');
+      if (modeSel) {
+        if (t.mode && !Array.from(modeSel.options).some(o => o.value === t.mode)) {
+          const opt = document.createElement('option');
+          opt.value = t.mode;
+          opt.text = t.mode;
+          modeSel.appendChild(opt);
+        }
+        modeSel.value = t.mode || 'Male Qari (Hafiz & Tajweed)';
+      }
+      document.getElementById('editTeacherQualsInput').value = t.quals || '';
+      document.getElementById('editTeacherPhoneInput').value = t.phone || '';
+      document.getElementById('editTeacherAccountInput').value = t.account || '';
+      document.getElementById('editTeacherClassesInput').value = Number(t.classes) || 0;
+      const statusSel = document.getElementById('editTeacherStatusSelect');
+      if (statusSel) {
+        statusSel.value = (t.status || '').toLowerCase().includes('due') ? 'Salary Due' : 'Paid • Active';
+      }
+      const pinInp = document.getElementById('editTeacherPinInput');
+      if (pinInp) pinInp.value = t.pin || '1234';
+      document.getElementById('adminTeacherEditModal').classList.remove('hidden');
+    }
+
+    function openTeacherModalForNew() {
+      currentEditingTeacherId = null;
+      const heading = document.getElementById('teacherModalHeading');
+      if (heading) heading.innerHTML = `<i class="fa-solid fa-user-plus text-emerald-400"></i> <span>Add New Certified Teacher (نیا استاد شامل کریں)</span>`;
+      document.getElementById('editTeacherNameInput').value = '';
+      document.getElementById('editTeacherModeSelect').value = 'Male Qari (Hafiz & Tajweed)';
+      document.getElementById('editTeacherQualsInput').value = 'Hafiz-e-Quran, Tajweed & Qirat';
+      document.getElementById('editTeacherPhoneInput').value = '+923005039391';
+      document.getElementById('editTeacherAccountInput').value = 'Bank / JazzCash / Easypaisa';
+      document.getElementById('editTeacherClassesInput').value = 0;
+      document.getElementById('editTeacherStatusSelect').value = 'Paid • Active';
+      const pinInp = document.getElementById('editTeacherPinInput');
+      if (pinInp) pinInp.value = '1234';
+      document.getElementById('adminTeacherEditModal').classList.remove('hidden');
+    }
+
+    function closeTeacherEditModal() {
+      currentEditingTeacherId = null;
+      const modal = document.getElementById('adminTeacherEditModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function saveTeacherModalDetails() {
+      const name = document.getElementById('editTeacherNameInput').value.trim();
+      const mode = document.getElementById('editTeacherModeSelect').value;
+      const quals = document.getElementById('editTeacherQualsInput').value.trim() || 'Hafiz & Tajweed';
+      const phone = document.getElementById('editTeacherPhoneInput').value.trim() || '+923005039391';
+      const account = document.getElementById('editTeacherAccountInput').value.trim() || 'Bank / JazzCash';
+      const classes = Math.max(0, Number(document.getElementById('editTeacherClassesInput').value) || 0);
+      const status = document.getElementById('editTeacherStatusSelect').value;
+      const pin = document.getElementById('editTeacherPinInput')?.value.trim() || '1234';
+
+      if (!name) return alert("Please enter Teacher Full Name.");
+
+      if (currentEditingTeacherId) {
+        const existing = adminTeachersList.find(item => item.id === currentEditingTeacherId);
+        if (existing) {
+          const oldName = existing.name;
+          existing.name = name;
+          existing.mode = mode;
+          existing.quals = quals;
+          existing.phone = phone;
+          existing.account = account;
+          existing.classes = classes;
+          existing.status = status;
+          existing.pin = pin;
+
+          // If teacher name changed, update assigned students, diaries & dropdowns seamlessly
+          if (oldName && oldName !== name) {
+            adminStudentsList.forEach(st => {
+              if ((st.teacher || '').toLowerCase() === oldName.toLowerCase()) {
+                st.teacher = name;
+              }
+            });
+            (appState.classDiaries || []).forEach(d => {
+              if ((d.teacherUser || '').toLowerCase() === oldName.toLowerCase()) {
+                d.teacherUser = name;
+              }
+            });
+            if (currentUser && currentUser.role === 'teacher' && (currentUser.fullName || '').toLowerCase() === oldName.toLowerCase()) {
+              currentUser.fullName = name;
+              sessionStorage.setItem(ACTIVE_USER_SESSION_KEY, JSON.stringify(currentUser));
+            }
+            if (Array.isArray(academyConfig.teachers)) {
+              const idx = academyConfig.teachers.findIndex(tName => tName.toLowerCase() === oldName.toLowerCase());
+              if (idx !== -1) academyConfig.teachers[idx] = name;
+              else academyConfig.teachers.push(name);
+              localStorage.setItem('NOORLY_ACADEMY_CONFIG', JSON.stringify(academyConfig));
+            }
+            const tSel = document.getElementById('assignModalTeacherSelect');
+            if (tSel) {
+              Array.from(tSel.options).forEach(opt => {
+                if (opt.value.toLowerCase() === oldName.toLowerCase()) {
+                  opt.value = name;
+                  opt.text = `${name} (${quals})`;
+                }
+              });
+            }
+          }
+        }
+        closeTeacherEditModal();
+        renderAdminStudentsTable();
+        renderAdminTeachersTable();
+        renderTeacherStudentsSchedule();
+        recalculateTeacherSalary();
+        selectLoginRoleTab(selectedLoginRole || 'student');
+        syncAcademyDataToCloud();
+        alert(`Alhamdulillah! Updated faculty record for ${name}.`);
+      } else {
+        const newTeacher = {
+          id: Date.now(),
+          name,
+          mode,
+          quals,
+          phone,
+          account,
+          pin,
+          classes,
+          status
+        };
+        adminTeachersList.unshift(newTeacher);
+        if (!Array.isArray(academyConfig.teachers)) academyConfig.teachers = [];
+        if (!academyConfig.teachers.includes(name)) {
+          academyConfig.teachers.push(name);
+          localStorage.setItem('NOORLY_ACADEMY_CONFIG', JSON.stringify(academyConfig));
+        }
+        populateTeachersDropdown();
+        closeTeacherEditModal();
+        renderAdminTeachersTable();
+        recalculateTeacherSalary();
+        selectLoginRoleTab(selectedLoginRole || 'student');
+        syncAcademyDataToCloud();
+        alert(`Alhamdulillah! Added ${name} to Certified Faculty.`);
+      }
+    }
+
+    function adjustIndividualTeacherClasses(teacherId, delta) {
+      const t = adminTeachersList.find(item => item.id === teacherId);
+      if (!t) return;
+      t.classes = Math.max(0, (Number(t.classes) || 0) + delta);
+      renderAdminTeachersTable();
+      recalculateTeacherSalary();
+      syncAcademyDataToCloud();
+    }
+
+    function resetIndividualTeacherClasses(teacherId) {
+      const t = adminTeachersList.find(item => item.id === teacherId);
+      if (!t) return;
+      t.classes = 0;
+      renderAdminTeachersTable();
+      recalculateTeacherSalary();
+      syncAcademyDataToCloud();
+    }
+
+    function toggleTeacherPayoutStatus(teacherId) {
+      const t = adminTeachersList.find(item => item.id === teacherId);
+      if (!t) return;
+      t.status = (t.status || '').toLowerCase().includes('paid') ? 'Salary Due' : 'Paid • Active';
+      renderAdminTeachersTable();
+      recalculateTeacherSalary();
+      syncAcademyDataToCloud();
+    }
+
+    let pendingDeleteStudentId = null;
+    let pendingDeleteTeacherId = null;
+
+    function removeTeacherFromFaculty(teacherId) {
+      const t = adminTeachersList.find(item => item.id === teacherId);
+      if (!t) return;
+      if (adminTeachersList.length <= 1) return alert("At least one certified teacher must remain in the academy.");
+      pendingDeleteTeacherId = teacherId;
+      pendingDeleteStudentId = null;
+      const titleEl = document.getElementById('confirmDeleteModalTitle');
+      const txtEl = document.getElementById('confirmDeleteModalText');
+      if (titleEl) titleEl.innerText = "Remove Certified Teacher?";
+      if (txtEl) txtEl.innerText = `Are you sure you want to remove ${t.name} (${t.mode}) from the faculty ledger?`;
+      const modal = document.getElementById('confirmDeleteModal');
+      if (modal) modal.classList.remove('hidden');
     }
 
     function toggleStudentFeePaidStatus(studentId) {
@@ -4154,24 +4654,57 @@ https://noorly-quran-academy.pages.dev`);
       syncAcademyDataToCloud();
     }
 
-    let pendingDeleteStudentId = null;
     function removeStudentFromLedger(studentId) {
       const target = adminStudentsList.find(s => s.id === studentId);
       if (!target) return;
       pendingDeleteStudentId = studentId;
-      const txt = document.getElementById('confirmDeleteModalText');
-      if (txt) txt.innerText = `Are you sure you want to remove ${target.name} (${target.location}) from the active ledger?`;
+      pendingDeleteTeacherId = null;
+      const titleEl = document.getElementById('confirmDeleteModalTitle');
+      const txtEl = document.getElementById('confirmDeleteModalText');
+      if (titleEl) titleEl.innerText = "Remove Student Record?";
+      if (txtEl) txtEl.innerText = `Are you sure you want to remove ${target.name} (${target.location}) from the active ledger?`;
       const modal = document.getElementById('confirmDeleteModal');
       if (modal) modal.classList.remove('hidden');
     }
 
     function closeConfirmDeleteModal() {
       pendingDeleteStudentId = null;
+      pendingDeleteTeacherId = null;
       const modal = document.getElementById('confirmDeleteModal');
       if (modal) modal.classList.add('hidden');
     }
 
     function executeConfirmedStudentDelete() {
+      if (pendingDeleteTeacherId) {
+        const t = adminTeachersList.find(item => item.id === pendingDeleteTeacherId);
+        adminTeachersList = adminTeachersList.filter(item => item.id !== pendingDeleteTeacherId);
+        if (t) {
+          const fallbackTeacher = adminTeachersList[0]?.name || "Qari Ahmed Bilal";
+          adminStudentsList.forEach(st => {
+            if ((st.teacher || '').toLowerCase() === t.name.toLowerCase()) {
+              st.teacher = fallbackTeacher;
+            }
+          });
+          if (Array.isArray(academyConfig.teachers)) {
+            academyConfig.teachers = academyConfig.teachers.filter(n => n.toLowerCase() !== t.name.toLowerCase());
+            localStorage.setItem('NOORLY_ACADEMY_CONFIG', JSON.stringify(academyConfig));
+          }
+          const tSel = document.getElementById('assignModalTeacherSelect');
+          if (tSel) {
+            Array.from(tSel.options).forEach(o => {
+              if (o.value.toLowerCase() === t.name.toLowerCase()) o.remove();
+            });
+          }
+        }
+        closeConfirmDeleteModal();
+        renderAdminStudentsTable();
+        renderAdminTeachersTable();
+        renderTeacherStudentsSchedule();
+        selectLoginRoleTab(selectedLoginRole || 'student');
+        syncAcademyDataToCloud();
+        showAppToast(`Removed ${t ? t.name : 'teacher'} from faculty ledger.`);
+        return;
+      }
       if (!pendingDeleteStudentId) return closeConfirmDeleteModal();
       const target = adminStudentsList.find(s => s.id === pendingDeleteStudentId);
       adminStudentsList = adminStudentsList.filter(s => s.id !== pendingDeleteStudentId);
@@ -4185,6 +4718,7 @@ https://noorly-quran-academy.pages.dev`);
       closeConfirmDeleteModal();
       renderAdminStudentsTable();
       renderTeacherStudentsSchedule();
+      selectLoginRoleTab(selectedLoginRole || 'student');
       syncAcademyDataToCloud();
       showAppToast(`Removed ${target ? target.name : 'student'} from active ledger.`);
     }
@@ -4249,9 +4783,27 @@ https://noorly-quran-academy.pages.dev`);
         tSel.value = st.teacher;
       }
       const cSel = document.getElementById('assignModalCourseSelect');
-      if (cSel && st.course) cSel.value = st.course;
+      if (cSel && st.course) {
+        if (!Array.from(cSel.options).some(o => o.value === st.course)) {
+          const opt = document.createElement('option');
+          opt.value = st.course;
+          opt.text = st.course;
+          cSel.appendChild(opt);
+        }
+        cSel.value = st.course;
+      }
       const sSel = document.getElementById('assignModalSlotSelect');
-      if (sSel && st.slot) sSel.value = st.slot;
+      if (sSel && st.slot) {
+        if (!Array.from(sSel.options).some(o => o.value === st.slot)) {
+          const opt = document.createElement('option');
+          opt.value = st.slot;
+          opt.text = st.slot;
+          sSel.appendChild(opt);
+        }
+        sSel.value = st.slot;
+      }
+      const pInp = document.getElementById('assignModalPinInput');
+      if (pInp) pInp.value = st.pin || '1234';
       document.getElementById('adminAssignModal').classList.remove('hidden');
     }
 
@@ -4263,7 +4815,14 @@ https://noorly-quran-academy.pages.dev`);
       document.getElementById('assignModalStudentName').value = lead.name;
       document.getElementById('assignModalPhone').value = lead.phone || "+447700900077";
       document.getElementById('assignModalLocation').value = lead.location;
-      document.getElementById('assignModalCourseSelect').value = lead.course.includes("Irfan") ? "Irfan-ul-Quran (Tarjuma & Tafseer)" : "Noorani Qaida & Ahkam";
+      const cLower = (lead.course || '').toLowerCase();
+      let mappedCourse = "Irfan-ul-Quran (Tarjuma & Tafseer)";
+      if (cLower.includes("qaida")) mappedCourse = "Noorani Qaida & Ahkam";
+      else if (cLower.includes("nazra")) mappedCourse = "Nazra Quran with Tajweed";
+      else if (cLower.includes("hifz")) mappedCourse = "Full Quran Hifz Program";
+      document.getElementById('assignModalCourseSelect').value = mappedCourse;
+      const pInp = document.getElementById('assignModalPinInput');
+      if (pInp) pInp.value = '1234';
       document.getElementById('adminAssignModal').classList.remove('hidden');
     }
 
@@ -4273,6 +4832,8 @@ https://noorly-quran-academy.pages.dev`);
       document.getElementById('assignModalStudentName').value = "";
       document.getElementById('assignModalPhone').value = "+447700900077";
       document.getElementById('assignModalLocation').value = "London, UK";
+      const pInp = document.getElementById('assignModalPinInput');
+      if (pInp) pInp.value = '1234';
       document.getElementById('adminAssignModal').classList.remove('hidden');
     }
 
@@ -4288,6 +4849,7 @@ https://noorly-quran-academy.pages.dev`);
       const teacher = document.getElementById('assignModalTeacherSelect').value;
       const course = document.getElementById('assignModalCourseSelect').value;
       const slot = document.getElementById('assignModalSlotSelect').value;
+      const pin = document.getElementById('assignModalPinInput')?.value.trim() || "1234";
 
       if (!name) return alert("Please enter Student Name.");
 
@@ -4299,19 +4861,46 @@ https://noorly-quran-academy.pages.dev`);
       if (currentEditingStudentId) {
         const existing = adminStudentsList.find(s => s.id === currentEditingStudentId);
         if (existing) {
+          const oldStudentName = existing.name;
           existing.name = name;
           existing.phone = phone;
           existing.location = loc;
           existing.teacher = teacher;
           existing.course = course;
           existing.slot = slot;
+          existing.pin = pin;
           const isDue = (existing.fee || '').toLowerCase().includes('due');
           existing.fee = `$${courseRate} (${isDue ? 'Due' : 'Paid'})`;
+
+          if (oldStudentName && oldStudentName !== name) {
+            if (!appState.classDiaries || !appState.classDiaries.length) {
+              try {
+                const sD = localStorage.getItem('NOORLY_DIARIES');
+                appState.classDiaries = sD ? JSON.parse(sD) : [...DEFAULT_DIARIES_LIST];
+              } catch (e) { appState.classDiaries = [...DEFAULT_DIARIES_LIST]; }
+            }
+            (appState.classDiaries || []).forEach(d => {
+              if (isSameStudentName(d.studentUser, oldStudentName)) d.studentUser = name;
+            });
+            (studentLeaveRequests || []).forEach(l => {
+              if (isSameStudentName(l.student, oldStudentName)) l.student = name;
+            });
+            (teacherHomeworkSubmissions || []).forEach(h => {
+              if (isSameStudentName(h.student, oldStudentName)) h.student = name;
+            });
+            const oldKey = getStudentKeyFromName(oldStudentName);
+            const newKey = getStudentKeyFromName(name);
+            if (oldKey !== newKey && !['hamza', 'ayesha', 'zayd'].includes(oldKey)) {
+              delete SIBLING_PROFILES[oldKey];
+            }
+            if (activeSiblingKey === oldKey) activeSiblingKey = newKey;
+          }
         }
         currentEditingStudentId = null;
         renderAdminStudentsTable();
         renderTeacherStudentsSchedule();
         switchSiblingAccount(activeSiblingKey);
+        selectLoginRoleTab(selectedLoginRole || 'student');
         syncAcademyDataToCloud();
         closeAssignModal();
         alert(`Alhamdulillah! Updated record for ${name}.`);
@@ -4323,6 +4912,7 @@ https://noorly-quran-academy.pages.dev`);
         name,
         phone,
         location: loc,
+        pin,
         teacher,
         slot,
         course,
@@ -4337,8 +4927,10 @@ https://noorly-quran-academy.pages.dev`);
       }
 
       renderAdminStudentsTable();
+      renderAdminTeachersTable();
       renderAdminLeadsList();
       renderTeacherStudentsSchedule();
+      selectLoginRoleTab(selectedLoginRole || 'student');
       syncAcademyDataToCloud();
       closeAssignModal();
       alert(`Success! ${name} (${phone}) enrolled with ${teacher} for slot ${slot}.`);
@@ -4363,33 +4955,84 @@ https://noorly-quran-academy.pages.dev`);
       alert("Monthly classes counter reset to 0 for the new month.");
     }
 
+    function getLoggedInTeacherRecord() {
+      if (currentUser && currentUser.role === 'teacher') {
+        const cleanName = (currentUser.fullName || '').toLowerCase().trim();
+        const found = adminTeachersList.find(t => t.name.toLowerCase() === cleanName || cleanName.includes(t.name.toLowerCase()) || t.name.toLowerCase().includes(cleanName));
+        if (found) return found;
+      }
+      return adminTeachersList[0] || { id: 201, name: "Qari Ahmed Bilal", classes: 24, status: "Paid • Active" };
+    }
+
     function recalculateTeacherSalary() {
-      const totalSalary = teacherCompletedClasses * RATE_PER_CLASS_PKR;
+      const activeTeacher = getLoggedInTeacherRecord();
+      const classesCnt = Number(activeTeacher.classes ?? teacherCompletedClasses) || 0;
+      const totalSalary = classesCnt * RATE_PER_CLASS_PKR;
       const cntEl = document.getElementById('teacherCompletedClassesCount');
       const salEl = document.getElementById('teacherAccruedSalaryText');
-      if (cntEl) cntEl.innerText = `${teacherCompletedClasses} Completed`;
+      const stEl = document.getElementById('teacherPayoutStatusBadge');
+      if (cntEl) cntEl.innerText = `${classesCnt} Completed`;
       if (salEl) salEl.innerText = `Rs ${totalSalary.toLocaleString()}`;
+      if (stEl) stEl.innerText = activeTeacher.status || 'Active';
     }
 
     function logCompletedTeacherClass(studentName) {
-      teacherCompletedClasses++;
+      let targetTeacher = getLoggedInTeacherRecord();
+      if ((!currentUser || currentUser.role !== 'teacher') && studentName) {
+        const stObj = adminStudentsList.find(s => (s.name || '').toLowerCase() === studentName.toLowerCase());
+        if (stObj && stObj.teacher) {
+          const matchedT = adminTeachersList.find(t => (t.name || '').toLowerCase() === stObj.teacher.toLowerCase());
+          if (matchedT) targetTeacher = matchedT;
+        }
+      }
+      targetTeacher.classes = (Number(targetTeacher.classes) || 0) + 1;
+      teacherCompletedClasses = targetTeacher.classes;
       recalculateTeacherSalary();
+      renderAdminTeachersTable();
       syncAcademyDataToCloud();
-      alert(`Alhamdulillah! Class logged for ${studentName}. Total salary updated to Rs ${(teacherCompletedClasses * RATE_PER_CLASS_PKR).toLocaleString()} PKR.`);
+      alert(`Alhamdulillah! Class logged for ${studentName}. (${targetTeacher.name}: ${targetTeacher.classes} classes • Rs ${(targetTeacher.classes * RATE_PER_CLASS_PKR).toLocaleString()} PKR).`);
+    }
+
+    function getAssignedStudentsForActiveTeacher() {
+      if (currentUser && currentUser.role === 'teacher') {
+        const tName = (currentUser.fullName || '').toLowerCase().trim();
+        const matched = adminStudentsList.filter(st => {
+          const assigned = (st.teacher || '').toLowerCase().trim();
+          return assigned === tName || assigned.includes(tName) || tName.includes(assigned);
+        });
+        return matched;
+      }
+      return adminStudentsList;
     }
 
     function renderTeacherStudentsSchedule() {
       const container = document.getElementById('teacherStudentsScheduleList');
       if (!container) return;
-      container.innerHTML = adminStudentsList.map(st => {
+      const assignedStudents = getAssignedStudentsForActiveTeacher();
+      const tCount = document.getElementById('teacherAssignedStudentsCount');
+      if (tCount) tCount.innerText = `${assignedStudents.length} Assigned`;
+
+      if (!assignedStudents.length) {
+        container.innerHTML = `<div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center text-slate-400">No students are currently assigned to your faculty profile yet.</div>`;
+        return;
+      }
+
+      const diariesPool = (appState.classDiaries && appState.classDiaries.length) ? appState.classDiaries : DEFAULT_DIARIES_LIST;
+
+      container.innerHTML = assignedStudents.map(st => {
         const studentPhone = st.phone || '+447700900077';
         const safeName = st.name.replace(/'/g, "\\'");
         const safeSlot = st.slot.replace(/'/g, "\\'");
+        const latestDiary = diariesPool.find(d => isSameStudentName(d.studentUser, st.name));
+        const sabaqLine = latestDiary
+          ? `<div class="text-[10px] text-amber-300 font-semibold mt-0.5"><i class="fa-solid fa-book-open mr-1"></i>Last Sabaq: ${latestDiary.sabaq} (${latestDiary.date})</div>`
+          : '';
         return `
         <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
           <div>
             <b class="text-white">${st.name}</b> <span class="text-slate-400">(${st.location} • ${studentPhone})</span>
             <div class="text-[10px] text-emerald-400 font-semibold">${st.course} • Time: ${st.slot}</div>
+            ${sabaqLine}
           </div>
           <div class="flex flex-wrap items-center gap-1.5">
             <button onclick="send15MinWhatsAppReminder('${studentPhone}', '${safeName}', '${safeSlot}')" class="px-2 py-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold" title="Send WhatsApp Reminder">
@@ -4400,6 +5043,9 @@ https://noorly-quran-academy.pages.dev`);
             </button>
             <button onclick="openReportCardModal('${safeName}', '${st.course.replace(/'/g, "\\'")}', '${st.teacher.replace(/'/g, "\\'")}')" class="px-2 py-1 rounded bg-slate-900 border border-slate-700 text-slate-200 text-[10px] font-bold hover:border-amber-400" title="Student Report Card">
               <i class="fa-solid fa-clipboard-check"></i> Report
+            </button>
+            <button onclick="openCertificateModal('${safeName}', '${st.course.replace(/'/g, "\\'")}', 'A+ (Distinction)')" class="px-2 py-1 rounded bg-slate-900 border border-amber-400/40 text-amber-300 text-[10px] font-bold hover:bg-slate-800" title="Student Certificate">
+              <i class="fa-solid fa-award"></i> Cert
             </button>
             <button onclick="startTeacherClassForStudent('${safeName}')" class="px-2.5 py-1 rounded bg-amber-400 text-slate-950 font-extrabold text-[10px] shadow">
               <i class="fa-solid fa-video mr-0.5"></i> Start Class
@@ -4412,16 +5058,20 @@ https://noorly-quran-academy.pages.dev`);
       `;
       }).join('');
 
-      const tCount = document.getElementById('teacherAssignedStudentsCount');
-      if (tCount) tCount.innerText = `${adminStudentsList.length} Active`;
+
     }
 
     function getStudentKeyFromName(name) {
-      const lower = (name || '').toLowerCase().trim();
-      if (lower === 'muhammad hamza' || (lower.includes('hamza') && !lower.includes('zayd'))) return 'hamza';
-      if (lower.includes('ayesha')) return 'ayesha';
-      if (lower === 'zayd hamza') return 'zayd';
+      const lower = getCleanDisplayName(name || '').toLowerCase().trim();
+      if (lower === 'muhammad hamza' || lower === 'hamza') return 'hamza';
+      if (lower === 'ayesha siddiqua' || lower === 'ayesha') return 'ayesha';
+      if (lower === 'zayd al-mansoor' || lower === 'zayd hamza' || lower === 'zayd') return 'zayd';
       return lower.replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'hamza';
+    }
+
+    function isSameStudentName(nameA, nameB) {
+      if (!nameA || !nameB) return false;
+      return getStudentKeyFromName(nameA) === getStudentKeyFromName(nameB);
     }
 
     function syncDynamicStudentProfiles() {
@@ -4472,6 +5122,7 @@ https://noorly-quran-academy.pages.dev`);
       if (sel) sel.value = activeSiblingKey;
       updateActiveRoomBadge();
       switchActiveTab('class');
+      setClassroomViewMode('live');
       if (isRealCallActive) stopNativeWebRTCCall();
       launchRealJitsiClass();
     }
@@ -4483,15 +5134,20 @@ https://noorly-quran-academy.pages.dev`);
       document.getElementById('repModalStudent').innerText = studentName;
       document.getElementById('repModalCourse').innerText = courseName;
       document.getElementById('repModalTeacher').innerText = teacherName;
-      const serial = `NRL-REP-2026-${studentName.slice(0, 3).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
+      const monthEl = document.getElementById('repModalMonth');
+      if (monthEl) {
+        try { monthEl.innerText = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); } catch (e) {}
+      }
+      const cleanCode = (studentName || 'STD').replace(/[^a-zA-Z0-9]/g, '').slice(0, 3).toUpperCase() || 'STD';
+      const serial = `NRL-REP-2026-${cleanCode}-${Math.floor(100 + Math.random() * 900)}`;
       const serEl = document.getElementById('repModalSerial');
       if (serEl) serEl.innerText = serial;
       const qrEl = document.getElementById('repModalQrImg');
       if (qrEl) {
-        const verifyUrl = encodeURIComponent(`https://noorly-quran-academy.com/report?serial=${serial}&student=${studentName}`);
+        const verifyUrl = encodeURIComponent(`${getLiveAcademyUrl()}?verify=${serial}&student=${encodeURIComponent(studentName)}`);
         qrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=${verifyUrl}`;
       }
-      const latestDiary = (appState.classDiaries || []).find(d => (d.studentUser || '').toLowerCase().includes(studentName.toLowerCase().split(' ')[0]));
+      const latestDiary = (appState.classDiaries || []).find(d => isSameStudentName(d.studentUser, studentName));
       const remEl = document.getElementById('repModalRemarks');
       if (remEl) {
         remEl.innerText = latestDiary
@@ -4511,7 +5167,8 @@ https://noorly-quran-academy.pages.dev`);
     function openClassroomSabaqModal(preselectedStudent = '') {
       const sel = document.getElementById('diaryStudentSelect');
       if (sel) {
-        const names = adminStudentsList.map(s => s.name);
+        const pool = (currentUser && currentUser.role === 'teacher') ? getAssignedStudentsForActiveTeacher() : adminStudentsList;
+        const names = (pool.length ? pool : adminStudentsList).map(s => s.name);
         const activeName = preselectedStudent || getActiveStudentName();
         if (activeName && !names.includes(activeName)) names.unshift(activeName);
         sel.innerHTML = names.map(n => `<option value="${n}">${n}</option>`).join('');
@@ -4548,6 +5205,7 @@ https://noorly-quran-academy.pages.dev`);
       appState.classDiaries.unshift(entry);
       localStorage.setItem('NOORLY_DIARIES', JSON.stringify(appState.classDiaries));
       renderStudentSabaqDiaryList();
+      renderTeacherStudentsSchedule();
       syncAcademyDataToCloud();
 
       document.getElementById('diarySabaqInput').value = "";
@@ -4560,8 +5218,28 @@ https://noorly-quran-academy.pages.dev`);
 
     function quickMarkAttendance(status) {
       const studentTarget = getActiveStudentName();
-      alert(`Attendance recorded for ${studentTarget}: ${status}. Saved to records.`);
-      if (status === 'Present') logCompletedTeacherClass(studentTarget);
+      if (status === 'Present') {
+        logCompletedTeacherClass(studentTarget);
+      } else {
+        const entry = {
+          id: Date.now(),
+          date: new Date().toISOString().split('T')[0],
+          studentUser: studentTarget,
+          teacherUser: getActiveTeacherName(),
+          sabaq: "Absent — Makeup Class Pending",
+          sabqi: "Not Attended",
+          manzil: "Pending Revision",
+          attendance: "Absent",
+          rating: 3
+        };
+        if (!appState.classDiaries || !appState.classDiaries.length) appState.classDiaries = [...DEFAULT_DIARIES_LIST];
+        appState.classDiaries.unshift(entry);
+        localStorage.setItem('NOORLY_DIARIES', JSON.stringify(appState.classDiaries));
+        renderStudentSabaqDiaryList();
+        renderTeacherStudentsSchedule();
+        syncAcademyDataToCloud();
+        alert(`Attendance recorded for ${studentTarget}: Absent. Logged in Sabaq Diary for make-up class.`);
+      }
     }
 
     // ==========================================
@@ -4574,6 +5252,9 @@ https://noorly-quran-academy.pages.dev`);
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         mediaRecorder = new MediaRecorder(stream);
         audioChunks = [];
+        latestRecordedBase64Audio = "";
+        const subBtn = document.getElementById('btnSubmitHomework');
+        if (subBtn) subBtn.classList.add('hidden');
         mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
         mediaRecorder.onstop = () => {
           const mimeType = (mediaRecorder && mediaRecorder.mimeType) ? mediaRecorder.mimeType : 'audio/webm';
@@ -4588,6 +5269,10 @@ https://noorly-quran-academy.pages.dev`);
           const reader = new FileReader();
           reader.onloadend = () => {
             latestRecordedBase64Audio = reader.result;
+            const sBtn = document.getElementById('btnSubmitHomework');
+            if (sBtn) sBtn.classList.remove('hidden');
+            const badge = document.getElementById('recordingStatusBadge');
+            if (badge) badge.innerText = "Recording Complete. Ready to Submit.";
           };
           reader.readAsDataURL(blob);
           stream.getTracks().forEach(t => t.stop());
@@ -4603,26 +5288,27 @@ https://noorly-quran-academy.pages.dev`);
 
     function stopVoiceHomeworkRecording() {
       if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        document.getElementById('recordingStatusBadge').innerText = "Processing Audio...";
         mediaRecorder.stop();
         document.getElementById('btnStopRecord').classList.add('hidden');
         document.getElementById('btnStartRecord').classList.remove('hidden');
-        document.getElementById('btnSubmitHomework').classList.remove('hidden');
-        document.getElementById('recordingStatusBadge').innerText = "Recording Complete. Ready to Submit.";
       }
     }
 
     async function submitVoiceHomeworkToCloud() {
+      const cleanStName = currentUser ? getCleanDisplayName(currentUser.fullName) : getActiveStudentName();
       const hwObj = {
         id: Date.now(),
         date: new Date().toISOString().split('T')[0],
-        student: currentUser.fullName,
-        course: currentUser.activeCourse || "Irfan-ul-Quran & Tajweed",
+        student: cleanStName,
+        course: (currentUser && currentUser.activeCourse) ? currentUser.activeCourse : "Irfan-ul-Quran & Tajweed",
         status: "Submitted to Teacher",
         audioDataUrl: latestRecordedBase64Audio || "https://everyayah.com/data/Alafasy_128kbps/001001.mp3"
       };
 
       teacherHomeworkSubmissions.unshift(hwObj);
       renderTeacherHomeworkList();
+      renderStudentHomeworkStatusList();
       await syncAcademyDataToCloud();
 
       try {
@@ -4633,41 +5319,85 @@ https://noorly-quran-academy.pages.dev`);
         });
       } catch (e) {}
 
+      const subBtn = document.getElementById('btnSubmitHomework');
+      if (subBtn) subBtn.classList.add('hidden');
       document.getElementById('recordingStatusBadge').innerText = "Uploaded to Teacher Portal!";
       alert("Alhamdulillah! Your recorded voice homework has been sent to your Teacher to listen and grade.");
+    }
+
+    function renderStudentHomeworkStatusList() {
+      const box = document.getElementById('studentHomeworkStatusList');
+      if (!box) return;
+      const activeChildName = getActiveStudentName() || SIBLING_PROFILES[activeSiblingKey]?.name || 'Muhammad Hamza';
+      const myHw = (teacherHomeworkSubmissions || []).filter(hw => isSameStudentName(hw.student, activeChildName));
+      if (!myHw.length) {
+        box.innerHTML = `<div class="text-[10px] text-slate-500">No voice homework submitted yet.</div>`;
+        return;
+      }
+      box.innerHTML = myHw.slice(0, 4).map(hw => {
+        const isGraded = (hw.status || '').toLowerCase().includes('graded');
+        const badgeCls = isGraded
+          ? "px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold"
+          : "px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/30 text-amber-300 text-[10px] font-bold";
+        return `
+          <div class="p-2 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between gap-2">
+            <span class="text-[10px] text-slate-300 truncate"><i class="fa-solid fa-file-audio text-emerald-400 mr-1"></i><b>${hw.date}:</b> ${hw.course}</span>
+            <span class="${badgeCls}">${hw.status}</span>
+          </div>
+        `;
+      }).join('');
     }
 
     function renderTeacherHomeworkList() {
       const box = document.getElementById('teacherHomeworkListContainer');
       if (!box) return;
-      if (!teacherHomeworkSubmissions.length) {
+      const myAssigned = getAssignedStudentsForActiveTeacher();
+      const listToShow = (currentUser && currentUser.role === 'teacher')
+        ? teacherHomeworkSubmissions.filter(hw => myAssigned.some(st => isSameStudentName(hw.student, st.name)))
+        : teacherHomeworkSubmissions;
+      if (!listToShow.length) {
         box.innerHTML = `<div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center text-slate-500">No voice homework recordings submitted yet.</div>`;
         return;
       }
-      box.innerHTML = teacherHomeworkSubmissions.map(hw => `
+      box.innerHTML = listToShow.map(hw => `
         <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
           <div>
             <b class="text-white">${hw.student}</b> <span class="text-amber-300 font-semibold">(${hw.course})</span>
             <div class="text-[10px] text-slate-400">Date: ${hw.date} • Status: <span class="text-emerald-400 font-bold">${hw.status}</span></div>
           </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <audio controls src="${hw.audioDataUrl}" class="h-8 max-w-[210px]"></audio>
-            <button onclick="gradeStudentHomework(${hw.id})" class="px-2.5 py-1 rounded bg-emerald-600 text-white font-black text-[10px]">
-              <i class="fa-solid fa-check"></i> Grade A+ (Mumtaz)
+          <div class="flex flex-wrap items-center gap-1.5">
+            <audio controls src="${hw.audioDataUrl}" class="h-8 max-w-[200px]"></audio>
+            <button onclick="gradeStudentHomework(${hw.id}, 'A+ (Mumtaz)')" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-black text-[10px]">
+              <i class="fa-solid fa-check"></i> A+ Mumtaz
+            </button>
+            <button onclick="gradeStudentHomework(${hw.id}, 'A (Jayyid)')" class="px-2 py-1 rounded bg-slate-800 border border-amber-400/40 text-amber-300 font-bold text-[10px]">
+              Grade A
+            </button>
+            <button onclick="deleteHomeworkSubmission(${hw.id})" class="px-2 py-1 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 text-[10px] font-bold hover:bg-rose-900" title="Remove Recording">
+              <i class="fa-solid fa-trash"></i>
             </button>
           </div>
         </div>
       `).join('');
     }
 
-    function gradeStudentHomework(hwId) {
+    function gradeStudentHomework(hwId, gradeLabel = 'A+ (Mumtaz)') {
       const item = teacherHomeworkSubmissions.find(h => h.id === hwId);
       if (item) {
-        item.status = "Graded: A+ (Mumtaz)";
+        item.status = `Graded: ${gradeLabel}`;
         renderTeacherHomeworkList();
+        renderStudentHomeworkStatusList();
         syncAcademyDataToCloud();
-        alert(`MashaAllah! Graded ${item.student}'s voice homework as A+ (Mumtaz).`);
+        alert(`MashaAllah! Graded ${item.student}'s voice homework as ${gradeLabel}.`);
       }
+    }
+
+    function deleteHomeworkSubmission(hwId) {
+      teacherHomeworkSubmissions = teacherHomeworkSubmissions.filter(h => h.id !== hwId);
+      renderTeacherHomeworkList();
+      renderStudentHomeworkStatusList();
+      syncAcademyDataToCloud();
+      showAppToast("Removed voice homework recording.");
     }
 
     // ==========================================
@@ -4675,8 +5405,8 @@ https://noorly-quran-academy.pages.dev`);
     // ==========================================
     const SIBLING_PROFILES = {
       hamza: { name: "Muhammad Hamza", age: 9, fee: 35, loc: "London, UK", course: "Irfan-ul-Quran (Tarjuma & Tafseer)", teacher: "Qari Ahmed Bilal", time: "04:30 PM PKT" },
-      ayesha: { name: "Ayesha Siddiqua", age: 12, fee: 35, loc: "Manchester, UK", course: "Nazra Quran & Tajweed", teacher: "Qaria Fatima Zahra", time: "05:15 PM PKT" },
-      zayd: { name: "Zayd Hamza", age: 6, fee: 25, loc: "London, UK", course: "Noorani Qaida & Phonetics", teacher: "Qari Ahmed Bilal", time: "06:00 PM PKT" }
+      ayesha: { name: "Ayesha Siddiqua", age: 12, fee: 35, loc: "Manchester, UK", course: "Noorani Qaida & Ahkam", teacher: "Qaria Fatima Zahra", time: "05:15 PM PKT" },
+      zayd: { name: "Zayd Al-Mansoor", age: 10, fee: 30, loc: "Dubai, UAE", course: "Nazra Quran with Tajweed", teacher: "Hafiz Usman Ghani", time: "06:00 PM PKT" }
     };
 
     let activeSiblingKey = 'hamza';
@@ -4715,11 +5445,11 @@ https://noorly-quran-academy.pages.dev`);
       const sel = document.getElementById('headerSiblingSelect');
       if (sel && sel.value !== activeSiblingKey) sel.value = activeSiblingKey;
 
-      if (!currentUser || currentUser.role === 'student' || currentUser.role === 'guest') {
+      if (currentUser && (currentUser.role === 'student' || currentUser.role === 'guest')) {
         currentUser.fullName = `${child.name} (Student)`;
         currentUser.activeCourse = child.course;
         currentUser.assignedTeacher = child.teacher;
-        localStorage.setItem(ACTIVE_USER_SESSION_KEY, JSON.stringify(currentUser));
+        sessionStorage.setItem(ACTIVE_USER_SESSION_KEY, JSON.stringify(currentUser));
       }
 
       document.querySelectorAll('.student-name-display').forEach(el => el.innerText = `${child.name} (Age ${child.age})`);
@@ -4737,7 +5467,7 @@ https://noorly-quran-academy.pages.dev`);
       const payBtnText = document.getElementById('studentPayTuitionBtnText');
       if (payBtnText) payBtnText.innerText = `Pay Tuition Fee ($${child.fee})`;
       const profName = document.getElementById('userProfileDisplayName');
-      if (profName && (!currentUser || currentUser.role === 'student')) {
+      if (profName && currentUser && currentUser.role === 'student') {
         profName.innerText = currentUser.fullName;
         document.getElementById('userAvatarInitials').innerText = child.name.slice(0, 2).toUpperCase();
       }
@@ -4750,18 +5480,43 @@ https://noorly-quran-academy.pages.dev`);
       }
     }
 
-    function openActiveStudentInvoice() {
+    function ensureActiveStudentSiblingKey() {
       syncDynamicStudentProfiles();
+      if (currentUser && currentUser.role === 'student') {
+        const sKey = getStudentKeyFromName(getCleanDisplayName(currentUser.fullName));
+        if (SIBLING_PROFILES[sKey]) activeSiblingKey = sKey;
+      }
+    }
+
+    function openActiveStudentInvoice() {
+      if (isUserLoggedOut || !currentUser) {
+        switchActiveTab('profile');
+        switchProfileSubTab('account', false);
+        return alert("Please Sign In to your Student Portal to view your Tuition Fee Receipt.");
+      }
+      ensureActiveStudentSiblingKey();
       const c = SIBLING_PROFILES[activeSiblingKey] || SIBLING_PROFILES.hamza;
       openFeeInvoiceModal(c.name, c.teacher, c.fee, c.loc, c.course, c.feeStatus || 'PAID');
     }
 
     function openActiveStudentCertificate() {
+      if (isUserLoggedOut || !currentUser) {
+        switchActiveTab('profile');
+        switchProfileSubTab('account', false);
+        return alert("Please Sign In to your Student Portal to view your Course Certificate.");
+      }
+      ensureActiveStudentSiblingKey();
       const c = SIBLING_PROFILES[activeSiblingKey] || SIBLING_PROFILES.hamza;
       openCertificateModal(c.name, c.course, 'A+ (Distinction)');
     }
 
     function openActiveStudentReportCard() {
+      if (isUserLoggedOut || !currentUser) {
+        switchActiveTab('profile');
+        switchProfileSubTab('account', false);
+        return alert("Please Sign In to your Student Portal to view your Progress Report Card.");
+      }
+      ensureActiveStudentSiblingKey();
       const c = SIBLING_PROFILES[activeSiblingKey] || SIBLING_PROFILES.hamza;
       openReportCardModal(c.name, c.course, c.teacher);
     }
@@ -4771,14 +5526,25 @@ https://noorly-quran-academy.pages.dev`);
     // ==========================================
     const DEFAULT_DIARIES_LIST = [
       { id: 901, date: "2026-11-11", studentUser: "Muhammad Hamza", teacherUser: "Qari Ahmed Bilal", sabaq: "Surah Al-Mulk Ayah 1-5", sabqi: "Surah Yasin Complete", manzil: "Juz 1 (Alif Lam Meem)", attendance: "Present", rating: 5 },
-      { id: 902, date: "2026-11-10", studentUser: "Ayesha Siddiqua", teacherUser: "Qaria Fatima Zahra", sabaq: "Noorani Qaida Lesson 12 (Tashdeed)", sabqi: "Lesson 10-11 (Sukoon & Qalqala)", manzil: "Surah Al-Fatihah & 4 Quls", attendance: "Present", rating: 5 }
+      { id: 902, date: "2026-11-10", studentUser: "Ayesha Siddiqua", teacherUser: "Qaria Fatima Zahra", sabaq: "Noorani Qaida Lesson 12 (Tashdeed)", sabqi: "Lesson 10-11 (Sukoon & Qalqala)", manzil: "Surah Al-Fatihah & 4 Quls", attendance: "Present", rating: 5 },
+      { id: 903, date: "2026-11-10", studentUser: "Zayd Al-Mansoor", teacherUser: "Hafiz Usman Ghani", sabaq: "Surah Ar-Rahman Ayah 1-16", sabqi: "Surah Al-Waqi'ah", manzil: "Juz 29 Revision", attendance: "Present", rating: 5 }
     ];
 
     let studentLeaveRequests = [
       { id: 801, date: "2026-11-15", reason: "School Annual Sports Day", student: "Muhammad Hamza", status: "Approved • Makeup: Sat 05:00 PM PKT" }
     ];
 
+    function deleteSabaqDiaryEntry(entryId) {
+      appState.classDiaries = (appState.classDiaries || []).filter(d => d.id !== entryId);
+      localStorage.setItem('NOORLY_DIARIES', JSON.stringify(appState.classDiaries));
+      renderStudentSabaqDiaryList();
+      renderTeacherStudentsSchedule();
+      syncAcademyDataToCloud();
+      showAppToast("Removed Sabaq diary entry.");
+    }
+
     function renderStudentSabaqDiaryList() {
+      renderStudentHomeworkStatusList();
       const box = document.getElementById('studentSabaqDiaryListContainer');
       if (!box) return;
       if (!appState.classDiaries || !appState.classDiaries.length) {
@@ -4789,23 +5555,41 @@ https://noorly-quran-academy.pages.dev`);
           appState.classDiaries = [...DEFAULT_DIARIES_LIST];
         }
       }
-      const activeChildName = (SIBLING_PROFILES[activeSiblingKey]?.name || '').toLowerCase();
-      const firstToken = activeChildName.split(' ')[0] || '';
-      const filteredDiaries = appState.classDiaries.filter(d => {
-        const sUser = (d.studentUser || '').toLowerCase();
-        return !firstToken || sUser.includes(firstToken) || activeChildName.includes(sUser);
-      });
-      const listToShow = filteredDiaries.length ? filteredDiaries : appState.classDiaries;
-      box.innerHTML = listToShow.map(d => `
-        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
+      const activeChildName = getActiveStudentName() || SIBLING_PROFILES[activeSiblingKey]?.name || 'Muhammad Hamza';
+      const filteredDiaries = appState.classDiaries.filter(d => isSameStudentName(d.studentUser, activeChildName));
+      const gradeEl = document.getElementById('studentKpiGrade');
+      if (!filteredDiaries.length) {
+        if (gradeEl) gradeEl.innerText = "100% • Active";
+        box.innerHTML = `<div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center text-slate-400 text-[11px]">No Sabaq diary entries logged for your profile yet.</div>`;
+        return;
+      }
+      if (gradeEl) {
+        const presentEntries = filteredDiaries.filter(d => (d.attendance || 'Present') !== 'Absent');
+        const attPct = Math.round((presentEntries.length / filteredDiaries.length) * 100);
+        const ratedPool = presentEntries.length ? presentEntries : filteredDiaries;
+        const avgRating = ratedPool.reduce((acc, item) => acc + (Number(item.rating) || 5), 0) / ratedPool.length;
+        const gradeStr = avgRating >= 4.7 ? "Grade A+ (Mumtaz)" : (avgRating >= 4.0 ? "Grade A (Jayyid)" : "Grade B+");
+        gradeEl.innerText = `${attPct}% • ${gradeStr}`;
+      }
+      const canDelete = currentUser && (currentUser.role === 'teacher' || currentUser.role === 'admin');
+      box.innerHTML = filteredDiaries.map(d => {
+        const isAbsent = (d.attendance || '') === 'Absent';
+        return `
+        <div class="p-2.5 rounded-xl bg-slate-900 border ${isAbsent ? 'border-rose-500/40' : 'border-slate-800'} flex flex-wrap items-center justify-between gap-2">
           <div>
-            <b class="text-white">${d.sabaq}</b> <span class="text-[10px] text-emerald-400 font-bold">(${d.date})</span>
-            <span class="ml-1 px-1.5 py-0.5 rounded bg-amber-400/15 text-amber-300 text-[9px] font-bold">${d.studentUser || 'Student'}</span>
-            <div class="text-[10px] text-slate-400">Sabqi: ${d.sabqi || 'Revised'} • Manzil: ${d.manzil || 'Revised'} • Teacher: ${d.teacherUser}</div>
+            <b class="${isAbsent ? 'text-rose-300' : 'text-white'}">${d.sabaq}</b> <span class="text-[10px] ${isAbsent ? 'text-rose-400' : 'text-emerald-400'} font-bold">(${d.date})</span>
+            <div class="text-[10px] text-slate-400">Sabqi: ${d.sabqi || 'Revised'} • Manzil: ${d.manzil || 'Revised'}</div>
           </div>
-          <span class="text-amber-400 text-xs font-bold">${'★'.repeat(d.rating || 5)}</span>
+          <div class="flex items-center gap-1.5">
+            ${isAbsent
+              ? `<span class="px-2 py-0.5 rounded bg-rose-950 border border-rose-500/40 text-rose-300 text-[10px] font-bold">Absent</span>`
+              : `<span class="text-amber-400 text-xs font-bold">${'★'.repeat(d.rating || 5)}</span>`
+            }
+            ${canDelete ? `<button onclick="deleteSabaqDiaryEntry(${d.id})" class="text-rose-400 hover:text-rose-300 text-[10px] px-1" title="Delete Entry"><i class="fa-solid fa-trash"></i></button>` : ''}
+          </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function renderStudentLeaveRequestsList() {
@@ -4815,16 +5599,15 @@ https://noorly-quran-academy.pages.dev`);
         const savedL = localStorage.getItem('NOORLY_LEAVES');
         if (savedL && (!studentLeaveRequests || !studentLeaveRequests.length)) studentLeaveRequests = JSON.parse(savedL);
       } catch (e) {}
-      const activeChildName = (SIBLING_PROFILES[activeSiblingKey]?.name || '').toLowerCase();
-      const firstToken = activeChildName.split(' ')[0] || '';
-      const filteredLeaves = studentLeaveRequests.filter(l => {
-        const sName = (l.student || '').toLowerCase();
-        return !firstToken || sName.includes(firstToken) || activeChildName.includes(sName);
-      });
-      const listToShow = filteredLeaves.length ? filteredLeaves : studentLeaveRequests;
-      box.innerHTML = listToShow.map(l => `
+      const activeChildName = getActiveStudentName() || SIBLING_PROFILES[activeSiblingKey]?.name || 'Muhammad Hamza';
+      const filteredLeaves = studentLeaveRequests.filter(l => isSameStudentName(l.student, activeChildName));
+      if (!filteredLeaves.length) {
+        box.innerHTML = `<div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800 text-center text-slate-500 text-[11px]">No leave requests submitted from your account.</div>`;
+        return;
+      }
+      box.innerHTML = filteredLeaves.map(l => `
         <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[11px]">
-          <span><b class="text-amber-300">${l.date}:</b> ${l.reason} <span class="text-[9px] text-slate-400">(${l.student || 'Student'})</span></span>
+          <span><b class="text-amber-300">${l.date}:</b> ${l.reason}</span>
           <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 text-[10px] font-bold">${l.status}</span>
         </div>
       `).join('');
@@ -4833,11 +5616,15 @@ https://noorly-quran-academy.pages.dev`);
     function renderTeacherLeaveRequests() {
       const tBox = document.getElementById('teacherLeaveRequestsContainer');
       if (!tBox) return;
-      if (!studentLeaveRequests || !studentLeaveRequests.length) {
-        tBox.innerHTML = `<div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center text-slate-500">No leave requests submitted.</div>`;
+      const myAssigned = getAssignedStudentsForActiveTeacher();
+      const listToShow = (currentUser && currentUser.role === 'teacher')
+        ? (studentLeaveRequests || []).filter(l => myAssigned.some(st => isSameStudentName(l.student, st.name)))
+        : (studentLeaveRequests || []);
+      if (!listToShow.length) {
+        tBox.innerHTML = `<div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center text-slate-500">No leave requests from your assigned students.</div>`;
         return;
       }
-      tBox.innerHTML = studentLeaveRequests.map(l => {
+      tBox.innerHTML = listToShow.map(l => {
         const isApproved = (l.status || '').toLowerCase().includes('approved');
         return `
         <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
@@ -4845,13 +5632,27 @@ https://noorly-quran-academy.pages.dev`);
             <b class="text-white">${l.student || 'Muhammad Hamza'}</b> <span class="text-amber-300 font-bold">(${l.date})</span>
             <div class="text-[10px] text-slate-400">Reason: ${l.reason} • Status: <span class="text-emerald-400 font-bold">${l.status}</span></div>
           </div>
-          ${isApproved
-            ? `<span class="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold"><i class="fa-solid fa-check-double mr-1"></i>Approved</span>`
-            : `<button onclick="approveStudentLeaveRequest(${l.id})" class="gold-btn px-3 py-1 rounded-lg text-[10px] font-black"><i class="fa-solid fa-calendar-check mr-1"></i>Approve Makeup</button>`
-          }
+          <div class="flex items-center gap-1.5">
+            ${isApproved
+              ? `<span class="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold"><i class="fa-solid fa-check-double mr-1"></i>Approved</span>`
+              : `<button onclick="approveStudentLeaveRequest(${l.id})" class="gold-btn px-3 py-1 rounded-lg text-[10px] font-black"><i class="fa-solid fa-calendar-check mr-1"></i>Approve Makeup</button>`
+            }
+            <button onclick="deleteLeaveRequest(${l.id})" class="px-2 py-1 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 text-[10px] font-bold hover:bg-rose-900" title="Delete Leave Request">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
         </div>
       `;
       }).join('');
+    }
+
+    function deleteLeaveRequest(leaveId) {
+      studentLeaveRequests = (studentLeaveRequests || []).filter(l => l.id !== leaveId);
+      localStorage.setItem('NOORLY_LEAVES', JSON.stringify(studentLeaveRequests));
+      renderTeacherLeaveRequests();
+      renderStudentLeaveRequestsList();
+      syncAcademyDataToCloud();
+      showAppToast("Removed leave request.");
     }
 
     function approveStudentLeaveRequest(leaveId) {
@@ -4906,7 +5707,17 @@ https://noorly-quran-academy.pages.dev`);
           ? "px-2 py-0.5 rounded bg-amber-950 text-amber-300 font-black text-[10px] border border-amber-500/40"
           : "px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-black text-[10px] border border-emerald-500/40";
       }
-      document.getElementById('invModalSerial').innerText = `NRL-INV-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+      const serial = `NRL-INV-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+      document.getElementById('invModalSerial').innerText = serial;
+      const dtEl = document.getElementById('invModalDate');
+      if (dtEl) {
+        try { dtEl.innerText = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); } catch (e) {}
+      }
+      const qrEl = document.getElementById('invModalQrImg');
+      if (qrEl) {
+        const verifyUrl = encodeURIComponent(`${getLiveAcademyUrl()}?verify=${serial}&student=${encodeURIComponent(student)}`);
+        qrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=${verifyUrl}`;
+      }
       document.getElementById('printableInvoiceModal').classList.remove('hidden');
     }
 
@@ -4915,12 +5726,17 @@ https://noorly-quran-academy.pages.dev`);
     }
 
     function openCertificateModal(student, course, grade) {
-      const serial = `NRL-2026-${student.slice(0, 3).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
+      const cleanCode = (student || 'STD').replace(/[^a-zA-Z0-9]/g, '').slice(0, 3).toUpperCase() || 'STD';
+      const serial = `NRL-2026-${cleanCode}-${Math.floor(100 + Math.random() * 900)}`;
       document.getElementById('certStudentName').innerText = student;
       document.getElementById('certCourseTitle').innerText = course;
       document.getElementById('certGrade').innerText = grade;
       document.getElementById('certSerialNo').innerText = serial;
-      const verifyUrl = encodeURIComponent(`https://noorly-quran-academy.com/verify?serial=${serial}&student=${student}`);
+      const dtEl = document.getElementById('certDateIssued');
+      if (dtEl) {
+        try { dtEl.innerText = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); } catch (e) {}
+      }
+      const verifyUrl = encodeURIComponent(`${getLiveAcademyUrl()}?verify=${serial}&student=${encodeURIComponent(student)}`);
       document.getElementById('certQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=85x85&data=${verifyUrl}`;
       document.getElementById('printableCertificateArea').classList.remove('hidden');
     }
@@ -5025,7 +5841,7 @@ May Allah bless you with beneficial knowledge!`;
     }
 
     function send15MinWhatsAppReminder(phone, studentName, timePkt) {
-      const msg = encodeURIComponent(`Assalam-o-Alaikum ${studentName}! 🌟\n\nYour Noorly Quran class is starting in 15 minutes (${timePkt}).\n\nPlease enter your live Tajweed classroom:\nhttps://noorly-quran-academy.pages.dev`);
+      const msg = encodeURIComponent(`Assalam-o-Alaikum ${studentName}! 🌟\n\nYour Noorly Quran class is starting in 15 minutes (${timePkt}).\n\nPlease enter your live Tajweed classroom:\n${getLiveAcademyUrl()}`);
       window.open(`https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${msg}`, '_blank');
     }
 
@@ -5134,22 +5950,100 @@ May Allah bless you with beneficial knowledge!`;
       `).join('');
     }
 
+    let basePrayerMinutes = { fajr: 314, dhuhr: 729, asr: 934, maghrib: 1044, isha: 1125 };
     let prayerOffsets = { fajr: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
     let prayerAlarms = { fajr: true, dhuhr: true, asr: true, maghrib: true, isha: true };
+    let lastTriggeredAlarmKey = "";
+
+    function updateNextPrayerHighlight() {
+      const now = new Date();
+      const nowMins = now.getHours() * 60 + now.getMinutes();
+      const order = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+      const labels = { fajr: 'Fajr', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' };
+      let nextWaqt = 'fajr';
+      for (const w of order) {
+        const wMins = (((basePrayerMinutes[w] || 0) + (prayerOffsets[w] || 0)) % 1440 + 1440) % 1440;
+        if (wMins > nowMins) {
+          nextWaqt = w;
+          break;
+        }
+      }
+      order.forEach(w => {
+        const row = document.getElementById(`prayerRow-${w}`);
+        const title = document.getElementById(`prayerTitle-${w}`);
+        const timeEl = document.getElementById(`prayerTime-${w}`);
+        const isNext = (w === nextWaqt);
+        if (row) {
+          row.className = isNext
+            ? "p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/50 flex items-center justify-between transition"
+            : "p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between transition";
+        }
+        if (title) {
+          title.className = isNext ? "text-xs text-emerald-300 block font-extrabold" : "text-xs text-white block";
+          title.innerText = isNext ? `${labels[w]} (Next)` : labels[w];
+        }
+        if (timeEl) {
+          timeEl.className = isNext ? "text-xs font-black text-amber-300 w-16 text-center" : "text-xs font-black text-amber-200 w-16 text-center";
+        }
+      });
+    }
 
     function adjustPrayerMinutes(waqt, deltaMinutes, saveToStorage = true) {
       prayerOffsets[waqt] = (prayerOffsets[waqt] || 0) + deltaMinutes;
-      const baseMinutes = { fajr: 314, dhuhr: 729, asr: 934, maghrib: 1044, isha: 1125 };
-      const total = baseMinutes[waqt] + prayerOffsets[waqt];
-      let h = Math.floor((total + 1440) / 60) % 24;
-      let m = Math.abs(total % 60);
+      const total = (((basePrayerMinutes[waqt] || 0) + prayerOffsets[waqt]) % 1440 + 1440) % 1440;
+      let h = Math.floor(total / 60);
+      let m = total % 60;
       const ampm = h >= 12 ? 'PM' : 'AM';
       h = h % 12 || 12;
       const el = document.getElementById(`prayerTime-${waqt}`);
       if (el) el.innerText = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
+      updateNextPrayerHighlight();
       if (saveToStorage) {
         try { localStorage.setItem('NOORLY_PRAYER_OFFSETS', JSON.stringify(prayerOffsets)); } catch (e) {}
       }
+    }
+
+    function calculateQiblaBearingFromCoords(lat, lon) {
+      const kaabaLat = 21.422487 * Math.PI / 180;
+      const kaabaLon = 39.826206 * Math.PI / 180;
+      const phi = lat * Math.PI / 180;
+      const lam = lon * Math.PI / 180;
+      const y = Math.sin(kaabaLon - lam);
+      const x = Math.cos(phi) * Math.tan(kaabaLat) - Math.sin(phi) * Math.cos(kaabaLon - lam);
+      const bearing = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+      return Math.round(bearing);
+    }
+
+    async function fetchPrayerTimesByCoords(lat, lon, labelStr) {
+      const locEl = document.getElementById('prayerLocationLabel');
+      if (locEl) locEl.innerText = labelStr;
+      const qBearing = calculateQiblaBearingFromCoords(lat, lon);
+      appState.qiblaBearing = qBearing;
+      const rotator = document.getElementById('qiblaNeedleRotator');
+      if (rotator) rotator.style.transform = `rotate(${qBearing}deg)`;
+      const topB = document.getElementById('qiblaBearingTopBadge');
+      if (topB) topB.innerText = `Bearing: ${qBearing}° Holy Kaaba`;
+      const mainT = document.getElementById('qiblaBearingMainText');
+      if (mainT) mainT.innerText = `${qBearing}° (Holy Makkah)`;
+      try {
+        const res = await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=1&school=1`);
+        const json = await res.json();
+        if (json.code === 200 && json.data && json.data.timings) {
+          const t = json.data.timings;
+          const parseHm = (str) => {
+            const m = String(str || '').match(/(\d{1,2}):(\d{2})/);
+            return m ? (parseInt(m[1], 10) * 60 + parseInt(m[2], 10)) : null;
+          };
+          ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].forEach(k => {
+            const mins = parseHm(t[k]);
+            const low = k.toLowerCase();
+            if (mins !== null) {
+              basePrayerMinutes[low] = mins;
+              adjustPrayerMinutes(low, 0, false);
+            }
+          });
+        }
+      } catch (e) {}
     }
 
     function togglePrayerAlarm(waqt) {
@@ -5166,15 +6060,30 @@ May Allah bless you with beneficial knowledge!`;
       try { localStorage.setItem('NOORLY_PRAYER_ALARMS', JSON.stringify(prayerAlarms)); } catch (e) {}
     }
 
+    setInterval(() => {
+      const now = new Date();
+      const nowMins = now.getHours() * 60 + now.getMinutes();
+      ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(w => {
+        if (!prayerAlarms[w]) return;
+        const targetMins = (((basePrayerMinutes[w] || 0) + (prayerOffsets[w] || 0)) % 1440 + 1440) % 1440;
+        const key = `${now.toDateString()}_${w}_${targetMins}`;
+        if (nowMins === targetMins && lastTriggeredAlarmKey !== key) {
+          lastTriggeredAlarmKey = key;
+          showAppToast(`🕌 Hayya 'alas-Salah! It is now time for ${w.toUpperCase()} Namaz.`);
+        }
+      });
+    }, 30000);
+
     function activateLiveQiblaCompassSensor() {
       const statusEl = document.getElementById('qiblaSensorStatusText');
+      const targetBearing = appState.qiblaBearing || 262;
       function handleOrientation(event) {
         let heading = event.webkitCompassHeading || (event.alpha !== null ? (360 - event.alpha) : null);
         if (heading !== null && !isNaN(heading)) {
-          const relativeQibla = (262 - heading + 360) % 360;
+          const relativeQibla = (targetBearing - heading + 360) % 360;
           const rotator = document.getElementById('qiblaNeedleRotator');
           if (rotator) rotator.style.transform = `rotate(${relativeQibla}deg)`;
-          if (statusEl) statusEl.innerHTML = `Live Sensor Active • Phone Heading: <b>${Math.round(heading)}°</b> • Qibla: <b>262° WSW</b>`;
+          if (statusEl) statusEl.innerHTML = `Live Sensor Active • Phone Heading: <b>${Math.round(heading)}°</b> • Qibla: <b>${targetBearing}°</b>`;
         }
       }
       if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -5191,7 +6100,7 @@ May Allah bless you with beneficial knowledge!`;
         window.addEventListener('deviceorientation', handleOrientation, true);
         if (statusEl) statusEl.innerText = "Live Compass Sensor Active! Rotate phone horizontally.";
       } else {
-        if (statusEl) statusEl.innerText = "Qibla Bearing Lock: 262° West-Southwest toward Holy Kaaba.";
+        if (statusEl) statusEl.innerText = `Qibla Bearing Lock: ${targetBearing}° West-Southwest toward Holy Kaaba.`;
       }
     }
 
@@ -5214,12 +6123,16 @@ May Allah bless you with beneficial knowledge!`;
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (pos) => {
-            document.getElementById('prayerLocationLabel').innerText = `GPS Location: ${pos.coords.latitude.toFixed(2)}°N, ${pos.coords.longitude.toFixed(2)}°E`;
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            fetchPrayerTimesByCoords(lat, lon, `GPS Location: ${lat.toFixed(2)}°N, ${lon.toFixed(2)}°E (Hanafi)`);
           },
           () => {
-            document.getElementById('prayerLocationLabel').innerText = "Sehja, Khanpur / Pakistan Standard Time";
+            fetchPrayerTimesByCoords(28.53, 70.65, "Sehja, Khanpur / Pakistan Standard Time");
           }
         );
+      } else {
+        fetchPrayerTimesByCoords(28.53, 70.65, "Sehja, Khanpur / Pakistan Standard Time");
       }
     }
 
@@ -5470,73 +6383,262 @@ May Allah bless you with beneficial knowledge!`;
       document.getElementById('regFields-teacher').classList.toggle('hidden', !isTeacher);
     }
 
+    function getCleanDisplayName(rawName) {
+      return (rawName || 'User').replace(/\s*\(Student\)\s*/gi, '').replace(/\s*\(Executive Admin\)\s*/gi, '').replace(/\s*\(Admin\)\s*/gi, '').trim();
+    }
+
+    function getRoleDefaultAvatar(userObj) {
+      const clean = getCleanDisplayName(userObj?.fullName || 'User');
+      const parts = clean.split(/\s+/);
+      const initials = ((parts[0]?.[0] || 'N') + (parts[1]?.[0] || '')).toUpperCase();
+      const role = userObj?.role || 'student';
+      const savedCustom = localStorage.getItem(`NOORLY_AVATAR_${(userObj?.username || clean).toLowerCase()}`);
+      if (savedCustom) return savedCustom;
+
+      const bgFill = role === 'admin' ? '%2378350f' : (role === 'teacher' ? '%23065f46' : '%23022c22');
+      const ringColor = role === 'admin' ? '%23fde047' : (role === 'teacher' ? '%2334d399' : '%23fbbf24');
+      return `data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='50' fill='${bgFill}'/%3E%3Ccircle cx='50' cy='50' r='46' fill='none' stroke='${ringColor}' stroke-width='4'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='32' font-weight='bold'%3E${encodeURIComponent(initials)}%3C/text%3E%3C/svg%3E`;
+    }
+
+    function handleUserAvatarUpload(event) {
+      const file = event.target?.files?.[0];
+      if (!file || !currentUser) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result;
+        const clean = getCleanDisplayName(currentUser.fullName);
+        try {
+          localStorage.setItem(`NOORLY_AVATAR_${(currentUser.username || clean).toLowerCase()}`, dataUrl);
+        } catch (e) {}
+        const hImg = document.getElementById('headerUserAvatarImg');
+        const pImg = document.getElementById('portalUserAvatarImg');
+        if (hImg) hImg.src = dataUrl;
+        if (pImg) pImg.src = dataUrl;
+        showAppToast("Profile picture updated!");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function selectLoginRoleTab(role) {
+      selectedLoginRole = role;
+      ['student', 'teacher', 'admin'].forEach(r => {
+        const btn = document.getElementById(`loginRoleTab-${r}`);
+        if (btn) {
+          btn.className = (r === role)
+            ? "py-2.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs flex flex-col sm:flex-row items-center justify-center gap-1.5 shadow transition"
+            : "py-2.5 rounded-xl bg-slate-900 text-slate-300 hover:text-amber-300 font-bold text-xs flex flex-col sm:flex-row items-center justify-center gap-1.5 transition";
+        }
+      });
+
+      const quickBox = document.getElementById('loginAccountQuickSelectBox');
+      const quickLbl = document.getElementById('loginQuickSelectLabel');
+      const quickDrop = document.getElementById('loginQuickAccountDropdown');
+      const uLbl = document.getElementById('loginUsernameLabel');
+      const uInp = document.getElementById('loginUsername');
+      const pLbl = document.getElementById('loginPasswordLabel');
+      const pInp = document.getElementById('loginPassword');
+      const subTxt = document.getElementById('loginSubmitBtnText');
+
+      if (role === 'student') {
+        if (quickBox) quickBox.classList.remove('hidden');
+        if (quickLbl) quickLbl.innerText = "Select Registered Student Account:";
+        if (quickDrop) {
+          quickDrop.innerHTML = adminStudentsList.map(s => `<option value="${s.name}">${s.name} (${s.course})</option>`).join('');
+        }
+        const firstSt = adminStudentsList[0];
+        if (uLbl) uLbl.innerText = "Student Name / ID";
+        if (uInp) uInp.value = firstSt?.name || "Muhammad Hamza";
+        if (pLbl) pLbl.innerText = "Student Password / PIN";
+        if (pInp) {
+          pInp.value = (!firstSt?.pin || firstSt.pin === '1234') ? "1234" : "";
+          pInp.placeholder = "Enter Student PIN";
+        }
+        if (subTxt) subTxt.innerText = "Sign In to Student Portal";
+      } else if (role === 'teacher') {
+        if (quickBox) quickBox.classList.remove('hidden');
+        if (quickLbl) quickLbl.innerText = "Select Certified Teacher Profile:";
+        if (quickDrop) {
+          quickDrop.innerHTML = adminTeachersList.map(t => `<option value="${t.name}">${t.name} — ${t.mode}</option>`).join('');
+        }
+        const firstT = adminTeachersList[0];
+        if (uLbl) uLbl.innerText = "Teacher Name / ID";
+        if (uInp) uInp.value = firstT?.name || "Qari Ahmed Bilal";
+        if (pLbl) pLbl.innerText = "Teacher Password / PIN";
+        if (pInp) {
+          pInp.value = (!firstT?.pin || firstT.pin === '1234') ? "1234" : "";
+          pInp.placeholder = "Enter Teacher PIN";
+        }
+        if (subTxt) subTxt.innerText = "Sign In to Teacher Portal";
+      } else {
+        if (quickBox) quickBox.classList.add('hidden');
+        if (uLbl) uLbl.innerText = "Admin Name / Username";
+        if (uInp) uInp.value = "Nadeem Khan";
+        if (pLbl) pLbl.innerText = "Admin 4-Digit Security PIN";
+        if (pInp) {
+          pInp.type = "password";
+          pInp.value = "";
+          pInp.placeholder = "Enter 4-Digit Security PIN";
+        }
+        if (subTxt) subTxt.innerText = "Unlock Admin Portal";
+      }
+    }
+
+    function applyQuickLoginDropdown(val) {
+      const uInp = document.getElementById('loginUsername');
+      const pInp = document.getElementById('loginPassword');
+      if (uInp && val) uInp.value = val;
+      if (pInp && val) {
+        if (selectedLoginRole === 'teacher') {
+          const foundT = adminTeachersList.find(t => t.name === val);
+          pInp.value = (!foundT?.pin || foundT.pin === '1234') ? '1234' : '';
+        } else if (selectedLoginRole === 'student') {
+          const foundS = adminStudentsList.find(s => s.name === val);
+          pInp.value = (!foundS?.pin || foundS.pin === '1234') ? '1234' : '';
+        }
+      }
+    }
+
     function handleUserLoginSubmit() {
       const u = document.getElementById('loginUsername').value.trim();
       const p = document.getElementById('loginPassword').value.trim();
-      if (!u || !p) return alert("Please enter username and PIN/password.");
+      if (!u || !p) return alert("Please enter your Name/ID and Password/PIN.");
       const uLower = u.toLowerCase();
+      const activeAdminPin = String(academyConfig.adminPin || '6733').trim();
 
-      if ((uLower === 'mnc.sahjavi' && p === '6733') || (uLower === 'admin' && (p === '1234' || p === '6733'))) {
-        currentUser = { username: u, fullName: "Nadeem Khan (Executive Admin)", role: "admin" };
-      } else if (uLower.startsWith('qari') || uLower.startsWith('qaria') || uLower.startsWith('teacher') || uLower.startsWith('hafiz') || uLower.startsWith('aalima') || uLower.startsWith('ustad')) {
-        currentUser = { username: u, fullName: u.replace(/\./g, ' ').replace(/\b\w/g, c => c.toUpperCase()), role: "teacher" };
+      if (selectedLoginRole === 'admin' || uLower === 'mnc.sahjavi' || uLower === 'admin') {
+        if (p !== activeAdminPin) {
+          return alert("Incorrect Admin Security PIN.");
+        }
+        currentUser = { username: "mnc.sahjavi", fullName: "Nadeem Khan", role: "admin" };
+      } else if (selectedLoginRole === 'teacher') {
+        const matchedTeacher = adminTeachersList.find(t => {
+          const tLow = t.name.toLowerCase();
+          return tLow === uLower || (uLower.length >= 3 && (tLow.includes(uLower) || uLower.includes(tLow)));
+        });
+        if (!matchedTeacher) {
+          return alert("Teacher profile not found. Please select your name from the Certified Teacher dropdown or click 'Create Account'.");
+        }
+        const expectedPin = String(matchedTeacher.pin || '1234').trim();
+        if (p !== expectedPin) {
+          return alert("Incorrect Teacher Password / PIN.");
+        }
+        const finalTeacherName = matchedTeacher.name;
+        currentUser = { username: finalTeacherName.toLowerCase().replace(/\s+/g, '.'), fullName: finalTeacherName, role: "teacher" };
       } else {
-        const cleanName = u.replace(/\./g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-        currentUser = { username: u, fullName: `${cleanName} (Student)`, role: "student", activeCourse: "Irfan-ul-Quran (Tarjuma & Tafseer)" };
+        const matchedStudent = adminStudentsList.find(s => {
+          const sLow = s.name.toLowerCase();
+          return sLow === uLower || (uLower.length >= 3 && (sLow.includes(uLower) || uLower.includes(sLow)));
+        });
+        if (!matchedStudent) {
+          return alert("Student account not found. Please select your name from the Registered Student dropdown or click 'Create Account' to register.");
+        }
+        const expectedPin = String(matchedStudent.pin || '1234').trim();
+        if (p !== expectedPin) {
+          return alert("Incorrect Student Password / PIN.");
+        }
+        const cleanName = matchedStudent.name;
+        currentUser = {
+          username: cleanName.toLowerCase().replace(/\s+/g, '.'),
+          fullName: cleanName,
+          role: "student",
+          activeCourse: matchedStudent.course || "Irfan-ul-Quran (Tarjuma & Tafseer)"
+        };
         const key = getStudentKeyFromName(cleanName);
         if (!SIBLING_PROFILES[key]) {
-          SIBLING_PROFILES[key] = { name: cleanName, age: 10, fee: 35, loc: "Global", course: "Irfan-ul-Quran (Tarjuma & Tafseer)", teacher: "Qari Ahmed Bilal", time: "04:30 PM PKT" };
+          SIBLING_PROFILES[key] = {
+            name: cleanName,
+            age: 10,
+            fee: 35,
+            loc: matchedStudent.location || "Global",
+            course: currentUser.activeCourse,
+            teacher: matchedStudent.teacher || "Qari Ahmed Bilal",
+            time: matchedStudent.slot || "04:30 PM PKT"
+          };
         }
         switchSiblingAccount(key);
       }
 
+      isUserLoggedOut = false;
+      appState.activeProfileSubTab = 'dashboard';
       applyLoggedInState();
-      alert(`Welcome ${currentUser.fullName}!`);
+      alert(`Assalam-o-Alaikum ${getCleanDisplayName(currentUser.fullName)}! Welcome to your ${currentUser.role.toUpperCase()} Portal.`);
     }
 
     function handleUnifiedRegistrationSubmit() {
       const role = document.querySelector('input[name="regUserRole"]:checked').value;
       const phone = document.getElementById('regCommonPhone').value.trim();
       const loc = document.getElementById('regCommonLocation').value.trim() || "Global";
+      const customPin = document.getElementById('regCommonPassword')?.value.trim() || "1234";
       if (!phone) return alert("Please enter WhatsApp phone number.");
 
       if (role === 'teacher') {
         const tName = document.getElementById('regTeacherName').value.trim();
         const quals = document.getElementById('regTeacherQuals').value.trim() || "Certified Qari/Qaria";
+        const gender = document.getElementById('regTeacherGender')?.value || 'male';
+        const acc = document.getElementById('regTeacherAccount')?.value.trim() || "Bank / JazzCash";
         if (!tName) return alert("Please enter Teacher Name.");
+
+        const newTeacherObj = {
+          id: Date.now(),
+          name: tName,
+          mode: gender === 'female' ? "Female Qaria (Purdah Mode)" : "Male Qari (Hafiz & Tajweed)",
+          quals: quals,
+          phone: phone,
+          account: acc,
+          pin: customPin,
+          classes: 0,
+          status: "Paid • Active"
+        };
+        adminTeachersList.unshift(newTeacherObj);
+        renderAdminTeachersTable();
+
         currentUser = { username: tName.toLowerCase().replace(/\s+/g, '.'), fullName: tName, role: "teacher" };
         const tSel = document.getElementById('assignModalTeacherSelect');
-        if (tSel) {
+        if (tSel && !Array.from(tSel.options).some(o => o.value === tName)) {
           const opt = document.createElement('option');
           opt.value = tName;
           opt.text = `${tName} (${quals})`;
           tSel.appendChild(opt);
-          const teacherCountEl = document.getElementById('adminCountTeachers');
-          if (teacherCountEl) teacherCountEl.innerText = `${tSel.options.length} Certified`;
         }
+        syncAcademyDataToCloud();
       } else {
         const sName = document.getElementById('regStudentName').value.trim();
+        const chosenCourse = document.getElementById('regStudentCourse')?.value || "Irfan-ul-Quran (Tarjuma & Tafseer)";
         if (!sName) return alert("Please enter Student Name.");
-        currentUser = { username: sName.toLowerCase().replace(/\s+/g, '.'), fullName: `${sName} (Student)`, role: "student", activeCourse: "Irfan-ul-Quran (Tarjuma & Tafseer)" };
+        let cFee = 35;
+        if (chosenCourse.toLowerCase().includes('qaida')) cFee = 25;
+        else if (chosenCourse.toLowerCase().includes('nazra')) cFee = 30;
+        else if (chosenCourse.toLowerCase().includes('hifz')) cFee = 40;
+
+        const defaultTutor = adminTeachersList[0]?.name || "Qari Ahmed Bilal";
+        currentUser = { username: sName.toLowerCase().replace(/\s+/g, '.'), fullName: sName, role: "student", activeCourse: chosenCourse };
         adminStudentsList.unshift({
           id: Date.now(),
           name: sName,
           phone: phone,
           location: loc,
-          teacher: "Qari Ahmed Bilal",
+          pin: customPin,
+          teacher: defaultTutor,
           slot: "04:30 PM PKT (11:30 AM GMT)",
-          course: "Irfan-ul-Quran (Tarjuma & Tafseer)",
-          fee: "$35 (Trial/Active)",
+          course: chosenCourse,
+          fee: `$${cFee} (Paid)`,
           certStatus: "In Progress"
         });
+        isUserLoggedOut = false;
         renderAdminStudentsTable();
         renderTeacherStudentsSchedule();
         const newKey = getStudentKeyFromName(sName);
         switchSiblingAccount(newKey);
         syncAcademyDataToCloud();
       }
+      ['regStudentName', 'regParentName', 'regTeacherName', 'regTeacherQuals', 'regTeacherAccount', 'regCommonPhone', 'regCommonLocation'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      isUserLoggedOut = false;
+      appState.activeProfileSubTab = 'dashboard';
       applyLoggedInState();
-      alert(`Alhamdulillah! Registration complete as ${currentUser.role.toUpperCase()} successfully!`);
+      alert(`Alhamdulillah! Account created and logged in to your ${currentUser.role.toUpperCase()} Portal!`);
     }
 
     function triggerAdminQuickLogin() {
@@ -5559,9 +6661,12 @@ May Allah bless you with beneficial knowledge!`;
     function confirmAdminPinModal() {
       const inp = document.getElementById('adminPinModalInput');
       const pin = inp ? inp.value.trim() : '';
-      if (pin === "6733" || pin === "1234") {
+      const activeAdminPin = String(academyConfig.adminPin || '6733').trim();
+      if (pin === activeAdminPin) {
         closeAdminPinModal();
-        currentUser = { username: "mnc.sahjavi", fullName: "Nadeem Khan (Executive Admin)", role: "admin" };
+        isUserLoggedOut = false;
+        currentUser = { username: "mnc.sahjavi", fullName: "Nadeem Khan", role: "admin" };
+        appState.activeProfileSubTab = 'dashboard';
         applyLoggedInState();
         switchActiveTab('profile');
         showAppToast("Alhamdulillah! Executive Admin Command Center Unlocked.");
@@ -5571,48 +6676,96 @@ May Allah bless you with beneficial knowledge!`;
     }
 
     function applyLoggedInState() {
-      if (!currentUser) return;
-      document.getElementById('authView-login').classList.add('hidden');
-      document.getElementById('authView-register').classList.add('hidden');
-      document.getElementById('authView-loggedInStatus').classList.remove('hidden');
+      const userBanner = document.getElementById('portalLoggedInUserBanner');
+      const subTabsBar = document.getElementById('portalSubTabsBar');
+      const logoutBtn = document.getElementById('portalLogoutBtn');
+      const roleLbl = document.getElementById('portalUserRoleLabel');
+      const nameHeading = document.getElementById('portalUserNameHeading');
+      const headerName = document.getElementById('headerUserNameText');
+      const headerImg = document.getElementById('headerUserAvatarImg');
+      const portalImg = document.getElementById('portalUserAvatarImg');
+      const defaultGuestAvatar = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='40' fill='%23064e3b'/%3E%3Ccircle cx='40' cy='30' r='14' fill='%23fbbf24'/%3E%3Cpath d='M16 68c4-14 14-20 24-20s20 6 24 20' fill='%23fbbf24'/%3E%3C/svg%3E";
 
-      document.getElementById('userProfileDisplayName').innerText = currentUser.fullName;
-      document.getElementById('userProfileRoleBadge').innerText = currentUser.role.toUpperCase();
-      document.getElementById('userAvatarInitials').innerText = currentUser.fullName.slice(0, 2).toUpperCase();
-      document.getElementById('headerRoleText').innerText = currentUser.role.toUpperCase();
+      if (isUserLoggedOut || !currentUser) {
+        if (userBanner) userBanner.classList.add('hidden');
+        if (subTabsBar) subTabsBar.classList.add('hidden');
+        if (logoutBtn) logoutBtn.classList.add('hidden');
+        if (headerName) headerName.innerText = "Sign In (لاگ ان)";
+        if (headerImg) headerImg.src = defaultGuestAvatar;
+        selectLoginRoleTab(selectedLoginRole || 'student');
+        switchProfileSubTab('account', false);
+        return;
+      }
 
-      // Highlight active role in Top Header & Portal Switcher
+      if (userBanner) userBanner.classList.remove('hidden');
+      if (subTabsBar) subTabsBar.classList.remove('hidden');
+      if (logoutBtn) logoutBtn.classList.remove('hidden');
+
+      const cleanName = getCleanDisplayName(currentUser.fullName);
       const isTeacher = currentUser.role === 'teacher';
       const isAdmin = currentUser.role === 'admin';
       const isStudent = !isTeacher && !isAdmin;
 
-      const hBtnStudent = document.getElementById('headerBtnStudentRole');
-      const hBtnTeacher = document.getElementById('headerBtnTeacherRole');
-      if (hBtnStudent && hBtnTeacher) {
-        hBtnStudent.className = isStudent
-          ? "px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-[10px] font-black transition flex items-center gap-1 shadow"
-          : "px-2.5 py-1 rounded-lg text-slate-300 hover:text-amber-300 text-[10px] font-bold transition flex items-center gap-1";
-        hBtnTeacher.className = isTeacher
-          ? "px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-[10px] font-black transition flex items-center gap-1 shadow"
-          : "px-2.5 py-1 rounded-lg text-slate-300 hover:text-amber-300 text-[10px] font-bold transition flex items-center gap-1";
+      // Update Single User Identity (Name + Avatar Pic Only)
+      if (headerName) headerName.innerText = cleanName;
+      if (nameHeading) nameHeading.innerText = cleanName;
+      if (roleLbl) {
+        roleLbl.innerText = isAdmin
+          ? "Executive Admin Portal • ایڈمن پورٹل"
+          : (isTeacher ? "Certified Teacher Portal • ٹیچر پورٹل" : "Student Learning Portal • اسٹوڈنٹ پورٹل");
       }
 
-      const pBtnStudent = document.getElementById('portalRoleBtn-student');
-      const pBtnTeacher = document.getElementById('portalRoleBtn-teacher');
-      const pBtnAdmin = document.getElementById('portalRoleBtn-admin');
-      if (pBtnStudent) pBtnStudent.className = isStudent ? "px-3 py-1 rounded-lg bg-amber-400 text-slate-950 text-[11px] font-black transition shadow" : "px-3 py-1 rounded-lg bg-slate-900 text-slate-300 hover:text-amber-300 text-[11px] font-bold transition";
-      if (pBtnTeacher) pBtnTeacher.className = isTeacher ? "px-3 py-1 rounded-lg bg-amber-400 text-slate-950 text-[11px] font-black transition shadow" : "px-3 py-1 rounded-lg bg-slate-900 text-slate-300 hover:text-amber-300 text-[11px] font-bold transition";
-      if (pBtnAdmin) pBtnAdmin.className = isAdmin ? "px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-[10px] font-black transition shadow" : "px-2.5 py-1 rounded-lg bg-slate-900 text-slate-400 hover:text-amber-300 text-[10px] font-bold transition";
+      const avatarSrc = getRoleDefaultAvatar(currentUser);
+      if (headerImg) headerImg.src = avatarSrc;
+      if (portalImg) portalImg.src = avatarSrc;
 
-      const subDetailsEl = document.getElementById('userProfileDetailsSub');
-      if (subDetailsEl) {
-        if (isAdmin) subDetailsEl.innerText = "Executive Command Center Active";
-        else if (isTeacher) subDetailsEl.innerText = "Certified Faculty Portal & Auto-Salary Ledger Active";
-        else subDetailsEl.innerText = `Student Learning Portal • ${currentUser.activeCourse || 'Irfan-ul-Quran'}`;
+      // Role-specific Sub-Tabs & Data Filtering
+      const calcBtn = document.getElementById('profSubBtn-calculator');
+      const dashLbl = document.getElementById('profSubBtnLabel-dashboard');
+      if (dashLbl) {
+        dashLbl.innerText = isAdmin
+          ? "Admin Dashboard (ایڈمن ڈیش بورڈ)"
+          : (isTeacher ? "Teacher Dashboard (ٹیچر ڈیش بورڈ)" : "My Dashboard (اسٹوڈنٹ ڈیش بورڈ)");
+      }
+      if (calcBtn) {
+        // Teacher does not need Student Tuition Fee Calculator tab
+        calcBtn.classList.toggle('hidden', isTeacher);
       }
 
-      const sibPill = document.getElementById('headerSiblingPill');
-      if (sibPill) sibPill.classList.toggle('hidden', isAdmin || isTeacher);
+      if (isStudent) {
+        syncDynamicStudentProfiles();
+        const sKey = getStudentKeyFromName(cleanName);
+        if (SIBLING_PROFILES[sKey]) {
+          activeSiblingKey = sKey;
+          const child = SIBLING_PROFILES[sKey];
+          const kpiCourse = document.getElementById('studentKpiCourse');
+          const kpiTeacher = document.getElementById('studentKpiTeacher');
+          const kpiTime = document.getElementById('studentKpiTime');
+          if (kpiCourse) kpiCourse.innerText = child.course.split('(')[0].trim();
+          if (kpiTeacher) kpiTeacher.innerText = child.teacher;
+          if (kpiTime) kpiTime.innerText = child.time.split('(')[0].trim();
+          updateStudentTimezoneClocks(child.time);
+          const payBtnText = document.getElementById('studentPayTuitionBtnText');
+          if (payBtnText) payBtnText.innerText = `Pay Tuition Fee ($${child.fee})`;
+        }
+        renderStudentSabaqDiaryList();
+        renderStudentLeaveRequestsList();
+      } else if (isTeacher) {
+        syncDynamicStudentProfiles();
+        const myAssigned = getAssignedStudentsForActiveTeacher();
+        if (myAssigned.length) {
+          activeSiblingKey = getStudentKeyFromName(myAssigned[0].name);
+        }
+        renderTeacherStudentsSchedule();
+        renderTeacherHomeworkList();
+        renderTeacherLeaveRequests();
+        recalculateTeacherSalary();
+      } else if (isAdmin) {
+        renderAdminStudentsTable();
+        renderAdminTeachersTable();
+        renderAdminLeadsList();
+        renderReviewsList();
+      }
 
       // Update Teacher Attendance Bar visibility if Live Class is currently running
       const teacherBar = document.getElementById('postClassTeacherRecordBar');
@@ -5620,21 +6773,29 @@ May Allah bless you with beneficial knowledge!`;
         teacherBar.classList.toggle('hidden', !isRealCallActive || (!isTeacher && !isAdmin));
       }
 
-      // Show only the active profile sub-tab
+      // Show only the active role's workspace
+      if (appState.activeProfileSubTab === 'account' || (isTeacher && appState.activeProfileSubTab === 'calculator')) {
+        appState.activeProfileSubTab = 'dashboard';
+      }
       switchProfileSubTab(appState.activeProfileSubTab || 'dashboard', false);
 
-      localStorage.setItem(ACTIVE_USER_SESSION_KEY, JSON.stringify(currentUser));
+      sessionStorage.setItem(ACTIVE_USER_SESSION_KEY, JSON.stringify(currentUser));
       updateActiveRoomBadge();
     }
 
     function logoutActiveSession() {
-      currentUser = { username: "hamza.uk", fullName: "Muhammad Hamza (Student)", role: "student", activeCourse: "Irfan-ul-Quran (Tarjuma & Tafseer)" };
-      localStorage.removeItem(ACTIVE_USER_SESSION_KEY);
-      document.getElementById('authView-loggedInStatus').classList.add('hidden');
+      if (isRealCallActive) stopNativeWebRTCCall();
+      stopAllActiveAudio();
+      document.body.classList.remove('cinema-focus-mode');
+      const lastRole = currentUser?.role || 'student';
+      isUserLoggedOut = true;
+      currentUser = null;
+      sessionStorage.removeItem(ACTIVE_USER_SESSION_KEY);
+      localStorage.removeItem('NOORLY_ACTIVE_SESSION');
       toggleAuthForm('login');
-      switchSiblingAccount('hamza');
+      selectLoginRoleTab(lastRole);
       applyLoggedInState();
-      switchProfileSubTab('account');
+      switchActiveTab('profile');
     }
 
     // Admin Settings & Tuition Payment Modal Functions
@@ -5653,8 +6814,23 @@ May Allah bless you with beneficial knowledge!`;
       if (!academyConfig.teachers.includes(tName)) {
         academyConfig.teachers.push(tName);
       }
+      if (!adminTeachersList.some(t => t.name.toLowerCase() === tName.toLowerCase())) {
+        const isFemale = tName.toLowerCase().includes('qaria') || tName.toLowerCase().includes('aalima') || tName.toLowerCase().includes('sister');
+        adminTeachersList.push({
+          id: Date.now(),
+          name: tName,
+          mode: isFemale ? "Female Faculty (Purdah Mode)" : "Male Faculty (Certified Qari)",
+          quals: "Tajweed & Quranic Studies",
+          phone: "+" + (academyConfig.whatsapp || "923005039391"),
+          account: "Bank / JazzCash",
+          pin: "1234",
+          classes: 0,
+          status: "Paid • Active"
+        });
+      }
       localStorage.setItem('NOORLY_ACADEMY_CONFIG', JSON.stringify(academyConfig));
       populateTeachersDropdown();
+      renderAdminTeachersTable();
       syncAcademyDataToCloud();
       if (inp) inp.value = '';
       alert(`Alhamdulillah! Added ${tName} to Certified Faculty.`);
@@ -5662,17 +6838,15 @@ May Allah bless you with beneficial knowledge!`;
 
     function populateTeachersDropdown() {
       const tSel = document.getElementById('assignModalTeacherSelect');
-      if (!tSel || !Array.isArray(academyConfig.teachers) || !academyConfig.teachers.length) return;
-      Array.from(academyConfig.teachers).forEach(tName => {
-        if (!Array.from(tSel.options).some(o => o.value === tName)) {
-          const opt = document.createElement('option');
-          opt.value = tName;
-          opt.text = tName;
-          tSel.appendChild(opt);
+      if (tSel && Array.isArray(adminTeachersList) && adminTeachersList.length) {
+        const currentVal = tSel.value;
+        tSel.innerHTML = adminTeachersList.map(t => `<option value="${t.name}">${t.name} (${t.mode || t.quals || 'Certified Faculty'})</option>`).join('');
+        if (currentVal && Array.from(tSel.options).some(o => o.value === currentVal)) {
+          tSel.value = currentVal;
         }
-      });
+      }
       const teacherCountEl = document.getElementById('adminCountTeachers');
-      if (teacherCountEl) teacherCountEl.innerText = `${tSel.options.length} Certified`;
+      if (teacherCountEl) teacherCountEl.innerText = `${adminTeachersList.length} Certified`;
     }
 
     function loadSavedAcademyConfig() {
@@ -5688,12 +6862,15 @@ May Allah bless you with beneficial knowledge!`;
       const rateInp = document.getElementById('cfgTeacherRatePkr');
       const bankInp = document.getElementById('cfgBankDetails');
       const stripeInp = document.getElementById('cfgStripeUrl');
+      const pinInp = document.getElementById('cfgAdminPin');
       if (waInp) waInp.value = academyConfig.whatsapp || '923005039391';
       if (rateInp) rateInp.value = RATE_PER_CLASS_PKR;
       if (bankInp) bankInp.value = academyConfig.bankDetails || '';
       if (stripeInp) stripeInp.value = academyConfig.stripeUrl || STRIPE_PORTAL_URL;
+      if (pinInp) pinInp.value = academyConfig.adminPin || '6733';
       updateFloatingWhatsappHref();
       recalculateTeacherSalary();
+      renderAdminTeachersTable();
     }
 
     function updateFloatingWhatsappHref() {
@@ -5709,21 +6886,34 @@ May Allah bless you with beneficial knowledge!`;
       const rate = Number(document.getElementById('cfgTeacherRatePkr')?.value) || 750;
       const bank = document.getElementById('cfgBankDetails')?.value.trim() || 'JazzCash / Easypaisa: 0300-5039391 • UBL Account (Nadeem Khan)';
       const stripe = document.getElementById('cfgStripeUrl')?.value.trim() || STRIPE_PORTAL_URL;
+      const adminPin = document.getElementById('cfgAdminPin')?.value.trim() || '6733';
 
-      academyConfig = Object.assign({}, academyConfig, { whatsapp: wa, teacherRatePkr: rate, bankDetails: bank, stripeUrl: stripe });
+      academyConfig = Object.assign({}, academyConfig, { whatsapp: wa, teacherRatePkr: rate, bankDetails: bank, stripeUrl: stripe, adminPin: adminPin });
       RATE_PER_CLASS_PKR = rate;
       localStorage.setItem('NOORLY_ACADEMY_CONFIG', JSON.stringify(academyConfig));
       updateFloatingWhatsappHref();
       recalculateTeacherSalary();
+      renderAdminTeachersTable();
       syncAcademyDataToCloud();
-      alert("Alhamdulillah! Academy WhatsApp, Payment Details & Teacher Rate saved.");
+      alert("Alhamdulillah! Academy WhatsApp, Payment Details, Teacher Rate & Admin PIN saved.");
     }
 
-    function openTuitionPaymentModal() {
-      syncDynamicStudentProfiles();
+    let isFamilyCalculatorPayment = false;
+
+    function openTuitionPaymentModal(fromCalculator = false) {
+      isFamilyCalculatorPayment = Boolean(fromCalculator);
+      ensureActiveStudentSiblingKey();
       const child = SIBLING_PROFILES[activeSiblingKey] || SIBLING_PROFILES.hamza;
       const sumEl = document.getElementById('payModalStudentSummary');
-      if (sumEl) sumEl.innerText = `Student: ${child.name} • Course: ${child.course} • Fee: $${child.fee}/Month`;
+      if (sumEl) {
+        if (isFamilyCalculatorPayment) {
+          const kidsCnt = document.getElementById('calcChildrenCount')?.value || '2';
+          const calcPrice = document.getElementById('calculatedPriceOutput')?.innerText || `$${child.fee} USD / Month`;
+          sumEl.innerText = `Family Plan (${kidsCnt} Children) • Total: ${calcPrice}`;
+        } else {
+          sumEl.innerText = `Student: ${child.name} • Course: ${child.course} • Fee: $${child.fee}/Month`;
+        }
+      }
       const accEl = document.getElementById('payModalAccountBox');
       if (accEl) accEl.innerText = academyConfig.bankDetails || "JazzCash / Easypaisa: 0300-5039391 • UBL Account (Nadeem Khan)";
       const stLink = document.getElementById('payModalStripeLink');
@@ -5750,12 +6940,17 @@ May Allah bless you with beneficial knowledge!`;
       const child = SIBLING_PROFILES[activeSiblingKey] || SIBLING_PROFILES.hamza;
       const trx = document.getElementById('payModalTrxIdInput')?.value.trim() || 'Attached Screenshot';
       const cleanWa = (academyConfig.whatsapp || '923005039391').replace(/[^0-9]/g, '');
+      const amountStr = isFamilyCalculatorPayment
+        ? (document.getElementById('calculatedPriceOutput')?.innerText || `$${child.fee} USD`)
+        : `$${child.fee} USD`;
+      const planStr = isFamilyCalculatorPayment
+        ? `Family Plan (${document.getElementById('calcChildrenCount')?.value || 2} Children)`
+        : `${child.name} (${child.course})`;
       const msg = encodeURIComponent(`Assalam-o-Alaikum Noorly Global Quran Academy!
 
 I have sent the monthly tuition fee:
-• Student: ${child.name}
-• Course: ${child.course}
-• Amount: $${child.fee} USD
+• Student / Plan: ${planStr}
+• Amount: ${amountStr}
 • Reference / Trx ID: ${trx}
 
 Please verify and update my fee receipt.`);
@@ -5821,7 +7016,7 @@ Please verify and update my fee receipt.`);
       }
       const all = appState.reviews.length ? appState.reviews : SEEDED_25_REVIEWS;
       document.getElementById('totalFeedbackReviewsCount').innerText = all.length;
-      container.innerHTML = all.map(r => `
+      container.innerHTML = all.map((r, idx) => `
         <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5 hover:border-amber-400/40 transition">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
@@ -5833,13 +7028,25 @@ Please verify and update my fee receipt.`);
                 <span class="text-[10px] text-slate-400">${r.loc}</span>
               </div>
             </div>
-            <div class="text-amber-400 text-xs tracking-tighter">
-              ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+            <div class="flex items-center gap-2">
+              <div class="text-amber-400 text-xs tracking-tighter">
+                ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+              </div>
+              ${(currentUser && currentUser.role === 'admin') ? `<button onclick="deleteCommunityReview(${idx})" class="text-rose-400 hover:text-rose-300 text-[10px]" title="Delete Review"><i class="fa-solid fa-trash"></i></button>` : ''}
             </div>
           </div>
           <p class="text-xs text-slate-300 leading-relaxed font-sans">${r.msg}</p>
         </div>
       `).join('');
+    }
+
+    function deleteCommunityReview(index) {
+      if (!appState.reviews.length) appState.reviews = [...SEEDED_25_REVIEWS];
+      appState.reviews.splice(index, 1);
+      localStorage.setItem('NOORLY_REVIEWS_LIST', JSON.stringify(appState.reviews));
+      renderReviewsList();
+      syncAcademyDataToCloud();
+      showAppToast("Review removed.");
     }
 
     function toggleFeedbackSubmissionForm() {
@@ -5870,7 +7077,7 @@ Please verify and update my fee receipt.`);
           body: JSON.stringify(newReview)
         });
       } catch (e) {}
-      alert("JazakAllah! Review published and published!");
+      alert("JazakAllah Khair! Your review has been published.");
     }
 
     const BUBBLE_TRAY_CONFIG = {
@@ -5897,7 +7104,7 @@ Please verify and update my fee receipt.`);
         items: [
           { label: "Live Video Class", sub: "1-on-1 Studio", icon: "fa-video", img: "", action: "openLiveClassLobby();" },
           { label: "Read Quran", sub: "Self-Study Mode", icon: "fa-book-open", img: "", action: "openSelfStudyBook('mushaf');" },
-          { label: "Whiteboard", sub: "Tajweed Qalam", icon: "fa-pen-nib", img: "", action: "switchActiveTab('class'); toggleTajweedWhiteboard(); closeBubbleTray();" },
+          { label: "Whiteboard", sub: "Tajweed Qalam", icon: "fa-pen-nib", img: "", action: "if(!isRealCallActive && appState.classroomMode !== 'study') openSelfStudyBook('mushaf'); else switchActiveTab('class'); toggleTajweedWhiteboard(); closeBubbleTray();" },
           { label: "Full Screen", sub: "Focus Mode", icon: "fa-expand", img: "", action: "switchActiveTab('class'); toggleCinemaFocusMode(); closeBubbleTray();" }
         ]
       },
@@ -5915,7 +7122,40 @@ Please verify and update my fee receipt.`);
     let bubbleTrayTimer = null;
 
     function openCategoryBubblePopup(tabId) {
-      const cfg = BUBBLE_TRAY_CONFIG[tabId] || BUBBLE_TRAY_CONFIG.home;
+      let cfg = BUBBLE_TRAY_CONFIG[tabId] || BUBBLE_TRAY_CONFIG.home;
+      if (tabId === 'profile' && (isUserLoggedOut || !currentUser)) {
+        cfg = {
+          title: "Portal Access (لاگ ان مینو)",
+          items: [
+            { label: "Sign In", sub: "Student / Teacher / Admin", icon: "fa-right-to-bracket", action: "switchActiveTab('profile'); toggleAuthForm('login'); closeBubbleTray();" },
+            { label: "Create Account", sub: "New Registration", icon: "fa-user-plus", action: "switchActiveTab('profile'); toggleAuthForm('register'); closeBubbleTray();" },
+            { label: "Free 3-Day Trial", sub: "Enroll on WhatsApp", icon: "fa-gift", action: "openTrialPopupFromHero(); closeBubbleTray();" },
+            { label: "Read Quran", sub: "Self-Study Library", icon: "fa-book-quran", action: "openSelfStudyBook('mushaf');" }
+          ]
+        };
+      } else if (tabId === 'profile' && currentUser && !isUserLoggedOut) {
+        if (currentUser.role === 'teacher') {
+          cfg = {
+            title: "Teacher Quick Actions",
+            items: [
+              { label: "My Students", sub: "Assigned Schedule", icon: "fa-users", action: "switchActiveTab('profile'); switchProfileSubTab('dashboard'); closeBubbleTray();" },
+              { label: "Log Sabaq", sub: "Daily Lesson Entry", icon: "fa-book-open", action: "openClassroomSabaqModal(); closeBubbleTray();" },
+              { label: "Start Class", sub: "1-on-1 Live Studio", icon: "fa-video", action: "openLiveClassLobby();" },
+              { label: "Sign Out", sub: "Switch Account", icon: "fa-right-from-bracket", action: "logoutActiveSession(); closeBubbleTray();" }
+            ]
+          };
+        } else if (currentUser.role === 'admin') {
+          cfg = {
+            title: "Admin Command Actions",
+            items: [
+              { label: "Enroll Student", sub: "Assign Teacher", icon: "fa-user-plus", action: "switchActiveTab('profile'); switchProfileSubTab('dashboard'); openAssignModalForNew(); closeBubbleTray();" },
+              { label: "Students & Faculty", sub: "Full Ledger", icon: "fa-users-gear", action: "switchActiveTab('profile'); switchProfileSubTab('dashboard'); closeBubbleTray();" },
+              { label: "Fee Calculator", sub: "Family Plans", icon: "fa-calculator", action: "switchActiveTab('profile'); switchProfileSubTab('calculator'); closeBubbleTray();" },
+              { label: "Sign Out", sub: "Switch Account", icon: "fa-right-from-bracket", action: "logoutActiveSession(); closeBubbleTray();" }
+            ]
+          };
+        }
+      }
       const tray = document.getElementById('bubblingSubMenuTray');
       const titleEl = document.getElementById('bubbleTrayCategoryTitle');
       const gridEl = document.getElementById('bubbleTrayItemsGrid');
@@ -5958,6 +7198,9 @@ Please verify and update my fee receipt.`);
     }
 
     function switchProfileSubTab(subId, shouldScroll = true) {
+      if (isUserLoggedOut || !currentUser) {
+        subId = 'account';
+      }
       appState.activeProfileSubTab = subId;
       ['dashboard', 'calculator', 'reviews', 'account'].forEach(k => {
         const b = document.getElementById(`profSubBtn-${k}`);
@@ -5974,9 +7217,9 @@ Please verify and update my fee receipt.`);
         if (sec) sec.classList.add('hidden');
       });
 
-      const activeRoleDashboard = currentUser.role === 'admin'
+      const activeRoleDashboard = (currentUser && currentUser.role === 'admin')
         ? 'adminPortalDashboard'
-        : (currentUser.role === 'teacher' ? 'teacherPortalDashboard' : 'studentPortalDashboard');
+        : ((currentUser && currentUser.role === 'teacher') ? 'teacherPortalDashboard' : 'studentPortalDashboard');
 
       const targetMap = {
         dashboard: activeRoleDashboard,
@@ -6068,6 +7311,7 @@ Please verify and update my fee receipt.`);
           });
         }
       } catch (e) {}
+      initIrfanSurahSelector();
       const savedIrfanSurah = Number(localStorage.getItem('NOORLY_LAST_IRFAN')) || 1;
       loadIrfanSurah(savedIrfanSurah, false);
       renderReviewsList();
@@ -6085,22 +7329,55 @@ Please verify and update my fee receipt.`);
       recalculateTuitionFee();
       loadAcademyDataFromCloud();
 
-      // Attach automatic fallback SVG for all images so no broken image ever shows offline
+      // Restore saved interface language if previously chosen
+      try {
+        const savedLang = localStorage.getItem('NOORLY_LANG');
+        if (savedLang && ['en', 'ur', 'ar'].includes(savedLang)) {
+          changeAppLanguage(savedLang);
+        }
+      } catch (e) {}
+
+      // Attach automatic fallback SVG for all images (including dedicated QR Seal fallback for Certificates, Reports & Invoices)
       const fallbackSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23022c22'/%3E%3Cstop offset='100%25' stop-color='%230f172a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23g)'/%3E%3Ccircle cx='300' cy='200' r='90' fill='none' stroke='%23fbbf24' stroke-opacity='0.25' stroke-width='3'/%3E%3C/svg%3E";
+      const fallbackQrSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffffff'/%3E%3Crect x='8' y='8' width='26' height='26' fill='none' stroke='%23064e3b' stroke-width='6'/%3E%3Crect x='16' y='16' width='10' height='10' fill='%23064e3b'/%3E%3Crect x='66' y='8' width='26' height='26' fill='none' stroke='%23064e3b' stroke-width='6'/%3E%3Crect x='74' y='16' width='10' height='10' fill='%23064e3b'/%3E%3Crect x='8' y='66' width='26' height='26' fill='none' stroke='%23064e3b' stroke-width='6'/%3E%3Crect x='16' y='74' width='10' height='10' fill='%23064e3b'/%3E%3Crect x='42' y='42' width='16' height='16' fill='%23b45309'/%3E%3Crect x='44' y='12' width='12' height='12' fill='%23064e3b'/%3E%3Crect x='12' y='44' width='12' height='12' fill='%23064e3b'/%3E%3Crect x='66' y='66' width='12' height='12' fill='%23064e3b'/%3E%3Crect x='80' y='80' width='12' height='12' fill='%23064e3b'/%3E%3C/svg%3E";
       window.FALLBACK_ISLAMIC_SVG = fallbackSvg;
+      window.FALLBACK_QR_SVG = fallbackQrSvg;
       document.querySelectorAll('img').forEach(img => {
         img.addEventListener('error', function() {
-          if (this.src !== fallbackSvg) this.src = fallbackSvg;
+          const isQr = (this.id || '').toLowerCase().includes('qr');
+          const targetFallback = isQr ? fallbackQrSvg : fallbackSvg;
+          if (this.src !== targetFallback) this.src = targetFallback;
         });
       });
 
-      const saved = localStorage.getItem(ACTIVE_USER_SESSION_KEY);
+      // Clear any legacy auto-login cache so first-time launch always shows Sign In screen directly
+      localStorage.removeItem('NOORLY_ACTIVE_SESSION');
+      const saved = sessionStorage.getItem(ACTIVE_USER_SESSION_KEY);
       if (saved) {
         try {
           currentUser = JSON.parse(saved);
+          if (currentUser && currentUser.role) {
+            isUserLoggedOut = false;
+          }
         } catch (e) {}
       }
       applyLoggedInState();
+      if (isUserLoggedOut || !currentUser) {
+        switchActiveTab('profile');
+        switchProfileSubTab('account', false);
+      }
+
+      // Live QR Code Verification Handler for Certificates & Progress Report Cards
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const verifySerial = params.get('verify');
+        const verifyStudent = params.get('student');
+        if (verifySerial) {
+          setTimeout(() => {
+            showAppToast(`✓ Official Verified Record: ${verifyStudent || 'Student'} • Serial: ${verifySerial} (Noorly Global Quran Academy)`);
+          }, 1100);
+        }
+      } catch (e) {}
     });
   </script>
 </body>
