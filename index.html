@@ -239,20 +239,23 @@
           </h2>
           <p class="text-[9px] text-emerald-400 font-medium truncate flex items-center gap-1">
             <span id="headerSyncDot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="headerLiveStatusText">1-on-1 Live Quran, Tajweed &amp; Irfan-ul-Quran Academy</span>
+            <span id="headerLiveStatusText">Online Quran, Tajweed &amp; Tafseer Academy</span>
           </p>
         </div>
       </div>
 
       <!-- Clean Role Switcher & Language Selector -->
       <div class="flex items-center gap-1.5 flex-shrink-0">
-        <!-- Simple 2-Button Role Switcher (Student vs Teacher) -->
+        <!-- Unified Clean Portal Switcher -->
         <div class="flex items-center bg-slate-900 border border-amber-400/30 rounded-xl p-0.5">
           <button id="headerBtnStudentRole" onclick="quickLoginAs('student')" class="px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-[10px] font-black transition flex items-center gap-1">
             <i class="fa-solid fa-user-graduate"></i> <span>Student</span>
           </button>
           <button id="headerBtnTeacherRole" onclick="quickLoginAs('teacher')" class="px-2.5 py-1 rounded-lg text-slate-300 hover:text-amber-300 text-[10px] font-bold transition flex items-center gap-1">
             <i class="fa-solid fa-chalkboard-user"></i> <span>Teacher</span>
+          </button>
+          <button onclick="triggerAdminQuickLogin()" class="px-2 py-1 rounded-lg text-slate-400 hover:text-amber-300 text-[10px] font-bold transition" title="Admin Portal">
+            <i class="fa-solid fa-shield-halved"></i>
           </button>
         </div>
 
@@ -307,7 +310,7 @@
         <div class="relative z-10 space-y-3">
           <div class="flex flex-wrap items-center gap-2">
             <span class="px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-black text-[10px] uppercase tracking-wider shadow-lg flex items-center gap-1">
-              <i class="fa-solid fa-crown"></i> World's #1 Interactive Quran LMS
+              <i class="fa-solid fa-crown"></i> Certified Online Quran Academy
             </span>
             <span class="px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-400/50 text-emerald-300 font-bold text-[10px] flex items-center gap-1.5 backdrop-blur-md">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> UK • USA • Canada • Europe • Gulf
@@ -319,17 +322,17 @@
               Learn Quran, Tajweed & <span class="text-amber-300">Irfan-ul-Quran</span> 1-on-1 Live
             </h2>
             <p class="text-xs text-slate-200 max-w-2xl mt-0.5 leading-relaxed">
-              Experience HD Audio by Qari Mishary Alafasy, 604-Page Hafizi Mushaf, Interactive Tajweed Whiteboard Qalam, and Purdah-protected classes for Sisters & Kids.
+              1-on-1 Live Classes with Certified Male & Female Teachers, Tajweed ul Quran, Noorani Qaida & Translation.
             </p>
           </div>
 
           <!-- PRIMARY 2-STEP HERO ACTIONS -->
           <div class="flex flex-wrap items-center gap-2.5 pt-1">
             <button onclick="openLiveClassLobby()" class="gold-btn px-5 py-2.5 rounded-2xl text-xs font-black flex items-center gap-2 shadow-xl">
-              <i class="fa-solid fa-video"></i> <span>1. Enter Live Classroom (لائیو کلاس)</span>
+              <i class="fa-solid fa-video"></i> <span>Join Live Class (لائیو کلاس)</span>
             </button>
             <button onclick="openSelfStudyBook('mushaf')" class="px-4 py-2.5 rounded-2xl bg-emerald-950/95 hover:bg-emerald-900 border border-emerald-400/60 text-emerald-200 font-extrabold text-xs flex items-center gap-2 shadow-lg">
-              <i class="fa-solid fa-book-quran text-amber-300"></i> <span>2. Read Quran, Qaida &amp; Tafseer (قرآن و قاعدہ پڑھیں)</span>
+              <i class="fa-solid fa-book-quran text-amber-300"></i> <span>Quran &amp; Qaida (قرآن و قاعدہ)</span>
             </button>
             <button onclick="openTrialPopupFromHero()" class="px-4 py-2.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-amber-400/50 text-amber-300 font-extrabold text-xs flex items-center gap-1.5 shadow-lg">
               <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> <span>3-Day Free Trial</span>
@@ -353,7 +356,7 @@
             </p>
           </div>
           <button onclick="playQariAudio(73, 4, 'وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا')" class="gold-btn px-4 py-2 rounded-xl text-xs font-black flex items-center gap-1.5 flex-shrink-0 shadow-lg">
-            <i class="fa-solid fa-volume-high"></i> <span>Listen Qari Audio</span>
+            <i class="fa-solid fa-volume-high"></i> <span>Listen Recitation</span>
           </button>
         </div>
 
@@ -361,9 +364,9 @@
         <div class="border-t border-slate-800/80 pt-3 space-y-2.5">
           <div class="flex items-center justify-between">
             <h3 class="text-xs sm:text-sm font-black text-amber-300 flex items-center gap-1.5">
-              <i class="fa-solid fa-list-ol text-emerald-400"></i> Step-by-Step Guide: How to Use This App (ایپ استعمال کرنے کی آسان ترتیب)
+              <i class="fa-solid fa-grip text-emerald-400"></i> Quick Access Dashboard (کوئیک ڈیش بورڈ)
             </h3>
-            <span class="text-[10px] text-emerald-400 font-bold">Tap any step to open</span>
+            <span class="text-[10px] text-emerald-400 font-bold">Instant Access</span>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -371,13 +374,11 @@
             <div onclick="openSelfStudyBook('mushaf')" class="cursor-pointer p-3.5 rounded-2xl bg-slate-950/90 border-2 border-amber-400/40 hover:border-amber-400 transition space-y-2 flex flex-col justify-between group shadow-lg">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="px-2.5 py-0.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[10px]">STEP 1 • مرحلہ 1</span>
+                  <span class="px-2.5 py-0.5 rounded-lg bg-amber-400/20 text-amber-300 font-bold text-[10px]">QURAN LIBRARY</span>
                   <i class="fa-solid fa-book-quran text-amber-300 text-base"></i>
                 </div>
                 <h4 class="text-xs font-black text-white group-hover:text-amber-300">Read Quran, Qaida &amp; Tafseer</h4>
-                <p class="text-[11px] text-slate-300 leading-relaxed">
-                  Read 604-Page Mushaf, 17-Lesson Noorani Qaida, or Irfan-ul-Quran Tarjuma with Qari Audio anytime.
-                </p>
+                <p class="text-[11px] text-slate-400">16-Line Mushaf, Noorani Qaida &amp; Tafseer</p>
               </div>
               <span class="text-[10px] font-extrabold text-amber-300 flex items-center gap-1 pt-1">
                 <span>Open Study Books</span> <i class="fa-solid fa-arrow-right"></i>
@@ -388,13 +389,11 @@
             <div onclick="openLiveClassLobby()" class="cursor-pointer p-3.5 rounded-2xl bg-slate-950/90 border-2 border-emerald-500/40 hover:border-emerald-400 transition space-y-2 flex flex-col justify-between group shadow-lg">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="px-2.5 py-0.5 rounded-lg bg-emerald-500 text-slate-950 font-black text-[10px]">STEP 2 • مرحلہ 2</span>
+                  <span class="px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">LIVE STUDIO</span>
                   <i class="fa-solid fa-video text-emerald-400 text-base"></i>
                 </div>
                 <h4 class="text-xs font-black text-white group-hover:text-emerald-300">Join 1-on-1 Live Class</h4>
-                <p class="text-[11px] text-slate-300 leading-relaxed">
-                  Start your live video or Purdah audio class. Whiteboard &amp; class tools unlock automatically after class starts.
-                </p>
+                <p class="text-[11px] text-slate-400">1-on-1 Video, Purdah Audio &amp; Whiteboard</p>
               </div>
               <span class="text-[10px] font-extrabold text-emerald-300 flex items-center gap-1 pt-1">
                 <span>Go to Live Class</span> <i class="fa-solid fa-arrow-right"></i>
@@ -405,13 +404,11 @@
             <div onclick="switchActiveTab('profile'); switchProfileSubTab('dashboard');" class="cursor-pointer p-3.5 rounded-2xl bg-slate-950/90 border-2 border-amber-400/40 hover:border-amber-400 transition space-y-2 flex flex-col justify-between group shadow-lg">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="px-2.5 py-0.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[10px]">STEP 3 • مرحلہ 3</span>
+                  <span class="px-2.5 py-0.5 rounded-lg bg-amber-400/20 text-amber-300 font-bold text-[10px]">ACADEMY PORTAL</span>
                   <i class="fa-solid fa-user-graduate text-amber-300 text-base"></i>
                 </div>
                 <h4 class="text-xs font-black text-white group-hover:text-amber-300">Student &amp; Teacher Portal</h4>
-                <p class="text-[11px] text-slate-300 leading-relaxed">
-                  Students check Sabaq diary, voice homework &amp; Report Card. Teachers manage classes, homework &amp; salary.
-                </p>
+                <p class="text-[11px] text-slate-400">Sabaq Diary, Homework, Reports &amp; Fees</p>
               </div>
               <span class="text-[10px] font-extrabold text-amber-300 flex items-center gap-1 pt-1">
                 <span>Open My Portal</span> <i class="fa-solid fa-arrow-right"></i>
@@ -422,13 +419,11 @@
             <div onclick="switchActiveTab('tools'); openToolSubSection('namazTimes');" class="cursor-pointer p-3.5 rounded-2xl bg-slate-950/90 border-2 border-emerald-500/40 hover:border-emerald-400 transition space-y-2 flex flex-col justify-between group shadow-lg">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="px-2.5 py-0.5 rounded-lg bg-emerald-500 text-slate-950 font-black text-[10px]">STEP 4 • مرحلہ 4</span>
+                  <span class="px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">ISLAMIC HUB</span>
                   <i class="fa-solid fa-mosque text-emerald-400 text-base"></i>
                 </div>
                 <h4 class="text-xs font-black text-white group-hover:text-emerald-300">Daily Namaz, Qibla &amp; Duas</h4>
-                <p class="text-[11px] text-slate-300 leading-relaxed">
-                  Use Prayer Times, Live Qibla Compass, Smart Tasbeeh Counter, 99 Holy Names &amp; 6 Islamic Kalmas.
-                </p>
+                <p class="text-[11px] text-slate-400">Prayer Times, Qibla, Tasbeeh &amp; 6 Kalmas</p>
               </div>
               <span class="text-[10px] font-extrabold text-emerald-300 flex items-center gap-1 pt-1">
                 <span>Open Worship Tools</span> <i class="fa-solid fa-arrow-right"></i>
@@ -445,7 +440,7 @@
             <i class="fa-solid fa-book-open-reader text-emerald-400"></i> Available Quranic Syllabi
           </h3>
           <span class="text-[10px] text-slate-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-arrows-left-right text-amber-400"></i> Auto-Scroll Showcase
+            <i class="fa-solid fa-certificate text-amber-400"></i> Certified Courses
           </span>
         </div>
 
@@ -585,9 +580,9 @@
           <h3 class="text-xs sm:text-sm font-black text-amber-300 flex items-center gap-1.5">
             <i class="fa-solid fa-mosque text-emerald-400"></i> Daily Islamic Worship Toolkit (روزمرہ اسلامی ٹولز)
           </h3>
-          <p class="text-[11px] text-slate-300">Tap any of the 5 cards below to open Namaz Times, Qibla Compass, Tasbeeh, 99 Names or 6 Kalmas.</p>
+          
         </div>
-        <span class="px-2.5 py-1 rounded-lg bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold">Select Any Tool Below</span>
+        
       </div>
       <!-- 5-Box Visual Image Grid -->
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
@@ -602,7 +597,7 @@
             </div>
             <div class="min-w-0">
               <b class="text-xs font-extrabold text-white block truncate">Namaz Times</b>
-              <span class="text-[9px] text-amber-300 font-bold block">GPS & Azan Alarm</span>
+              <span class="text-[9px] text-amber-300 font-bold block">5 Daily Prayers</span>
             </div>
           </div>
         </div>
@@ -632,7 +627,7 @@
             </div>
             <div class="min-w-0">
               <b class="text-xs font-extrabold text-white block truncate">Smart Tasbeeh</b>
-              <span class="text-[9px] text-amber-300 font-bold block">Haptic Counter</span>
+              <span class="text-[9px] text-amber-300 font-bold block">Daily Dhikr</span>
             </div>
           </div>
         </div>
@@ -676,10 +671,10 @@
             <h3 class="text-sm font-extrabold text-amber-300 flex items-center gap-1.5">
               <i class="fa-solid fa-mosque text-emerald-400"></i> Daily Prayer Times & Alarms
             </h3>
-            <p id="prayerLocationLabel" class="text-[11px] text-slate-400">Auto GPS: Sehja, Khanpur / Pakistan Standard Time</p>
+            <p id="prayerLocationLabel" class="text-[11px] text-slate-400">Pakistan Standard Time</p>
           </div>
           <button onclick="detectUserLocationForPrayer()" class="text-[11px] px-2.5 py-1 bg-slate-900 border border-amber-400/40 text-amber-300 font-bold rounded-lg flex items-center gap-1">
-            <i class="fa-solid fa-location-crosshairs"></i> Refresh GPS
+            <i class="fa-solid fa-location-crosshairs"></i> Detect Location
           </button>
         </div>
 
@@ -866,10 +861,10 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
           <div class="grid grid-cols-2 gap-2 flex-1">
             <button onclick="setClassroomViewMode('live')" id="btnClassroomModeLive" class="px-3.5 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg transition">
-              <i class="fa-solid fa-video"></i> <span>1. Live Class (لائیو کلاس روم)</span>
+              <i class="fa-solid fa-video"></i> <span>Live Classroom (لائیو کلاس)</span>
             </button>
             <button onclick="setClassroomViewMode('study')" id="btnClassroomModeStudy" class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 hover:border-amber-400 font-extrabold text-xs flex items-center justify-center gap-2 transition">
-              <i class="fa-solid fa-book-quran text-amber-300"></i> <span>2. Read Quran &amp; Qaida (قرآن و قاعدہ پڑھیں)</span>
+              <i class="fa-solid fa-book-quran text-amber-300"></i> <span>Quran &amp; Qaida Library (قرآن و قاعدہ)</span>
             </button>
           </div>
 
@@ -932,19 +927,19 @@
             </div>
             <div class="space-y-1">
               <span class="px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase tracking-wider">
-                Step 1: Ready to Start Live Class • لائیو کلاس شروع کرنے کے لیے تیار
+                1-on-1 Live Classroom • لائیو کلاس روم
               </span>
               <h4 class="text-base sm:text-lg font-black text-white pt-1">1-on-1 Live Quran &amp; Tajweed Classroom</h4>
               <p class="text-xs text-slate-300 leading-relaxed">
-                Click <b>Start Live Class</b> below when it is time for your lesson. Once your class starts, the <b>Quran/Qaida Book</b>, <b>Tajweed Whiteboard</b>, and <b>Class Attendance</b> will open automatically in sequence.
+                Connect with your teacher for live 1-on-1 recitation, Tajweed correction, and interactive lesson study.
               </p>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
               <button onclick="launchRealJitsiClass()" class="gold-btn px-6 py-3 rounded-2xl text-xs font-black inline-flex items-center gap-2 shadow-xl">
-                <i class="fa-solid fa-video"></i> <span>▶ Start Live Class (کلاس شروع کریں)</span>
+                <i class="fa-solid fa-video"></i> <span>Start Video Class (ویڈیو کلاس)</span>
               </button>
               <button onclick="if(!isPurdahActive) togglePurdahMode(); launchRealJitsiClass();" class="px-4 py-3 rounded-2xl bg-pink-950/90 hover:bg-pink-900 border border-pink-400/50 text-pink-200 text-xs font-extrabold inline-flex items-center gap-1.5 shadow-lg">
-                <i class="fa-solid fa-eye-slash"></i> <span>Start Purdah Audio Class (پردہ آڈیو کلاس)</span>
+                <i class="fa-solid fa-eye-slash"></i> <span>Audio-Only Class (پردہ آڈیو کلاس)</span>
               </button>
             </div>
             <div class="pt-2 border-t border-slate-800/80 flex items-center justify-center gap-2 text-[11px] text-slate-400">
@@ -964,10 +959,7 @@
               <span class="w-7 h-7 rounded-lg bg-amber-400 text-slate-950 flex items-center justify-center text-xs font-black">
                 <i class="fa-solid fa-pen-fancy"></i>
               </span>
-              <div>
-                <b class="text-xs text-amber-300 block">Interactive Tajweed Qalam & Error Correction Whiteboard</b>
-                <span class="text-[10px] text-slate-400">Teacher draws markers and underlines — synced live to Student screen!</span>
-              </div>
+              <div><b class="text-xs text-amber-300 block">Tajweed Whiteboard (تجوید بورڈ)</b></div>
             </div>
 
             <!-- Toolbar Palette -->
@@ -994,9 +986,7 @@
               </p>
             </div>
             <canvas id="tajweedCanvas" width="900" height="260" class="relative z-10 w-full h-44 sm:h-60 whiteboard-layer"></canvas>
-            <div class="absolute bottom-1 right-2 z-20 text-[9px] text-slate-400 pointer-events-none">
-              Draw using mouse/touch over verses • Synced live via Firebase
-            </div>
+            
           </div>
         </div>
 
@@ -1008,13 +998,13 @@
             <div class="flex flex-wrap items-center gap-1.5">
               <span class="text-[11px] font-black text-amber-300 mr-1"><i class="fa-solid fa-book-open mr-1"></i>Select Book:</span>
               <button onclick="switchStudyMode('mushaf')" id="btnStudyMushaf" class="px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs">
-                <i class="fa-solid fa-book-quran"></i> 1. 16-Line Mushaf (604 Pages)
+                <i class="fa-solid fa-book-quran"></i> Quran Majeed (قرآن مجید)
               </button>
               <button onclick="switchStudyMode('qaida')" id="btnStudyQaida" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 font-bold text-xs hover:text-amber-300">
-                <i class="fa-solid fa-font"></i> 2. Noorani Qaida (17 Lessons)
+                <i class="fa-solid fa-font"></i> Noorani Qaida (نورانی قاعدہ)
               </button>
               <button onclick="switchStudyMode('irfan')" id="btnStudyIrfan" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-amber-300 font-bold text-xs hover:bg-emerald-950">
-                <i class="fa-solid fa-language"></i> 3. Irfan-ul-Quran (Tarjuma &amp; Tafseer)
+                <i class="fa-solid fa-language"></i> Tarjuma &amp; Tafseer (ترجمہ و تفسیر)
               </button>
             </div>
             <span id="screenSyncBroadcastLabel" class="hidden">Live Screen Mirroring Ready</span>
@@ -1049,10 +1039,7 @@
                 <span id="mushafJuzNameHeader" class="font-bold text-sm">الجُزْءُ ١ (الم)</span>
               </div>
               <div id="mushaf16LinesContainer" class="space-y-1.5 select-text py-2 font-arabic text-2xl text-white leading-loose" dir="rtl"></div>
-              <div class="text-[10px] text-slate-400 pt-2 border-t border-slate-800 flex flex-wrap justify-between items-center gap-2">
-                <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i>16-Line Pakistani Hafizi Layout</span>
-                <span class="text-amber-300"><i class="fa-solid fa-hand-pointer mr-1"></i>Click any line to play Mishary Alafasy audio & mirror</span>
-              </div>
+              
             </div>
           </div>
 
@@ -1073,9 +1060,7 @@
                 <h4 id="qaidaActiveLessonTitle" class="text-sm font-black text-amber-300">Lesson 1: Huroof Mufradat</h4>
                 <p id="qaidaActiveLessonDesc" class="text-xs text-slate-300 mt-0.5">29 Alag Alag Huroof ki sahi makharij se adaigi</p>
               </div>
-              <span class="text-[10px] text-emerald-300 bg-emerald-950 px-2.5 py-1 rounded-md border border-emerald-400/40 font-bold self-start sm:self-auto">
-                <i class="fa-solid fa-volume-high mr-1"></i> Click letter to play voice & sync
-              </span>
+              <span class="text-[10px] text-emerald-300 bg-emerald-950 px-2.5 py-1 rounded-md border border-emerald-400/40 font-bold self-start sm:self-auto"><i class="fa-solid fa-volume-high mr-1"></i> Tap letter for audio</span>
             </div>
             <div id="qaidaDynamicCardsGrid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5 max-h-[460px] overflow-y-auto pr-1"></div>
           </div>
@@ -1086,30 +1071,30 @@
               <div class="flex items-center gap-2 flex-1 min-w-[220px]">
                 <label class="text-slate-400 font-bold flex-shrink-0">Surah Selection:</label>
                 <select id="irfanSurahSelect" onchange="loadIrfanSurah(this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-amber-300 font-bold outline-none">
-                  <option value="1">1. Surah Al-Fatihah (الفاتحة) - Complete</option>
-                  <option value="2">2. Surah Al-Baqarah (البقرة) - Cloud Tarjuma</option>
-                  <option value="18">18. Surah Al-Kahf (الكهف) - Cloud Tarjuma</option>
-                  <option value="36">36. Surah Yasin (یس) - Tarjuma &amp; Tafseer</option>
-                  <option value="55">55. Surah Ar-Rahman (الرحمن) - Cloud Tarjuma</option>
-                  <option value="56">56. Surah Al-Waqi'ah (الواقعة) - Cloud Tarjuma</option>
-                  <option value="67">67. Surah Al-Mulk (الملك) - Tarjuma &amp; Tafseer</option>
-                  <option value="73">73. Surah Al-Muzzammil (المزمل) - Cloud Tarjuma</option>
-                  <option value="78">78. Surah An-Naba (النبأ) - Cloud Tarjuma</option>
-                  <option value="93">93. Surah Ad-Duha (الضحى) - Cloud Tarjuma</option>
-                  <option value="94">94. Surah Ash-Sharh (الشرح) - Cloud Tarjuma</option>
-                  <option value="97">97. Surah Al-Qadr (القدر) - Cloud Tarjuma</option>
-                  <option value="103">103. Surah Al-Asr (العصر) - Cloud Tarjuma</option>
-                  <option value="108">108. Surah Al-Kawthar (الكوثر) - Cloud Tarjuma</option>
-                  <option value="109">109. Surah Al-Kafirun (الكافرون) - Cloud Tarjuma</option>
-                  <option value="110">110. Surah An-Nasr (النصر) - Cloud Tarjuma</option>
-                  <option value="112">112. Surah Al-Ikhlas (الإخلاص) - Complete</option>
-                  <option value="113">113. Surah Al-Falaq (الفلق) - Complete</option>
-                  <option value="114">114. Surah An-Nas (الناس) - Complete</option>
+                  <option value="1">1. Surah Al-Fatihah (الفاتحة)</option>
+                  <option value="2">2. Surah Al-Baqarah (البقرة)</option>
+                  <option value="18">18. Surah Al-Kahf (الكهف)</option>
+                  <option value="36">36. Surah Yasin (یس)</option>
+                  <option value="55">55. Surah Ar-Rahman (الرحمن)</option>
+                  <option value="56">56. Surah Al-Waqi'ah (الواقعة)</option>
+                  <option value="67">67. Surah Al-Mulk (الملك)</option>
+                  <option value="73">73. Surah Al-Muzzammil (المزمل)</option>
+                  <option value="78">78. Surah An-Naba (النبأ)</option>
+                  <option value="93">93. Surah Ad-Duha (الضحى)</option>
+                  <option value="94">94. Surah Ash-Sharh (الشرح)</option>
+                  <option value="97">97. Surah Al-Qadr (القدر)</option>
+                  <option value="103">103. Surah Al-Asr (العصر)</option>
+                  <option value="108">108. Surah Al-Kawthar (الكوثر)</option>
+                  <option value="109">109. Surah Al-Kafirun (الكافرون)</option>
+                  <option value="110">110. Surah An-Nasr (النصر)</option>
+                  <option value="112">112. Surah Al-Ikhlas (الإخلاص)</option>
+                  <option value="113">113. Surah Al-Falaq (الفلق)</option>
+                  <option value="114">114. Surah An-Nas (الناس)</option>
                 </select>
               </div>
               <div class="flex items-center gap-1.5">
                 <span class="px-2 py-1 rounded bg-amber-400/20 text-amber-300 text-[10px] font-extrabold border border-amber-400/40">
-                  Mishary Alafasy Audio + Urdu Tarjuma + Short Tafseer
+                  Urdu &amp; English Translation
                 </span>
               </div>
             </div>
@@ -1121,11 +1106,7 @@
           <!-- TEACHER IN-CLASS / POST-CLASS RECORD BAR (STRICTLY HIDDEN UNTIL LIVE CLASS STARTS!) -->
           <div id="postClassTeacherRecordBar" class="hidden p-3.5 rounded-xl bg-emerald-950/90 border-2 border-amber-400/50 flex flex-wrap items-center justify-between gap-3 text-xs shadow-lg">
             <div class="flex items-center gap-2">
-              <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px]">TEACHER STEP</span>
-              <div>
-                <b class="text-white block">Class Attendance &amp; Sabaq Record (حاضری اور سبق کا اندراج):</b>
-                <span class="text-[10px] text-emerald-200">Mark student attendance and log today's Sabaq, Sabqi &amp; Manzil before ending the class.</span>
-              </div>
+              <div><b class="text-white block">Class Attendance &amp; Sabaq (حاضری اور سبق)</b></div>
             </div>
             
             <div class="flex flex-wrap items-center gap-2">
@@ -1158,7 +1139,7 @@
         <div class="relative z-10 space-y-3">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2.5">
             <div>
-              <span class="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-amber-400/10 border border-amber-400/30 px-2.5 py-0.5 rounded-full">Step-by-Step Portal</span>
+              <span class="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-amber-400/10 border border-amber-400/30 px-2.5 py-0.5 rounded-full">Academy Portal</span>
               <h3 class="text-base sm:text-lg font-black text-white mt-1">Student &amp; Teacher Portal (اسٹوڈنٹ اور ٹیچر پورٹل)</h3>
             </div>
             <!-- 1-Click Role Switcher inside Portal -->
@@ -1179,16 +1160,16 @@
           <!-- 4 Sequential Sub-Tab Pills (Only ONE opens at a time) -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
             <button onclick="switchProfileSubTab('dashboard')" id="profSubBtn-dashboard" class="px-3 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 shadow">
-              <i class="fa-solid fa-gauge-high"></i> <span>1. My Portal (میرا پورٹل)</span>
+              <i class="fa-solid fa-gauge-high"></i> <span>Dashboard (ڈیش بورڈ)</span>
             </button>
             <button onclick="switchProfileSubTab('calculator')" id="profSubBtn-calculator" class="px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 hover:border-amber-400">
-              <i class="fa-solid fa-calculator text-emerald-400"></i> <span>2. Fee Calculator (فیس)</span>
+              <i class="fa-solid fa-calculator text-emerald-400"></i> <span>Fee Plans (فیس)</span>
             </button>
             <button onclick="switchProfileSubTab('reviews')" id="profSubBtn-reviews" class="px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 hover:border-amber-400">
-              <i class="fa-solid fa-star text-amber-400"></i> <span>3. Reviews (رائے)</span>
+              <i class="fa-solid fa-star text-amber-400"></i> <span>Reviews (تاثرات)</span>
             </button>
             <button onclick="switchProfileSubTab('account')" id="profSubBtn-account" class="px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 hover:border-amber-400">
-              <i class="fa-solid fa-user-lock text-sky-400"></i> <span>4. Login / Register</span>
+              <i class="fa-solid fa-user-lock text-sky-400"></i> <span>Account (اکاؤنٹ)</span>
             </button>
           </div>
         </div>
@@ -1216,22 +1197,16 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <div>
               <label class="block text-slate-400 font-semibold mb-1">Username / ID</label>
-              <input type="text" id="loginUsername" placeholder="admin, teacher or student" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
+              <input type="text" id="loginUsername" placeholder="Enter your Username or ID" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
             </div>
             <div>
               <label class="block text-slate-400 font-semibold mb-1">Password / Security PIN</label>
-              <input type="password" id="loginPassword" placeholder="6733 (Admin) or 1234" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
+              <input type="password" id="loginPassword" placeholder="••••••••" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-amber-400">
             </div>
           </div>
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="text-[10px] text-slate-400 font-bold">Quick Portal Switch:</span>
-              <button onclick="quickLoginAs('student')" class="px-2.5 py-1 rounded-lg bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold hover:bg-emerald-900">Student View</button>
-              <button onclick="quickLoginAs('teacher')" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-amber-400/40 text-amber-300 text-[10px] font-bold hover:bg-slate-800">Teacher View</button>
-              <button onclick="triggerAdminQuickLogin()" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 text-[10px] font-bold hover:border-amber-400"><i class="fa-solid fa-shield-halved text-amber-400 mr-1"></i>Admin</button>
-            </div>
-            <button onclick="handleUserLoginSubmit()" class="gold-btn px-5 py-2 rounded-xl text-xs font-extrabold flex items-center gap-1.5">
-              <span>Secure Sign In</span> <i class="fa-solid fa-lock text-[10px]"></i>
+          <div class="flex items-center justify-end pt-1">
+            <button onclick="handleUserLoginSubmit()" class="gold-btn px-6 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shadow-lg">
+              <span>Sign In</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </button>
           </div>
         </div>
@@ -1313,13 +1288,9 @@
               <div id="userProfileDetailsSub" class="text-[10px] text-emerald-300">Executive Command Center Active</div>
             </div>
           </div>
-          <div class="flex flex-wrap items-center gap-1.5">
-            <span class="text-[10px] text-slate-400 font-bold mr-1">Switch Role:</span>
-            <button onclick="quickLoginAs('student')" class="px-2.5 py-1 rounded-lg bg-slate-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold hover:bg-emerald-900">Student</button>
-            <button onclick="quickLoginAs('teacher')" class="px-2.5 py-1 rounded-lg bg-slate-950 border border-amber-400/40 text-amber-300 text-[10px] font-bold hover:bg-slate-900">Teacher</button>
-            <button onclick="triggerAdminQuickLogin()" class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 text-amber-200 text-[10px] font-bold hover:border-amber-400"><i class="fa-solid fa-shield-halved mr-1"></i>Admin</button>
-            <button onclick="logoutActiveSession()" class="px-3 py-1 rounded-lg bg-rose-950 border border-rose-500/40 text-rose-300 text-[10px] font-bold ml-1">
-              Sign Out
+          <div class="flex items-center gap-2">
+            <button onclick="logoutActiveSession()" class="px-3.5 py-1.5 rounded-xl bg-rose-950 border border-rose-500/40 text-rose-300 text-xs font-bold hover:bg-rose-900 transition">
+              <i class="fa-solid fa-right-from-bracket mr-1"></i> Sign Out
             </button>
           </div>
         </div>
@@ -1362,7 +1333,7 @@
                 <i class="fa-solid fa-user-plus"></i> <span>Enroll Student</span>
               </button>
               <button onclick="syncAcademyDataToCloud(); alert('Alhamdulillah! Firebase Cloud Ledger Synchronized.');" class="text-[10px] px-2.5 py-1 bg-slate-900 border border-amber-400/40 text-amber-300 font-bold rounded-lg flex items-center gap-1">
-                <i class="fa-solid fa-cloud-arrow-up"></i> Sync Cloud
+                <i class="fa-solid fa-rotate"></i> Refresh
               </button>
             </div>
           </div>
@@ -1392,7 +1363,7 @@
             <h3 class="text-xs font-extrabold text-amber-300 flex items-center gap-1.5">
               <i class="fa-solid fa-envelope-open-text text-amber-400"></i> Incoming Free Trial Leads (Convert to Student)
             </h3>
-            <span class="text-[10px] text-emerald-400 font-bold">1-Click Teacher Allotment</span>
+            
           </div>
 
           <div id="adminLeadsListContainer" class="space-y-2 text-xs">
@@ -1407,7 +1378,7 @@
               <h3 class="text-xs font-extrabold text-emerald-300 flex items-center gap-1.5">
                 <i class="fa-solid fa-sliders text-amber-400"></i> Academy Business, WhatsApp &amp; Payment Settings (سسٹم سیٹنگز)
               </h3>
-              <p class="text-[10px] text-slate-400">Configure your official WhatsApp number, Bank/JazzCash/Easypaisa details, Stripe link &amp; Teacher class rate.</p>
+              
             </div>
             <button onclick="saveAdminAcademySettings()" class="gold-btn px-3.5 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 shadow">
               <i class="fa-solid fa-floppy-disk"></i> <span>Save Settings</span>
@@ -1450,21 +1421,21 @@
             <span class="text-lg font-black text-emerald-400" id="teacherCompletedClassesCount">46 Completed</span>
           </div>
           <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
-            <span class="text-[10px] text-slate-400 font-bold block">Accrued Salary (Auto)</span>
+            <span class="text-[10px] text-slate-400 font-bold block">Monthly Salary</span>
             <span class="text-lg font-black text-amber-300" id="teacherAccruedSalaryText">Rs 34,500</span>
           </div>
           <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
             <span class="text-[10px] text-slate-400 font-bold block">Payout Status</span>
-            <span class="text-[11px] font-extrabold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded inline-block mt-1">Ready (1st of Month)</span>
+            <span class="text-[11px] font-extrabold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded inline-block mt-1">Active</span>
           </div>
         </div>
 
         <div class="luxury-card p-4 rounded-2xl border border-amber-400/30 space-y-3">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2">
             <h3 class="text-xs font-extrabold text-amber-300 flex items-center gap-1.5">
-              <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px]">STEP 1</span> <span>My Assigned Students &amp; Start Live Class (طلباء کی فہرست اور کلاس شروع کریں)</span>
+              <i class="fa-solid fa-users text-amber-400"></i> <span>My Students &amp; Class Schedule (طلباء کی فہرست)</span>
             </h3>
-            <span class="text-[10px] text-slate-400">Rate: Rs 750 / 30-min Class</span>
+            
           </div>
           <div class="space-y-2 text-xs" id="teacherStudentsScheduleList">
             <!-- Dynamically populated -->
@@ -1475,9 +1446,9 @@
         <div class="luxury-card p-4 rounded-2xl border border-emerald-500/40 space-y-3">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2">
             <h3 class="text-xs font-extrabold text-emerald-300 flex items-center gap-1.5">
-              <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 font-black text-[10px]">STEP 2</span> <span>Check Student Voice Homework (گھر کا ریکارڈ شدہ سبق چیک کریں)</span>
+              <i class="fa-solid fa-headphones text-emerald-400"></i> <span>Student Voice Homework (طالب علم کا آڈیو سبق)</span>
             </h3>
-            <span class="text-[10px] text-amber-300 font-bold">Cloud Audio Player</span>
+            
           </div>
           <div class="space-y-2 text-xs" id="teacherHomeworkListContainer">
             <!-- Dynamically populated -->
@@ -1488,9 +1459,9 @@
         <div class="luxury-card p-4 rounded-2xl border border-amber-400/30 space-y-3">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2">
             <h3 class="text-xs font-extrabold text-amber-300 flex items-center gap-1.5">
-              <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px]">STEP 3</span> <span>Student Leave &amp; Make-up Class Requests (چھٹی اور میک اپ کلاس کی منظوری)</span>
+              <i class="fa-solid fa-calendar-check text-amber-400"></i> <span>Leave &amp; Make-up Requests (چھٹی کی درخواستیں)</span>
             </h3>
-            <span class="text-[10px] text-emerald-400 font-bold">1-Click Approval</span>
+            
           </div>
           <div class="space-y-2 text-xs" id="teacherLeaveRequestsContainer">
             <!-- Dynamically populated -->
@@ -1502,6 +1473,26 @@
       <!-- 4C. STUDENT PORTAL (3-STEP SEQUENTIAL FLOW)    -->
       <!-- ============================================== -->
       <div id="studentPortalDashboard" class="space-y-4">
+        <!-- Student KPI Overview Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400 font-bold block">Active Course</span>
+            <span id="studentKpiCourse" class="text-xs sm:text-sm font-black text-amber-300 truncate block mt-0.5">Irfan-ul-Quran</span>
+          </div>
+          <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400 font-bold block">Assigned Teacher</span>
+            <span id="studentKpiTeacher" class="text-xs sm:text-sm font-black text-emerald-400 truncate block mt-0.5">Qari Ahmed Bilal</span>
+          </div>
+          <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400 font-bold block">Attendance &amp; Grade</span>
+            <span class="text-xs sm:text-sm font-black text-amber-300 block mt-0.5">96% • Grade A+</span>
+          </div>
+          <div class="luxury-card p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400 font-bold block">Daily Class Time</span>
+            <span id="studentKpiTime" class="text-xs sm:text-sm font-black text-white block mt-0.5">04:30 PM PKT</span>
+          </div>
+        </div>
+
         <div class="luxury-card p-4 rounded-2xl border border-amber-400/30 space-y-4">
           
           <!-- STUDENT HEADER & CHILD SWITCHER -->
@@ -1532,8 +1523,7 @@
           <div class="p-3.5 rounded-2xl bg-slate-950 border border-amber-400/30 space-y-3">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <b class="text-xs text-amber-300 flex items-center gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px]">STEP 1</span>
-                <span>My Class Timings &amp; Live Classroom (کلاس کا وقت اور لائیو کلاس)</span>
+                <i class="fa-solid fa-clock text-amber-400"></i> <span>Class Schedule (کلاس کا وقت)</span>
               </b>
               <div class="flex items-center gap-2">
                 <span id="nextClassCountdownBadge" class="text-[10px] font-bold text-emerald-300 bg-emerald-950 px-2.5 py-1 rounded-lg border border-emerald-500/30">
@@ -1570,10 +1560,9 @@
             <div class="p-3.5 rounded-2xl bg-slate-950 border border-amber-400/30 space-y-2 text-xs">
               <div class="flex items-center justify-between">
                 <b class="text-xs text-amber-300 flex items-center gap-1.5">
-                  <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px]">STEP 2A</span>
-                  <span>My Daily Sabaq Diary (میرا روزانہ کا سبق)</span>
+                  <i class="fa-solid fa-book-open text-amber-400"></i> <span>Daily Sabaq Diary (روزانہ کا سبق)</span>
                 </b>
-                <span class="text-[10px] text-emerald-400 font-bold">Updated by Teacher</span>
+                
               </div>
               <div id="studentSabaqDiaryListContainer" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
             </div>
@@ -1583,14 +1572,13 @@
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <b class="text-xs text-emerald-300 flex items-center gap-1.5">
-                    <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 font-black text-[10px]">STEP 2B</span>
-                    <span>Send Voice Homework (آڈیو سبق ریکارڈ کریں)</span>
+                    <i class="fa-solid fa-microphone text-emerald-400"></i> <span>Voice Homework (آڈیو سبق بھیجیں)</span>
                   </b>
                   <span id="recordingStatusBadge" class="text-[10px] font-bold text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded">
                     Ready
                   </span>
                 </div>
-                <p class="text-[11px] text-slate-300">Record your 1-minute Quran recitation practice and send it to your teacher for checking.</p>
+                <p class="text-[11px] text-slate-400">Record and send your recitation to your teacher.</p>
               </div>
               <div class="flex flex-wrap items-center gap-2 pt-2">
                 <button onclick="startVoiceHomeworkRecording()" id="btnStartRecord" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs flex items-center gap-1.5 shadow">
@@ -1611,21 +1599,20 @@
           <div class="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 text-xs">
             <div class="flex items-center justify-between border-b border-slate-800 pb-2">
               <b class="text-xs text-amber-300 flex items-center gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-black text-[10px]">STEP 3</span>
-                <span>Report Card, Certificate, Fee Receipt &amp; Leave (رزلٹ کارڈ، سرٹیفکیٹ اور چھٹی)</span>
+                <i class="fa-solid fa-award text-amber-400"></i> <span>Certificates, Reports &amp; Leave (سرٹیفکیٹ اور رزلٹ کارڈ)</span>
               </b>
             </div>
 
             <!-- 3 Official Document Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <button onclick="openActiveStudentReportCard()" class="p-2.5 rounded-xl bg-emerald-950/90 border border-amber-400/50 text-amber-300 font-bold text-xs flex items-center justify-center gap-1.5 hover:bg-emerald-900 transition">
-                <i class="fa-solid fa-clipboard-check text-sm text-emerald-400"></i> <span>1. Monthly Report Card PDF</span>
+                <i class="fa-solid fa-clipboard-check text-sm text-emerald-400"></i> <span>Progress Report Card</span>
               </button>
               <button onclick="openActiveStudentCertificate()" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 hover:border-amber-400 transition">
-                <i class="fa-solid fa-award text-sm text-amber-400"></i> <span>2. QR Certificate PDF</span>
+                <i class="fa-solid fa-award text-sm text-amber-400"></i> <span>Course Certificate</span>
               </button>
               <button onclick="openActiveStudentInvoice()" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 hover:border-amber-400 transition">
-                <i class="fa-solid fa-file-invoice-dollar text-sm text-amber-300"></i> <span>3. Tuition Fee Invoice PDF</span>
+                <i class="fa-solid fa-file-invoice-dollar text-sm text-amber-300"></i> <span>Tuition Fee Receipt</span>
               </button>
             </div>
 
@@ -1768,7 +1755,7 @@
       
       <button id="navBtn-home" onclick="switchActiveTab('home'); closeBubbleTray();" class="nav-pill-active flex flex-col items-center justify-center py-1.5 rounded-2xl transition-all duration-300 font-extrabold">
         <i class="fa-solid fa-house text-sm"></i>
-        <span id="navLabel-home" class="text-[9px] mt-0.5">1. Home</span>
+        <span id="navLabel-home" class="text-[9px] mt-0.5">Home</span>
       </button>
 
       <button id="navBtn-class" onclick="switchActiveTab('class'); closeBubbleTray();" class="flex flex-col items-center justify-center py-1.5 rounded-2xl text-slate-300 hover:text-amber-300 transition-all duration-300 font-semibold">
@@ -1776,7 +1763,7 @@
           <i class="fa-solid fa-book-quran text-sm"></i>
           <span class="absolute -top-1 -right-1.5 w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
         </div>
-        <span id="navLabel-class" class="text-[9px] mt-0.5">2. Classroom</span>
+        <span id="navLabel-class" class="text-[9px] mt-0.5">Classroom</span>
       </button>
 
       <!-- CENTER QUICK GUIDE LAUNCHER BUTTON -->
@@ -1784,17 +1771,17 @@
         <button onclick="toggleBubbleLauncherTray()" id="centerBubbleHubBtn" class="w-12 h-12 rounded-full gold-btn border-4 border-slate-950 flex items-center justify-center text-slate-950 text-lg shadow-2xl transform hover:scale-110 active:scale-95 transition" title="Quick Step-by-Step Menu">
           <i id="centerBubbleHubIcon" class="fa-solid fa-compass"></i>
         </button>
-        <span class="text-[8px] font-black text-amber-300 uppercase tracking-tighter mt-0.5">Quick Menu</span>
+        <span class="text-[8px] font-black text-amber-300 uppercase tracking-tighter mt-0.5">Menu</span>
       </div>
 
       <button id="navBtn-profile" onclick="switchActiveTab('profile'); switchProfileSubTab('dashboard'); closeBubbleTray();" class="flex flex-col items-center justify-center py-1.5 rounded-2xl text-slate-300 hover:text-amber-300 transition-all duration-300 font-semibold">
         <i class="fa-solid fa-user-graduate text-sm"></i>
-        <span id="navLabel-profile" class="text-[9px] mt-0.5">3. My Portal</span>
+        <span id="navLabel-profile" class="text-[9px] mt-0.5">Portal</span>
       </button>
 
       <button id="navBtn-tools" onclick="switchActiveTab('tools'); closeBubbleTray();" class="flex flex-col items-center justify-center py-1.5 rounded-2xl text-slate-300 hover:text-amber-300 transition-all duration-300 font-semibold">
         <i class="fa-solid fa-mosque text-sm"></i>
-        <span id="navLabel-tools" class="text-[9px] mt-0.5">4. Worship</span>
+        <span id="navLabel-tools" class="text-[9px] mt-0.5">Worship</span>
       </button>
 
     </div>
@@ -1880,7 +1867,7 @@
         </div>
         <div class="flex justify-between">
           <span class="text-slate-400">Status:</span>
-          <span id="invModalStatusBadge" class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-black text-[10px] border border-emerald-500/40">PAID VIA STRIPE</span>
+          <span id="invModalStatusBadge" class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-black text-[10px] border border-emerald-500/40">PAID</span>
         </div>
       </div>
 
@@ -2101,7 +2088,7 @@
         <h3 class="text-sm font-black text-amber-300">Executive Admin Access</h3>
         <p class="text-[11px] text-slate-300 mt-0.5">Enter 4-Digit Security PIN to unlock Admin Command Center</p>
       </div>
-      <input type="password" id="adminPinModalInput" maxlength="8" placeholder="Enter PIN (6733)" onkeydown="if(event.key==='Enter') confirmAdminPinModal()" class="w-full bg-slate-950 border border-amber-400/50 rounded-xl px-3 py-2.5 text-center text-base font-black tracking-widest text-amber-300 outline-none focus:border-amber-300">
+      <input type="password" id="adminPinModalInput" maxlength="8" placeholder="••••" onkeydown="if(event.key==='Enter') confirmAdminPinModal()" class="w-full bg-slate-950 border border-amber-400/50 rounded-xl px-3 py-2.5 text-center text-base font-black tracking-widest text-amber-300 outline-none focus:border-amber-300">
       <div class="flex gap-2">
         <button onclick="closeAdminPinModal()" class="flex-1 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 font-bold">Cancel</button>
         <button onclick="confirmAdminPinModal()" class="flex-1 gold-btn py-2 rounded-xl font-black">Unlock Admin</button>
@@ -2222,9 +2209,9 @@
 
     // Multi-Language Strings (Preserving 1-2-3-4 Sequential Labels)
     const TRANSLATIONS = {
-      en: { brand: "Noorly Global Quran Academy", status: "1-on-1 Live Quran, Tajweed & Irfan-ul-Quran Academy", home: "1. Home", liveClass: "2. Classroom", profile: "3. My Portal", tools: "4. Worship" },
-      ur: { brand: "نورلی گلوبل قرآن اکیڈمی", status: "آن لائن تجوید، قاعدہ اور عرفان القرآن اکیڈمی", home: "1. ہوم", liveClass: "2. کلاس روم", profile: "3. میرا پورٹل", tools: "4. عبادات" },
-      ar: { brand: "أكاديمية نورلي العالمية للقرآن", status: "أكاديمية القرآن والتجويد المباشرة", home: "1. الرئيسية", liveClass: "2. الفصل", profile: "3. البوابة", tools: "4. العبادات" }
+      en: { brand: "Noorly Global Quran Academy", status: "Online Quran, Tajweed & Tafseer Academy", home: "Home", liveClass: "Classroom", profile: "Portal", tools: "Worship" },
+      ur: { brand: "نورلی گلوبل قرآن اکیڈمی", status: "آن لائن تجوید، قاعدہ اور عرفان القرآن اکیڈمی", home: "ہوم", liveClass: "کلاس روم", profile: "پورٹل", tools: "عبادات" },
+      ar: { brand: "أكاديمية نورلي العالمية للقرآن", status: "أكاديمية القرآن والتجويد المباشرة", home: "الرئيسية", liveClass: "الفصل", profile: "البوابة", tools: "العبادات" }
     };
 
     function changeAppLanguage(lang) {
@@ -2454,12 +2441,12 @@
           <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-900/95 px-3 py-2 rounded-xl border border-slate-800 text-xs">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-              <span class="font-black text-emerald-300"><i class="fa-solid fa-shield-halved mr-1 text-amber-400"></i>Noorly Secure In-App Studio</span>
+              <span class="font-black text-emerald-300"><i class="fa-solid fa-video mr-1 text-amber-400"></i>Live Classroom</span>
               <span id="nativeCallTimerBadge" class="px-2 py-0.5 rounded bg-slate-950 text-amber-300 font-mono font-bold border border-amber-400/30">00:00</span>
             </div>
             <div class="flex items-center gap-2">
               <span id="webrtcConnectionStateBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold">
-                <i class="fa-solid fa-satellite-dish mr-1 animate-pulse"></i>Channel Ready (${roomName})
+                <i class="fa-solid fa-circle-check mr-1 text-emerald-400"></i>Live Session
               </span>
               <button onclick="invitePartnerViaWhatsApp('${roomName}')" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black flex items-center gap-1 shadow">
                 <i class="fa-brands fa-whatsapp"></i> <span>Invite Partner</span>
@@ -2488,7 +2475,7 @@
                   <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase">Live Classroom Partner</span>
                   <h4 class="text-sm sm:text-base font-black text-white mt-1">${partnerLabel}</h4>
                   <p id="remoteStreamSubStatus" class="text-[11px] text-emerald-300 mt-0.5">
-                    In-App Audio &amp; Screen Sync Active • Waiting for partner video stream...
+                    Connected in Classroom
                   </p>
                 </div>
                 <!-- Animated Voice Equalizer Bars -->
@@ -2815,7 +2802,7 @@
               const subSt = document.getElementById('remoteStreamSubStatus');
               if (subSt) subSt.innerText = "Partner left the live studio.";
               const stBadge = document.getElementById('webrtcConnectionStateBadge');
-              if (stBadge) stBadge.innerHTML = `<i class="fa-solid fa-circle-info mr-1 text-amber-400"></i>Partner Disconnected (${roomName})`;
+              if (stBadge) stBadge.innerHTML = `<i class="fa-solid fa-circle-info mr-1 text-amber-400"></i>Session Ended`;
               const remVid = document.getElementById('remoteVideoEl');
               const remOverlay = document.getElementById('remoteAvatarOverlay');
               if (remVid) remVid.classList.add('hidden');
@@ -4081,7 +4068,7 @@ https://noorly-quran-academy.pages.dev`);
           <td class="p-2"><span onclick="toggleStudentFeePaidStatus(${st.id})" title="Click to toggle Paid / Due" class="${badgeClass}">${st.fee}</span></td>
           <td class="p-2 text-right space-x-1 whitespace-nowrap">
             <button onclick="openCertificateModal('${st.name.replace(/'/g, "\\'")}', '${st.course.replace(/'/g, "\\'")}', 'A+ (Distinction)')" class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-black" title="View Certificate">Cert</button>
-            <button onclick="openFeeInvoiceModal('${st.name.replace(/'/g, "\\'")}', '${st.teacher.replace(/'/g, "\\'")}', ${feeVal}, '${st.location.replace(/'/g, "\\'")}', '${st.course.replace(/'/g, "\\'")}', '${isPaid ? 'PAID VIA STRIPE' : 'PAYMENT DUE'}')" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-amber-300 text-[10px] font-bold" title="Generate Invoice">Invoice</button>
+            <button onclick="openFeeInvoiceModal('${st.name.replace(/'/g, "\\'")}', '${st.teacher.replace(/'/g, "\\'")}', ${feeVal}, '${st.location.replace(/'/g, "\\'")}', '${st.course.replace(/'/g, "\\'")}', '${isPaid ? 'PAID' : 'PAYMENT DUE'}')" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-amber-300 text-[10px] font-bold" title="Generate Invoice">Invoice</button>
             <button onclick="openReportCardModal('${st.name.replace(/'/g, "\\'")}', '${st.course.replace(/'/g, "\\'")}', '${st.teacher.replace(/'/g, "\\'")}')" class="px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold" title="Progress Report">Report</button>
             <button onclick="removeStudentFromLedger(${st.id})" class="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 text-[10px] font-bold hover:bg-rose-900" title="Remove Student"><i class="fa-solid fa-trash"></i></button>
           </td>
@@ -4331,7 +4318,7 @@ https://noorly-quran-academy.pages.dev`);
           name: st.name,
           age: existingAge,
           fee: feeVal,
-          feeStatus: (st.fee || '').toLowerCase().includes('due') ? 'PAYMENT DUE' : 'PAID VIA STRIPE',
+          feeStatus: (st.fee || '').toLowerCase().includes('due') ? 'PAYMENT DUE' : 'PAID',
           loc: st.location || 'Global',
           course: st.course || 'Irfan-ul-Quran',
           teacher: st.teacher || 'Qari Ahmed Bilal',
@@ -4614,8 +4601,14 @@ https://noorly-quran-academy.pages.dev`);
       document.querySelectorAll('.student-name-display').forEach(el => el.innerText = `${child.name} (Age ${child.age})`);
       const subEl = document.getElementById('studentPortalSubInfo');
       if (subEl) {
-        subEl.innerHTML = `Assigned Teacher: <b>${child.teacher}</b> (Pakistan) • Course: <b>${child.course}</b> • Time: <b>${child.time}</b>`;
+        subEl.innerHTML = `Teacher: <b>${child.teacher}</b> • Course: <b>${child.course}</b> • Time: <b>${child.time}</b>`;
       }
+      const kpiCourse = document.getElementById('studentKpiCourse');
+      const kpiTeacher = document.getElementById('studentKpiTeacher');
+      const kpiTime = document.getElementById('studentKpiTime');
+      if (kpiCourse) kpiCourse.innerText = child.course.split('(')[0].trim();
+      if (kpiTeacher) kpiTeacher.innerText = child.teacher;
+      if (kpiTime) kpiTime.innerText = child.time.split('(')[0].trim();
       updateStudentTimezoneClocks(child.time);
       const payBtnText = document.getElementById('studentPayTuitionBtnText');
       if (payBtnText) payBtnText.innerText = `Pay Tuition Fee ($${child.fee})`;
@@ -4634,7 +4627,7 @@ https://noorly-quran-academy.pages.dev`);
     function openActiveStudentInvoice() {
       syncDynamicStudentProfiles();
       const c = SIBLING_PROFILES[activeSiblingKey] || SIBLING_PROFILES.hamza;
-      openFeeInvoiceModal(c.name, c.teacher, c.fee, c.loc, c.course, c.feeStatus || 'PAID VIA STRIPE');
+      openFeeInvoiceModal(c.name, c.teacher, c.fee, c.loc, c.course, c.feeStatus || 'PAID');
     }
 
     function openActiveStudentCertificate() {
@@ -4758,7 +4751,7 @@ https://noorly-quran-academy.pages.dev`);
     // ==========================================
     // 16. INVOICE, CERTIFICATE & TRIAL MODALS
     // ==========================================
-    function openFeeInvoiceModal(student, teacher, amount, loc, course = "Irfan-ul-Quran (Tarjuma & Tafseer)", statusText = "PAID VIA STRIPE") {
+    function openFeeInvoiceModal(student, teacher, amount, loc, course = "Irfan-ul-Quran (Tarjuma & Tafseer)", statusText = "PAID") {
       document.getElementById('invModalStudent').innerText = student;
       document.getElementById('invModalTeacher').innerText = teacher;
       document.getElementById('invModalAmount').innerText = `$${amount}.00 USD`;
@@ -5361,7 +5354,7 @@ https://noorly-quran-academy.pages.dev`);
         switchActiveTab('profile');
         showAppToast("Alhamdulillah! Executive Admin Command Center Unlocked.");
       } else {
-        showAppToast("Incorrect Admin PIN. Use 6733 or 1234.");
+        showAppToast("Incorrect Admin Security PIN.");
       }
     }
 
@@ -5632,39 +5625,39 @@ Please verify and update my fee receipt.`);
 
     const BUBBLE_TRAY_CONFIG = {
       home: {
-        title: "Academy Hub — VIP Quran & Qaida Syllabi",
+        title: "Quick Navigation",
         items: [
-          { label: "Noorani Qaida", sub: "17 Phonetic Lessons", icon: "fa-font", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgQ%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2270%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23065f46%22/%3E%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23022c22%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23b45309%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgQ)%22/%3E%20%3C%21--%20Outer%20Ornate%20Golden%20Frame%20--%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%223.5%22%20stroke-opacity%3D%220.85%22/%3E%20%3Crect%20x%3D%2234%22%20y%3D%2234%22%20width%3D%22732%22%20height%3D%22432%22%20rx%3D%2216%22%20fill%3D%22none%22%20stroke%3D%22%2334d399%22%20stroke-width%3D%221.2%22%20stroke-dasharray%3D%228%206%22%20stroke-opacity%3D%220.5%22/%3E%20%3C%21--%20Corner%20Ornaments%20--%3E%20%3Ccircle%20cx%3D%2245%22%20cy%3D%2245%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%22755%22%20cy%3D%2245%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%2245%22%20cy%3D%22455%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%22755%22%20cy%3D%22455%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3C%21--%20Islamic%20Arch%20%26%20Book%20Cover%20Centerpiece%20--%3E%20%3Cpath%20d%3D%22M230,430%20L230,150%20Q230,65%20400,45%20Q570,65%20570,150%20L570,430%20Z%22%20fill%3D%22%23011c16%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%223%22/%3E%20%3Cpath%20d%3D%22M246,416%20L246,158%20Q246,82%20400,64%20Q554,82%20554,158%20L554,416%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%221%22%20stroke-opacity%3D%220.45%22/%3E%20%3C%21--%20Top%20Crown%20Calligraphy%20--%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22112%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22158%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2238%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%82%D9%8E%D8%A7%D8%B9%D9%90%D8%AF%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%86%D9%8F%D9%91%D9%88%D8%B1%D9%8E%D8%A7%D9%86%D9%90%D9%8A%D9%8E%D9%91%D8%A9%D9%8F%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22192%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%20letter-spacing%3D%222%22%3ENOORANI%20QAIDA%20WITH%20TAJWEED%3C/text%3E%20%3C%21--%20Authentic%20Qaida%20Huroof%20Mufradat%20Grid%20--%3E%20%3Cg%20transform%3D%22translate(268,%20212)%22%3E%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%A7%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%A8%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AA%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AB%3C/text%3E%20%3Crect%20x%3D%220%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AC%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AD%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AE%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AF%3C/text%3E%20%3Crect%20x%3D%220%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B6%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B7%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B9%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D9%82%3C/text%3E%20%3C/g%3E%20%3C/svg%3E", action: "openSelfStudyBook('qaida');" },
-          { label: "16-Line Mushaf", sub: "604 Hafizi Pages", icon: "fa-book-quran", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgN%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2272%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230f3d3e%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23022c22%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldN%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23f59e0b%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2392400e%22/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22pageG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef3c7%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fffbeb%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fde68a%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgN)%22/%3E%20%3C%21--%20Glowing%20Halo%20--%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22230%22%20r%3D%22210%22%20fill%3D%22%23fbbf24%22%20fill-opacity%3D%220.08%22/%3E%20%3C%21--%20Outer%20Ornate%20Border%20--%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldN)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%20Open%20Mushaf%20Pages%20on%20Rehal%20--%3E%20%3Cg%20transform%3D%22translate(150,%2075)%22%3E%20%3C%21--%20Left%20Page%20--%3E%20%3Cpath%20d%3D%22M250,25%20Q125,5%200,25%20L0,295%20Q125,275%20250,295%20Z%22%20fill%3D%22url(%23pageG)%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%223%22/%3E%20%3Crect%20x%3D%2216%22%20y%3D%2238%22%20width%3D%22218%22%20height%3D%22238%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23d97706%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Right%20Page%20--%3E%20%3Cpath%20d%3D%22M250,25%20Q375,5%20500,25%20L500,295%20Q375,275%20250,295%20Z%22%20fill%3D%22url(%23pageG)%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%223%22/%3E%20%3Crect%20x%3D%22266%22%20y%3D%2238%22%20width%3D%22218%22%20height%3D%22238%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23d97706%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Center%20Spine%20--%3E%20%3Cline%20x1%3D%22250%22%20y1%3D%2225%22%20x2%3D%22250%22%20y2%3D%22295%22%20stroke%3D%22%2378350f%22%20stroke-width%3D%224%22/%3E%20%3C%21--%20Right%20Page%20Surah%20Al-Fatihah%20Text%20--%3E%20%3Crect%20x%3D%22282%22%20y%3D%2248%22%20width%3D%22186%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23065f46%22/%3E%20%3Ctext%20x%3D%22375%22%20y%3D%2266%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%B3%D9%8F%D9%88%D8%B1%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%92%D9%81%D9%8E%D8%A7%D8%AA%D9%90%D8%AD%D9%8E%D8%A9%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22102%22%20text-anchor%3D%22middle%22%20fill%3D%22%23022c22%22%20font-family%3D%22serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22135%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D8%AD%D9%8E%D9%85%D9%92%D8%AF%D9%8F%20%D9%84%D9%90%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%B1%D9%8E%D8%A8%D9%90%D9%91%20%D8%A7%D9%84%D9%92%D8%B9%D9%8E%D8%A7%D9%84%D9%8E%D9%85%D9%90%D9%8A%D9%86%D9%8E%20%EF%B4%BF%D9%A2%EF%B4%BE%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22168%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b45309%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%20%EF%B4%BF%D9%A3%EF%B4%BE%20%D9%85%D9%8E%D8%A7%D9%84%D9%90%D9%83%D9%90%20%D9%8A%D9%8E%D9%88%D9%92%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22201%22%20text-anchor%3D%22middle%22%20fill%3D%22%23065f46%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%AF%D9%90%D9%91%D9%8A%D9%86%D9%90%20%EF%B4%BF%D9%A4%EF%B4%BE%20%D8%A5%D9%90%D9%8A%D9%8E%D9%91%D8%A7%D9%83%D9%8E%20%D9%86%D9%8E%D8%B9%D9%92%D8%A8%D9%8F%D8%AF%D9%8F%20%D9%88%D9%8E%D8%A5%D9%90%D9%8A%D9%8E%D9%91%D8%A7%D9%83%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22234%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%86%D9%8E%D8%B3%D9%92%D8%AA%D9%8E%D8%B9%D9%90%D9%8A%D9%86%D9%8F%20%EF%B4%BF%D9%A5%EF%B4%BE%20%D8%A7%D9%87%D9%92%D8%AF%D9%90%D9%86%D9%8E%D8%A7%20%D8%A7%D9%84%D8%B5%D9%90%D9%91%D8%B1%D9%8E%D8%A7%D8%B7%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22264%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b91c1c%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%85%D9%8F%D8%B3%D9%92%D8%AA%D9%8E%D9%82%D9%90%D9%8A%D9%85%D9%8E%20%EF%B4%BF%D9%A6%EF%B4%BE%3C/text%3E%20%3C%21--%20Left%20Page%20Surah%20Al-Baqarah%20Text%20--%3E%20%3Crect%20x%3D%2232%22%20y%3D%2248%22%20width%3D%22186%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23065f46%22/%3E%20%3Ctext%20x%3D%22125%22%20y%3D%2266%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%B3%D9%8F%D9%88%D8%B1%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%92%D8%A8%D9%8E%D9%82%D9%8E%D8%B1%D9%8E%D8%A9%D9%90%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22102%22%20text-anchor%3D%22middle%22%20fill%3D%22%23022c22%22%20font-family%3D%22serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22135%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b91c1c%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%85%20%EF%B4%BF%D9%A1%EF%B4%BE%20%D8%B0%D9%8E%D9%B0%D9%84%D9%90%D9%83%D9%8E%20%D8%A7%D9%84%D9%92%D9%83%D9%90%D8%AA%D9%8E%D8%A7%D8%A8%D9%8F%20%D9%84%D9%8E%D8%A7%20%D8%B1%D9%8E%D9%8A%D9%92%D8%A8%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22168%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%81%D9%90%D9%8A%D9%87%D9%90%20%D9%87%D9%8F%D8%AF%D9%8B%D9%89%20%D9%84%D9%90%D9%91%D9%84%D9%92%D9%85%D9%8F%D8%AA%D9%8E%D9%91%D9%82%D9%90%D9%8A%D9%86%D9%8E%20%EF%B4%BF%D9%A2%EF%B4%BE%20%D8%A7%D9%84%D9%8E%D9%91%D8%B0%D9%90%D9%8A%D9%86%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22201%22%20text-anchor%3D%22middle%22%20fill%3D%22%23065f46%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%8A%D9%8F%D8%A4%D9%92%D9%85%D9%90%D9%86%D9%8F%D9%88%D9%86%D9%8E%20%D8%A8%D9%90%D8%A7%D9%84%D9%92%D8%BA%D9%8E%D9%8A%D9%92%D8%A8%D9%90%20%D9%88%D9%8E%D9%8A%D9%8F%D9%82%D9%90%D9%8A%D9%85%D9%8F%D9%88%D9%86%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22234%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b45309%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%B5%D9%8E%D9%91%D9%84%D9%8E%D8%A7%D8%A9%D9%8E%20%D9%88%D9%8E%D9%85%D9%90%D9%85%D9%8E%D9%91%D8%A7%20%D8%B1%D9%8E%D8%B2%D9%8E%D9%82%D9%92%D9%86%D9%8E%D8%A7%D9%87%D9%8F%D9%85%D9%92%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22264%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D9%8A%D9%8F%D9%86%D9%81%D9%90%D9%82%D9%8F%D9%88%D9%86%D9%8E%20%EF%B4%BF%D9%A3%EF%B4%BE%3C/text%3E%20%3C%21--%20Wooden%20Rehal%20Stand%20Base%20--%3E%20%3Cpath%20d%3D%22M90,300%20L250,350%20L410,300%20L385,375%20L250,330%20L115,375%20Z%22%20fill%3D%22url(%23goldN)%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221.5%22/%3E%20%3C/g%3E%20%3C/svg%3E", action: "openSelfStudyBook('mushaf');" },
-          { label: "Irfan-ul-Quran", sub: "Tarjuma & Tafseer", icon: "fa-language", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgI%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2275%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2378350f%22/%3E%20%3Cstop%20offset%3D%2245%25%22%20stop-color%3D%22%23064e3b%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldI%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23d97706%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgI)%22/%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%203D%20Luxury%20Book%20Cover%20--%3E%20%3Cg%20transform%3D%22translate(220,%2042)%22%3E%20%3C%21--%20Book%20Spine%20%26%20Shadow%20--%3E%20%3Cpath%20d%3D%22M0,15%20L26,0%20L26,395%20L0,410%20Z%22%20fill%3D%22%2392400e%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Front%20Cover%20--%3E%20%3Crect%20x%3D%2226%22%20y%3D%220%22%20width%3D%22334%22%20height%3D%22395%22%20rx%3D%2210%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223.5%22/%3E%20%3Crect%20x%3D%2240%22%20y%3D%2214%22%20width%3D%22306%22%20height%3D%22367%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%221.2%22%20stroke-dasharray%3D%226%204%22/%3E%20%3C%21--%20Central%20Shamsa%20Medallion%20--%3E%20%3Ccircle%20cx%3D%22193%22%20cy%3D%22185%22%20r%3D%2292%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223%22/%3E%20%3Ccircle%20cx%3D%22193%22%20cy%3D%22185%22%20r%3D%2278%22%20fill%3D%22none%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%224%204%22/%3E%20%3Ctext%20x%3D%22193%22%20y%3D%2262%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%D9%8F%20%D8%A7%D9%84%D9%92%D9%83%D9%8E%D8%B1%D9%90%D9%8A%D9%85%D9%8F%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22175%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2242%22%20font-weight%3D%22bold%22%3E%D8%B9%D9%90%D8%B1%D9%92%D9%81%D9%8E%D8%A7%D9%86%D9%8F%20%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22215%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2220%22%20font-weight%3D%22bold%22%3E%D8%AA%D8%B1%D8%AC%D9%85%DB%81%20%D9%88%20%D9%85%D8%AE%D8%AA%D8%B5%D8%B1%20%D8%AA%D9%81%D8%B3%DB%8C%D8%B1%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%22305%22%20width%3D%22250%22%20height%3D%2244%22%20rx%3D%228%22%20fill%3D%22%23011c16%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%221.5%22/%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22325%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%3EURDU%20%26amp;%20ENGLISH%20TRANSLATION%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22342%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22sans-serif%22%20font-size%3D%2211%22%20font-weight%3D%22bold%22%3EWITH%20AUTHENTIC%20SHORT%20TAFSEER%3C/text%3E%20%3C/g%3E%20%3C/svg%3E", action: "openSelfStudyBook('irfan');" },
-          { label: "3-Day Free Trial", sub: "Instant Enrollment", icon: "fa-gift", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgH%22%20cx%3D%2250%25%22%20cy%3D%2240%25%22%20r%3D%2275%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23065f46%22/%3E%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%230f172a%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldH%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23b45309%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgH)%22/%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%20Mosque%20Dome%20%26%20Minarets%20Silhouette%20--%3E%20%3Cpath%20d%3D%22M270,340%20Q400,160%20530,340%20Z%22%20fill%3D%22%23047857%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223%22/%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22215%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%223%22/%3E%20%3C%21--%2030%20Juz%20Golden%20Badge%20--%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22145%22%20r%3D%2264%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223.5%22/%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22138%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2232%22%20font-weight%3D%22bold%22%3E%D9%A3%D9%A0%20%D8%AC%D8%B2%D8%A1%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22165%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%3E604%20HAFIZI%20PAGES%3C/text%3E%20%3C%21--%20Title%20Banner%20--%3E%20%3Crect%20x%3D%22170%22%20y%3D%22300%22%20width%3D%22460%22%20height%3D%22125%22%20rx%3D%2218%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223%22/%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22352%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2238%22%20font-weight%3D%22bold%22%3E%D8%AA%D9%8E%D8%AD%D9%92%D9%81%D9%90%D9%8A%D8%B8%D9%8F%20%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%D9%90%20%D8%A7%D9%84%D9%92%D9%83%D9%8E%D8%B1%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22388%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%20letter-spacing%3D%221.5%22%3ESABAQ%20%E2%80%A2%20SABQI%20%E2%80%A2%20MANZIL%20HIFZ%20SYSTEM%3C/text%3E%20%3C/svg%3E", action: "openTrialPopupFromHero(); closeBubbleTray();" }
+          { label: "Noorani Qaida", sub: "17 Lessons", icon: "fa-font", img: "", action: "openSelfStudyBook('qaida');" },
+          { label: "Quran Majeed", sub: "16-Line Mushaf", icon: "fa-book-quran", img: "", action: "openSelfStudyBook('mushaf');" },
+          { label: "Irfan-ul-Quran", sub: "Tarjuma & Tafseer", icon: "fa-language", img: "", action: "openSelfStudyBook('irfan');" },
+          { label: "Free Trial", sub: "Enroll Now", icon: "fa-gift", img: "", action: "openTrialPopupFromHero(); closeBubbleTray();" }
         ]
       },
       tools: {
-        title: "Islamic Hub — Daily Worship Toolkit",
+        title: "Islamic Worship",
         items: [
-          { label: "Namaz Times", sub: "GPS & Alarms", icon: "fa-clock", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20500%20320%22%20width%3D%22500%22%20height%3D%22320%22%3E%20%3Crect%20width%3D%22500%22%20height%3D%22320%22%20fill%3D%22%23022c22%22/%3E%20%3Ccircle%20cx%3D%22250%22%20cy%3D%22140%22%20r%3D%22110%22%20fill%3D%22%23fbbf24%22%20fill-opacity%3D%220.12%22/%3E%20%3Cpath%20d%3D%22M160,260%20Q250,90%20340,260%20Z%22%20fill%3D%22%23065f46%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%223%22/%3E%20%3Crect%20x%3D%22115%22%20y%3D%2295%22%20width%3D%2222%22%20height%3D%22165%22%20fill%3D%22%23047857%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%222%22/%3E%20%3Crect%20x%3D%22363%22%20y%3D%2295%22%20width%3D%2222%22%20height%3D%22165%22%20fill%3D%22%23047857%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%222%22/%3E%20%3Ctext%20x%3D%22250%22%20y%3D%2265%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2226%22%20font-weight%3D%22bold%22%3E%D8%AD%D9%8E%D9%8A%D9%8E%D9%91%20%D8%B9%D9%8E%D9%84%D9%8E%D9%89%20%D8%A7%D9%84%D8%B5%D9%8E%D9%91%D9%84%D9%8E%D8%A7%D8%A9%D9%90%3C/text%3E%20%3C/svg%3E", action: "switchActiveTab('tools'); openToolSubSection('namazTimes'); closeBubbleTray();" },
-          { label: "Qibla Compass", sub: "262° Makkah", icon: "fa-compass", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20500%20320%22%20width%3D%22500%22%20height%3D%22320%22%3E%20%3Crect%20width%3D%22500%22%20height%3D%22320%22%20fill%3D%22%23020617%22/%3E%20%3Ccircle%20cx%3D%22250%22%20cy%3D%22150%22%20r%3D%22115%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%226%204%22%20stroke-opacity%3D%220.6%22/%3E%20%3C%21--%20Holy%20Kaaba%20Cube%20--%3E%20%3Crect%20x%3D%22185%22%20y%3D%2275%22%20width%3D%22130%22%20height%3D%22145%22%20rx%3D%226%22%20fill%3D%22%23090d16%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%222.5%22/%3E%20%3C%21--%20Kiswah%20Gold%20Band%20--%3E%20%3Crect%20x%3D%22185%22%20y%3D%22102%22%20width%3D%22130%22%20height%3D%2224%22%20fill%3D%22%23fbbf24%22/%3E%20%3Crect%20x%3D%22260%22%20y%3D%22145%22%20width%3D%2232%22%20height%3D%2252%22%20rx%3D%223%22%20fill%3D%22%23fbbf24%22/%3E%20%3Ctext%20x%3D%22250%22%20y%3D%2252%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%83%D9%8E%D8%B9%D9%92%D8%A8%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%92%D9%85%D9%8F%D8%B4%D9%8E%D8%B1%D9%8E%D9%91%D9%81%D9%8E%D8%A9%D9%8F%3C/text%3E%20%3C/svg%3E", action: "switchActiveTab('tools'); openToolSubSection('qiblaCompass'); closeBubbleTray();" },
-          { label: "Digital Tasbeeh", sub: "Haptic Counter", icon: "fa-fingerprint", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20500%20320%22%20width%3D%22500%22%20height%3D%22320%22%3E%20%3Crect%20width%3D%22500%22%20height%3D%22320%22%20fill%3D%22%23022c22%22/%3E%20%3Ccircle%20cx%3D%22250%22%20cy%3D%22150%22%20r%3D%2285%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%2214%22%20stroke-dasharray%3D%2218%2010%22/%3E%20%3Ctext%20x%3D%22250%22%20y%3D%22158%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B3%D9%8F%D8%A8%D9%92%D8%AD%D9%8E%D8%A7%D9%86%D9%8E%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%3C/text%3E%20%3C/svg%3E", action: "switchActiveTab('tools'); openToolSubSection('tasbeehTool'); closeBubbleTray();" },
-          { label: "6 Kalmas & Duas", sub: "Audio & Urdu", icon: "fa-hands-praying", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20500%20320%22%20width%3D%22500%22%20height%3D%22320%22%3E%20%3Crect%20width%3D%22500%22%20height%3D%22320%22%20fill%3D%22%23064e3b%22/%3E%20%3Crect%20x%3D%2240%22%20y%3D%2235%22%20width%3D%22420%22%20height%3D%22190%22%20rx%3D%2218%22%20fill%3D%22%23022c22%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%223%22/%3E%20%3Ctext%20x%3D%22250%22%20y%3D%22110%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2226%22%20font-weight%3D%22bold%22%3E%D9%84%D9%8E%D8%A7%20%D8%A5%D9%90%D9%84%D9%B0%D9%87%D9%8E%20%D8%A5%D9%90%D9%84%D9%8E%D9%91%D8%A7%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%8F%3C/text%3E%20%3Ctext%20x%3D%22250%22%20y%3D%22155%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2226%22%20font-weight%3D%22bold%22%3E%D9%85%D9%8F%D8%AD%D9%8E%D9%85%D9%8E%D9%91%D8%AF%D9%8C%20%D8%B1%D9%8E%D9%91%D8%B3%D9%8F%D9%88%D9%84%D9%8F%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%3C/text%3E%20%3Ctext%20x%3D%22250%22%20y%3D%22195%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%3E%D8%B1%D9%8E%D8%A8%D9%90%D9%91%20%D8%B2%D9%90%D8%AF%D9%92%D9%86%D9%90%D9%8A%20%D8%B9%D9%90%D9%84%D9%92%D9%85%D9%8B%D8%A7%3C/text%3E%20%3C/svg%3E", action: "switchActiveTab('tools'); openToolSubSection('duasKalmas'); closeBubbleTray();" }
+          { label: "Prayer Times", sub: "Daily Namaz", icon: "fa-clock", img: "", action: "switchActiveTab('tools'); openToolSubSection('namazTimes'); closeBubbleTray();" },
+          { label: "Qibla Compass", sub: "Kaaba Direction", icon: "fa-compass", img: "", action: "switchActiveTab('tools'); openToolSubSection('qiblaCompass'); closeBubbleTray();" },
+          { label: "Digital Tasbeeh", sub: "Dhikr Counter", icon: "fa-fingerprint", img: "", action: "switchActiveTab('tools'); openToolSubSection('tasbeehTool'); closeBubbleTray();" },
+          { label: "6 Kalmas & Duas", sub: "With Audio", icon: "fa-hands-praying", img: "", action: "switchActiveTab('tools'); openToolSubSection('duasKalmas'); closeBubbleTray();" }
         ]
       },
       class: {
-        title: "Live Tajweed Studio — Classroom Controls",
+        title: "Classroom Controls",
         items: [
-          { label: "Connect Video Call", sub: "1-on-1 Live Room", icon: "fa-video", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgN%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2272%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230f3d3e%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23022c22%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldN%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23f59e0b%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2392400e%22/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22pageG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef3c7%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fffbeb%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fde68a%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgN)%22/%3E%20%3C%21--%20Glowing%20Halo%20--%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22230%22%20r%3D%22210%22%20fill%3D%22%23fbbf24%22%20fill-opacity%3D%220.08%22/%3E%20%3C%21--%20Outer%20Ornate%20Border%20--%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldN)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%20Open%20Mushaf%20Pages%20on%20Rehal%20--%3E%20%3Cg%20transform%3D%22translate(150,%2075)%22%3E%20%3C%21--%20Left%20Page%20--%3E%20%3Cpath%20d%3D%22M250,25%20Q125,5%200,25%20L0,295%20Q125,275%20250,295%20Z%22%20fill%3D%22url(%23pageG)%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%223%22/%3E%20%3Crect%20x%3D%2216%22%20y%3D%2238%22%20width%3D%22218%22%20height%3D%22238%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23d97706%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Right%20Page%20--%3E%20%3Cpath%20d%3D%22M250,25%20Q375,5%20500,25%20L500,295%20Q375,275%20250,295%20Z%22%20fill%3D%22url(%23pageG)%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%223%22/%3E%20%3Crect%20x%3D%22266%22%20y%3D%2238%22%20width%3D%22218%22%20height%3D%22238%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23d97706%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Center%20Spine%20--%3E%20%3Cline%20x1%3D%22250%22%20y1%3D%2225%22%20x2%3D%22250%22%20y2%3D%22295%22%20stroke%3D%22%2378350f%22%20stroke-width%3D%224%22/%3E%20%3C%21--%20Right%20Page%20Surah%20Al-Fatihah%20Text%20--%3E%20%3Crect%20x%3D%22282%22%20y%3D%2248%22%20width%3D%22186%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23065f46%22/%3E%20%3Ctext%20x%3D%22375%22%20y%3D%2266%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%B3%D9%8F%D9%88%D8%B1%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%92%D9%81%D9%8E%D8%A7%D8%AA%D9%90%D8%AD%D9%8E%D8%A9%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22102%22%20text-anchor%3D%22middle%22%20fill%3D%22%23022c22%22%20font-family%3D%22serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22135%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D8%AD%D9%8E%D9%85%D9%92%D8%AF%D9%8F%20%D9%84%D9%90%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%B1%D9%8E%D8%A8%D9%90%D9%91%20%D8%A7%D9%84%D9%92%D8%B9%D9%8E%D8%A7%D9%84%D9%8E%D9%85%D9%90%D9%8A%D9%86%D9%8E%20%EF%B4%BF%D9%A2%EF%B4%BE%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22168%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b45309%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%20%EF%B4%BF%D9%A3%EF%B4%BE%20%D9%85%D9%8E%D8%A7%D9%84%D9%90%D9%83%D9%90%20%D9%8A%D9%8E%D9%88%D9%92%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22201%22%20text-anchor%3D%22middle%22%20fill%3D%22%23065f46%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%AF%D9%90%D9%91%D9%8A%D9%86%D9%90%20%EF%B4%BF%D9%A4%EF%B4%BE%20%D8%A5%D9%90%D9%8A%D9%8E%D9%91%D8%A7%D9%83%D9%8E%20%D9%86%D9%8E%D8%B9%D9%92%D8%A8%D9%8F%D8%AF%D9%8F%20%D9%88%D9%8E%D8%A5%D9%90%D9%8A%D9%8E%D9%91%D8%A7%D9%83%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22234%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%86%D9%8E%D8%B3%D9%92%D8%AA%D9%8E%D8%B9%D9%90%D9%8A%D9%86%D9%8F%20%EF%B4%BF%D9%A5%EF%B4%BE%20%D8%A7%D9%87%D9%92%D8%AF%D9%90%D9%86%D9%8E%D8%A7%20%D8%A7%D9%84%D8%B5%D9%90%D9%91%D8%B1%D9%8E%D8%A7%D8%B7%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22264%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b91c1c%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%85%D9%8F%D8%B3%D9%92%D8%AA%D9%8E%D9%82%D9%90%D9%8A%D9%85%D9%8E%20%EF%B4%BF%D9%A6%EF%B4%BE%3C/text%3E%20%3C%21--%20Left%20Page%20Surah%20Al-Baqarah%20Text%20--%3E%20%3Crect%20x%3D%2232%22%20y%3D%2248%22%20width%3D%22186%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23065f46%22/%3E%20%3Ctext%20x%3D%22125%22%20y%3D%2266%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%B3%D9%8F%D9%88%D8%B1%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%92%D8%A8%D9%8E%D9%82%D9%8E%D8%B1%D9%8E%D8%A9%D9%90%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22102%22%20text-anchor%3D%22middle%22%20fill%3D%22%23022c22%22%20font-family%3D%22serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22135%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b91c1c%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%85%20%EF%B4%BF%D9%A1%EF%B4%BE%20%D8%B0%D9%8E%D9%B0%D9%84%D9%90%D9%83%D9%8E%20%D8%A7%D9%84%D9%92%D9%83%D9%90%D8%AA%D9%8E%D8%A7%D8%A8%D9%8F%20%D9%84%D9%8E%D8%A7%20%D8%B1%D9%8E%D9%8A%D9%92%D8%A8%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22168%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%81%D9%90%D9%8A%D9%87%D9%90%20%D9%87%D9%8F%D8%AF%D9%8B%D9%89%20%D9%84%D9%90%D9%91%D9%84%D9%92%D9%85%D9%8F%D8%AA%D9%8E%D9%91%D9%82%D9%90%D9%8A%D9%86%D9%8E%20%EF%B4%BF%D9%A2%EF%B4%BE%20%D8%A7%D9%84%D9%8E%D9%91%D8%B0%D9%90%D9%8A%D9%86%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22201%22%20text-anchor%3D%22middle%22%20fill%3D%22%23065f46%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%8A%D9%8F%D8%A4%D9%92%D9%85%D9%90%D9%86%D9%8F%D9%88%D9%86%D9%8E%20%D8%A8%D9%90%D8%A7%D9%84%D9%92%D8%BA%D9%8E%D9%8A%D9%92%D8%A8%D9%90%20%D9%88%D9%8E%D9%8A%D9%8F%D9%82%D9%90%D9%8A%D9%85%D9%8F%D9%88%D9%86%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22234%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b45309%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%B5%D9%8E%D9%91%D9%84%D9%8E%D8%A7%D8%A9%D9%8E%20%D9%88%D9%8E%D9%85%D9%90%D9%85%D9%8E%D9%91%D8%A7%20%D8%B1%D9%8E%D8%B2%D9%8E%D9%82%D9%92%D9%86%D9%8E%D8%A7%D9%87%D9%8F%D9%85%D9%92%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22264%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D9%8A%D9%8F%D9%86%D9%81%D9%90%D9%82%D9%8F%D9%88%D9%86%D9%8E%20%EF%B4%BF%D9%A3%EF%B4%BE%3C/text%3E%20%3C%21--%20Wooden%20Rehal%20Stand%20Base%20--%3E%20%3Cpath%20d%3D%22M90,300%20L250,350%20L410,300%20L385,375%20L250,330%20L115,375%20Z%22%20fill%3D%22url(%23goldN)%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221.5%22/%3E%20%3C/g%3E%20%3C/svg%3E", action: "switchActiveTab('class'); launchRealJitsiClass(); closeBubbleTray();" },
-          { label: "Tajweed Qalam", sub: "Live Whiteboard", icon: "fa-pen-nib", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgQ%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2270%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23065f46%22/%3E%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23022c22%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23b45309%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgQ)%22/%3E%20%3C%21--%20Outer%20Ornate%20Golden%20Frame%20--%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%223.5%22%20stroke-opacity%3D%220.85%22/%3E%20%3Crect%20x%3D%2234%22%20y%3D%2234%22%20width%3D%22732%22%20height%3D%22432%22%20rx%3D%2216%22%20fill%3D%22none%22%20stroke%3D%22%2334d399%22%20stroke-width%3D%221.2%22%20stroke-dasharray%3D%228%206%22%20stroke-opacity%3D%220.5%22/%3E%20%3C%21--%20Corner%20Ornaments%20--%3E%20%3Ccircle%20cx%3D%2245%22%20cy%3D%2245%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%22755%22%20cy%3D%2245%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%2245%22%20cy%3D%22455%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%22755%22%20cy%3D%22455%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3C%21--%20Islamic%20Arch%20%26%20Book%20Cover%20Centerpiece%20--%3E%20%3Cpath%20d%3D%22M230,430%20L230,150%20Q230,65%20400,45%20Q570,65%20570,150%20L570,430%20Z%22%20fill%3D%22%23011c16%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%223%22/%3E%20%3Cpath%20d%3D%22M246,416%20L246,158%20Q246,82%20400,64%20Q554,82%20554,158%20L554,416%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%221%22%20stroke-opacity%3D%220.45%22/%3E%20%3C%21--%20Top%20Crown%20Calligraphy%20--%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22112%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22158%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2238%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%82%D9%8E%D8%A7%D8%B9%D9%90%D8%AF%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%86%D9%8F%D9%91%D9%88%D8%B1%D9%8E%D8%A7%D9%86%D9%90%D9%8A%D9%8E%D9%91%D8%A9%D9%8F%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22192%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%20letter-spacing%3D%222%22%3ENOORANI%20QAIDA%20WITH%20TAJWEED%3C/text%3E%20%3C%21--%20Authentic%20Qaida%20Huroof%20Mufradat%20Grid%20--%3E%20%3Cg%20transform%3D%22translate(268,%20212)%22%3E%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%A7%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%A8%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AA%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AB%3C/text%3E%20%3Crect%20x%3D%220%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AC%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AD%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AE%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AF%3C/text%3E%20%3Crect%20x%3D%220%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B6%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B7%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B9%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D9%82%3C/text%3E%20%3C/g%3E%20%3C/svg%3E", action: "switchActiveTab('class'); toggleTajweedWhiteboard(); closeBubbleTray();" },
-          { label: "Cinema Focus", sub: "Full-Screen Mode", icon: "fa-expand", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgI%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2275%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2378350f%22/%3E%20%3Cstop%20offset%3D%2245%25%22%20stop-color%3D%22%23064e3b%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldI%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23d97706%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgI)%22/%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%203D%20Luxury%20Book%20Cover%20--%3E%20%3Cg%20transform%3D%22translate(220,%2042)%22%3E%20%3C%21--%20Book%20Spine%20%26%20Shadow%20--%3E%20%3Cpath%20d%3D%22M0,15%20L26,0%20L26,395%20L0,410%20Z%22%20fill%3D%22%2392400e%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Front%20Cover%20--%3E%20%3Crect%20x%3D%2226%22%20y%3D%220%22%20width%3D%22334%22%20height%3D%22395%22%20rx%3D%2210%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223.5%22/%3E%20%3Crect%20x%3D%2240%22%20y%3D%2214%22%20width%3D%22306%22%20height%3D%22367%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%221.2%22%20stroke-dasharray%3D%226%204%22/%3E%20%3C%21--%20Central%20Shamsa%20Medallion%20--%3E%20%3Ccircle%20cx%3D%22193%22%20cy%3D%22185%22%20r%3D%2292%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223%22/%3E%20%3Ccircle%20cx%3D%22193%22%20cy%3D%22185%22%20r%3D%2278%22%20fill%3D%22none%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%224%204%22/%3E%20%3Ctext%20x%3D%22193%22%20y%3D%2262%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%D9%8F%20%D8%A7%D9%84%D9%92%D9%83%D9%8E%D8%B1%D9%90%D9%8A%D9%85%D9%8F%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22175%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2242%22%20font-weight%3D%22bold%22%3E%D8%B9%D9%90%D8%B1%D9%92%D9%81%D9%8E%D8%A7%D9%86%D9%8F%20%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22215%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2220%22%20font-weight%3D%22bold%22%3E%D8%AA%D8%B1%D8%AC%D9%85%DB%81%20%D9%88%20%D9%85%D8%AE%D8%AA%D8%B5%D8%B1%20%D8%AA%D9%81%D8%B3%DB%8C%D8%B1%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%22305%22%20width%3D%22250%22%20height%3D%2244%22%20rx%3D%228%22%20fill%3D%22%23011c16%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%221.5%22/%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22325%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%3EURDU%20%26amp;%20ENGLISH%20TRANSLATION%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22342%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22sans-serif%22%20font-size%3D%2211%22%20font-weight%3D%22bold%22%3EWITH%20AUTHENTIC%20SHORT%20TAFSEER%3C/text%3E%20%3C/g%3E%20%3C/svg%3E", action: "switchActiveTab('class'); toggleCinemaFocusMode(); closeBubbleTray();" },
-          { label: "Log Daily Sabaq", sub: "Cloud Diary", icon: "fa-book-journal-whills", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgH%22%20cx%3D%2250%25%22%20cy%3D%2240%25%22%20r%3D%2275%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23065f46%22/%3E%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%230f172a%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldH%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23b45309%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgH)%22/%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%20Mosque%20Dome%20%26%20Minarets%20Silhouette%20--%3E%20%3Cpath%20d%3D%22M270,340%20Q400,160%20530,340%20Z%22%20fill%3D%22%23047857%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223%22/%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22215%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%223%22/%3E%20%3C%21--%2030%20Juz%20Golden%20Badge%20--%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22145%22%20r%3D%2264%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223.5%22/%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22138%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2232%22%20font-weight%3D%22bold%22%3E%D9%A3%D9%A0%20%D8%AC%D8%B2%D8%A1%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22165%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%3E604%20HAFIZI%20PAGES%3C/text%3E%20%3C%21--%20Title%20Banner%20--%3E%20%3Crect%20x%3D%22170%22%20y%3D%22300%22%20width%3D%22460%22%20height%3D%22125%22%20rx%3D%2218%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223%22/%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22352%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2238%22%20font-weight%3D%22bold%22%3E%D8%AA%D9%8E%D8%AD%D9%92%D9%81%D9%90%D9%8A%D8%B8%D9%8F%20%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%D9%90%20%D8%A7%D9%84%D9%92%D9%83%D9%8E%D8%B1%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22388%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%20letter-spacing%3D%221.5%22%3ESABAQ%20%E2%80%A2%20SABQI%20%E2%80%A2%20MANZIL%20HIFZ%20SYSTEM%3C/text%3E%20%3C/svg%3E", action: "switchActiveTab('class'); openClassroomSabaqModal(); closeBubbleTray();" }
+          { label: "Live Video Class", sub: "1-on-1 Studio", icon: "fa-video", img: "", action: "openLiveClassLobby();" },
+          { label: "Read Quran", sub: "Self-Study Mode", icon: "fa-book-open", img: "", action: "openSelfStudyBook('mushaf');" },
+          { label: "Whiteboard", sub: "Tajweed Qalam", icon: "fa-pen-nib", img: "", action: "switchActiveTab('class'); toggleTajweedWhiteboard(); closeBubbleTray();" },
+          { label: "Full Screen", sub: "Focus Mode", icon: "fa-expand", img: "", action: "switchActiveTab('class'); toggleCinemaFocusMode(); closeBubbleTray();" }
         ]
       },
       profile: {
-        title: "Smart Portal — Reports, Certificates & Billing",
+        title: "Student & Teacher Portal",
         items: [
-          { label: "Report Card PDF", sub: "Monthly Evaluation", icon: "fa-clipboard-check", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgQ%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2270%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23065f46%22/%3E%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23022c22%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23b45309%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgQ)%22/%3E%20%3C%21--%20Outer%20Ornate%20Golden%20Frame%20--%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%223.5%22%20stroke-opacity%3D%220.85%22/%3E%20%3Crect%20x%3D%2234%22%20y%3D%2234%22%20width%3D%22732%22%20height%3D%22432%22%20rx%3D%2216%22%20fill%3D%22none%22%20stroke%3D%22%2334d399%22%20stroke-width%3D%221.2%22%20stroke-dasharray%3D%228%206%22%20stroke-opacity%3D%220.5%22/%3E%20%3C%21--%20Corner%20Ornaments%20--%3E%20%3Ccircle%20cx%3D%2245%22%20cy%3D%2245%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%22755%22%20cy%3D%2245%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%2245%22%20cy%3D%22455%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3Ccircle%20cx%3D%22755%22%20cy%3D%22455%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%222%22/%3E%20%3C%21--%20Islamic%20Arch%20%26%20Book%20Cover%20Centerpiece%20--%3E%20%3Cpath%20d%3D%22M230,430%20L230,150%20Q230,65%20400,45%20Q570,65%20570,150%20L570,430%20Z%22%20fill%3D%22%23011c16%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%223%22/%3E%20%3Cpath%20d%3D%22M246,416%20L246,158%20Q246,82%20400,64%20Q554,82%20554,158%20L554,416%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%221%22%20stroke-opacity%3D%220.45%22/%3E%20%3C%21--%20Top%20Crown%20Calligraphy%20--%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22112%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22158%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2238%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%82%D9%8E%D8%A7%D8%B9%D9%90%D8%AF%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%86%D9%8F%D9%91%D9%88%D8%B1%D9%8E%D8%A7%D9%86%D9%90%D9%8A%D9%8E%D9%91%D8%A9%D9%8F%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22192%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%20letter-spacing%3D%222%22%3ENOORANI%20QAIDA%20WITH%20TAJWEED%3C/text%3E%20%3C%21--%20Authentic%20Qaida%20Huroof%20Mufradat%20Grid%20--%3E%20%3Cg%20transform%3D%22translate(268,%20212)%22%3E%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%A7%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%A8%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AA%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%220%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%2236%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AB%3C/text%3E%20%3Crect%20x%3D%220%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AC%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AD%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AE%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%2262%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2230%22%20font-weight%3D%22bold%22%3E%D8%AF%3C/text%3E%20%3Crect%20x%3D%220%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2229%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B6%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%2297%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B7%3C/text%3E%20%3Crect%20x%3D%22136%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22165%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D8%B9%3C/text%3E%20%3Crect%20x%3D%22204%22%20y%3D%22124%22%20width%3D%2258%22%20height%3D%2252%22%20rx%3D%228%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldG)%22%20stroke-width%3D%221.8%22/%3E%20%3Ctext%20x%3D%22233%22%20y%3D%22160%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2228%22%20font-weight%3D%22bold%22%3E%D9%82%3C/text%3E%20%3C/g%3E%20%3C/svg%3E", action: "openActiveStudentReportCard(); closeBubbleTray();" },
-          { label: "Golden Certificate", sub: "QR Verified PDF", icon: "fa-award", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgI%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2275%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2378350f%22/%3E%20%3Cstop%20offset%3D%2245%25%22%20stop-color%3D%22%23064e3b%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldI%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23d97706%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgI)%22/%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%203D%20Luxury%20Book%20Cover%20--%3E%20%3Cg%20transform%3D%22translate(220,%2042)%22%3E%20%3C%21--%20Book%20Spine%20%26%20Shadow%20--%3E%20%3Cpath%20d%3D%22M0,15%20L26,0%20L26,395%20L0,410%20Z%22%20fill%3D%22%2392400e%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Front%20Cover%20--%3E%20%3Crect%20x%3D%2226%22%20y%3D%220%22%20width%3D%22334%22%20height%3D%22395%22%20rx%3D%2210%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223.5%22/%3E%20%3Crect%20x%3D%2240%22%20y%3D%2214%22%20width%3D%22306%22%20height%3D%22367%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%221.2%22%20stroke-dasharray%3D%226%204%22/%3E%20%3C%21--%20Central%20Shamsa%20Medallion%20--%3E%20%3Ccircle%20cx%3D%22193%22%20cy%3D%22185%22%20r%3D%2292%22%20fill%3D%22%23064e3b%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%223%22/%3E%20%3Ccircle%20cx%3D%22193%22%20cy%3D%22185%22%20r%3D%2278%22%20fill%3D%22none%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%224%204%22/%3E%20%3Ctext%20x%3D%22193%22%20y%3D%2262%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2222%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%D9%8F%20%D8%A7%D9%84%D9%92%D9%83%D9%8E%D8%B1%D9%90%D9%8A%D9%85%D9%8F%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22175%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2242%22%20font-weight%3D%22bold%22%3E%D8%B9%D9%90%D8%B1%D9%92%D9%81%D9%8E%D8%A7%D9%86%D9%8F%20%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22215%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22serif%22%20font-size%3D%2220%22%20font-weight%3D%22bold%22%3E%D8%AA%D8%B1%D8%AC%D9%85%DB%81%20%D9%88%20%D9%85%D8%AE%D8%AA%D8%B5%D8%B1%20%D8%AA%D9%81%D8%B3%DB%8C%D8%B1%3C/text%3E%20%3Crect%20x%3D%2268%22%20y%3D%22305%22%20width%3D%22250%22%20height%3D%2244%22%20rx%3D%228%22%20fill%3D%22%23011c16%22%20stroke%3D%22url(%23goldI)%22%20stroke-width%3D%221.5%22/%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22325%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%3EURDU%20%26amp;%20ENGLISH%20TRANSLATION%3C/text%3E%20%3Ctext%20x%3D%22193%22%20y%3D%22342%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22sans-serif%22%20font-size%3D%2211%22%20font-weight%3D%22bold%22%3EWITH%20AUTHENTIC%20SHORT%20TAFSEER%3C/text%3E%20%3C/g%3E%20%3C/svg%3E", action: "openActiveStudentCertificate(); closeBubbleTray();" },
-          { label: "Fee Tax Invoice", sub: "Stripe Receipt", icon: "fa-file-invoice-dollar", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgN%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2272%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230f3d3e%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23022c22%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldN%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23f59e0b%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2392400e%22/%3E%20%3C/linearGradient%3E%20%3ClinearGradient%20id%3D%22pageG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef3c7%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fffbeb%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fde68a%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgN)%22/%3E%20%3C%21--%20Glowing%20Halo%20--%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22230%22%20r%3D%22210%22%20fill%3D%22%23fbbf24%22%20fill-opacity%3D%220.08%22/%3E%20%3C%21--%20Outer%20Ornate%20Border%20--%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldN)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%20Open%20Mushaf%20Pages%20on%20Rehal%20--%3E%20%3Cg%20transform%3D%22translate(150,%2075)%22%3E%20%3C%21--%20Left%20Page%20--%3E%20%3Cpath%20d%3D%22M250,25%20Q125,5%200,25%20L0,295%20Q125,275%20250,295%20Z%22%20fill%3D%22url(%23pageG)%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%223%22/%3E%20%3Crect%20x%3D%2216%22%20y%3D%2238%22%20width%3D%22218%22%20height%3D%22238%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23d97706%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Right%20Page%20--%3E%20%3Cpath%20d%3D%22M250,25%20Q375,5%20500,25%20L500,295%20Q375,275%20250,295%20Z%22%20fill%3D%22url(%23pageG)%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%223%22/%3E%20%3Crect%20x%3D%22266%22%20y%3D%2238%22%20width%3D%22218%22%20height%3D%22238%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23d97706%22%20stroke-width%3D%221.5%22/%3E%20%3C%21--%20Center%20Spine%20--%3E%20%3Cline%20x1%3D%22250%22%20y1%3D%2225%22%20x2%3D%22250%22%20y2%3D%22295%22%20stroke%3D%22%2378350f%22%20stroke-width%3D%224%22/%3E%20%3C%21--%20Right%20Page%20Surah%20Al-Fatihah%20Text%20--%3E%20%3Crect%20x%3D%22282%22%20y%3D%2248%22%20width%3D%22186%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23065f46%22/%3E%20%3Ctext%20x%3D%22375%22%20y%3D%2266%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%B3%D9%8F%D9%88%D8%B1%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%92%D9%81%D9%8E%D8%A7%D8%AA%D9%90%D8%AD%D9%8E%D8%A9%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22102%22%20text-anchor%3D%22middle%22%20fill%3D%22%23022c22%22%20font-family%3D%22serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22135%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D8%AD%D9%8E%D9%85%D9%92%D8%AF%D9%8F%20%D9%84%D9%90%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%B1%D9%8E%D8%A8%D9%90%D9%91%20%D8%A7%D9%84%D9%92%D8%B9%D9%8E%D8%A7%D9%84%D9%8E%D9%85%D9%90%D9%8A%D9%86%D9%8E%20%EF%B4%BF%D9%A2%EF%B4%BE%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22168%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b45309%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%20%EF%B4%BF%D9%A3%EF%B4%BE%20%D9%85%D9%8E%D8%A7%D9%84%D9%90%D9%83%D9%90%20%D9%8A%D9%8E%D9%88%D9%92%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22201%22%20text-anchor%3D%22middle%22%20fill%3D%22%23065f46%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%AF%D9%90%D9%91%D9%8A%D9%86%D9%90%20%EF%B4%BF%D9%A4%EF%B4%BE%20%D8%A5%D9%90%D9%8A%D9%8E%D9%91%D8%A7%D9%83%D9%8E%20%D9%86%D9%8E%D8%B9%D9%92%D8%A8%D9%8F%D8%AF%D9%8F%20%D9%88%D9%8E%D8%A5%D9%90%D9%8A%D9%8E%D9%91%D8%A7%D9%83%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22234%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%86%D9%8E%D8%B3%D9%92%D8%AA%D9%8E%D8%B9%D9%90%D9%8A%D9%86%D9%8F%20%EF%B4%BF%D9%A5%EF%B4%BE%20%D8%A7%D9%87%D9%92%D8%AF%D9%90%D9%86%D9%8E%D8%A7%20%D8%A7%D9%84%D8%B5%D9%90%D9%91%D8%B1%D9%8E%D8%A7%D8%B7%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22375%22%20y%3D%22264%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b91c1c%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%92%D9%85%D9%8F%D8%B3%D9%92%D8%AA%D9%8E%D9%82%D9%90%D9%8A%D9%85%D9%8E%20%EF%B4%BF%D9%A6%EF%B4%BE%3C/text%3E%20%3C%21--%20Left%20Page%20Surah%20Al-Baqarah%20Text%20--%3E%20%3Crect%20x%3D%2232%22%20y%3D%2248%22%20width%3D%22186%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23065f46%22/%3E%20%3Ctext%20x%3D%22125%22%20y%3D%2266%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D8%B3%D9%8F%D9%88%D8%B1%D9%8E%D8%A9%D9%8F%20%D8%A7%D9%84%D9%92%D8%A8%D9%8E%D9%82%D9%8E%D8%B1%D9%8E%D8%A9%D9%90%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22102%22%20text-anchor%3D%22middle%22%20fill%3D%22%23022c22%22%20font-family%3D%22serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%3E%D8%A8%D9%90%D8%B3%D9%92%D9%85%D9%90%20%D8%A7%D9%84%D9%84%D9%8E%D9%91%D9%87%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%92%D9%85%D9%8E%D9%B0%D9%86%D9%90%20%D8%A7%D9%84%D8%B1%D9%8E%D9%91%D8%AD%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22135%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b91c1c%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D9%85%20%EF%B4%BF%D9%A1%EF%B4%BE%20%D8%B0%D9%8E%D9%B0%D9%84%D9%90%D9%83%D9%8E%20%D8%A7%D9%84%D9%92%D9%83%D9%90%D8%AA%D9%8E%D8%A7%D8%A8%D9%8F%20%D9%84%D9%8E%D8%A7%20%D8%B1%D9%8E%D9%8A%D9%92%D8%A8%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22168%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%81%D9%90%D9%8A%D9%87%D9%90%20%D9%87%D9%8F%D8%AF%D9%8B%D9%89%20%D9%84%D9%90%D9%91%D9%84%D9%92%D9%85%D9%8F%D8%AA%D9%8E%D9%91%D9%82%D9%90%D9%8A%D9%86%D9%8E%20%EF%B4%BF%D9%A2%EF%B4%BE%20%D8%A7%D9%84%D9%8E%D9%91%D8%B0%D9%90%D9%8A%D9%86%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22201%22%20text-anchor%3D%22middle%22%20fill%3D%22%23065f46%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D9%8A%D9%8F%D8%A4%D9%92%D9%85%D9%90%D9%86%D9%8F%D9%88%D9%86%D9%8E%20%D8%A8%D9%90%D8%A7%D9%84%D9%92%D8%BA%D9%8E%D9%8A%D9%92%D8%A8%D9%90%20%D9%88%D9%8E%D9%8A%D9%8F%D9%82%D9%90%D9%8A%D9%85%D9%8F%D9%88%D9%86%D9%8E%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22234%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b45309%22%20font-family%3D%22serif%22%20font-size%3D%2217%22%20font-weight%3D%22bold%22%3E%D8%A7%D9%84%D8%B5%D9%8E%D9%91%D9%84%D9%8E%D8%A7%D8%A9%D9%8E%20%D9%88%D9%8E%D9%85%D9%90%D9%85%D9%8E%D9%91%D8%A7%20%D8%B1%D9%8E%D8%B2%D9%8E%D9%82%D9%92%D9%86%D9%8E%D8%A7%D9%87%D9%8F%D9%85%D9%92%3C/text%3E%20%3Ctext%20x%3D%22125%22%20y%3D%22264%22%20text-anchor%3D%22middle%22%20fill%3D%22%231e293b%22%20font-family%3D%22serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%3E%D9%8A%D9%8F%D9%86%D9%81%D9%90%D9%82%D9%8F%D9%88%D9%86%D9%8E%20%EF%B4%BF%D9%A3%EF%B4%BE%3C/text%3E%20%3C%21--%20Wooden%20Rehal%20Stand%20Base%20--%3E%20%3Cpath%20d%3D%22M90,300%20L250,350%20L410,300%20L385,375%20L250,330%20L115,375%20Z%22%20fill%3D%22url(%23goldN)%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%221.5%22/%3E%20%3C/g%3E%20%3C/svg%3E", action: "openActiveStudentInvoice(); closeBubbleTray();" },
-          { label: "Executive Portal", sub: "Switch Role / Admin", icon: "fa-user-shield", img: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20800%20500%22%20width%3D%22800%22%20height%3D%22500%22%3E%20%3Cdefs%3E%20%3CradialGradient%20id%3D%22bgH%22%20cx%3D%2250%25%22%20cy%3D%2240%25%22%20r%3D%2275%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23065f46%22/%3E%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%230f172a%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23020617%22/%3E%20%3C/radialGradient%3E%20%3ClinearGradient%20id%3D%22goldH%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fef08a%22/%3E%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23fbbf24%22/%3E%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23b45309%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22800%22%20height%3D%22500%22%20fill%3D%22url(%23bgH)%22/%3E%20%3Crect%20x%3D%2222%22%20y%3D%2222%22%20width%3D%22756%22%20height%3D%22456%22%20rx%3D%2222%22%20fill%3D%22none%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223.5%22/%3E%20%3C%21--%20Mosque%20Dome%20%26%20Minarets%20Silhouette%20--%3E%20%3Cpath%20d%3D%22M270,340%20Q400,160%20530,340%20Z%22%20fill%3D%22%23047857%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223%22/%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22215%22%20r%3D%2214%22%20fill%3D%22none%22%20stroke%3D%22%23fef08a%22%20stroke-width%3D%223%22/%3E%20%3C%21--%2030%20Juz%20Golden%20Badge%20--%3E%20%3Ccircle%20cx%3D%22400%22%20cy%3D%22145%22%20r%3D%2264%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223.5%22/%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22138%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fef08a%22%20font-family%3D%22serif%22%20font-size%3D%2232%22%20font-weight%3D%22bold%22%3E%D9%A3%D9%A0%20%D8%AC%D8%B2%D8%A1%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22165%22%20text-anchor%3D%22middle%22%20fill%3D%22%2334d399%22%20font-family%3D%22sans-serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%3E604%20HAFIZI%20PAGES%3C/text%3E%20%3C%21--%20Title%20Banner%20--%3E%20%3Crect%20x%3D%22170%22%20y%3D%22300%22%20width%3D%22460%22%20height%3D%22125%22%20rx%3D%2218%22%20fill%3D%22%23022c22%22%20stroke%3D%22url(%23goldH)%22%20stroke-width%3D%223%22/%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22352%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-family%3D%22serif%22%20font-size%3D%2238%22%20font-weight%3D%22bold%22%3E%D8%AA%D9%8E%D8%AD%D9%92%D9%81%D9%90%D9%8A%D8%B8%D9%8F%20%D8%A7%D9%84%D9%92%D9%82%D9%8F%D8%B1%D9%92%D8%A2%D9%86%D9%90%20%D8%A7%D9%84%D9%92%D9%83%D9%8E%D8%B1%D9%90%D9%8A%D9%85%D9%90%3C/text%3E%20%3Ctext%20x%3D%22400%22%20y%3D%22388%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fde047%22%20font-family%3D%22sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22bold%22%20letter-spacing%3D%221.5%22%3ESABAQ%20%E2%80%A2%20SABQI%20%E2%80%A2%20MANZIL%20HIFZ%20SYSTEM%3C/text%3E%20%3C/svg%3E", action: "switchActiveTab('profile'); switchProfileSubTab('account'); closeBubbleTray();" }
+          { label: "Report Card", sub: "Progress PDF", icon: "fa-clipboard-check", img: "", action: "openActiveStudentReportCard(); closeBubbleTray();" },
+          { label: "Certificate", sub: "Official PDF", icon: "fa-award", img: "", action: "openActiveStudentCertificate(); closeBubbleTray();" },
+          { label: "Fee Receipt", sub: "Tuition Invoice", icon: "fa-file-invoice-dollar", img: "", action: "openActiveStudentInvoice(); closeBubbleTray();" },
+          { label: "Pay Tuition", sub: "Bank / JazzCash", icon: "fa-credit-card", img: "", action: "openTuitionPaymentModal(); closeBubbleTray();" }
         ]
       }
     };
@@ -5680,9 +5673,7 @@ Please verify and update my fee receipt.`);
 
       titleEl.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles text-emerald-400"></i> ${cfg.title}`;
       gridEl.innerHTML = cfg.items.map((item, idx) => `
-        <button onclick="${item.action}" style="animation-delay: ${idx * 0.05}s;" class="bubble-item relative overflow-hidden rounded-2xl border border-amber-400/50 p-2.5 text-left flex items-center gap-2.5 group hover:border-amber-300 shadow-lg">
-          <img src="${item.img}" alt="${item.label}" onerror="if(window.FALLBACK_ISLAMIC_SVG && this.src!==window.FALLBACK_ISLAMIC_SVG) this.src=window.FALLBACK_ISLAMIC_SVG;" class="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-110 transition-transform duration-500">
-          <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-emerald-950/60"></div>
+        <button onclick="${item.action}" style="animation-delay: ${idx * 0.05}s;" class="bubble-item relative overflow-hidden rounded-2xl border border-amber-400/40 bg-gradient-to-r from-slate-950 via-emerald-950/80 to-slate-950 p-2.5 text-left flex items-center gap-2.5 group hover:border-amber-300 shadow-lg">
           <div class="relative z-10 w-8 h-8 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-xs font-black flex-shrink-0 shadow">
             <i class="fa-solid ${item.icon}"></i>
           </div>
