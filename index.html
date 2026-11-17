@@ -20,8 +20,8 @@
   <!-- FontAwesome 6 Pro CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-    <!-- Google Fonts: Playfair Display, Plus Jakarta Sans, Amiri & Noto Nastaliq Urdu -->
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Premium Islamic & Latin Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
 
@@ -44,66 +44,216 @@
     }
   </script>
 
-  
-<style>
-  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  
-  /* 1. Authoritative Luxury EdTech Typography & Islamic Geometric Artistry */
-  h1, h2, h3, .font-heading {
-    font-family: 'Playfair Display', Georgia, serif;
-    letter-spacing: -0.01em;
-  }
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #042F2E;
-    color: #f1f5f9;
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='1.1' stroke-opacity='0.045'%3E%3Cpolygon points='60,6 73,37 106,37 80,57 90,90 60,70 30,90 40,57 14,37 47,37'/%3E%3Cpolygon points='60,114 73,83 106,83 80,63 90,30 60,50 30,30 40,63 14,83 47,83'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='48'/%3E%3C/g%3E%3C/svg%3E"),
-      radial-gradient(circle at 12% 18%, rgba(6, 78, 59, 0.35) 0%, transparent 42%),
-      radial-gradient(circle at 88% 14%, rgba(212, 175, 55, 0.16) 0%, transparent 38%);
-    background-attachment: fixed;
-    overflow-x: hidden;
-    padding-bottom: 85px;
-  }
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background-color: #030712;
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      padding-bottom: 85px;
+    }
+    .single-line {
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      line-height: 1.35 !important;
+    }
+    h1, h2, h3, h4 {
+      line-height: 1.35;
+    }
+    .shimmer-gold-text {
+      background: linear-gradient(90deg, #fef08a 0%, #34d399 45%, #fbbf24 85%, #fef08a 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 4s linear infinite;
+    }
+    @keyframes shine { to { background-position: 200% center; } }
+    .luxury-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(2, 44, 34, 0.84) 100%);
+      border: 1px solid rgba(251, 191, 36, 0.24);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+    }
+    .gold-btn {
+      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      color: #020617;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.35);
+      transition: all 0.2s ease;
+    }
+    .gold-btn:active { transform: scale(0.97); }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-thumb { background: rgba(251, 191, 36, 0.3); border-radius: 999px; }
+    #appSplashScreen {
+      position: fixed; inset: 0; z-index: 99999;
+      background: radial-gradient(circle at center, #022c22 0%, #01120e 70%, #000000 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    [dir="rtl"] { text-align: right; }
+    .whiteboard-layer { touch-action: none; cursor: crosshair; }
 
-  /* 2. Elevated Luxury Cards & Royal Gold Buttons */
-  .luxury-card {
-    background: linear-gradient(135deg, rgba(4, 47, 46, 0.95) 0%, rgba(6, 78, 59, 0.88) 100%);
-    border: 1px solid rgba(212, 175, 55, 0.32);
-    box-shadow: 0 12px 32px -8px rgba(2, 20, 18, 0.65);
-    backdrop-filter: blur(16px);
-  }
-  .gold-btn {
-    background: linear-gradient(135deg, #D4AF37 0%, #C59B27 50%, #B8860B 100%);
-    color: #042F2E !important;
-    font-weight: 800;
-    box-shadow: 0 6px 20px -4px rgba(212, 175, 55, 0.45);
-    transition: all 0.25s ease;
-  }
-  .gold-btn:hover {
-    background: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -4px rgba(184, 134, 11, 0.6);
-  }
+    /* FEATURE 2: CINEMA FOCUS FULL-SCREEN MODE */
+    body.cinema-focus-mode #mainAppHeader,
+    body.cinema-focus-mode #appArchitectureBanner,
+    body.cinema-focus-mode #appBottomNav,
+    body.cinema-focus-mode .no-cinema-focus {
+      display: none !important;
+    }
+    body.cinema-focus-mode {
+      padding-bottom: 8px !important;
+    }
+    body.cinema-focus-mode #exitCinemaFocusFloatingBtn {
+      display: block !important;
+    }
 
-  /* 3. Switchable Alabaster Ivory (#FAF9F6) Light Luxury Theme */
-  body.theme-alabaster {
-    background-color: #FAF9F6 !important;
-    color: #1E293B !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23064E3B' stroke-width='1.1' stroke-opacity='0.045'%3E%3Cpolygon points='60,6 73,37 106,37 80,57 90,90 60,70 30,90 40,57 14,37 47,37'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='48'/%3E%3C/g%3E%3C/svg%3E") !important;
-  }
-  body.theme-alabaster #mainAppHeader {
-    background: rgba(250, 249, 246, 0.92) !important;
-    border-bottom: 1px solid rgba(6, 78, 59, 0.15) !important;
-  }
-  body.theme-alabaster .luxury-card {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(6, 78, 59, 0.14) !important;
-    box-shadow: 0 10px 30px -10px rgba(6, 78, 59, 0.10) !important;
-    color: #1E293B !important;
-  }
-
-</style>
+    /* ================= ULTIMATE UI/UX: BUBBLING DOCK & GLASS ANIMATIONS ================= */
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-6px) scale(1.03); }
+    }
+    @keyframes popInBubble {
+      0% { opacity: 0; transform: translateY(24px) scale(0.6); }
+      70% { opacity: 1; transform: translateY(-4px) scale(1.06); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes pulseGlowGold {
+      0%, 100% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.25), inset 0 0 10px rgba(251, 191, 36, 0.1); }
+      50% { box-shadow: 0 0 28px rgba(251, 191, 36, 0.55), inset 0 0 15px rgba(251, 191, 36, 0.2); }
+    }
+    .bubble-item {
+      animation: popInBubble 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .floating-anim {
+      animation: floatBubble 4s ease-in-out infinite;
+    }
+    .glow-gold-card {
+      animation: pulseGlowGold 3.5s infinite ease-in-out;
+    }
+    .floating-dock {
+      background: linear-gradient(135deg, rgba(2, 44, 34, 0.92) 0%, rgba(3, 7, 18, 0.96) 100%);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(16, 185, 129, 0.2);
+      backdrop-filter: blur(20px);
+    }
+    .nav-pill-active {
+      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      color: #020617 !important;
+      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.45);
+      transform: translateY(-6px) scale(1.06);
+    }
+    .img-banner-mask {
+      background: linear-gradient(to top, rgba(3, 7, 18, 0.95) 5%, rgba(3, 7, 18, 0.40) 55%, rgba(3, 7, 18, 0.10) 100%);
+    }
+    /* WORLD-CLASS FLOATING SLIDES, COLORFUL CARDS & AMBIENT AURORA */
+    body {
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(16, 185, 129, 0.16) 0%, transparent 38%),
+        radial-gradient(circle at 88% 14%, rgba(251, 191, 36, 0.14) 0%, transparent 36%),
+        radial-gradient(circle at 50% 82%, rgba(56, 189, 248, 0.11) 0%, transparent 42%);
+      background-attachment: fixed;
+      transition: background-color 0.5s ease, background-image 0.5s ease;
+    }
+    body.theme-sapphire {
+      background-color: #020817;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 85% 18%, rgba(251, 191, 36, 0.16) 0%, transparent 38%),
+        radial-gradient(circle at 50% 85%, rgba(99, 102, 241, 0.16) 0%, transparent 45%);
+    }
+    body.theme-sapphire .luxury-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(12, 74, 110, 0.82) 100%);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+    body.theme-velvet {
+      background-color: #090314;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(217, 70, 239, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 85% 18%, rgba(251, 191, 36, 0.16) 0%, transparent 38%),
+        radial-gradient(circle at 50% 85%, rgba(244, 63, 94, 0.14) 0%, transparent 45%);
+    }
+    body.theme-velvet .luxury-card {
+      background: linear-gradient(135deg, rgba(24, 10, 42, 0.94) 0%, rgba(76, 29, 149, 0.78) 100%);
+      border-color: rgba(244, 114, 182, 0.35);
+    }
+    body.theme-sunset {
+      background-color: #0c0603;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(245, 158, 11, 0.20) 0%, transparent 40%),
+        radial-gradient(circle at 85% 18%, rgba(244, 63, 94, 0.16) 0%, transparent 38%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.14) 0%, transparent 45%);
+    }
+    body.theme-sunset .luxury-card {
+      background: linear-gradient(135deg, rgba(28, 16, 8, 0.95) 0%, rgba(120, 53, 15, 0.80) 100%);
+      border-color: rgba(251, 191, 36, 0.42);
+    }
+    @keyframes floatSlow3D {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(0.4deg); }
+    }
+    @keyframes slideFadeIn {
+      0% { opacity: 0; transform: scale(0.96) translateY(10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .hero-slide-active {
+      animation: slideFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .float-card-3d {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .float-card-3d:hover {
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 20px 38px -8px rgba(0, 0, 0, 0.75), 0 0 24px rgba(251, 191, 36, 0.28);
+    }
+    .float-badge-gentle {
+      animation: floatSlow3D 3.8s ease-in-out infinite;
+    }
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; margin: 0 !important; height: auto !important; overflow: visible !important; }
+      #appMainWrapper, #mainAppHeader, #appBottomNav, #bubblingSubMenuTray, #appSplashScreen,
+      #floatingWhatsappSupportBtn, #exitCinemaFocusFloatingBtn, #globalAudioFloatingPill,
+      #appLuxuryToastContainer, .no-print, .no-print * {
+        display: none !important;
+        visibility: hidden !important;
+      }
+      #printableCertificateArea:not(.hidden), #printableCertificateArea:not(.hidden) *,
+      #printableInvoiceModal:not(.hidden), #printableInvoiceModal:not(.hidden) *,
+      #printableReportCardModal:not(.hidden), #printableReportCardModal:not(.hidden) *,
+      #printableSalarySlipModal:not(.hidden), #printableSalarySlipModal:not(.hidden) * {
+        visibility: visible !important;
+      }
+      #printableCertificateArea:not(.hidden),
+      #printableInvoiceModal:not(.hidden),
+      #printableReportCardModal:not(.hidden),
+      #printableSalarySlipModal:not(.hidden) {
+        position: static !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        padding: 12px !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+      #printableInvoiceModal:not(.hidden) > div {
+        background: #fffbeb !important;
+        color: #0f172a !important;
+        border: 4px double #b45309 !important;
+        box-shadow: none !important;
+      }
+      #printableInvoiceModal:not(.hidden) span,
+      #printableInvoiceModal:not(.hidden) b,
+      #printableInvoiceModal:not(.hidden) p {
+        color: #0f172a !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-400 selection:text-slate-950">
 
@@ -10192,5 +10342,247 @@ ${getLiveAcademyUrl()}`;
       } catch (e) {}
     });
   </script>
+<!-- ================= SENIOR ENGINEER UI/UX & BUG-FIX UPGRADE PATCH ================= -->
+<style id="noorly-expert-ui-override">
+  /* 1. Clean SaaS Color System & Calm Background */
+  :root {
+    --noorly-bg: #040d0a;
+    --noorly-surface: #091914;
+    --noorly-card: rgba(11, 29, 23, 0.88);
+    --noorly-border: rgba(212, 175, 55, 0.16);
+    --noorly-border-hover: rgba(212, 175, 55, 0.42);
+    --noorly-gold: #e5c158;
+    --noorly-emerald: #10b981;
+  }
+
+  body {
+    background-color: var(--noorly-bg) !important;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(229, 193, 88, 0.06) 0%, transparent 40%) !important;
+    letter-spacing: -0.01em;
+  }
+
+  /* 2. Replace Amateur Neon Borders & Loud Animations with Refined SaaS Elevation */
+  .luxury-card {
+    background: var(--noorly-card) !important;
+    border: 1px solid var(--noorly-border) !important;
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(16px) !important;
+    border-radius: 20px !important;
+  }
+
+  .float-card-3d,
+  #colorfulQuickLauncherGrid > div,
+  #movingCoursesTrack > div,
+  #floatingHighlightsTrack > div {
+    border-width: 1px !important;
+    border-color: var(--noorly-border) !important;
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45) !important;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important;
+  }
+
+  .float-card-3d:hover,
+  #colorfulQuickLauncherGrid > div:hover,
+  #movingCoursesTrack > div:hover {
+    transform: translateY(-3px) !important;
+    border-color: var(--noorly-border-hover) !important;
+    box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(229, 193, 88, 0.15) !important;
+  }
+
+  /* Stop distracting continuous bounce/glow animations */
+  .floating-anim, .float-badge-gentle, .glow-gold-card {
+    animation: none !important;
+  }
+
+  .shimmer-gold-text {
+    background: linear-gradient(90deg, #fde68a 0%, #f59e0b 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: none !important;
+  }
+
+  /* 3. Refined Buttons & Inputs */
+  .gold-btn {
+    background: linear-gradient(135deg, #f3d068 0%, #d49b27 100%) !important;
+    color: #04120c !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(212, 155, 39, 0.25) !important;
+  }
+  .gold-btn:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+  }
+
+  /* 4. Declutter Front Screen (Keep in DOM background, hidden by default) */
+  .noorly-bg-hidden-clutter {
+    display: none !important;
+  }
+  body.show-dev-shortcuts .noorly-bg-hidden-clutter {
+    display: flex !important;
+  }
+
+  /* Clean Hero Banner & Bottom Dock */
+  #heroFloatingSlider {
+    border-width: 1px !important;
+    border-color: rgba(229, 193, 88, 0.28) !important;
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7) !important;
+  }
+  .floating-dock {
+    background: rgba(6, 20, 15, 0.92) !important;
+    border: 1px solid rgba(229, 193, 88, 0.22) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+  }
+  .nav-pill-active {
+    transform: translateY(-2px) !important;
+    border-radius: 14px !important;
+  }
+</style>
+
+<script id="noorly-expert-bugfix-engine">
+  (function() {
+    // =========================================================================
+    // FIX 1: MISSING openAdminPinModal() FUNCTION (Fixes Admin Login Crash)
+    // =========================================================================
+    window.openAdminPinModal = function() {
+      if (typeof window.triggerAdminQuickLogin === 'function') {
+        window.triggerAdminQuickLogin();
+      } else {
+        const modal = document.getElementById('adminPinModal');
+        const inp = document.getElementById('adminPinModalInput');
+        if (modal) {
+          modal.classList.remove('hidden');
+          if (inp) {
+            inp.value = '';
+            setTimeout(() => inp.focus(), 80);
+          }
+        }
+      }
+    };
+
+    // =========================================================================
+    // FIX 2: RELIABLE MULTI-LAYER ARABIC AUDIO FALLBACK (Qaida, 99 Names, Duas)
+    // =========================================================================
+    let cloudTtsAudio = new Audio();
+    const originalSpeakHolyName = window.speakHolyName;
+
+    window.speakHolyName = function(text, onEndCallback = null, cardEl = null) {
+      if (!text) return;
+      const cleanArabic = String(text).replace(/[^\u0600-\u06FF\s]/g, '').trim() || String(text).trim();
+
+      if (cardEl) {
+        document.querySelectorAll('.qaida-active-card, .holy-name-active').forEach(el => {
+          el.classList.remove('ring-2', 'ring-amber-400', 'qaida-active-card', 'holy-name-active');
+        });
+        cardEl.classList.add('ring-2', 'ring-amber-400', 'qaida-active-card');
+      }
+
+      // Check if browser has a real Arabic speechSynthesis voice
+      const voices = ('speechSynthesis' in window && window.speechSynthesis.getVoices) ? window.speechSynthesis.getVoices() : [];
+      const hasArabicVoice = voices.some(v => v.lang && v.lang.toLowerCase().startsWith('ar'));
+
+      if (hasArabicVoice && typeof originalSpeakHolyName === 'function') {
+        originalSpeakHolyName(text, onEndCallback, cardEl);
+        return;
+      }
+
+      // Fallback to Cloud Arabic TTS stream + WebSpeech fallback so audio NEVER fails
+      try {
+        cloudTtsAudio.pause();
+        cloudTtsAudio.src = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanArabic)}&tl=ar&client=tw-ob`;
+        cloudTtsAudio.onended = () => {
+          if (typeof onEndCallback === 'function') onEndCallback();
+        };
+        cloudTtsAudio.onerror = () => {
+          if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(cleanArabic);
+            u.lang = 'ar-SA';
+            u.rate = 0.85;
+            u.onend = () => { if (typeof onEndCallback === 'function') onEndCallback(); };
+            window.speechSynthesis.speak(u);
+          } else if (typeof onEndCallback === 'function') {
+            onEndCallback();
+          }
+        };
+        cloudTtsAudio.play().catch(() => {
+          cloudTtsAudio.onerror();
+        });
+      } catch (e) {
+        if (typeof originalSpeakHolyName === 'function') {
+          originalSpeakHolyName(text, onEndCallback, cardEl);
+        }
+      }
+    };
+
+    // =========================================================================
+    // FIX 3: INITIALIZE MISSING MODULES & HIDE FRONT-SCREEN DEMO CLUTTER
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', function() {
+      // 3A. Initialize Kids Tajweed Quiz (Was missing on startup)
+      if (typeof window.initTajweedQuiz === 'function') {
+        try { window.initTajweedQuiz(); } catch (e) {}
+      }
+
+      // 3B. Initialize Dynamic PWA Manifest (Was missing on startup)
+      if (typeof window.initDynamicPwaManifest === 'function') {
+        try { window.initDynamicPwaManifest(); } catch (e) {}
+      }
+
+      // 3C. Load Quran & Tafseer Bookmarks immediately
+      if (typeof window.loadQuranBookmarks === 'function') {
+        try { window.loadQuranBookmarks(); } catch (e) {}
+      }
+
+      // 3D. Hide Demo Role Switchers & Secondary Clutter in Background (Zero Deletion)
+      document.querySelectorAll('button[onclick*="quickEnterRoleFromHome"]').forEach(btn => {
+        const parentRow = btn.closest('.pt-3.border-t') || btn.closest('.pt-2\\.5.border-t');
+        if (parentRow) {
+          parentRow.classList.add('noorly-bg-hidden-clutter');
+        }
+      });
+
+      // Hide Hero bottom extra chip duplicates to keep Hero ultra-clean
+      const heroBottomChips = document.querySelector('#heroFloatingSlider .border-t.border-white\\/10 > div:last-child');
+      if (heroBottomChips) {
+        heroBottomChips.classList.add('noorly-bg-hidden-clutter');
+      }
+
+      // Hide Theme Switcher from crowding mobile header (kept accessible)
+      const themeBtn = document.getElementById('btnThemeSwitcher');
+      if (themeBtn) {
+        themeBtn.classList.add('hidden', 'sm:flex');
+      }
+
+      // Secret Admin/Developer Shortcut: Double-click the top-left Academy Title to toggle hidden demo shortcuts anytime!
+      const brandTitle = document.getElementById('appBrandTitle');
+      if (brandTitle) {
+        brandTitle.addEventListener('dblclick', function(e) {
+          e.stopPropagation();
+          document.body.classList.toggle('show-dev-shortcuts');
+          if (typeof window.showAppToast === 'function') {
+            const isShown = document.body.classList.contains('show-dev-shortcuts');
+            window.showAppToast(isShown ? "Developer Quick-Switchers Visible" : "Developer Quick-Switchers Hidden");
+          }
+        });
+      }
+    });
+
+    // Ensure Quiz & Bookmarks also refresh whenever user switches role or logs in
+    const origApplyLoggedIn = window.applyLoggedInState;
+    if (typeof origApplyLoggedIn === 'function') {
+      window.applyLoggedInState = function() {
+        origApplyLoggedIn.apply(this, arguments);
+        if (typeof window.renderTajweedQuiz === 'function') {
+          try { window.renderTajweedQuiz(); } catch (e) {}
+        }
+        if (typeof window.renderQuranBookmarksBars === 'function') {
+          try { window.renderQuranBookmarksBars(); } catch (e) {}
+        }
+      };
+    }
+  })();
+</script>
 </body>
 </html>
