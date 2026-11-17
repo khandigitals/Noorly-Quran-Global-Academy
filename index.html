@@ -23,7 +23,7 @@
   <!-- Premium Islamic & Latin Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -36,6 +36,7 @@
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
             arabic: ['"Amiri"', '"Scheherazade New"', 'serif'],
             urdu: ['"Noto Nastaliq Urdu"', 'serif']
           }
@@ -253,9 +254,64 @@
         color: #0f172a !important;
       }
     }
+
+    /* ================= LUXURY EDTECH TYPOGRAPHY, GEOMETRIC ARTISTRY & SIMPLE MODE ================= */
+    h1, h2, h3, .font-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.01em;
+    }
+    body {
+      background-color: #042F2E;
+      color: #f1f5f9;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='1.1' stroke-opacity='0.045'%3E%3Cpolygon points='60,6 73,37 106,37 80,57 90,90 60,70 30,90 40,57 14,37 47,37'/%3E%3Cpolygon points='60,114 73,83 106,83 80,63 90,30 60,50 30,30 40,63 14,83 47,83'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='48'/%3E%3C/g%3E%3C/svg%3E"),
+        radial-gradient(circle at 12% 18%, rgba(6, 78, 59, 0.35) 0%, transparent 42%),
+        radial-gradient(circle at 88% 14%, rgba(212, 175, 55, 0.16) 0%, transparent 38%);
+      background-attachment: fixed;
+    }
+    .luxury-card {
+      background: linear-gradient(135deg, rgba(4, 47, 46, 0.95) 0%, rgba(6, 78, 59, 0.88) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.30);
+      box-shadow: 0 12px 32px -8px rgba(2, 20, 18, 0.65);
+      backdrop-filter: blur(16px);
+    }
+    .gold-btn {
+      background: linear-gradient(135deg, #D4AF37 0%, #C59B27 50%, #B8860B 100%);
+      color: #042F2E !important;
+      font-weight: 800;
+      box-shadow: 0 6px 20px -4px rgba(212, 175, 55, 0.45);
+      transition: all 0.25s ease;
+    }
+    .gold-btn:hover {
+      background: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -4px rgba(184, 134, 11, 0.6);
+    }
+    /* Switchable Alabaster Ivory (#FAF9F6) Light Luxury Theme */
+    body.theme-alabaster {
+      background-color: #FAF9F6 !important;
+      color: #1E293B !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23064E3B' stroke-width='1.1' stroke-opacity='0.045'%3E%3Cpolygon points='60,6 73,37 106,37 80,57 90,90 60,70 30,90 40,57 14,37 47,37'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='48'/%3E%3C/g%3E%3C/svg%3E") !important;
+    }
+    body.theme-alabaster #mainAppHeader {
+      background: rgba(250, 249, 246, 0.94) !important;
+      border-bottom: 1px solid rgba(6, 78, 59, 0.15) !important;
+    }
+    body.theme-alabaster .luxury-card {
+      background: linear-gradient(135deg, rgba(4, 47, 46, 0.96) 0%, rgba(6, 78, 59, 0.92) 100%) !important;
+      border: 1px solid rgba(212, 175, 55, 0.38) !important;
+      box-shadow: 0 12px 28px -8px rgba(6, 78, 59, 0.25) !important;
+    }
+    /* Calm SaaS Polish & Simple Mode Hiding */
+    .floating-anim, .float-badge-gentle, .glow-gold-card {
+      animation: none !important;
+    }
+    body.simple-mode .hide-in-simple-mode {
+      display: none !important;
+    }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-400 selection:text-slate-950">
+<body class="simple-mode bg-slate-950 text-slate-100 antialiased selection:bg-amber-400 selection:text-slate-950">
 
   <!-- ================= SPLASH SCREEN ================= -->
   <div id="appSplashScreen">
@@ -330,8 +386,13 @@
 
       <!-- Clean User Identity Pill (Pic + Name Only), Install App & Language Selector -->
       <div class="flex items-center gap-1.5 flex-shrink-0">
+        <!-- Simple / Pro UI Mode Toggle -->
+        <button id="btnSimpleModeToggle" onclick="toggleSimpleUIMode()" title="Switch between Simple View and Full Pro View" class="px-2.5 py-1.5 rounded-xl bg-amber-400/15 hover:bg-amber-400/25 border border-amber-400/60 text-amber-300 text-[10px] font-black flex items-center gap-1 shadow transition">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> <span id="simpleModeLabel">Simple View</span>
+        </button>
+
         <!-- Interactive Luxury Color Theme Switcher -->
-        <button id="btnThemeSwitcher" onclick="cycleLuxuryTheme()" title="Switch Luxury Color Theme" class="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 via-fuchsia-500/20 to-cyan-500/20 hover:from-amber-500/30 hover:to-cyan-500/30 border border-amber-400/50 text-amber-200 text-[10px] font-black flex items-center gap-1 shadow transition">
+        <button id="btnThemeSwitcher" onclick="cycleLuxuryTheme()" title="Switch Luxury Color Theme" class="hidden sm:flex px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 via-fuchsia-500/20 to-cyan-500/20 hover:from-amber-500/30 hover:to-cyan-500/30 border border-amber-400/50 text-amber-200 text-[10px] font-black items-center gap-1 shadow transition">
           <i class="fa-solid fa-palette text-amber-300"></i> <span id="themeSwitcherLabel" class="hidden md:inline">Emerald</span>
         </button>
 
@@ -437,7 +498,7 @@
             <button onclick="goToHeroSlide(3)" class="w-2.5 h-2 rounded-full bg-white/35 hover:bg-amber-300 transition-all"></button>
             <button onclick="goToHeroSlide(4)" class="w-2.5 h-2 rounded-full bg-white/35 hover:bg-amber-300 transition-all"></button>
           </div>
-          <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-extrabold">
+          <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-extrabold hide-in-simple-mode">
             <button onclick="goToHeroSlide(0)" class="px-2.5 py-0.5 rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-300 hover:border-amber-400">🎥 Live Studio</button>
             <button onclick="goToHeroSlide(1)" class="px-2.5 py-0.5 rounded-full bg-sky-950/90 border border-sky-400/40 text-sky-300 hover:border-amber-400">📖 16-Line Mushaf</button>
             <button onclick="goToHeroSlide(2)" class="px-2.5 py-0.5 rounded-full bg-purple-950/90 border border-purple-400/40 text-purple-300 hover:border-amber-400">🔤 Noorani Qaida</button>
@@ -578,7 +639,7 @@
         </div>
 
         <!-- 1-Tap Instant Role Demo Bar (So any visitor can test Student, Teacher or Admin Portal in 1 Click!) -->
-        <div class="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs hide-in-simple-mode">
           <span class="text-[11px] font-extrabold text-amber-300 flex items-center gap-1.5">
             <i class="fa-solid fa-bolt text-emerald-400"></i> Instant 1-Tap Portal Switcher (ایک کلک میں پورٹل کھولیں):
           </span>
@@ -597,7 +658,7 @@
       </div>
 
       <!-- FEATURE 6A: STAR STUDENTS OF THE MONTH & DAILY STREAK HONOUR BOARD -->
-      <div id="homeStarStudentsBoard" class="luxury-card p-4 sm:p-5 rounded-3xl border-2 border-amber-400/50 space-y-3 shadow-2xl">
+      <div id="homeStarStudentsBoard" class="luxury-card p-4 sm:p-5 rounded-3xl border-2 border-amber-400/50 space-y-3 shadow-2xl hide-in-simple-mode">
         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
           <div class="flex items-center gap-2">
             <div class="w-9 h-9 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center text-base font-black shadow">
@@ -625,7 +686,7 @@
       </div>
 
       <!-- Moving Quran Courses Floating Slides Showcase -->
-      <div class="space-y-2.5">
+      <div class="space-y-2.5 hide-in-simple-mode">
         <div class="flex flex-wrap items-center justify-between gap-2 px-1">
           <div>
             <h3 class="text-xs sm:text-sm font-black uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
@@ -755,7 +816,7 @@
       </div>
 
       <!-- FLOATING VISUAL HIGHLIGHTS GALLERY (COLORFUL PICS & WORLD-CLASS FEATURES) -->
-      <div class="space-y-2.5">
+      <div class="space-y-2.5 hide-in-simple-mode">
         <div class="flex items-center justify-between px-1">
           <h3 class="text-xs sm:text-sm font-black text-amber-300 flex items-center gap-1.5">
             <i class="fa-solid fa-wand-magic-sparkles text-emerald-400"></i> Why Families Worldwide Love Noorly (ہماری نمایاں خصوصیات)
@@ -832,6 +893,14 @@
         <button onclick="openTrialPopupFromHero()" class="gold-btn px-4 py-2.5 rounded-xl text-xs font-extrabold flex items-center justify-center gap-2 flex-shrink-0">
           <i class="fa-brands fa-whatsapp text-base text-emerald-950"></i>
           <span>Instant Trial On WhatsApp</span>
+        </button>
+      </div>
+
+      <!-- 1-Tap Background Features Reveal Bar -->
+      <div class="text-center pt-1">
+        <button onclick="toggleSimpleUIMode()" class="px-4 py-2 rounded-2xl bg-slate-900/90 hover:bg-emerald-950 border border-amber-400/40 text-amber-300 text-xs font-extrabold inline-flex items-center gap-2 shadow transition">
+          <i class="fa-solid fa-layer-group text-emerald-400"></i>
+          <span class="simple-mode-toggle-text">Show All Courses, Star Students &amp; Pro Tools (تمام فیچرز کھولیں)</span>
         </button>
       </div>
 
@@ -1350,7 +1419,7 @@
 
             <!-- Live Alignment Status Pill -->
             <div id="qiblaAlignmentBanner" class="mt-3 px-4 py-1.5 rounded-2xl bg-emerald-950/90 border border-amber-400/50 text-xs font-black text-amber-300 text-center shadow">
-              🕋 Qibla Direction: <span id="qiblaBearingMainText">261.8° WSW (مغرب مائل بہ جنوب)</span>
+              <span id="qiblaAlignmentPrefix">🕋 Qibla Direction: </span><span id="qiblaBearingMainText">261.8° WSW (مغرب مائل بہ جنوب)</span>
             </div>
           </div>
 
@@ -1989,7 +2058,7 @@
           </button>
 
           <!-- 1-Tap Instant Demo Login Pills (Easy Access Without Typing) -->
-          <div class="pt-2.5 border-t border-slate-800/80 space-y-1.5">
+          <div class="pt-2.5 border-t border-slate-800/80 space-y-1.5 hide-in-simple-mode">
             <span class="text-[10px] font-bold text-slate-400 block text-center">⚡ Or Tap Below for Instant 1-Click Portal Access:</span>
             <div class="grid grid-cols-3 gap-2">
               <button type="button" onclick="quickEnterRoleFromHome('student')" class="py-1.5 px-2 rounded-xl bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-400/40 text-emerald-300 text-[10px] font-extrabold flex items-center justify-center gap-1">
@@ -2550,8 +2619,16 @@
             </div>
           </div>
 
+          <!-- 1-Tap Toggle for Extra Student Tools (30-Parah Map, Quiz & Family Referral) -->
+          <div class="text-center pt-1">
+            <button onclick="toggleSimpleUIMode()" class="px-4 py-2 rounded-2xl bg-slate-900/90 hover:bg-emerald-950 border border-amber-400/40 text-amber-300 text-xs font-extrabold inline-flex items-center gap-2 shadow transition">
+              <i class="fa-solid fa-layer-group text-emerald-400"></i>
+              <span class="simple-mode-toggle-text">Show All Courses, Star Students &amp; Pro Tools (تمام فیچرز کھولیں)</span>
+            </button>
+          </div>
+
           <!-- STEP 4: 30-PARAH & JUZ AMMA VISUAL PROGRESS MAP + DAILY TILAWAT STREAK -->
-          <div id="studentParahMapBox" class="p-3.5 rounded-2xl bg-slate-950 border border-emerald-500/40 space-y-3 text-xs">
+          <div id="studentParahMapBox" class="p-3.5 rounded-2xl bg-slate-950 border border-emerald-500/40 space-y-3 text-xs hide-in-simple-mode">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
               <div>
                 <b class="text-xs text-amber-300 flex items-center gap-1.5">
@@ -2589,7 +2666,7 @@
           </div>
 
           <!-- STEP 5: INTERACTIVE TAJWEED & QAIDA QUIZ FOR KIDS -->
-          <div class="p-3.5 rounded-2xl bg-gradient-to-br from-emerald-950/80 via-slate-950 to-slate-950 border border-amber-400/40 space-y-3 text-xs">
+          <div class="p-3.5 rounded-2xl bg-gradient-to-br from-emerald-950/80 via-slate-950 to-slate-950 border border-amber-400/40 space-y-3 text-xs hide-in-simple-mode">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
               <b class="text-xs text-amber-300 flex items-center gap-1.5">
                 <i class="fa-solid fa-trophy text-amber-400"></i> <span>Tajweed &amp; Islamic Quiz Challenge (بچوں کا تجوید کوئز)</span>
@@ -2604,7 +2681,7 @@
           </div>
 
           <!-- STEP 6: PARENT "REFER A FAMILY" WHATSAPP 20% DISCOUNT SYSTEM -->
-          <div id="studentReferralBox" class="p-3.5 rounded-2xl bg-gradient-to-r from-slate-950 via-emerald-950/90 to-slate-950 border-2 border-amber-400/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-lg">
+          <div id="studentReferralBox" class="p-3.5 rounded-2xl bg-gradient-to-r from-slate-950 via-emerald-950/90 to-slate-950 border-2 border-amber-400/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-lg hide-in-simple-mode">
             <div class="space-y-1">
               <span class="px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black text-[9px] uppercase tracking-wider">
                 <i class="fa-solid fa-gift mr-1"></i> Sadqah-e-Jariyah &amp; Family Reward
@@ -7579,13 +7656,17 @@ JazakAllah Khair for your dedicated teaching!`;
           ? "relative w-64 h-64 sm:w-72 sm:h-72 rounded-full border-4 border-emerald-400 bg-gradient-to-br from-emerald-950 via-slate-950 to-emerald-950 flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.55)] transition-all duration-300"
           : "relative w-64 h-64 sm:w-72 sm:h-72 rounded-full border-4 border-amber-400/60 bg-gradient-to-br from-slate-950 via-emerald-950/40 to-slate-950 flex items-center justify-center shadow-2xl transition-all duration-300";
       }
+      const alignPrefix = document.getElementById('qiblaAlignmentPrefix');
+      const mainBearingSpan = document.getElementById('qiblaBearingMainText');
       if (alignBanner) {
         if (isAligned) {
           alignBanner.className = "mt-3 px-4 py-2 rounded-2xl bg-emerald-500 text-slate-950 text-xs font-black text-center shadow-xl animate-pulse";
-          alignBanner.innerHTML = `✓ MashaAllah! Facing Holy Kaaba Directly (${qBearing}°) — قبلہ رخ بالکل درست ہے!`;
+          if (alignPrefix) alignPrefix.textContent = "✓ MashaAllah! Facing Holy Kaaba Directly: ";
+          if (mainBearingSpan) mainBearingSpan.textContent = `${qBearing}° — قبلہ رخ بالکل درست ہے!`;
         } else {
           alignBanner.className = "mt-3 px-4 py-1.5 rounded-2xl bg-emerald-950/90 border border-amber-400/50 text-xs font-black text-amber-300 text-center shadow";
-          alignBanner.innerHTML = `🕋 Qibla Direction: <span id="qiblaBearingMainText">${qBearing}° ${getCardinalDirectionLabel(qBearing)}</span>`;
+          if (alignPrefix) alignPrefix.textContent = "🕋 Qibla Direction: ";
+          if (mainBearingSpan) mainBearingSpan.textContent = `${qBearing}° ${getCardinalDirectionLabel(qBearing)}`;
         }
       }
     }
@@ -8501,6 +8582,10 @@ JazakAllah Khair for your dedicated teaching!`;
       alert(`Alhamdulillah! Account created and logged in to your ${currentUser.role.toUpperCase()} Portal!`);
     }
 
+    function openAdminPinModal() {
+      triggerAdminQuickLogin();
+    }
+
     function triggerAdminQuickLogin() {
       const modal = document.getElementById('adminPinModal');
       const inp = document.getElementById('adminPinModalInput');
@@ -8649,6 +8734,12 @@ JazakAllah Khair for your dedicated teaching!`;
 
       sessionStorage.setItem(ACTIVE_USER_SESSION_KEY, JSON.stringify(currentUser));
       updateActiveRoomBadge();
+      if (typeof renderTajweedQuiz === 'function') {
+        try { renderTajweedQuiz(); } catch (e) {}
+      }
+      if (typeof renderQuranBookmarksBars === 'function') {
+        try { renderQuranBookmarksBars(); } catch (e) {}
+      }
     }
 
     function logoutActiveSession() {
@@ -10168,6 +10259,7 @@ ${getLiveAcademyUrl()}`;
     // --- WORLD-CLASS COLOR THEME SWITCHER (4 LUXURY PALETTES) ---
     const LUXURY_THEMES = [
       { key: 'emerald', label: 'Emerald', toast: '✨ Royal Emerald & Gold Theme Active' },
+      { key: 'alabaster', label: 'Alabaster', toast: '🤍 Alabaster Ivory & Royal Gold Light Theme Active' },
       { key: 'sapphire', label: 'Sapphire', toast: '🌌 Madinah Sapphire & Cyan Gold Theme Active' },
       { key: 'velvet', label: 'Velvet', toast: '👑 Royal Velvet & Rose Gold Theme Active' },
       { key: 'sunset', label: 'Sunset', toast: '🌅 Desert Sunset & Warm Gold Theme Active' }
@@ -10178,7 +10270,7 @@ ${getLiveAcademyUrl()}`;
       const idx = LUXURY_THEMES.findIndex(t => t.key === themeKey);
       currentThemeIdx = idx >= 0 ? idx : 0;
       const t = LUXURY_THEMES[currentThemeIdx];
-      document.body.classList.remove('theme-sapphire', 'theme-velvet', 'theme-sunset');
+      document.body.classList.remove('theme-alabaster', 'theme-sapphire', 'theme-velvet', 'theme-sunset');
       if (t.key !== 'emerald') {
         document.body.classList.add(`theme-${t.key}`);
       }
@@ -10186,6 +10278,26 @@ ${getLiveAcademyUrl()}`;
       if (lbl) lbl.innerText = t.label;
       try { localStorage.setItem('NOORLY_LUXURY_THEME', t.key); } catch (e) {}
       if (showMsg) showAppToast(t.toast);
+    }
+
+    // --- SIMPLE VIEW / PRO MODE CONTROLLER (Hides non-essential functions in background) ---
+    let isAppInSimpleMode = true;
+    function toggleSimpleUIMode(forceState = null, showNotification = true) {
+      isAppInSimpleMode = (typeof forceState === 'boolean') ? forceState : !isAppInSimpleMode;
+      document.body.classList.toggle('simple-mode', isAppInSimpleMode);
+      const lbl = document.getElementById('simpleModeLabel');
+      if (lbl) lbl.innerText = isAppInSimpleMode ? "Simple View" : "Pro Mode";
+      document.querySelectorAll('.simple-mode-toggle-text').forEach(el => {
+        el.innerText = isAppInSimpleMode
+          ? "Show All Courses, Star Students & Pro Tools (تمام فیچرز کھولیں)"
+          : "Switch Back to Simple View (سادہ موڈ آن کریں)";
+      });
+      try { localStorage.setItem('NOORLY_SIMPLE_MODE', isAppInSimpleMode ? '1' : '0'); } catch (e) {}
+      if (showNotification) {
+        showAppToast(isAppInSimpleMode
+          ? "✨ Simple View Active: Extra sections hidden in background for an easy, clean experience."
+          : "🚀 Pro Mode Active: All advanced sections, courses & tools are now visible.");
+      }
     }
 
     function cycleLuxuryTheme() {
@@ -10322,9 +10434,14 @@ ${getLiveAcademyUrl()}`;
         } catch (e) {}
       }
       initHeroFloatingSlider();
+      try { initTajweedQuiz(); } catch (e) {}
+      try { initDynamicPwaManifest(); } catch (e) {}
+      try { loadQuranBookmarks(); } catch (e) {}
       try {
         const savedTheme = localStorage.getItem('NOORLY_LUXURY_THEME');
         if (savedTheme) applyLuxuryTheme(savedTheme, false);
+        const savedSimple = localStorage.getItem('NOORLY_SIMPLE_MODE');
+        toggleSimpleUIMode(savedSimple === null ? true : (savedSimple === '1'), false);
       } catch (e) {}
       applyLoggedInState();
       switchActiveTab('home');
@@ -10342,247 +10459,5 @@ ${getLiveAcademyUrl()}`;
       } catch (e) {}
     });
   </script>
-<!-- ================= SENIOR ENGINEER UI/UX & BUG-FIX UPGRADE PATCH ================= -->
-<style id="noorly-expert-ui-override">
-  /* 1. Clean SaaS Color System & Calm Background */
-  :root {
-    --noorly-bg: #040d0a;
-    --noorly-surface: #091914;
-    --noorly-card: rgba(11, 29, 23, 0.88);
-    --noorly-border: rgba(212, 175, 55, 0.16);
-    --noorly-border-hover: rgba(212, 175, 55, 0.42);
-    --noorly-gold: #e5c158;
-    --noorly-emerald: #10b981;
-  }
-
-  body {
-    background-color: var(--noorly-bg) !important;
-    background-image: 
-      radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
-      radial-gradient(circle at 85% 15%, rgba(229, 193, 88, 0.06) 0%, transparent 40%) !important;
-    letter-spacing: -0.01em;
-  }
-
-  /* 2. Replace Amateur Neon Borders & Loud Animations with Refined SaaS Elevation */
-  .luxury-card {
-    background: var(--noorly-card) !important;
-    border: 1px solid var(--noorly-border) !important;
-    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-    backdrop-filter: blur(16px) !important;
-    border-radius: 20px !important;
-  }
-
-  .float-card-3d,
-  #colorfulQuickLauncherGrid > div,
-  #movingCoursesTrack > div,
-  #floatingHighlightsTrack > div {
-    border-width: 1px !important;
-    border-color: var(--noorly-border) !important;
-    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45) !important;
-    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important;
-  }
-
-  .float-card-3d:hover,
-  #colorfulQuickLauncherGrid > div:hover,
-  #movingCoursesTrack > div:hover {
-    transform: translateY(-3px) !important;
-    border-color: var(--noorly-border-hover) !important;
-    box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(229, 193, 88, 0.15) !important;
-  }
-
-  /* Stop distracting continuous bounce/glow animations */
-  .floating-anim, .float-badge-gentle, .glow-gold-card {
-    animation: none !important;
-  }
-
-  .shimmer-gold-text {
-    background: linear-gradient(90deg, #fde68a 0%, #f59e0b 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    animation: none !important;
-  }
-
-  /* 3. Refined Buttons & Inputs */
-  .gold-btn {
-    background: linear-gradient(135deg, #f3d068 0%, #d49b27 100%) !important;
-    color: #04120c !important;
-    font-weight: 700 !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 14px rgba(212, 155, 39, 0.25) !important;
-  }
-  .gold-btn:hover {
-    filter: brightness(1.06);
-    transform: translateY(-1px);
-  }
-
-  /* 4. Declutter Front Screen (Keep in DOM background, hidden by default) */
-  .noorly-bg-hidden-clutter {
-    display: none !important;
-  }
-  body.show-dev-shortcuts .noorly-bg-hidden-clutter {
-    display: flex !important;
-  }
-
-  /* Clean Hero Banner & Bottom Dock */
-  #heroFloatingSlider {
-    border-width: 1px !important;
-    border-color: rgba(229, 193, 88, 0.28) !important;
-    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7) !important;
-  }
-  .floating-dock {
-    background: rgba(6, 20, 15, 0.92) !important;
-    border: 1px solid rgba(229, 193, 88, 0.22) !important;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
-  }
-  .nav-pill-active {
-    transform: translateY(-2px) !important;
-    border-radius: 14px !important;
-  }
-</style>
-
-<script id="noorly-expert-bugfix-engine">
-  (function() {
-    // =========================================================================
-    // FIX 1: MISSING openAdminPinModal() FUNCTION (Fixes Admin Login Crash)
-    // =========================================================================
-    window.openAdminPinModal = function() {
-      if (typeof window.triggerAdminQuickLogin === 'function') {
-        window.triggerAdminQuickLogin();
-      } else {
-        const modal = document.getElementById('adminPinModal');
-        const inp = document.getElementById('adminPinModalInput');
-        if (modal) {
-          modal.classList.remove('hidden');
-          if (inp) {
-            inp.value = '';
-            setTimeout(() => inp.focus(), 80);
-          }
-        }
-      }
-    };
-
-    // =========================================================================
-    // FIX 2: RELIABLE MULTI-LAYER ARABIC AUDIO FALLBACK (Qaida, 99 Names, Duas)
-    // =========================================================================
-    let cloudTtsAudio = new Audio();
-    const originalSpeakHolyName = window.speakHolyName;
-
-    window.speakHolyName = function(text, onEndCallback = null, cardEl = null) {
-      if (!text) return;
-      const cleanArabic = String(text).replace(/[^\u0600-\u06FF\s]/g, '').trim() || String(text).trim();
-
-      if (cardEl) {
-        document.querySelectorAll('.qaida-active-card, .holy-name-active').forEach(el => {
-          el.classList.remove('ring-2', 'ring-amber-400', 'qaida-active-card', 'holy-name-active');
-        });
-        cardEl.classList.add('ring-2', 'ring-amber-400', 'qaida-active-card');
-      }
-
-      // Check if browser has a real Arabic speechSynthesis voice
-      const voices = ('speechSynthesis' in window && window.speechSynthesis.getVoices) ? window.speechSynthesis.getVoices() : [];
-      const hasArabicVoice = voices.some(v => v.lang && v.lang.toLowerCase().startsWith('ar'));
-
-      if (hasArabicVoice && typeof originalSpeakHolyName === 'function') {
-        originalSpeakHolyName(text, onEndCallback, cardEl);
-        return;
-      }
-
-      // Fallback to Cloud Arabic TTS stream + WebSpeech fallback so audio NEVER fails
-      try {
-        cloudTtsAudio.pause();
-        cloudTtsAudio.src = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanArabic)}&tl=ar&client=tw-ob`;
-        cloudTtsAudio.onended = () => {
-          if (typeof onEndCallback === 'function') onEndCallback();
-        };
-        cloudTtsAudio.onerror = () => {
-          if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const u = new SpeechSynthesisUtterance(cleanArabic);
-            u.lang = 'ar-SA';
-            u.rate = 0.85;
-            u.onend = () => { if (typeof onEndCallback === 'function') onEndCallback(); };
-            window.speechSynthesis.speak(u);
-          } else if (typeof onEndCallback === 'function') {
-            onEndCallback();
-          }
-        };
-        cloudTtsAudio.play().catch(() => {
-          cloudTtsAudio.onerror();
-        });
-      } catch (e) {
-        if (typeof originalSpeakHolyName === 'function') {
-          originalSpeakHolyName(text, onEndCallback, cardEl);
-        }
-      }
-    };
-
-    // =========================================================================
-    // FIX 3: INITIALIZE MISSING MODULES & HIDE FRONT-SCREEN DEMO CLUTTER
-    // =========================================================================
-    window.addEventListener('DOMContentLoaded', function() {
-      // 3A. Initialize Kids Tajweed Quiz (Was missing on startup)
-      if (typeof window.initTajweedQuiz === 'function') {
-        try { window.initTajweedQuiz(); } catch (e) {}
-      }
-
-      // 3B. Initialize Dynamic PWA Manifest (Was missing on startup)
-      if (typeof window.initDynamicPwaManifest === 'function') {
-        try { window.initDynamicPwaManifest(); } catch (e) {}
-      }
-
-      // 3C. Load Quran & Tafseer Bookmarks immediately
-      if (typeof window.loadQuranBookmarks === 'function') {
-        try { window.loadQuranBookmarks(); } catch (e) {}
-      }
-
-      // 3D. Hide Demo Role Switchers & Secondary Clutter in Background (Zero Deletion)
-      document.querySelectorAll('button[onclick*="quickEnterRoleFromHome"]').forEach(btn => {
-        const parentRow = btn.closest('.pt-3.border-t') || btn.closest('.pt-2\\.5.border-t');
-        if (parentRow) {
-          parentRow.classList.add('noorly-bg-hidden-clutter');
-        }
-      });
-
-      // Hide Hero bottom extra chip duplicates to keep Hero ultra-clean
-      const heroBottomChips = document.querySelector('#heroFloatingSlider .border-t.border-white\\/10 > div:last-child');
-      if (heroBottomChips) {
-        heroBottomChips.classList.add('noorly-bg-hidden-clutter');
-      }
-
-      // Hide Theme Switcher from crowding mobile header (kept accessible)
-      const themeBtn = document.getElementById('btnThemeSwitcher');
-      if (themeBtn) {
-        themeBtn.classList.add('hidden', 'sm:flex');
-      }
-
-      // Secret Admin/Developer Shortcut: Double-click the top-left Academy Title to toggle hidden demo shortcuts anytime!
-      const brandTitle = document.getElementById('appBrandTitle');
-      if (brandTitle) {
-        brandTitle.addEventListener('dblclick', function(e) {
-          e.stopPropagation();
-          document.body.classList.toggle('show-dev-shortcuts');
-          if (typeof window.showAppToast === 'function') {
-            const isShown = document.body.classList.contains('show-dev-shortcuts');
-            window.showAppToast(isShown ? "Developer Quick-Switchers Visible" : "Developer Quick-Switchers Hidden");
-          }
-        });
-      }
-    });
-
-    // Ensure Quiz & Bookmarks also refresh whenever user switches role or logs in
-    const origApplyLoggedIn = window.applyLoggedInState;
-    if (typeof origApplyLoggedIn === 'function') {
-      window.applyLoggedInState = function() {
-        origApplyLoggedIn.apply(this, arguments);
-        if (typeof window.renderTajweedQuiz === 'function') {
-          try { window.renderTajweedQuiz(); } catch (e) {}
-        }
-        if (typeof window.renderQuranBookmarksBars === 'function') {
-          try { window.renderQuranBookmarksBars(); } catch (e) {}
-        }
-      };
-    }
-  })();
-</script>
 </body>
 </html>
