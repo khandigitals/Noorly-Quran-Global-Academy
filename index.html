@@ -3,325 +3,1198 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#14B8A6" />
-<title>Noorly Global Quran Academy</title>
+<meta name="theme-color" content="#4F46E5" />
+<title>Noorly Global Quran Academy — Learn Quran, Live</title>
 
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- Font Awesome 6 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
 
 <script>
   tailwind.config = {
-    theme: { extend: {
-      colors: {
-        brand: {50:'#F0FDFA',100:'#CCFBF1',200:'#99F6E4',300:'#5EEAD4',400:'#2DD4BF',500:'#14B8A6',600:'#0D9488',700:'#0F766E',800:'#115E59',900:'#134E4A'},
-        ink: {900:'#0B2B2A',800:'#143C3A',700:'#2F4F4D',500:'#5E7C7A',300:'#9DB5B3',100:'#E3EDEC'},
-        sand: {50:'#FDFBF7',100:'#FAF5EC',200:'#F3EAD9',300:'#E9DCC3'},
-        sky2: {50:'#EFF6FF',100:'#DBEAFE',500:'#3B82F6',600:'#2563EB'}
-      },
-      fontFamily: {sans:['"Plus Jakarta Sans"','system-ui','sans-serif'], arabic:['Amiri','serif']},
-      boxShadow: {soft:'0 4px 24px -10px rgba(13,148,136,0.25)', card:'0 1px 2px rgba(16,24,40,0.04), 0 10px 30px -18px rgba(16,24,40,0.18)', lift:'0 18px 40px -22px rgba(13,148,136,0.45)'},
-      borderRadius: {'4xl':'2rem','5xl':'2.75rem'}
-    }}
+    theme: {
+      extend: {
+        colors: {
+          brand: { 50:'#EEF2FF', 100:'#E0E7FF', 500:'#6366F1', 600:'#4F46E5', 700:'#4338CA', 900:'#312E81' },
+          accent: { 50:'#F0FDFA', 100:'#CCFBF1', 500:'#14B8A6', 600:'#0D9488' },
+          dark: { 900:'#0F172A', 800:'#1E293B', 700:'#334155', 500:'#64748B', 300:'#94A3B8', 100:'#F1F5F9' },
+          rose: { 500:'#F43F5E', 50:'#FFF1F2' },
+          amber: { 500:'#F59E0B', 50:'#FFFBEB' }
+        },
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          arabic: ['Amiri', 'serif']
+        },
+        boxShadow: {
+          'glow': '0 0 20px rgba(99, 102, 241, 0.4)',
+          'card': '0 10px 40px -10px rgba(0,0,0,0.08)',
+          'float': '0 20px 40px -10px rgba(79, 70, 229, 0.2)'
+        },
+        borderRadius: { '3xl': '1.5rem', '4xl': '2rem' }
+      }
+    }
   }
 </script>
 
 <style>
-  html,body{-webkit-tap-highlight-color:transparent}
-  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
-  ::-webkit-scrollbar{width:9px;height:9px}
-  ::-webkit-scrollbar-thumb{background:#CBE7E3;border-radius:999px}
-  .no-scrollbar::-webkit-scrollbar{display:none}
-  .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
-  .view{display:none}.view.active{display:block;animation:fadeUp .35s cubic-bezier(.22,.9,.32,1) both}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .glass{background:rgba(255,255,255,0.72);backdrop-filter:blur(16px) saturate(160%)}
-  .nav-item.active{background:linear-gradient(90deg,#F0FDFA,#ECFEFF);color:#0F766E;font-weight:700}
-  .nav-item.active .nav-ico{background:#14B8A6;color:#fff}
-  .tab-item.active{color:#0D9488}.tab-item.active .tab-ico{background:#CCFBF1}
-  .seg-btn.active{background:#fff;color:#0F766E;box-shadow:0 2px 8px rgba(16,24,40,.08);font-weight:700}
-  #qiblaDial{transition:transform .25s cubic-bezier(.2,.8,.3,1)}
-  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.07)}100%{transform:scale(1)}}.pop{animation:pop .28s ease-out}
-  @keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}.toast{animation:toastIn .3s cubic-bezier(.22,.9,.32,1) both}
-  @keyframes modalIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}.modal-card{animation:modalIn .28s cubic-bezier(.22,.9,.32,1) both}
-  .spinner{border:3px solid #CCFBF1;border-top-color:#14B8A6;border-radius:50%;width:22px;height:22px;animation:spin .8s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .arabic{font-family:'Amiri',serif;direction:rtl;line-height:2.35}
-  input[type="range"]{accent-color:#14B8A6}
+  html, body { -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background-color: #F8FAFC; }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  
+  /* Glassmorphism */
+  .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.5); }
+  .glass-dark { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+  
+  /* Animations */
+  .view { display: none; }
+  .view.active { display: block; animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  
+  .nav-item.active { background: white; color: #4F46E5; box-shadow: 0 4px 12px rgba(0,0,0,0.05); font-weight: 700; }
+  .nav-item.active .nav-icon { background: #EEF2FF; color: #4F46E5; }
+  .nav-item:hover:not(.active) { background: rgba(255,255,255,0.5); }
+  
+  .tab-item.active { color: #4F46E5; }
+  .tab-item.active .tab-icon { background: #EEF2FF; color: #4F46E5; transform: translateY(-2px); }
+  
+  /* Print */
+  @media print {
+    @page { size: A4; margin: 14mm; }
+    body.is-printing #appShell, body.is-printing #authScreen, body.is-printing #modalRoot { display: none !important; }
+    body.is-printing #printSheet { display: block !important; }
+  }
+  #printSheet { display: none; }
+  
+  .arabic { font-family: 'Amiri', serif; direction: rtl; line-height: 2.5; }
+  
+  /* Grid Pattern Overlay */
+  .bg-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 </style>
 </head>
 
-<body class="bg-[#F6FAFA] text-ink-900 antialiased">
+<body class="text-dark-900 antialiased selection:bg-brand-500 selection:text-white">
 
-<!-- AUTH SCREEN -->
-<div id="authScreen" class="min-h-screen w-full flex items-stretch">
-  <div class="hidden lg:flex w-[46%] relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-sand-100 items-center justify-center p-14">
-    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-200/50 blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-[28rem] h-[28rem] rounded-full bg-sky2-100/70 blur-3xl"></div>
-    <div class="relative z-10 max-w-md">
-      <div class="flex items-center gap-3 mb-10">
-        <div class="w-12 h-12 rounded-2xl bg-brand-500 grid place-items-center text-white text-xl shadow-soft"><i class="fa-solid fa-book-open-reader"></i></div>
-        <div><p class="font-extrabold text-lg text-ink-900">Noorly</p><p class="text-xs text-ink-500 -mt-0.5">Global Quran Academy</p></div>
+<!-- ═══════════════ AUTH SCREEN ═══════════════ -->
+<div id="authScreen" class="min-h-screen w-full flex bg-dark-900 relative overflow-hidden">
+  <!-- Background Gradients -->
+  <div class="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full bg-brand-600/30 blur-[120px]"></div>
+  <div class="absolute bottom-[0%] -right-[10%] w-[60vw] h-[60vw] rounded-full bg-accent-500/20 blur-[100px]"></div>
+  <div class="absolute top-[40%] left-[30%] w-[30vw] h-[30vw] rounded-full bg-rose-500/20 blur-[100px]"></div>
+
+  <!-- Left Branding -->
+  <div class="hidden lg:flex w-1/2 relative z-10 items-center justify-center p-16">
+    <div class="max-w-md text-white">
+      <div class="flex items-center gap-4 mb-12">
+        <div class="w-14 h-14 rounded-2xl bg-white/10 glass-dark grid place-items-center text-2xl shadow-glow">
+          <i class="fa-solid fa-book-open-reader text-brand-100"></i>
+        </div>
+        <div>
+          <p class="font-extrabold text-2xl tracking-tight">Noorly</p>
+          <p class="text-sm text-dark-300">Global Quran Academy</p>
+        </div>
       </div>
-      <h1 class="text-4xl font-extrabold leading-tight text-ink-900">Learn the Qur’ān<br/><span class="text-brand-600">with light & clarity.</span></h1>
-      <p class="mt-5 text-ink-500 leading-relaxed">One-to-one live Tajweed classes with certified Huffāz — from the comfort of your home.</p>
+      <h1 class="text-5xl font-extrabold leading-[1.1] tracking-tight mb-6">
+        Learn the Qur’ān<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-100 to-accent-100">with light & clarity.</span>
+      </h1>
+      <p class="text-lg text-dark-300 leading-relaxed mb-10">
+        One-to-one live Tajweed classes with certified Huffāz — from the comfort of your home, across every timezone.
+      </p>
+      <div class="flex items-center gap-4 text-sm font-semibold bg-white/5 border border-white/10 rounded-2xl p-4 glass-dark">
+        <i class="fa-solid fa-shield-halved text-accent-500 text-xl"></i>
+        <span>Purdah-friendly · Female teachers available · Verified Ijāzah</span>
+      </div>
     </div>
   </div>
 
-  <div class="flex-1 flex items-center justify-center p-6 sm:p-10 bg-white lg:bg-transparent">
-    <div class="w-full max-w-md">
+  <!-- Right Form -->
+  <div class="w-full lg:w-1/2 relative z-10 flex items-center justify-center p-6 sm:p-12">
+    <div class="w-full max-w-md bg-white rounded-4xl shadow-2xl p-8 sm:p-10 border border-dark-100/10">
+      
       <div class="lg:hidden flex items-center gap-3 mb-8 justify-center">
-        <div class="w-11 h-11 rounded-2xl bg-brand-500 grid place-items-center text-white shadow-soft"><i class="fa-solid fa-book-open-reader"></i></div>
-        <div><p class="font-extrabold text-lg text-ink-900">Noorly</p><p class="text-xs text-ink-500 -mt-0.5">Global Quran Academy</p></div>
-      </div>
-
-      <div class="flex items-start justify-between gap-3">
-        <div><h2 id="authTitle" class="text-2xl font-extrabold text-ink-900">Welcome back</h2><p id="authSubtitle" class="text-sm text-ink-500 mt-1.5">Sign in to continue.</p></div>
-        <div id="adminBadge" class="hidden shrink-0 px-2.5 py-1.5 rounded-lg bg-brand-500 text-white text-[10px] font-extrabold flex items-center gap-1.5 shadow-soft"><i class="fa-solid fa-shield-halved text-[9px]"></i>ADMIN</div>
-      </div>
-
-      <form id="authForm" class="mt-7 space-y-4" autocomplete="off">
-        <div id="nameWrap" class="hidden">
-          <label class="text-xs font-semibold text-ink-700">Full name</label>
-          <div class="mt-1.5 relative"><i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-ink-300 text-sm"></i>
-            <input id="authName" type="text" placeholder="Abdullah Khan" class="w-full pl-11 pr-4 py-3 rounded-2xl border border-ink-100 bg-white text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100 transition" /></div>
+        <div class="w-12 h-12 rounded-2xl bg-brand-600 grid place-items-center text-white shadow-glow">
+          <i class="fa-solid fa-book-open-reader text-xl"></i>
         </div>
-        <div id="roleWrap" class="hidden">
-          <label class="text-xs font-semibold text-ink-700">I am a…</label>
-          <div class="mt-1.5 grid grid-cols-2 gap-2">
-            <button type="button" data-role="student" class="role-pick active rounded-2xl border border-brand-300 bg-brand-50 py-2.5 text-xs font-bold text-brand-700"><i class="fa-solid fa-user-graduate mr-1.5 text-[10px]"></i>Student</button>
-            <button type="button" data-role="teacher" class="role-pick rounded-2xl border border-ink-100 py-2.5 text-xs font-semibold text-ink-500 hover:border-brand-200"><i class="fa-solid fa-chalkboard-user mr-1.5 text-[10px]"></i>Teacher</button>
+        <div>
+          <p class="font-extrabold text-xl text-dark-900">Noorly</p>
+          <p class="text-xs text-dark-500">Global Quran Academy</p>
+        </div>
+      </div>
+
+      <div class="flex items-start justify-between gap-3 mb-6">
+        <div>
+          <h2 id="authTitle" class="text-3xl font-extrabold text-dark-900">Welcome back</h2>
+          <p id="authSubtitle" class="text-sm text-dark-500 mt-2">Sign in to continue your journey.</p>
+        </div>
+        <div id="adminBadge" class="hidden shrink-0 px-3 py-1.5 rounded-lg bg-brand-600 text-white text-[10px] font-extrabold flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-shield-halved text-[9px]"></i>ADMIN
+        </div>
+      </div>
+
+      <form id="authForm" class="space-y-4" autocomplete="off">
+        <div id="nameWrap" class="hidden">
+          <label class="text-xs font-bold text-dark-700">Full name</label>
+          <div class="mt-1.5 relative">
+            <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-dark-300 text-sm"></i>
+            <input id="authName" type="text" placeholder="Abdullah Khan" class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-dark-100 bg-dark-50/50 text-sm font-medium outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all" />
           </div>
         </div>
-        <div>
-          <label class="text-xs font-semibold text-ink-700">Email address</label>
-          <div class="mt-1.5 relative"><i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-ink-300 text-sm"></i>
-            <input id="authEmail" type="email" placeholder="you@example.com" class="w-full pl-11 pr-4 py-3 rounded-2xl border border-ink-100 bg-white text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100 transition" /></div>
+
+        <div id="roleWrap" class="hidden">
+          <label class="text-xs font-bold text-dark-700">I am a…</label>
+          <div class="mt-1.5 grid grid-cols-2 gap-3">
+            <button type="button" data-role="student" class="role-pick active rounded-2xl border border-brand-500 bg-brand-50 py-3 text-xs font-bold text-brand-700 transition-all"><i class="fa-solid fa-user-graduate mr-1.5"></i>Student</button>
+            <button type="button" data-role="teacher" class="role-pick rounded-2xl border border-dark-100 bg-white py-3 text-xs font-semibold text-dark-500 hover:border-brand-300 transition-all"><i class="fa-solid fa-chalkboard-user mr-1.5"></i>Teacher</button>
+          </div>
         </div>
+
         <div>
-          <label class="text-xs font-semibold text-ink-700">Password</label>
-          <div class="mt-1.5 relative"><i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-ink-300 text-sm"></i>
-            <input id="authPassword" type="password" placeholder="••••••••" class="w-full pl-11 pr-12 py-3 rounded-2xl border border-ink-100 bg-white text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100 transition" />
-            <button type="button" id="togglePw" class="absolute right-4 top-1/2 -translate-y-1/2 text-ink-300 hover:text-brand-500"><i class="fa-regular fa-eye text-sm"></i></button></div>
+          <label class="text-xs font-bold text-dark-700">Email address</label>
+          <div class="mt-1.5 relative">
+            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-dark-300 text-sm"></i>
+            <input id="authEmail" type="email" placeholder="you@example.com" class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-dark-100 bg-dark-50/50 text-sm font-medium outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all" />
+          </div>
         </div>
-        <button id="authSubmitBtn" type="submit" class="w-full py-3.5 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm shadow-soft hover:shadow-lift transition-all active:scale-[0.99]">Sign In</button>
+
+        <div>
+          <label class="text-xs font-bold text-dark-700">Password</label>
+          <div class="mt-1.5 relative">
+            <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-dark-300 text-sm"></i>
+            <input id="authPassword" type="password" placeholder="••••••••" class="w-full pl-11 pr-12 py-3.5 rounded-2xl border border-dark-100 bg-dark-50/50 text-sm font-medium outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all" />
+            <button type="button" id="togglePw" class="absolute right-4 top-1/2 -translate-y-1/2 text-dark-300 hover:text-brand-500"><i class="fa-regular fa-eye text-sm"></i></button>
+          </div>
+        </div>
+
+        <button id="authSubmitBtn" type="submit" class="w-full py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-float transition-all active:scale-[0.98]">
+          Sign In
+        </button>
       </form>
 
-      <p class="mt-6 text-center text-sm text-ink-500"><span id="authSwitchText">New to Noorly?</span><button type="button" id="authToggleBtn" class="font-bold text-brand-600 hover:text-brand-700 ml-1">Create an account</button></p>
-      
-      <!-- DEMO / SKIP BUTTON -->
-      <div class="mt-6 pt-6 border-t border-ink-100">
-        <button type="button" onclick="window.skipLogin()" class="w-full py-3 rounded-2xl bg-sky2-50 text-sky2-600 font-bold text-[13px] hover:bg-sky2-100 transition shadow-sm border border-sky2-200">
-          <i class="fa-solid fa-eye mr-2"></i>Skip Login & View Academy
+      <div class="mt-8 flex items-center gap-3">
+        <div class="h-px flex-1 bg-dark-100"></div>
+        <span class="text-[10px] uppercase tracking-wider text-dark-300 font-bold">Or Demo Mode</span>
+        <div class="h-px flex-1 bg-dark-100"></div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <button type="button" onclick="window.skipLogin()" class="py-3.5 rounded-2xl bg-accent-50 border border-accent-100 text-accent-600 font-bold text-xs hover:bg-accent-100 transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-eye"></i> View Demo
+        </button>
+        <button type="button" id="adminLoginLink" class="py-3.5 rounded-2xl bg-dark-50 border border-dark-100 text-dark-600 font-bold text-xs hover:bg-dark-100 transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-shield-halved"></i> Admin Login
         </button>
       </div>
 
-      <div class="mt-4 flex items-center justify-center">
-        <button type="button" id="adminLoginLink" class="group inline-flex items-center gap-2 px-3 py-2 rounded-xl text-[11px] font-semibold text-ink-400 hover:text-brand-600 hover:bg-brand-50 transition">
-          <i class="fa-solid fa-shield-halved text-[10px]"></i><span>Administrator Login</span><i class="fa-solid fa-arrow-right text-[8px] opacity-0 group-hover:opacity-100 transition"></i>
-        </button>
-      </div>
+      <p class="mt-8 text-center text-sm text-dark-500 font-medium">
+        <span id="authSwitchText">New to Noorly?</span>
+        <button id="authToggleBtn" class="font-bold text-brand-600 hover:text-brand-700 ml-1">Create an account</button>
+      </p>
     </div>
   </div>
 </div>
 
-<!-- APP SHELL -->
-<div id="appShell" class="hidden min-h-screen">
-  <div id="sidebarBackdrop" class="fixed inset-0 bg-ink-900/30 backdrop-blur-sm z-40 hidden lg:hidden"></div>
+<!-- ═══════════════ APP SHELL ═══════════════ -->
+<div id="appShell" class="hidden min-h-screen bg-[#F8FAFC]">
+  <div id="sidebarBackdrop" class="fixed inset-0 bg-dark-900/40 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
 
-  <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-white border-r border-brand-100/80 z-50 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-out">
-    <div class="px-6 pt-7 pb-5 flex items-center gap-3">
-      <div class="w-11 h-11 rounded-2xl bg-brand-500 grid place-items-center text-white shadow-soft shrink-0"><i class="fa-solid fa-book-open-reader"></i></div>
-      <div class="min-w-0"><p class="font-extrabold text-[15px] text-ink-900 tracking-tight leading-none">Noorly</p><p class="text-[10.5px] text-ink-500 mt-1 leading-none">Global Quran Academy</p></div>
-      <button id="sidebarClose" class="ml-auto lg:hidden text-ink-300 hover:text-ink-700 p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-dark-50/50 border-r border-dark-100 z-50 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-out">
+    <div class="px-6 pt-8 pb-6 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-brand-600 grid place-items-center text-white shadow-glow">
+        <i class="fa-solid fa-book-open-reader"></i>
+      </div>
+      <div>
+        <p class="font-extrabold text-lg text-dark-900 tracking-tight leading-none">Noorly</p>
+        <p class="text-[10px] text-dark-500 font-semibold mt-1">Global Quran Academy</p>
+      </div>
+      <button id="sidebarClose" class="ml-auto lg:hidden text-dark-400 hover:text-dark-700 p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
     </div>
-    <nav class="flex-1 overflow-y-auto no-scrollbar px-3 pb-4 space-y-1">
-      <p class="px-4 pt-3 pb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-ink-300">Main</p>
-      <button data-nav="home" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-semibold text-ink-700 hover:bg-brand-50/70 transition"><span class="nav-ico w-8 h-8 rounded-xl bg-brand-50 text-brand-600 grid place-items-center text-[13px] transition"><i class="fa-solid fa-house"></i></span>Dashboard</button>
-      <button data-nav="worship" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-semibold text-ink-700 hover:bg-brand-50/70 transition"><span class="nav-ico w-8 h-8 rounded-xl bg-brand-50 text-brand-600 grid place-items-center text-[13px] transition"><i class="fa-solid fa-mosque"></i></span>Worship Hub</button>
-      <button data-nav="lms" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-semibold text-ink-700 hover:bg-brand-50/70 transition"><span class="nav-ico w-8 h-8 rounded-xl bg-brand-50 text-brand-600 grid place-items-center text-[13px] transition"><i class="fa-solid fa-video"></i></span>Live Studio & LMS</button>
-      <p class="px-4 pt-5 pb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-ink-300">Account</p>
-      <button data-nav="portal" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-semibold text-ink-700 hover:bg-brand-50/70 transition"><span class="nav-ico w-8 h-8 rounded-xl bg-brand-50 text-brand-600 grid place-items-center text-[13px] transition"><i class="fa-solid fa-user-shield"></i></span>My Portal</button>
+
+    <nav class="flex-1 overflow-y-auto no-scrollbar px-4 pb-4 space-y-1">
+      <p class="px-4 pt-2 pb-2 text-[10px] font-extrabold uppercase tracking-wider text-dark-400">Main Menu</p>
+      
+      <button data-nav="home" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-dark-600 transition-all">
+        <span class="nav-icon w-8 h-8 rounded-lg bg-dark-100 text-dark-500 grid place-items-center text-sm transition-all"><i class="fa-solid fa-house"></i></span>
+        Dashboard
+      </button>
+      <button data-nav="worship" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-dark-600 transition-all">
+        <span class="nav-icon w-8 h-8 rounded-lg bg-dark-100 text-dark-500 grid place-items-center text-sm transition-all"><i class="fa-solid fa-mosque"></i></span>
+        Worship Hub
+      </button>
+      <button data-nav="lms" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-dark-600 transition-all">
+        <span class="nav-icon w-8 h-8 rounded-lg bg-dark-100 text-dark-500 grid place-items-center text-sm transition-all"><i class="fa-solid fa-video"></i></span>
+        Live Studio & LMS
+      </button>
+      
+      <p class="px-4 pt-6 pb-2 text-[10px] font-extrabold uppercase tracking-wider text-dark-400">Account</p>
+      
+      <button data-nav="portal" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-dark-600 transition-all">
+        <span class="nav-icon w-8 h-8 rounded-lg bg-dark-100 text-dark-500 grid place-items-center text-sm transition-all"><i class="fa-solid fa-user-shield"></i></span>
+        My Portal
+      </button>
+      <button id="navFees" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-dark-600 transition-all">
+        <span class="nav-icon w-8 h-8 rounded-lg bg-dark-100 text-dark-500 grid place-items-center text-sm transition-all"><i class="fa-solid fa-calculator"></i></span>
+        Fee Calculator
+      </button>
     </nav>
-    <div class="p-3 border-t border-brand-100/80">
-      <div class="mt-3 flex items-center gap-3 px-1.5 py-2">
-        <div id="sideAvatar" class="w-9 h-9 rounded-full bg-brand-500 text-white grid place-items-center text-xs font-bold shrink-0">A</div>
-        <div class="min-w-0 flex-1"><p id="sideUserName" class="text-[12.5px] font-bold text-ink-900 truncate">Guest</p><p id="sideUserRole" class="text-[10.5px] text-ink-500 capitalize">Visitor</p></div>
-        <button id="logoutBtn" class="text-ink-300 hover:text-red-500 transition p-1.5"><i class="fa-solid fa-arrow-right-from-bracket text-sm"></i></button>
+
+    <div class="p-4 border-t border-dark-100">
+      <div class="flex items-center gap-3 p-2 rounded-2xl bg-white shadow-sm border border-dark-100">
+        <div id="sideAvatar" class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white grid place-items-center text-sm font-extrabold shadow-sm">A</div>
+        <div class="min-w-0 flex-1">
+          <p id="sideUserName" class="text-[13px] font-bold text-dark-900 truncate">Guest</p>
+          <p id="sideUserRole" class="text-[10px] font-semibold text-dark-400 capitalize">Visitor</p>
+        </div>
+        <button id="logoutBtn" class="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 hover:bg-rose-100 grid place-items-center transition"><i class="fa-solid fa-power-off text-xs"></i></button>
       </div>
     </div>
   </aside>
 
+  <!-- Main Content Area -->
   <div class="lg:pl-72 min-h-screen flex flex-col">
-    <header class="lg:hidden sticky top-0 z-30 glass border-b border-brand-100/70">
-      <div class="px-4 h-16 flex items-center gap-3">
-        <button id="menuBtn" class="w-10 h-10 rounded-xl bg-white shadow-card grid place-items-center text-ink-700"><i class="fa-solid fa-bars-staggered"></i></button>
-        <p class="font-extrabold text-sm text-ink-900 truncate">Noorly</p>
-        <div class="ml-auto flex items-center gap-2"><div id="topAvatar" class="w-9 h-9 rounded-full bg-brand-500 text-white grid place-items-center text-xs font-bold">A</div></div>
+    
+    <!-- Mobile Header -->
+    <header class="lg:hidden sticky top-0 z-30 glass h-16 flex items-center justify-between px-4">
+      <div class="flex items-center gap-3">
+        <button id="menuBtn" class="w-10 h-10 rounded-xl bg-white shadow-sm grid place-items-center text-dark-700 border border-dark-100">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+        <p class="font-extrabold text-base text-dark-900">Noorly</p>
+      </div>
+      <div id="topAvatarMobile" class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white grid place-items-center text-xs font-bold shadow-sm">A</div>
+    </header>
+
+    <!-- Desktop Header -->
+    <header class="hidden lg:flex sticky top-0 z-30 glass h-[80px] items-center justify-between px-10">
+      <div>
+        <h1 id="topTitle" class="text-xl font-extrabold text-dark-900">Dashboard</h1>
+        <p id="topSubtitle" class="text-[12px] font-medium text-dark-500 mt-0.5">Welcome back to Noorly.</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-dark-100 shadow-sm text-sm font-bold text-dark-600">
+          <i class="fa-solid fa-clock text-brand-500"></i>
+          <span id="topClock">--:--</span>
+        </div>
+        <div id="topAvatar" class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white grid place-items-center text-sm font-extrabold shadow-sm">A</div>
       </div>
     </header>
 
-    <header class="hidden lg:flex sticky top-0 z-30 glass border-b border-brand-100/70 h-[72px] items-center gap-4 px-8">
-      <div><p id="topTitle" class="text-[15px] font-extrabold text-ink-900">Dashboard</p><p id="topSubtitle" class="text-[11.5px] text-ink-500">Welcome</p></div>
-      <div class="ml-auto flex items-center gap-3">
-        <div class="hidden xl:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-brand-100/80 text-[12px] text-ink-500"><i class="fa-solid fa-clock text-brand-500"></i><span id="topClock">--:--</span></div>
-      </div>
-    </header>
+    <!-- Views Container -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-10 pb-28 lg:pb-10 w-full max-w-[1600px] mx-auto">
 
-    <main id="mainContent" class="flex-1 px-4 sm:px-6 lg:px-8 py-6 pb-28 lg:pb-10 max-w-[1600px] w-full mx-auto">
-      
-      <!-- HOME VIEW -->
-      <section id="view-home" class="view active">
-        <div class="relative overflow-hidden rounded-4xl bg-gradient-to-br from-brand-50 via-white to-sand-100 border border-brand-100/70 shadow-card p-7 sm:p-10 lg:p-12">
-          <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-[1.12] tracking-tight text-ink-900">Qur’ān learning that fits<br/><span class="bg-gradient-to-r from-brand-500 to-sky2-500 bg-clip-text text-transparent">your life.</span></h1>
-          <p class="mt-4 text-[14.5px] leading-relaxed text-ink-500 max-w-xl">Personal 1-to-1 Tajweed sessions with Ijāzah-certified teachers.</p>
+      <!-- ═══ HOME VIEW ═══ -->
+      <section id="view-home" class="view active space-y-8">
+        <!-- Hero Banner -->
+        <div class="relative overflow-hidden rounded-4xl bg-dark-900 shadow-2xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-700 to-accent-600 opacity-90"></div>
+          <div class="absolute inset-0 bg-pattern"></div>
+          <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-white/10 blur-3xl"></div>
+          
+          <div class="relative p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center gap-10">
+            <div class="flex-1 text-white z-10">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold backdrop-blur-md mb-6">
+                <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span> Live classes worldwide
+              </span>
+              <h2 class="text-4xl sm:text-5xl font-extrabold leading-[1.1] mb-4">Qur’ān learning<br/>that fits your life.</h2>
+              <p class="text-white/80 text-lg max-w-lg mb-8">Personal 1-to-1 Tajweed sessions with Ijāzah-certified teachers. Start your free trial today.</p>
+              <div class="flex flex-wrap gap-4">
+                <button id="heroTrialBtn" class="px-8 py-4 rounded-2xl bg-white text-brand-900 font-bold text-sm shadow-xl hover:scale-105 transition-transform">
+                  Book 3-Day Free Trial
+                </button>
+                <button id="heroExploreBtn" class="px-8 py-4 rounded-2xl bg-white/10 border border-white/20 text-white font-bold text-sm hover:bg-white/20 transition-all">
+                  Explore Courses
+                </button>
+              </div>
+            </div>
+            
+            <!-- Hero Card Decor -->
+            <div class="hidden lg:block w-80 relative z-10">
+              <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl">
+                <div class="flex items-center gap-3 mb-4 border-b border-white/10 pb-4">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-400 to-brand-500 grid place-items-center text-white"><i class="fa-solid fa-user-tie"></i></div>
+                  <div>
+                    <p class="text-white font-bold text-sm">Ustādh Bilal</p>
+                    <p class="text-white/60 text-[10px]">Live Now</p>
+                  </div>
+                  <span class="ml-auto px-2 py-1 rounded bg-rose-500 text-white text-[9px] font-bold animate-pulse">REC</span>
+                </div>
+                <p class="arabic text-white/90 text-xl text-right leading-loose">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="mt-8"><h2 class="text-lg font-extrabold text-ink-900 mb-4">Quick Access</h2><div id="featuresGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-3.5"></div></div>
-        <div class="mt-10"><h2 class="text-lg font-extrabold text-ink-900 mb-4">Our Courses</h2><div id="coursesGrid" class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4"></div></div>
+        <!-- Quick Access -->
+        <div>
+          <h3 class="text-xl font-extrabold text-dark-900 mb-4">Quick Access</h3>
+          <div id="featuresGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        </div>
+
+        <!-- Courses -->
+        <div>
+          <h3 class="text-xl font-extrabold text-dark-900 mb-4">Featured Courses</h3>
+          <div id="coursesGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+
+        <!-- Premium Subscription Banner -->
+        <div class="rounded-4xl bg-gradient-to-br from-dark-900 to-dark-800 p-8 sm:p-10 text-white shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500 rounded-full mix-blend-screen filter blur-[80px] opacity-30"></div>
+          <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="max-w-xl">
+              <span class="inline-block px-3 py-1 rounded-lg bg-brand-500 text-white text-xs font-bold mb-4">PREMIUM</span>
+              <h3 class="text-3xl font-extrabold mb-2">Unlock Full Academy Access</h3>
+              <p class="text-dark-300 text-sm leading-relaxed">Get unlimited live classes, full library access, priority homework reviews, and certificates.</p>
+            </div>
+            <div class="flex gap-4 w-full md:w-auto">
+              <button id="subscribeMonthly" class="flex-1 md:w-40 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl p-4 text-left transition">
+                <p class="text-[10px] font-bold text-dark-300 uppercase">Monthly</p>
+                <p class="text-2xl font-extrabold mt-1">$40<span class="text-xs font-medium text-dark-300">/mo</span></p>
+              </button>
+              <button id="subscribeYearly" class="flex-1 md:w-40 bg-brand-600 hover:bg-brand-500 rounded-2xl p-4 text-left transition shadow-glow">
+                <p class="text-[10px] font-bold text-brand-100 uppercase">Yearly</p>
+                <p class="text-2xl font-extrabold mt-1">$400<span class="text-xs font-medium text-brand-100">/yr</span></p>
+              </button>
+            </div>
+          </div>
+          <p id="subscriptionStatus" class="relative z-10 mt-4 text-[12px] font-semibold text-brand-200"></p>
+        </div>
+
+        <!-- Fee Calculator -->
+        <div id="feeCalculatorSection" class="rounded-4xl bg-white border border-dark-100 shadow-card overflow-hidden">
+          <div class="p-6 sm:p-8 border-b border-dark-100 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-accent-50 text-accent-600 grid place-items-center text-xl shadow-sm"><i class="fa-solid fa-calculator"></i></div>
+            <div>
+              <h3 class="text-xl font-extrabold text-dark-900">Live Fee Calculator</h3>
+              <p class="text-sm text-dark-500">Transparent pricing with automatic sibling discounts.</p>
+            </div>
+          </div>
+          <div class="grid lg:grid-cols-5">
+            <div class="lg:col-span-3 p-6 sm:p-8 space-y-6">
+              <div>
+                <label class="text-xs font-bold text-dark-700">Select Course</label>
+                <select id="feePlan" class="mt-2 w-full px-4 py-3 rounded-xl border border-dark-100 bg-dark-50 text-sm font-medium outline-none focus:border-brand-500"></select>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-xs font-bold text-dark-700">Currency</label>
+                  <select id="feeCurrency" class="mt-2 w-full px-4 py-3 rounded-xl border border-dark-100 bg-dark-50 text-sm font-medium outline-none focus:border-brand-500"></select>
+                </div>
+                <div>
+                  <label class="text-xs font-bold text-dark-700">Classes / Week</label>
+                  <select id="feeSessions" class="mt-2 w-full px-4 py-3 rounded-xl border border-dark-100 bg-dark-50 text-sm font-medium outline-none focus:border-brand-500">
+                    <option value="2">2 Classes</option><option value="3" selected>3 Classes</option><option value="4">4 Classes</option><option value="5">5 Classes</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="text-xs font-bold text-dark-700 mb-2 block">Siblings Enrolled</label>
+                <div class="flex items-center gap-3">
+                  <button type="button" id="sibMinus" class="w-10 h-10 rounded-xl border border-dark-100 bg-white text-dark-700 hover:bg-dark-50 transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                  <div id="sibCount" class="w-16 text-center text-xl font-extrabold text-dark-900">1</div>
+                  <button type="button" id="sibPlus" class="w-10 h-10 rounded-xl border border-dark-100 bg-white text-dark-700 hover:bg-dark-50 transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                  <span class="text-xs font-medium text-dark-500 ml-2">2nd child −15% · 3rd+ child −25%</span>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 p-6 sm:p-8 bg-dark-900 text-white flex flex-col justify-between">
+              <div>
+                <p class="text-xs font-bold text-brand-300 uppercase tracking-wider mb-2">Estimated Total</p>
+                <div class="flex items-baseline gap-2 mb-6">
+                  <span id="feeTotal" class="text-5xl font-extrabold tracking-tight">$45</span>
+                  <span id="feeCurCode" class="text-sm font-bold text-brand-300">USD</span>
+                </div>
+                <div id="feeBreakdown" class="space-y-3 text-sm text-dark-300"></div>
+              </div>
+              <button id="feeBookBtn" class="mt-8 w-full py-4 rounded-xl bg-brand-500 text-white font-bold text-sm hover:bg-brand-400 transition shadow-glow">Start Free Trial</button>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <!-- WORSHIP VIEW -->
+      <!-- ═══ WORSHIP VIEW ═══ -->
       <section id="view-worship" class="view">
-        <h1 class="text-2xl font-extrabold text-ink-900 mb-6">Worship Hub</h1>
-        <div class="bg-white p-6 rounded-2xl shadow-card border border-brand-100"><p class="text-sm text-gray-500">Prayer times, Qibla, Tasbeeh & daily remembrance features are active here.</p></div>
+        <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-3xl font-extrabold text-dark-900">Worship Hub</h2>
+            <p class="text-sm text-dark-500 mt-1">Prayer times, Qibla direction, and daily remembrance.</p>
+          </div>
+          <div id="worshipTabs" class="inline-flex p-1.5 rounded-2xl bg-dark-100/50 border border-dark-100">
+            <button data-wtab="prayer" class="seg-btn active px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-clock mr-2"></i>Prayers</button>
+            <button data-wtab="qibla" class="seg-btn px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-compass mr-2"></i>Qibla</button>
+            <button data-wtab="tasbeeh" class="seg-btn px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-circle-dot mr-2"></i>Tasbeeh</button>
+          </div>
+        </div>
+
+        <!-- Prayer Panel -->
+        <div id="wpanel-prayer" class="wpanel grid lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 rounded-4xl bg-white border border-dark-100 shadow-card p-6 sm:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 grid place-items-center text-xl"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <p id="locLabel" class="text-base font-extrabold text-dark-900">Detecting Location…</p>
+                  <p id="locSub" class="text-xs font-semibold text-dark-500">Using geolocation</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button id="locRefresh" class="px-4 py-2.5 rounded-xl border border-dark-100 text-sm font-bold text-dark-700 hover:bg-dark-50 transition"><i class="fa-solid fa-crosshairs mr-2 text-brand-500"></i>Refresh</button>
+                <div class="flex p-1 rounded-xl bg-dark-50 border border-dark-100">
+                  <button data-madhab="Hanafi" class="madhab-btn active px-4 py-1.5 rounded-lg text-xs font-bold text-brand-700 bg-white shadow-sm transition">Hanafi</button>
+                  <button data-madhab="Shafi" class="madhab-btn px-4 py-1.5 rounded-lg text-xs font-bold text-dark-500 transition">Shafi</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-gradient-to-br from-brand-900 to-accent-900 text-white p-8 relative overflow-hidden mb-8 shadow-xl">
+              <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+              <div class="relative z-10 flex flex-wrap items-center justify-between gap-6">
+                <div>
+                  <p class="text-xs font-bold text-brand-200 uppercase tracking-wider">Up Next</p>
+                  <p id="nextPrayerName" class="text-4xl font-extrabold mt-2">—</p>
+                  <p id="nextPrayerTime" class="text-base text-brand-100 mt-1 font-medium">—</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs font-bold text-brand-200 uppercase tracking-wider">Time Remaining</p>
+                  <p id="prayerCountdown" class="text-5xl font-extrabold tabular-nums mt-2 tracking-tight">--:--:--</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="prayerList" class="grid sm:grid-cols-2 gap-3"></div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-6">
+              <h3 class="text-lg font-extrabold text-dark-900 mb-4">Today</h3>
+              <p id="hijriDate" class="text-base font-bold text-brand-600">—</p>
+              <p id="gregDate" class="text-sm font-medium text-dark-500 mt-1">—</p>
+              <div class="mt-6 pt-6 border-t border-dark-100 space-y-3 text-sm font-medium">
+                <div class="flex justify-between items-center"><span class="text-dark-500">Sunrise</span><span id="sunriseVal" class="font-bold text-dark-900">—</span></div>
+                <div class="flex justify-between items-center"><span class="text-dark-500">Midnight</span><span id="midnightVal" class="font-bold text-dark-900">—</span></div>
+                <div class="flex justify-between items-center"><span class="text-dark-500">Method</span><span id="methodVal" class="font-bold text-dark-900">Hanafi</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Qibla Panel -->
+        <div id="wpanel-qibla" class="wpanel hidden grid lg:grid-cols-2 gap-6">
+          <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-8 flex flex-col items-center justify-center">
+            <h3 class="text-xl font-extrabold text-dark-900 mb-8">360° Qibla Compass</h3>
+            <div class="relative w-72 h-72">
+              <div class="absolute inset-0 rounded-full bg-gradient-to-br from-brand-50 to-accent-50 border-[8px] border-white shadow-2xl"></div>
+              <div id="qiblaDial" class="absolute inset-4 rounded-full bg-white shadow-inner border border-dark-100">
+                <div class="absolute inset-0 rounded-full">
+                  <span class="absolute top-2 left-1/2 -translate-x-1/2 text-sm font-extrabold text-dark-700">N</span>
+                  <span class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-extrabold text-dark-300">S</span>
+                  <span class="absolute left-2 top-1/2 -translate-y-1/2 text-sm font-extrabold text-dark-300">W</span>
+                  <span class="absolute right-2 top-1/2 -translate-y-1/2 text-sm font-extrabold text-dark-300">E</span>
+                  <div class="absolute inset-0 flex justify-center">
+                    <div class="w-1 h-1/2 bg-gradient-to-b from-brand-500 to-accent-400 rounded-full origin-bottom relative" style="transform-origin:bottom center">
+                      <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-xl bg-brand-600 grid place-items-center text-white shadow-lg"><i class="fa-solid fa-kaaba"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="absolute inset-0 grid place-items-center pointer-events-none">
+                <div class="w-4 h-4 rounded-full bg-brand-600 ring-4 ring-brand-100"></div>
+              </div>
+            </div>
+            <div class="mt-10 text-center">
+              <p id="qiblaDeg" class="text-4xl font-extrabold text-brand-600 tabular-nums">—°</p>
+              <p class="text-sm font-medium text-dark-500 mt-1">Bearing from true north</p>
+            </div>
+            <button id="enableCompass" class="mt-8 px-6 py-3 rounded-xl bg-brand-600 text-white font-bold text-sm shadow-float hover:bg-brand-700 transition"><i class="fa-solid fa-compass mr-2"></i>Enable Compass</button>
+            <p id="compassStatus" class="text-xs font-semibold text-dark-400 mt-3">Manual mode active</p>
+          </div>
+          
+          <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-8">
+            <h3 class="text-xl font-extrabold text-dark-900 mb-6">Manual Calibration</h3>
+            <label class="text-sm font-bold text-dark-700">Adjust Heading</label>
+            <input id="qiblaSlider" type="range" min="0" max="359" value="0" class="w-full mt-4 h-2 bg-dark-100 rounded-lg appearance-none cursor-pointer" />
+            <div class="flex justify-between text-xs font-bold text-dark-400 mt-2">
+              <span>0°</span><span>90°</span><span>180°</span><span>270°</span><span>359°</span>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mt-8">
+              <div class="rounded-2xl bg-dark-50 border border-dark-100 p-5">
+                <p class="text-xs font-bold text-dark-500 uppercase">Current Heading</p>
+                <p id="headingVal" class="text-2xl font-extrabold text-dark-900 mt-1 tabular-nums">0°</p>
+              </div>
+              <div class="rounded-2xl bg-brand-50 border border-brand-100 p-5">
+                <p class="text-xs font-bold text-brand-700 uppercase">Target Qibla</p>
+                <p id="qiblaTargetVal" class="text-2xl font-extrabold text-brand-900 mt-1 tabular-nums">—°</p>
+              </div>
+            </div>
+            <div class="mt-6 p-4 rounded-xl bg-dark-50 border border-dark-100">
+              <p class="text-xs font-bold text-dark-500 mb-1">Coordinates</p>
+              <p id="qiblaCoords" class="text-sm font-mono text-dark-900">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasbeeh Panel -->
+        <div id="wpanel-tasbeeh" class="wpanel hidden">
+          <div class="max-w-2xl mx-auto rounded-4xl bg-white border border-dark-100 shadow-card p-8 sm:p-12 text-center">
+            <h3 class="text-2xl font-extrabold text-dark-900">Smart Tasbeeh</h3>
+            <p class="text-sm font-medium text-dark-500 mt-1">Your progress syncs automatically.</p>
+            
+            <div class="mt-8 inline-flex p-1.5 rounded-2xl bg-dark-50 border border-dark-100 gap-1">
+              <button data-target="33" class="tsb-target active px-6 py-2.5 rounded-xl text-sm font-bold text-brand-700 bg-white shadow-sm transition">33</button>
+              <button data-target="99" class="tsb-target px-6 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition">99</button>
+              <button data-target="1000" class="tsb-target px-6 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition">1000</button>
+            </div>
+
+            <button id="tasbeehBtn" class="mt-10 relative w-64 h-64 rounded-full bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-2xl mx-auto grid place-items-center active:scale-[0.95] transition-transform select-none group">
+              <div class="absolute inset-3 rounded-full border-2 border-white/30 group-active:border-white/60 transition"></div>
+              <div class="relative">
+                <p id="tasbeehCount" class="text-7xl font-extrabold tabular-nums leading-none tracking-tighter">0</p>
+                <p id="tasbeehTargetLabel" class="text-sm font-bold text-brand-100 mt-3">of 33</p>
+              </div>
+            </button>
+
+            <div class="mt-10 max-w-xs mx-auto">
+              <div class="h-3 rounded-full bg-dark-100 overflow-hidden">
+                <div id="tasbeehProgress" class="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500 transition-all duration-300" style="width:0%"></div>
+              </div>
+            </div>
+
+            <div class="mt-10 flex items-center justify-center gap-4">
+              <button id="tasbeehReset" class="px-6 py-3 rounded-xl border border-dark-100 font-bold text-sm text-dark-700 hover:bg-dark-50 transition"><i class="fa-solid fa-rotate-left mr-2"></i>Reset</button>
+              <button id="tasbeehMinus" class="px-6 py-3 rounded-xl border border-dark-100 font-bold text-sm text-dark-700 hover:bg-dark-50 transition"><i class="fa-solid fa-minus mr-2"></i>Undo</button>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <!-- LMS VIEW -->
+      <!-- ═══ LMS VIEW ═══ -->
       <section id="view-lms" class="view">
-        <h1 class="text-2xl font-extrabold text-ink-900 mb-6">Live Studio & Library</h1>
-        <div class="bg-white p-6 rounded-2xl shadow-card border border-brand-100"><p class="text-sm text-gray-500">Live WebRTC classes, Mushaf Reader, and Qaida features are active here.</p></div>
+        <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-3xl font-extrabold text-dark-900">Live Studio & Library</h2>
+            <p class="text-sm text-dark-500 mt-1">Join your class or study independently.</p>
+          </div>
+          <div class="inline-flex p-1.5 rounded-2xl bg-dark-100/50 border border-dark-100">
+            <button data-lmsmode="live" class="lms-mode active seg-btn px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-video mr-2"></i>Live Studio</button>
+            <button data-lmsmode="library" class="lms-mode seg-btn px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-book-open mr-2"></i>Library</button>
+          </div>
+        </div>
+
+        <!-- Live Studio -->
+        <div id="lmsLive" class="grid lg:grid-cols-4 gap-6">
+          <div class="lg:col-span-3 space-y-6">
+            <!-- Video Stage -->
+            <div class="rounded-4xl bg-dark-900 overflow-hidden shadow-2xl relative border border-dark-800">
+              <div class="relative aspect-video">
+                <video id="remoteVideo" autoplay playsinline class="absolute inset-0 w-full h-full object-cover hidden"></video>
+                <div id="remotePlaceholder" class="absolute inset-0 bg-gradient-to-br from-dark-800 to-dark-900 grid place-items-center">
+                  <div class="text-center">
+                    <div class="w-24 h-24 rounded-full bg-white/5 border border-white/10 grid place-items-center mx-auto text-white/50 text-3xl mb-4 shadow-inner"><i class="fa-solid fa-user-tie"></i></div>
+                    <p class="text-white font-bold text-lg">Ustādh Bilal Ahmed</p>
+                    <p class="text-dark-400 text-sm mt-1">Waiting for teacher to join…</p>
+                  </div>
+                </div>
+                
+                <!-- Local PIP -->
+                <div class="absolute bottom-6 right-6 w-40 aspect-[4/3] rounded-2xl overflow-hidden border-2 border-dark-700 shadow-2xl bg-dark-800">
+                  <video id="localVideo" autoplay muted playsinline class="w-full h-full object-cover hidden"></video>
+                  <div id="localPlaceholder" class="w-full h-full grid place-items-center bg-dark-700"><i class="fa-solid fa-user text-white/30 text-2xl"></i></div>
+                  <span class="absolute bottom-2 left-2 text-[10px] font-bold bg-black/60 text-white px-2 py-0.5 rounded backdrop-blur">You</span>
+                </div>
+
+                <div id="purdahOverlay" class="hidden absolute inset-0 bg-dark-900/95 backdrop-blur-xl grid place-items-center z-10">
+                  <div class="text-center">
+                    <div class="w-20 h-20 rounded-full bg-brand-500/20 border border-brand-400/30 grid place-items-center mx-auto text-brand-300 text-2xl mb-4"><i class="fa-solid fa-user-shield"></i></div>
+                    <p class="text-white font-bold text-xl">Purdah Mode Active</p>
+                    <p class="text-dark-400 text-sm mt-2">Video hidden for privacy. Audio continues.</p>
+                  </div>
+                </div>
+
+                <canvas id="whiteboard" class="hidden absolute inset-0 w-full h-full z-20 cursor-crosshair touch-none"></canvas>
+                
+                <div class="absolute top-6 left-6 flex items-center gap-3 z-30">
+                  <span class="px-3 py-1.5 rounded-lg bg-rose-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg">
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>LIVE
+                  </span>
+                  <span class="px-3 py-1.5 rounded-lg bg-black/50 text-white text-xs font-bold backdrop-blur border border-white/10">Quran · Al-Baqarah</span>
+                </div>
+              </div>
+
+              <!-- Controls -->
+              <div class="p-4 bg-dark-900 flex items-center justify-center gap-3 border-t border-dark-800">
+                <button id="micBtn" class="w-12 h-12 rounded-full bg-dark-800 hover:bg-dark-700 text-white grid place-items-center transition"><i class="fa-solid fa-microphone"></i></button>
+                <button id="camBtn" class="w-12 h-12 rounded-full bg-dark-800 hover:bg-dark-700 text-white grid place-items-center transition"><i class="fa-solid fa-video"></i></button>
+                <button id="purdahToggle" class="h-12 px-6 rounded-full bg-dark-800 hover:bg-dark-700 text-white text-sm font-bold flex items-center gap-2 transition"><i class="fa-solid fa-user-shield"></i>Purdah</button>
+                <button id="wbToggle" class="h-12 px-6 rounded-full bg-dark-800 hover:bg-dark-700 text-white text-sm font-bold flex items-center gap-2 transition"><i class="fa-solid fa-pen-ruler"></i>Whiteboard</button>
+                <button id="endCallBtn" class="w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-700 text-white grid place-items-center transition shadow-lg shadow-rose-500/20"><i class="fa-solid fa-phone-slash"></i></button>
+              </div>
+            </div>
+
+            <!-- Whiteboard Toolbar -->
+            <div id="wbToolbar" class="hidden rounded-3xl bg-white border border-dark-100 shadow-card p-3 flex flex-wrap items-center gap-3">
+              <span class="text-xs font-bold text-dark-500 ml-2">Colors:</span>
+              <button data-pen="#4F46E5" class="wb-color w-8 h-8 rounded-full ring-2 ring-offset-2 ring-brand-500" style="background:#4F46E5"></button>
+              <button data-pen="#F43F5E" class="wb-color w-8 h-8 rounded-full ring-0" style="background:#F43F5E"></button>
+              <button data-pen="#14B8A6" class="wb-color w-8 h-8 rounded-full ring-0" style="background:#14B8A6"></button>
+              <button data-pen="#F59E0B" class="wb-color w-8 h-8 rounded-full ring-0" style="background:#F59E0B"></button>
+              <button data-pen="#0F172A" class="wb-color w-8 h-8 rounded-full ring-0" style="background:#0F172A"></button>
+              <div class="w-px h-8 bg-dark-100 mx-2"></div>
+              <button id="wbEraser" class="px-4 py-2 rounded-xl border border-dark-100 text-xs font-bold text-dark-700 hover:bg-dark-50 transition"><i class="fa-solid fa-eraser mr-2"></i>Eraser</button>
+              <button id="wbClear" class="px-4 py-2 rounded-xl border border-dark-100 text-xs font-bold text-dark-700 hover:bg-dark-50 transition"><i class="fa-solid fa-trash mr-2"></i>Clear</button>
+            </div>
+
+            <!-- Reactions -->
+            <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-6">
+              <h3 class="text-base font-extrabold text-dark-900 mb-4">Class Reactions</h3>
+              <div id="reactionsBar" class="flex flex-wrap gap-3"></div>
+              <div id="reactionFeed" class="mt-4 flex flex-wrap gap-2 min-h-[36px] p-2 bg-dark-50 rounded-xl border border-dark-100"></div>
+            </div>
+          </div>
+
+          <!-- Side Panel -->
+          <div class="space-y-6">
+            <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-6">
+              <h3 class="text-base font-extrabold text-dark-900 mb-4">Session Info</h3>
+              <div class="space-y-3 text-sm font-medium">
+                <div class="flex justify-between"><span class="text-dark-500">Duration</span><span id="sessionTimer" class="font-bold tabular-nums text-dark-900">00:00</span></div>
+                <div class="flex justify-between"><span class="text-dark-500">Network</span><span class="font-bold text-accent-600 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-accent-500"></span>Stable</span></div>
+              </div>
+            </div>
+            <div class="rounded-4xl bg-brand-50 border border-brand-100 p-6">
+              <h3 class="text-sm font-extrabold text-brand-900 mb-2"><i class="fa-solid fa-satellite-dish text-brand-500 mr-2"></i>Signalling</h3>
+              <p class="text-xs text-brand-700 leading-relaxed mb-4">Initialize WebRTC connection with Firebase Realtime Database.</p>
+              <button id="initSignalling" class="w-full py-2.5 rounded-xl bg-white border border-brand-200 text-brand-700 text-xs font-bold hover:bg-brand-100 transition shadow-sm">Connect Peer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Library -->
+        <div id="lmsLibrary" class="hidden">
+          <div class="mb-6 inline-flex p-1.5 rounded-2xl bg-dark-100/50 border border-dark-100 gap-1">
+            <button data-libtab="mushaf" class="lib-tab seg-btn active px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-book-quran mr-2"></i>Mushaf</button>
+            <button data-libtab="qaida" class="lib-tab seg-btn px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-table-cells mr-2"></i>Noorani Qaida</button>
+            <button data-libtab="tafseer" class="lib-tab seg-btn px-5 py-2.5 rounded-xl text-sm font-bold text-dark-500 transition-all"><i class="fa-solid fa-book-open mr-2"></i>Tafseer</button>
+          </div>
+
+          <!-- Mushaf -->
+          <div id="libpanel-mushaf" class="libpanel grid lg:grid-cols-4 gap-6">
+            <div class="lg:col-span-3 rounded-4xl bg-white border border-dark-100 shadow-card overflow-hidden">
+              <div class="px-6 py-4 border-b border-dark-100 flex flex-wrap items-center gap-4 bg-dark-50">
+                <button id="mushafPrev" class="w-10 h-10 rounded-xl border border-dark-100 bg-white grid place-items-center text-dark-700 hover:bg-dark-100 transition shadow-sm"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-dark-500">Page</span>
+                  <input id="mushafPageInput" type="number" min="1" value="1" class="w-20 px-3 py-2 rounded-xl border border-dark-100 text-center text-sm font-bold text-dark-900 outline-none focus:border-brand-500" />
+                  <span id="mushafPageTotal" class="text-sm font-bold text-dark-400">/ 4</span>
+                </div>
+                <button id="mushafNext" class="w-10 h-10 rounded-xl border border-dark-100 bg-white grid place-items-center text-dark-700 hover:bg-dark-100 transition shadow-sm"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                <div class="ml-auto flex items-center gap-3">
+                  <button id="bookmarkBtn" class="px-4 py-2 rounded-xl border border-dark-100 bg-white text-xs font-bold text-dark-700 hover:bg-dark-100 transition shadow-sm"><i class="fa-regular fa-bookmark mr-2"></i>Bookmark</button>
+                  <button id="playPageBtn" class="px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 transition shadow-sm"><i class="fa-solid fa-play mr-2"></i>Play</button>
+                </div>
+              </div>
+              <div class="p-6 sm:p-10 bg-[#FFFDF8]">
+                <div id="mushafGrid" class="border-2 border-amber-100 rounded-2xl p-6 bg-white shadow-inner"></div>
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-6">
+                <h3 class="text-sm font-extrabold text-dark-900 mb-4">Ayah Audio</h3>
+                <div id="ayahAudioList" class="space-y-2 max-h-80 overflow-y-auto no-scrollbar"></div>
+              </div>
+              <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-6">
+                <h3 class="text-sm font-extrabold text-dark-900 mb-4">Bookmarks</h3>
+                <div id="bookmarkList" class="space-y-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Qaida -->
+          <div id="libpanel-qaida" class="libpanel hidden">
+            <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-8">
+              <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                <div>
+                  <h3 class="text-2xl font-extrabold text-dark-900">Noorani Qaida</h3>
+                  <p class="text-sm text-dark-500 mt-1">17 interactive lessons from letters to rules.</p>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-accent-50 text-accent-700 text-sm font-bold shadow-sm border border-accent-100">
+                  <i class="fa-solid fa-circle-check mr-2"></i><span id="qaidaProgressLabel">0 / 17 complete</span>
+                </div>
+              </div>
+              <div id="qaidaGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+            </div>
+          </div>
+
+          <!-- Tafseer -->
+          <div id="libpanel-tafseer" class="libpanel hidden grid lg:grid-cols-3 gap-6">
+            <div class="rounded-4xl bg-white border border-dark-100 shadow-card p-6">
+              <h3 class="text-base font-extrabold text-dark-900 mb-4">Surahs</h3>
+              <div id="surahList" class="space-y-2 max-h-[32rem] overflow-y-auto no-scrollbar"></div>
+            </div>
+            <div class="lg:col-span-2 rounded-4xl bg-white border border-dark-100 shadow-card overflow-hidden">
+              <div class="px-8 py-6 border-b border-dark-100 bg-gradient-to-r from-brand-50 to-white">
+                <p class="text-[10px] font-extrabold uppercase tracking-wider text-brand-600">Irfan-ul-Quran</p>
+                <h3 id="tafseerTitle" class="text-2xl font-extrabold text-dark-900 mt-1">Al-Fātiḥah</h3>
+              </div>
+              <div id="tafseerReader" class="p-8 space-y-6 max-h-[32rem] overflow-y-auto"></div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <!-- PORTAL VIEW -->
+      <!-- ═══ PORTAL VIEW ═══ -->
       <section id="view-portal" class="view">
         <div id="portalContent"></div>
       </section>
 
     </main>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="lg:hidden fixed bottom-0 inset-x-0 z-40 glass border-t border-dark-100 pb-[env(safe-area-inset-bottom)]">
+      <div class="grid grid-cols-4 gap-1 p-2">
+        <button data-nav="home" class="tab-item active flex flex-col items-center gap-1 py-2 text-dark-400">
+          <span class="tab-icon w-10 h-8 rounded-xl grid place-items-center transition-all"><i class="fa-solid fa-house text-lg"></i></span>
+          <span class="text-[10px] font-bold">Home</span>
+        </button>
+        <button data-nav="worship" class="tab-item flex flex-col items-center gap-1 py-2 text-dark-400">
+          <span class="tab-icon w-10 h-8 rounded-xl grid place-items-center transition-all"><i class="fa-solid fa-mosque text-lg"></i></span>
+          <span class="text-[10px] font-bold">Worship</span>
+        </button>
+        <button data-nav="lms" class="tab-item flex flex-col items-center gap-1 py-2 text-dark-400">
+          <span class="tab-icon w-10 h-8 rounded-xl grid place-items-center transition-all"><i class="fa-solid fa-video text-lg"></i></span>
+          <span class="text-[10px] font-bold">Learn</span>
+        </button>
+        <button data-nav="portal" class="tab-item flex flex-col items-center gap-1 py-2 text-dark-400">
+          <span class="tab-icon w-10 h-8 rounded-xl grid place-items-center transition-all"><i class="fa-solid fa-user text-lg"></i></span>
+          <span class="text-[10px] font-bold">Portal</span>
+        </button>
+      </div>
+    </nav>
   </div>
 </div>
 
-<div id="toastRoot" class="fixed bottom-6 right-6 z-[100] flex flex-col gap-2 items-end pointer-events-none"></div>
+<!-- Modals & Toasts -->
+<div id="modalRoot"></div>
+<div id="toastRoot" class="fixed bottom-24 lg:bottom-8 right-4 sm:right-8 z-[100] flex flex-col gap-3 items-end pointer-events-none"></div>
+<div id="printSheet"></div>
 
 <script>
+/* ══════════════════════════════════════════════════════════════════
+   NOORLY GLOBAL QURAN ACADEMY — APPLICATION SCRIPT
+   Fully preserved logic with world-class UI
+   ══════════════════════════════════════════════════════════════════ */
 'use strict';
 
-// Database Connection (Named 'db' to avoid conflict)
-const dbUrl = 'https://krrzzjjerjhwpowwcufa.supabase.co';
-const dbKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtycnp6amplcmpod3Bvd3djdWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMjQyMTcsImV4cCI6MjExMDcwMDIxN30.BvAIHmzozGsQ_4OwxE5OIRVFy5ZNt5vy_7H_EIcTJI4';
-let db = null;
-try { if (window.supabase) db = window.supabase.createClient(dbUrl, dbKey); } catch(e) { console.log(e); }
+// Supabase Config
+const SUPABASE_URL = 'https://krrzzjjerjhwpowwcufa.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtycnp6amplcmpod3Bvd3djdWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMjQyMTcsImV4cCI6MjExMDcwMDIxN30.BvAIHmzozGsQ_4OwxE5OIRVFy5ZNt5vy_7H_EIcTJI4';
+const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const RESERVED_ADMIN_EMAIL = 'mnc.sahjavi@gmail.com';
 
+// Utilities
 const $ = (s,r=document)=>r.querySelector(s);
 const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const pad = (n,l=2)=>String(n).padStart(l,'0');
+const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+const D2R = Math.PI/180, R2D = 180/Math.PI;
+const esc = s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function toast(msg,type='success'){
+  const m={success:{b:'border-brand-200',i:'fa-circle-check',c:'text-brand-600'},error:{b:'border-rose-200',i:'fa-circle-exclamation',c:'text-rose-500'},info:{b:'border-dark-200',i:'fa-circle-info',c:'text-dark-500'}};
+  const t=m[type]||m.success;
   const el=document.createElement('div');
-  el.className=`p-4 rounded-xl shadow-lg bg-white border ${type==='error'?'border-red-200':'border-brand-200'} text-sm font-bold text-ink-900 flex items-center gap-2`;
-  el.innerHTML=`<i class="fa-solid ${type==='error'?'fa-circle-exclamation text-red-500':'fa-circle-check text-brand-500'}"></i> ${msg}`;
+  el.className=`toast pointer-events-auto flex items-center gap-3 px-5 py-4 rounded-2xl bg-white border ${t.b} shadow-float max-w-sm`;
+  el.innerHTML=`<i class="fa-solid ${t.i} ${t.c}"></i><p class="text-sm font-bold text-dark-800 leading-snug flex-1">${esc(msg)}</p>`;
   $('#toastRoot').appendChild(el);
-  setTimeout(()=>el.remove(), 3000);
+  setTimeout(()=>{el.style.transition='all 0.3s ease';el.style.opacity='0';el.style.transform='translateX(20px)';},3000);
+  setTimeout(()=>el.remove(),3400);
 }
 
-// ═══ SKIP LOGIN FUNCTION (Bypass Database) ═══
+function openModal(html,opts={}){
+  $('#modalRoot').innerHTML=`<div class="fixed inset-0 z-[90] flex items-center justify-center p-4 sm:p-6"><div class="absolute inset-0 bg-dark-900/60 backdrop-blur-sm" data-modal-close></div><div class="modal-card relative w-full ${opts.wide?'max-w-3xl':'max-w-lg'} max-h-[88vh] overflow-y-auto no-scrollbar bg-white rounded-4xl shadow-2xl p-6 sm:p-8">${html}</div></div>`;
+  $$('[data-modal-close]').forEach(b=>b.addEventListener('click',()=>{$('#modalRoot').innerHTML='';document.body.style.overflow='';}));
+  document.body.style.overflow='hidden';
+}
+
+function fmtTime(d){if(!d||isNaN(d))return '—';return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',hour12:true});}
+function fmtDate(d){if(!d)return '—';return new Date(d).toLocaleDateString();}
+function fmtMoney(n,cur){
+  const s={USD:'$',PKR:'₨',GBP:'£',EUR:'€',SAR:'﷼',AED:'د.إ',CAD:'C$',AUD:'A$'};
+  const dc=cur==='PKR'?0:2;
+  return (s[cur]||'')+Number(n).toLocaleString('en-US',{minimumFractionDigits:dc,maximumFractionDigits:dc});
+}
+function computeInitials(name){
+  if(!name)return 'NA';
+  const p=String(name).trim().split(/\s+/).filter(Boolean);
+  if(!p.length)return 'NA';
+  return (p.map(w=>w[0]||'').join('').slice(0,2)||'NA').toUpperCase();
+}
+
+/* ═══ STATE ═══ */
+const State = {
+  user: null, view: 'home', worshipTab: 'prayer', lmsMode: 'live', libraryTab: 'mushaf',
+  authMode: 'login', authRole: 'student', adminMode: false, madhab: 'Hanafi',
+  coords: { lat: 21.4225, lng: 39.8262 }, prayerTimes: null, qiblaBearing: 0,
+  deviceHeading: 0, compassActive: false, tasbeeh: { count: 0, target: 33 },
+  namesMode: 'allah', mushafPage: 1, bookmarks: [], currentSurah: 0, qaidaDone: [],
+  wb: { active: false, color: '#4F46E5', erasing: false, drawing: false },
+  quiz: { index: 0, score: 0, answered: false }, sessionStart: null, mediaStream: null,
+  recorder: null, peer: null, studentRecord: null, teacherRecord: null
+};
+
+/* ═══ DEMO SKIP ═══ */
 window.skipLogin = function() {
+  State.user = { id: 'demo', name: 'Demo User', role: 'admin', initials: 'DU', email: 'demo@noorly.com' };
   $('#authScreen').classList.add('hidden');
   $('#appShell').classList.remove('hidden');
   
-  // Set UI to Demo Admin
-  $('#sideUserName').textContent = 'Demo Admin';
-  $('#sideUserRole').textContent = 'admin';
-  $('#sideAvatar').textContent = 'DA';
-  $('#topAvatar').textContent = 'DA';
+  $('#sideUserName').textContent = State.user.name;
+  $('#sideUserRole').textContent = State.user.role;
+  $('#sideAvatar').textContent = State.user.initials;
+  $('#topAvatar').textContent = State.user.initials;
   
-  renderDemoPortal();
-  toast('Bina login ke Academy open ho gayi!');
+  navigate('home');
+  toast('Demo mode activated. Explore the academy!');
 };
 
-function renderDemoPortal() {
-  $('#portalContent').innerHTML = `
-    <div class="space-y-5">
-      <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-extrabold text-ink-900">Admin Dashboard</h1>
-        <div class="px-3 py-1 bg-brand-500 text-white text-xs font-bold rounded-lg shadow-sm">DEMO MODE</div>
-      </div>
-      <div class="bg-white p-6 rounded-2xl shadow-card border border-brand-100">
-        <h3 class="text-lg font-bold text-ink-900 mb-2">Welcome to Noorly!</h3>
-        <p class="text-sm text-ink-500">Yeh demo view hai. Yahan aap saare features dekh sakte hain.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-         <div class="bg-brand-50 p-6 rounded-2xl border border-brand-100">
-            <h4 class="font-bold text-brand-700">Total Students</h4>
-            <p class="text-3xl font-extrabold mt-2">142</p>
-         </div>
-         <div class="bg-sky2-50 p-6 rounded-2xl border border-sky2-100">
-            <h4 class="font-bold text-sky2-700">Active Teachers</h4>
-            <p class="text-3xl font-extrabold mt-2">18</p>
-         </div>
-      </div>
-    </div>
-  `;
+/* ═══ NAVIGATION ═══ */
+const VIEW_META = {
+  home: { title: 'Dashboard', sub: 'Assalāmu ʿalaykum — welcome back' },
+  worship: { title: 'Worship Hub', sub: 'Prayer, Qibla & daily remembrance' },
+  lms: { title: 'Live Studio & LMS', sub: 'Classes and self-study library' },
+  portal: { title: 'My Portal', sub: 'Your personalised dashboard' }
+};
+
+function navigate(view) {
+  State.view = view;
+  $$('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
+  $$('[data-nav]').forEach(b => b.classList.toggle('active', b.dataset.nav === view));
+  
+  const meta = VIEW_META[view] || VIEW_META.home;
+  if($('#topTitle')) $('#topTitle').textContent = meta.title;
+  if($('#topSubtitle')) $('#topSubtitle').textContent = meta.sub;
+  
+  if (view === 'portal') renderPortal();
+  if (view === 'worship') { renderPrayerList(); drawQibla(); updateCountdown(); }
+  
+  if($('#sidebar')) $('#sidebar').classList.add('-translate-x-full');
+  if($('#sidebarBackdrop')) $('#sidebarBackdrop').classList.add('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function navigate(view){
-  $$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view));
-  $$('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===view));
-  const titles = {home:'Dashboard', worship:'Worship Hub', lms:'LMS', portal:'My Portal'};
-  $('#topTitle').textContent = titles[view] || 'Dashboard';
-  if($('#sidebar').classList.contains('lg:translate-x-0') === false) {
-     $('#sidebar').classList.add('-translate-x-full');
+/* ═══ AUTH & LOGIC (Preserved) ═══ */
+function setAuthMode(mode) {
+  State.authMode = mode;
+  const isReg = mode === 'register';
+  if(State.adminMode && isReg) State.adminMode = false;
+  
+  const badge = $('#adminBadge');
+  if (State.adminMode) {
+    if(badge) badge.classList.remove('hidden');
+    $('#authTitle').textContent = 'Administrator Sign In';
+    $('#authSubtitle').textContent = 'Authorized staff only.';
+    $('#authSubmitBtn').textContent = 'Admin Sign In';
+    $('#nameWrap').classList.add('hidden');
+    $('#roleWrap').classList.add('hidden');
+    $('#authSwitchText').textContent = 'Not an admin?';
+    $('#authToggleBtn').textContent = 'Return to public login';
+    $('#authToggleBtn').dataset.mode = 'exit-admin';
+  } else {
+    if(badge) badge.classList.add('hidden');
+    $('#authTitle').textContent = isReg ? 'Create account' : 'Welcome back';
+    $('#authSubtitle').textContent = isReg ? 'Begin your Qur’ān journey.' : 'Sign in to continue.';
+    $('#nameWrap').classList.toggle('hidden', !isReg);
+    $('#roleWrap').classList.toggle('hidden', !isReg);
+    $('#authSubmitBtn').textContent = isReg ? 'Sign Up' : 'Sign In';
+    $('#authSwitchText').textContent = isReg ? 'Already have an account?' : 'New to Noorly?';
+    $('#authToggleBtn').textContent = isReg ? 'Sign in' : 'Create account';
+    $('#authToggleBtn').dataset.mode = isReg ? 'login' : 'register';
   }
 }
 
-function renderHomeData() {
-  $('#featuresGrid').innerHTML = `
-    <button onclick="navigate('worship')" class="text-left p-5 rounded-2xl bg-white border border-brand-100 hover:shadow-lg transition"><div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 grid place-items-center mb-3"><i class="fa-solid fa-mosque"></i></div><p class="font-bold text-ink-900">Worship Hub</p></button>
-    <button onclick="navigate('lms')" class="text-left p-5 rounded-2xl bg-white border border-brand-100 hover:shadow-lg transition"><div class="w-10 h-10 rounded-xl bg-sky2-50 text-sky2-500 grid place-items-center mb-3"><i class="fa-solid fa-video"></i></div><p class="font-bold text-ink-900">Live Studio</p></button>
-    <button onclick="navigate('portal')" class="text-left p-5 rounded-2xl bg-white border border-brand-100 hover:shadow-lg transition"><div class="w-10 h-10 rounded-xl bg-sand-100 text-ink-700 grid place-items-center mb-3"><i class="fa-solid fa-user-shield"></i></div><p class="font-bold text-ink-900">My Portal</p></button>
-  `;
-  $('#coursesGrid').innerHTML = `
-    <div class="p-5 rounded-2xl bg-white border border-brand-100 hover:shadow-lg transition"><h3 class="font-bold text-ink-900">16-Line Quran</h3><p class="text-sm text-gray-500 mt-2">$45/mo</p></div>
-    <div class="p-5 rounded-2xl bg-white border border-brand-100 hover:shadow-lg transition"><h3 class="font-bold text-ink-900">Noorani Qaida</h3><p class="text-sm text-gray-500 mt-2">$40/mo</p></div>
-    <div class="p-5 rounded-2xl bg-white border border-brand-100 hover:shadow-lg transition"><h3 class="font-bold text-ink-900">Irfan-ul-Quran</h3><p class="text-sm text-gray-500 mt-2">$50/mo</p></div>
-    <div class="p-5 rounded-2xl bg-white border border-brand-100 hover:shadow-lg transition"><h3 class="font-bold text-ink-900">Hifz-ul-Quran</h3><p class="text-sm text-gray-500 mt-2">$60/mo</p></div>
-  `;
+async function doLogin(email, password, name = '', role = 'student') {
+  if(!supabase) { toast('Database not connected', 'error'); return; }
+  const clean = (email || '').trim().toLowerCase();
+  const btn = $('#authSubmitBtn');
+  const orig = btn.textContent;
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Please wait…';
+
+  try {
+    if (State.authMode === 'register') {
+      const safeRole = ['student', 'teacher'].includes(role) ? role : 'student';
+      const { data, error } = await supabase.auth.signUp({ email: clean, password, options: { data: { full_name: name || clean.split('@')[0], role: safeRole, initials: computeInitials(name || clean) } } });
+      if (error) throw error;
+      await new Promise(r => setTimeout(r, 600));
+      toast('Account created! Welcome.', 'success');
+    } else {
+      const { data, error } = await supabase.auth.signInWithPassword({ email: clean, password });
+      if (error) throw error;
+    }
+    
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) throw new Error('No session');
+
+    // Load profile
+    const { data: profile } = await supabase.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
+    State.user = profile ? { id: profile.id, name: profile.full_name, role: profile.role, initials: profile.initials || computeInitials(profile.full_name), email: profile.email } : { id: session.user.id, name: session.user.email.split('@')[0], role: 'student', initials: computeInitials(session.user.email), email: session.user.email };
+
+    if (State.adminMode && State.user.role !== 'admin') {
+      await supabase.auth.signOut();
+      throw new Error('Not an authorized admin.');
+    }
+
+    enterApp();
+  } catch (err) {
+    let msg = err.message || 'Login failed';
+    if (msg.includes('Invalid login credentials')) msg = 'Email or password is incorrect.';
+    toast(msg, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = orig;
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderHomeData();
+function enterApp() {
+  const a = State.user;
+  $('#authScreen').classList.add('hidden');
+  $('#appShell').classList.remove('hidden');
+  $('#sideUserName').textContent = a.name;
+  $('#sideUserRole').textContent = a.role;
+  $('#sideAvatar').textContent = a.initials;
+  $('#topAvatar').textContent = a.initials;
+  if($('#topAvatarMobile')) $('#topAvatarMobile').textContent = a.initials;
   
-  // Sidebar Toggle
-  $('#menuBtn')?.addEventListener('click', ()=>$('#sidebar')?.classList.remove('-translate-x-full'));
-  $('#sidebarClose')?.addEventListener('click', ()=>$('#sidebar')?.classList.add('-translate-x-full'));
-  $('#logoutBtn')?.addEventListener('click', ()=>{ location.reload(); });
+  toast(`Assalāmu ʿalaykum, ${a.name.split(' ')[0]}!`, 'success');
+  renderPortal();
+  if (!State.prayerTimes) initPrayerTimes();
+  navigate('home');
+}
 
-  // Navigation
-  $$('[data-nav]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.nav)));
+/* ═══ CORE RENDERING (Home, Features, Courses) ═══ */
+const ACCENT_MAP = {
+  brand: { bg:'bg-brand-50', text:'text-brand-600', grad:'from-brand-600 to-brand-800' },
+  sky: { bg:'bg-sky-50', text:'text-sky-600', grad:'from-sky-500 to-sky-700' },
+  sand: { bg:'bg-amber-50', text:'text-amber-600', grad:'from-amber-400 to-amber-600' }
+};
 
-  // Auth Toggles
-  $('#authToggleBtn')?.addEventListener('click', ()=>{
-    const nameWrap = $('#nameWrap');
-    const roleWrap = $('#roleWrap');
-    const title = $('#authTitle');
-    const btn = $('#authSubmitBtn');
-    
-    if(nameWrap.classList.contains('hidden')) {
-      nameWrap.classList.remove('hidden');
-      roleWrap.classList.remove('hidden');
-      title.textContent = 'Create account';
-      btn.textContent = 'Sign Up';
-    } else {
-      nameWrap.classList.add('hidden');
-      roleWrap.classList.add('hidden');
-      title.textContent = 'Welcome back';
-      btn.textContent = 'Sign In';
-    }
+const COURSES = [
+  { id:'q16', name:'16-Line Quran', tag:'Nazra', price:45, icon:'fa-book-quran', desc:'Master fluent recitation.', accent:'brand' },
+  { id:'qaida', name:'Noorani Qaida', tag:'Foundation', price:40, icon:'fa-spell-check', desc:'The proven pathway for beginners.', accent:'sky' },
+  { id:'irfan', name:'Irfan-ul-Quran', tag:'Tafseer', price:50, icon:'fa-book-open', desc:'Verse-by-verse translation.', accent:'sand' },
+  { id:'hifz', name:'Hifz-ul-Quran', tag:'Memorisation', price:60, icon:'fa-brain', desc:'Structured memorisation plan.', accent:'brand' }
+];
+
+const FEATURES = [
+  { icon:'fa-mosque', title:'Worship Hub', sub:'Prayer times & Qibla', view:'worship', color:'brand' },
+  { icon:'fa-video', title:'Live Studio', sub:'1-to-1 WebRTC class', view:'lms', color:'sky' },
+  { icon:'fa-book-quran', title:'Mushaf Reader', sub:'16-line + audio', view:'lms', color:'sand' },
+  { icon:'fa-user-shield', title:'My Portal', sub:'Reports & invoices', view:'portal', color:'brand' }
+];
+
+function renderHome() {
+  // Features
+  $('#featuresGrid').innerHTML = FEATURES.map(f => {
+    const a = ACCENT_MAP[f.color] || ACCENT_MAP.brand;
+    return `<button data-feature-view="${f.view}" class="group relative text-left rounded-3xl bg-white border border-dark-100 p-6 shadow-card hover:shadow-float hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+      <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full ${a.bg} opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
+      <div class="relative">
+        <div class="w-12 h-12 rounded-2xl ${a.bg} ${a.text} grid place-items-center text-xl mb-4"><i class="fa-solid ${f.icon}"></i></div>
+        <p class="text-base font-extrabold text-dark-900">${f.title}</p>
+        <p class="text-xs font-medium text-dark-500 mt-1">${f.sub}</p>
+      </div>
+    </button>`;
+  }).join('');
+  $$('[data-feature-view]').forEach(b => b.addEventListener('click', () => navigate(b.dataset.featureView)));
+
+  // Courses
+  $('#coursesGrid').innerHTML = COURSES.map(c => {
+    const a = ACCENT_MAP[c.accent] || ACCENT_MAP.brand;
+    return `<div class="group rounded-3xl bg-white border border-dark-100 shadow-card hover:shadow-float hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
+      <div class="relative h-32 bg-gradient-to-br ${a.grad} p-6 flex flex-col justify-between">
+        <div class="flex justify-between items-start">
+          <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur text-white grid place-items-center text-lg"><i class="fa-solid ${c.icon}"></i></div>
+          <span class="px-3 py-1 rounded-lg bg-white/20 backdrop-blur text-white text-[10px] font-bold">${c.tag}</span>
+        </div>
+      </div>
+      <div class="p-6 flex-1 flex flex-col">
+        <h3 class="text-base font-extrabold text-dark-900">${c.name}</h3>
+        <p class="text-xs text-dark-500 mt-2 leading-relaxed flex-1">${c.desc}</p>
+        <div class="mt-5 flex items-center justify-between border-t border-dark-50 pt-4">
+          <div>
+            <p class="text-lg font-extrabold text-dark-900">$${c.price}<span class="text-[10px] font-semibold text-dark-400">/mo</span></p>
+          </div>
+          <button data-course="${c.id}" class="course-enroll w-10 h-10 rounded-xl bg-dark-50 text-dark-600 grid place-items-center hover:bg-brand-600 hover:text-white transition-colors"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  $$('.course-enroll').forEach(b => b.addEventListener('click', () => {
+    const c = COURSES.find(x => x.id === b.dataset.course);
+    openTrialModal(c ? c.name : '');
+  }));
+}
+
+function renderPortal() {
+  const host = $('#portalContent');
+  if (!State.user) { host.innerHTML = '<div class="text-center p-10">Please sign in.</div>'; return; }
+
+  // Unified Portal Header
+  let html = `
+    <div class="rounded-4xl bg-gradient-to-r from-brand-900 to-dark-900 p-8 sm:p-12 text-white shadow-2xl mb-8 relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-brand-500/30 blur-3xl"></div>
+      <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-5">
+          <div class="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 backdrop-blur grid place-items-center text-2xl font-extrabold">${State.user.initials}</div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-brand-300">${State.user.role} Portal</p>
+            <h1 class="text-3xl font-extrabold mt-1">${esc(State.user.name)}</h1>
+            <p class="text-sm text-dark-300 mt-1">${esc(State.user.email)}</p>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="logout()" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-sm font-bold transition">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  if (State.user.role === 'admin') {
+    html += `
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-3xl shadow-card border border-dark-100">
+          <p class="text-xs font-bold text-dark-500 uppercase">Total Students</p>
+          <p class="text-4xl font-extrabold text-brand-600 mt-2">1,240</p>
+        </div>
+        <div class="bg-white p-6 rounded-3xl shadow-card border border-dark-100">
+          <p class="text-xs font-bold text-dark-500 uppercase">Active Teachers</p>
+          <p class="text-4xl font-extrabold text-accent-500 mt-2">45</p>
+        </div>
+        <div class="bg-white p-6 rounded-3xl shadow-card border border-dark-100">
+          <p class="text-xs font-bold text-dark-500 uppercase">Monthly Revenue</p>
+          <p class="text-4xl font-extrabold text-dark-900 mt-2">$12,400</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-4xl shadow-card border border-dark-100 p-8">
+        <h3 class="text-xl font-extrabold mb-4">Admin Tools</h3>
+        <p class="text-sm text-dark-500">Manage students, teachers, ledger, and database backups here.</p>
+      </div>
+    `;
+  } else if (State.user.role === 'teacher') {
+    html += `
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="bg-white rounded-4xl shadow-card border border-dark-100 p-8">
+          <h3 class="text-lg font-extrabold mb-4">My Students</h3>
+          <p class="text-sm text-dark-500 mb-4">Review diaries and homework submissions.</p>
+          <div class="p-4 bg-dark-50 rounded-xl border border-dark-100 text-sm font-medium">Aisha Rahman · Juz 30</div>
+        </div>
+        <div class="bg-white rounded-4xl shadow-card border border-dark-100 p-8">
+          <h3 class="text-lg font-extrabold mb-4">Teacher Actions</h3>
+          <button class="w-full py-3 rounded-xl bg-brand-50 text-brand-700 font-bold text-sm">Submit Salary Slip</button>
+        </div>
+      </div>
+    `;
+  } else {
+    // Student
+    html += `
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white rounded-4xl shadow-card border border-dark-100 p-8">
+          <h3 class="text-lg font-extrabold mb-4">Today's Sabaq</h3>
+          <div class="p-6 bg-brand-50 rounded-2xl border border-brand-100 text-center">
+            <p class="arabic text-3xl text-brand-900">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-4xl shadow-card border border-dark-100 p-8">
+          <h3 class="text-lg font-extrabold mb-4">Actions</h3>
+          <button class="w-full py-3 mb-3 rounded-xl bg-brand-600 text-white font-bold text-sm shadow-md">Record Homework</button>
+          <button class="w-full py-3 rounded-xl bg-dark-50 text-dark-700 font-bold text-sm">View Report Card</button>
+        </div>
+      </div>
+    `;
+  }
+
+  host.innerHTML = html;
+}
+
+/* ═══ INIT & EVENTS ═══ */
+function init() {
+  renderHome();
+  
+  // Auth Toggle
+  $('#authToggleBtn')?.addEventListener('click', () => {
+    const m = $('#authToggleBtn').dataset.mode;
+    if (m === 'exit-admin') { State.adminMode = false; setAuthMode('login'); }
+    else setAuthMode(State.authMode === 'login' ? 'register' : 'login');
   });
-});
+
+  // Admin Link
+  $('#adminLoginLink')?.addEventListener('click', () => {
+    State.adminMode = true; setAuthMode('login');
+    $('#authEmail').value = ''; $('#authPassword').value = ''; $('#authEmail').focus();
+  });
+
+  // Role Picker
+  $$('.role-pick').forEach(b => b.addEventListener('click', () => {
+    State.authRole = b.dataset.role;
+    $$('.role-pick').forEach(x => {
+      const on = x.dataset.role === State.authRole;
+      x.className = `role-pick rounded-2xl border py-3 text-xs transition-all ${on ? 'border-brand-500 bg-brand-50 font-bold text-brand-700' : 'border-dark-100 bg-white font-semibold text-dark-500 hover:border-brand-300'}`;
+    });
+  }));
+
+  // Login Form
+  $('#authForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    doLogin($('#authEmail').value, $('#authPassword').value, $('#authName').value, State.authRole);
+  });
+
+  // Nav
+  $$('[data-nav]').forEach(b => b.addEventListener('click', () => navigate(b.dataset.nav)));
+  $('#menuBtn')?.addEventListener('click', () => $('#sidebar').classList.remove('-translate-x-full'));
+  $('#sidebarClose')?.addEventListener('click', () => $('#sidebar').classList.add('-translate-x-full'));
+  $('#logoutBtn')?.addEventListener('click', () => location.reload());
+
+  // Worship Tabs
+  $$('#worshipTabs [data-wtab]').forEach(b => b.addEventListener('click', () => {
+    State.worshipTab = b.dataset.wtab;
+    $$('#worshipTabs .seg-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    $$('.wpanel').forEach(p => p.classList.add('hidden'));
+    $(`#wpanel-${State.worshipTab}`).classList.remove('hidden');
+    if (State.worshipTab === 'qibla') setTimeout(drawQibla, 50);
+  }));
+
+  // LMS Tabs
+  $$('.lms-mode').forEach(b => b.addEventListener('click', () => {
+    State.lmsMode = b.dataset.lmsmode;
+    $$('.lms-mode').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    $('#lmsLive').classList.toggle('hidden', State.lmsMode !== 'live');
+    $('#lmsLibrary').classList.toggle('hidden', State.lmsMode !== 'library');
+  }));
+
+  // Clock
+  setInterval(() => {
+    const el = $('#topClock');
+    if (el) el.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
