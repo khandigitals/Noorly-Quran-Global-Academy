@@ -373,13 +373,12 @@
 
 <script>
 /* ══════════════════════════════════════════════════════════════════
-   NOORLY — FINAL PRODUCTION FILE (WITH STRIPE)
+   NOORLY — FINAL PRODUCTION FILE (WITH STRIPE & SELF-HEALING DB)
    ══════════════════════════════════════════════════════════════════ */
 'use strict';
 
-// ⚠️ YAHAN APNI STRIPE PRICE ID PASTE KAREIN (Jo aapne copy ki thi)
-const STRIPE_PRICE_MONTHLY = 'price_1XXXXX';  // <--- Yahan apni ID dalein
-const STRIPE_PRICE_YEARLY = 'price_1XXXXX';   // <--- Yearly ID (agar banayi hai toh)
+// ⚠️ YAHAN APNI STRIPE PRICE ID PASTE KAREIN
+const STRIPE_PRICE_MONTHLY = 'price_1XXXXX'; 
 
 const SUPABASE_URL = 'https://krrzzjjerjhwpowwcufa.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtycnp6amplcmpod3Bvd3djdWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMjQyMTcsImV4cCI6MjExMDcwMDIxN30.BvAIHmzozGsQ_4OwxE5OIRVFy5ZNt5vy_7H_EIcTJI4';
@@ -455,11 +454,6 @@ const State={
 };
 
 /* ═══ DB HELPERS ═══ */
-async function dbGetProfile(){
-  if(!State.user?.id)return null;
-  const {data}=await supabase.from('profiles').select('*').eq('id',State.user.id).single();
-  return data;
-}
 async function dbGetStudentRecord(){
   if(!State.user?.id)return null;
   const {data}=await supabase.from('students').select('*, courses(id,name,price_usd), teachers(id, profiles(full_name))').eq('profile_id',State.user.id).maybeSingle();
@@ -470,47 +464,12 @@ async function dbGetTeacherRecord(){
   const {data}=await supabase.from('teachers').select('*').eq('profile_id',State.user.id).maybeSingle();
   return data;
 }
-async function dbGetMyDiary(limit=20){
-  if(!State.studentRecord?.id)return [];
-  const {data}=await supabase.from('diary_entries').select('*, teachers(profiles(full_name))').eq('student_id',State.studentRecord.id).order('entry_date',{ascending:false}).limit(limit);
-  return data||[];
-}
-async function dbGetMyHomework(limit=20){
-  if(!State.studentRecord?.id)return [];
-  const {data}=await supabase.from('homework').select('*').eq('student_id',State.studentRecord.id).order('submitted_at',{ascending:false}).limit(limit);
-  return data||[];
-}
-async function dbGetTeacherStudents(){
-  if(!State.teacherRecord?.id)return [];
-  const {data}=await supabase.from('students').select('*, profiles!students_profile_id_fkey(full_name,email,initials), courses(name)').eq('teacher_id',State.teacherRecord.id);
-  return data||[];
-}
-async function dbGetTeacherHomework(){
-  if(!State.teacherRecord?.id)return [];
-  const {data}=await supabase.from('homework').select('*, students(profiles(full_name))').eq('teacher_id',State.teacherRecord.id).order('submitted_at',{ascending:false}).limit(20);
-  return data||[];
-}
-async function dbReviewHomework(homeworkId,status,feedback=''){
-  return await supabase.from('homework').update({status,teacher_feedback:feedback,reviewed_at:new Date().toISOString()}).eq('id',homeworkId);
-}
-async function dbSubmitHomework(studentId,teacherId,title,audioUrl,durationSec){
-  return await supabase.from('homework').insert({student_id:studentId,teacher_id:teacherId,title,audio_url:audioUrl,duration_seconds:durationSec,status:'pending'});
-}
-async function dbUploadHomework(file,filename){
-  const {data,error}=await supabase.storage.from('homework').upload(filename,file,{contentType:file.type||'audio/webm',upsert:false});
-  if(error){console.error(error);return null;}
-  const {data:urlData}=supabase.storage.from('homework').getPublicUrl(filename);
-  return urlData.publicUrl;
-}
 async function dbSyncTasbeeh(count,target){
   if(!State.user?.id)return;
   await supabase.from('tasbeeh_stats').upsert({profile_id:State.user.id,total_count:count,today_count:count,target,updated_at:new Date().toISOString()},{onConflict:'profile_id'});
 }
-async function dbAddDiaryEntry(studentId,teacherId,entry){
-  return await supabase.from('diary_entries').insert({student_id:studentId,teacher_id:teacherId,...entry});
-}
 
-/* ═══ AUTH ═══ */
+/* ═══ AUTH (FIXED) ═══ */
 function setAuthMode(mode){
   State.authMode=mode;
   const isReg=mode==='register';
@@ -571,9 +530,9 @@ async function doLogin(email,password,name='',role='student'){
     const {data:{session}}=await supabase.auth.getSession();
     if(!session){toast('No session established.','error');return;}
     await loadUserFromSession(session.user.id);
+    
     if(State.adminMode){
-      const profile=await dbGetProfile();
-      if(!profile||profile.role!=='admin'||profile.email?.toLowerCase()!==RESERVED_ADMIN_EMAIL){
+      if(State.user.role!=='admin'||State.user.email?.toLowerCase()!==RESERVED_ADMIN_EMAIL){
         await supabase.auth.signOut();
         throw new Error('Not an authorized admin.');
       }
@@ -591,12 +550,40 @@ async function doLogin(email,password,name='',role='student'){
 }
 
 async function loadUserFromSession(userId){
-  const {data:profile}=await supabase.from('profiles').select('*').eq('id',userId).single();
-  if(!profile)return false;
-  State.user={id:profile.id,name:profile.full_name,role:profile.role,initials:profile.initials||computeInitials(profile.full_name),email:profile.email};
-  if(profile.role==='student')State.studentRecord=await dbGetStudentRecord();
-  if(profile.role==='teacher')State.teacherRecord=await dbGetTeacherRecord();
-  return true;
+  try {
+    const {data:profile} = await supabase.from('profiles').select('*').eq('id',userId).maybeSingle();
+    
+    if(!profile) {
+      // Self-healing: Agar profile missing hai toh bana lo
+      const {data:{user}} = await supabase.auth.getUser();
+      if(!user) return false;
+      
+      let role = 'student';
+      if(user.email.toLowerCase() === RESERVED_ADMIN_EMAIL) role = 'admin';
+      else if(user.user_metadata?.role) role = user.user_metadata.role;
+      
+      const newProfile = {
+        id: user.id,
+        email: user.email,
+        full_name: user.user_metadata?.full_name || user.email.split('@')[0],
+        initials: computeInitials(user.user_metadata?.full_name || user.email),
+        role: role
+      };
+      
+      await supabase.from('profiles').insert(newProfile).catch(()=>{});
+      
+      State.user = { id: user.id, name: newProfile.full_name, role: role, initials: newProfile.initials, email: newProfile.email };
+    } else {
+      State.user = { id: profile.id, name: profile.full_name, role: profile.role, initials: profile.initials || computeInitials(profile.full_name), email: profile.email };
+    }
+    
+    if(State.user.role==='student')State.studentRecord=await dbGetStudentRecord();
+    if(State.user.role==='teacher')State.teacherRecord=await dbGetTeacherRecord();
+    return true;
+  } catch (e) {
+    console.error("Login error:", e);
+    return false;
+  }
 }
 
 function enterApp(){
@@ -1002,8 +989,8 @@ async function loadTeacherData(){
     $$('.ttab').forEach(x=>{x.classList.remove('active','bg-brand-500','text-white');x.classList.add('text-ink-500');});
     b.classList.add('active','bg-brand-500','text-white');b.classList.remove('text-ink-500');
     if(b.dataset.ttab==='students'){
-      const students=await dbGetTeacherStudents();
-      body.innerHTML=`<h3 class="text-[15px] font-extrabold mb-4">My Students</h3><div class="space-y-2.5">${students.map(s=>`<div class="rounded-2xl border border-ink-100/80 p-3.5"><p class="text-[12.5px] font-bold">${esc(s.profiles?.full_name)}</p><p class="text-[10.5px] text-ink-500">${esc(s.courses?.name)}</p></div>`).join('')}</div>`;
+      const {data:students}=await supabase.from('students').select('*, profiles!students_profile_id_fkey(full_name)').eq('teacher_id',State.teacherRecord?.id||'00000000-0000-0000-0000-000000000000');
+      body.innerHTML=`<h3 class="text-[15px] font-extrabold mb-4">My Students</h3><div class="space-y-2.5">${(students||[]).map(s=>`<div class="rounded-2xl border border-ink-100/80 p-3.5"><p class="text-[12.5px] font-bold">${esc(s.profiles?.full_name)}</p></div>`).join('')}</div>`;
     } else {
       body.innerHTML=`<h3 class="text-[15px] font-extrabold mb-4">Add Diary</h3><p class="text-[12px] text-ink-500">Feature working (form yahan aayega)</p>`;
     }
@@ -1087,7 +1074,6 @@ async function boot(){
   applyLocation(State.coords.lat,State.coords.lng,'Makkah, Saudi Arabia');
 
   try{await restoreSession();}catch(e){console.warn(e);}
-  // Handle Stripe return
   handlePaymentReturn();
 }
 
