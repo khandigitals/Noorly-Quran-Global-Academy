@@ -61,7 +61,7 @@
 
 <body class="bg-[#F6FAFA] text-ink-900 antialiased">
 
-<!-- AUTH -->
+<!-- AUTH SCREEN -->
 <div id="authScreen" class="min-h-screen w-full flex items-stretch">
   <div class="hidden lg:flex w-[46%] relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-sand-100 items-center justify-center p-14">
     <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-200/50 blur-3xl"></div>
@@ -174,7 +174,7 @@
 
     <main id="mainContent" class="flex-1 px-4 sm:px-6 lg:px-8 py-6 pb-28 lg:pb-10 max-w-[1600px] w-full mx-auto">
 
-      <!-- HOME -->
+      <!-- HOME VIEW -->
       <section id="view-home" class="view active">
         <div class="relative overflow-hidden rounded-4xl bg-gradient-to-br from-brand-50 via-white to-sand-100 border border-brand-100/70 shadow-card">
           <div class="relative grid lg:grid-cols-2 gap-8 p-7 sm:p-10 lg:p-12 items-center">
@@ -191,6 +191,29 @@
 
         <div class="mt-8"><h2 class="text-lg font-extrabold text-ink-900 mb-4">Quick Access</h2><div id="featuresGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-3.5"></div></div>
         <div class="mt-10"><h2 class="text-lg font-extrabold text-ink-900 mb-4">Our Courses</h2><div id="coursesGrid" class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4"></div></div>
+
+        <!-- STRIPE SUBSCRIPTION SECTION -->
+        <div class="mt-10 rounded-4xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 sm:p-8 text-white shadow-lift relative overflow-hidden">
+          <div class="absolute -top-12 -right-10 w-48 h-48 rounded-full bg-white/10"></div>
+          <div class="relative">
+            <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-100">Go Premium</p>
+            <h2 class="text-2xl font-extrabold mt-1.5">Unlock Full Access</h2>
+            <p class="text-[13px] text-brand-100 mt-1.5 max-w-lg">Unlimited live classes, all courses, homework review, certificates, and priority teacher matching.</p>
+            <div class="mt-6 grid sm:grid-cols-2 gap-3 max-w-2xl">
+              <button id="subscribeMonthly" class="text-left bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl p-4 transition">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-brand-100">Monthly</p>
+                <p class="text-2xl font-extrabold mt-1">$40<span class="text-[12px] font-semibold text-brand-100">/mo</span></p>
+                <p class="text-[10.5px] text-brand-100 mt-1">Cancel anytime</p>
+              </button>
+              <button id="subscribeYearly" class="text-left bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl p-4 transition">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-brand-100">Yearly</p>
+                <p class="text-2xl font-extrabold mt-1">$400<span class="text-[12px] font-semibold text-brand-100">/yr</span></p>
+                <p class="text-[10.5px] text-brand-100 mt-1">Save 17%</p>
+              </button>
+            </div>
+            <p id="subscriptionStatus" class="mt-4 text-[12px] text-brand-100"></p>
+          </div>
+        </div>
 
         <div id="feeCalculatorSection" class="mt-10 rounded-4xl bg-white border border-brand-100/80 shadow-card overflow-hidden">
           <div class="p-6 sm:p-8 border-b border-brand-100/70 bg-gradient-to-r from-sand-50 to-white">
@@ -226,7 +249,7 @@
         </div>
       </section>
 
-      <!-- WORSHIP -->
+      <!-- WORSHIP VIEW -->
       <section id="view-worship" class="view">
         <div class="mb-6"><h1 class="text-2xl font-extrabold text-ink-900">Worship Hub</h1><p class="text-[13px] text-ink-500 mt-1">Prayer times, Qibla, Tasbeeh & daily remembrance.</p></div>
         <div class="mb-6 overflow-x-auto no-scrollbar">
@@ -234,9 +257,6 @@
             <button data-wtab="prayer" class="seg-btn active whitespace-nowrap px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-clock mr-1.5"></i>Prayer Times</button>
             <button data-wtab="qibla" class="seg-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-compass mr-1.5"></i>Qibla</button>
             <button data-wtab="tasbeeh" class="seg-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-circle-dot mr-1.5"></i>Tasbeeh</button>
-            <button data-wtab="names" class="seg-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-star mr-1.5"></i>99 Names</button>
-            <button data-wtab="kalmas" class="seg-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-book mr-1.5"></i>Kalmas</button>
-            <button data-wtab="guide" class="seg-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-person-praying mr-1.5"></i>Wudu</button>
           </div>
         </div>
 
@@ -299,20 +319,9 @@
             <div class="mt-7 flex items-center justify-center gap-3"><button id="tasbeehReset" class="px-5 py-3 rounded-2xl border border-ink-100 text-[12.5px] font-bold text-ink-700 hover:bg-brand-50 transition"><i class="fa-solid fa-rotate-left mr-1.5"></i>Reset</button><button id="tasbeehMinus" class="px-5 py-3 rounded-2xl border border-ink-100 text-[12.5px] font-bold text-ink-700 hover:bg-brand-50 transition"><i class="fa-solid fa-minus mr-1.5"></i>Undo</button></div>
           </div>
         </div>
-
-        <div id="wpanel-names" class="wpanel hidden">
-          <div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-6 sm:p-8">
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-5"><h3 class="text-[15px] font-extrabold text-ink-900">Names & Attributes</h3><div class="inline-flex p-1 rounded-xl bg-brand-50 border border-brand-100"><button id="namesTabAllah" class="names-tab active px-3.5 py-2 rounded-lg text-[11.5px] font-bold text-brand-700 bg-white shadow-sm transition">Allah — 99</button><button id="namesTabProphet" class="names-tab px-3.5 py-2 rounded-lg text-[11.5px] font-bold text-ink-500 transition">Prophet ﷺ</button></div></div>
-            <div id="namesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5"></div>
-          </div>
-        </div>
-
-        <div id="wpanel-kalmas" class="wpanel hidden"><div class="grid lg:grid-cols-2 gap-4"><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-6 sm:p-8"><h3 class="text-[15px] font-extrabold text-ink-900 mb-4">The Six Kalmas</h3><div id="kalmasList" class="space-y-2.5"></div></div><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-6 sm:p-8"><h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Daily Duʿās</h3><div id="duasList" class="space-y-2.5"></div></div></div></div>
-
-        <div id="wpanel-guide" class="wpanel hidden"><div class="grid lg:grid-cols-2 gap-4"><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-6 sm:p-8"><h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Wudu</h3><div id="wuduList" class="space-y-2.5"></div></div><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-6 sm:p-8"><h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Namaz</h3><div id="namazList" class="space-y-2.5"></div><div class="mt-5 rounded-2xl bg-brand-50 border border-brand-100 p-4"><p class="text-[11px] font-bold text-brand-700 mb-2.5">Rakʿāt Summary</p><div id="rakatTable" class="space-y-1.5 text-[11.5px]"></div></div></div></div></div>
       </section>
 
-      <!-- LMS -->
+      <!-- LMS VIEW -->
       <section id="view-lms" class="view">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6"><div><h1 class="text-2xl font-extrabold text-ink-900">Live Studio & Library</h1></div><div class="inline-flex p-1.5 rounded-2xl bg-white border border-brand-100/80 shadow-card"><button data-lmsmode="live" class="lms-mode active seg-btn px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-video mr-1.5"></i>Live</button><button data-lmsmode="library" class="lms-mode seg-btn px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-book-open mr-1.5"></i>Library</button></div></div>
 
@@ -341,18 +350,9 @@
             <div class="space-y-4"><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-5"><h3 class="text-[13.5px] font-extrabold text-ink-900 mb-3">Session</h3><div class="space-y-2.5 text-[12px]"><div class="flex justify-between"><span class="text-ink-500">Duration</span><span id="sessionTimer" class="font-bold tabular-nums">00:00</span></div></div></div><div class="rounded-4xl bg-gradient-to-br from-sky2-50 to-brand-50 border border-brand-100 p-5"><button id="initSignalling" class="w-full py-2.5 rounded-xl bg-white border border-brand-200 text-brand-700 text-[11.5px] font-bold hover:bg-brand-50 transition">Initialise Peer</button></div></div>
           </div>
         </div>
-
-        <div id="lmsLibrary" class="hidden">
-          <div class="mb-5 inline-flex p-1.5 rounded-2xl bg-white border border-brand-100/80 shadow-card gap-1"><button data-libtab="mushaf" class="lib-tab seg-btn active px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-book-quran mr-1.5"></i>Mushaf</button><button data-libtab="qaida" class="lib-tab seg-btn px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-table-cells mr-1.5"></i>Qaida</button><button data-libtab="tafseer" class="lib-tab seg-btn px-4 py-2.5 rounded-xl text-[12.5px] font-semibold text-ink-500 transition"><i class="fa-solid fa-book-open mr-1.5"></i>Tafseer</button></div>
-
-          <div id="libpanel-mushaf" class="libpanel"><div class="grid lg:grid-cols-4 gap-4"><div class="lg:col-span-3 rounded-4xl bg-white border border-brand-100/80 shadow-card overflow-hidden"><div class="px-5 py-4 border-b border-brand-100/70 flex flex-wrap items-center gap-3 bg-sand-50"><button id="mushafPrev" class="w-9 h-9 rounded-xl border border-ink-100 grid place-items-center text-ink-700 hover:bg-brand-50 transition"><i class="fa-solid fa-chevron-left text-xs"></i></button><div class="flex items-center gap-2"><input id="mushafPageInput" type="number" min="1" value="1" class="w-16 px-2 py-1.5 rounded-lg border border-ink-100 text-center text-[13px] font-bold outline-none focus:border-brand-400" /><span id="mushafPageTotal" class="text-[11.5px] font-bold text-ink-300">/ 4</span></div><button id="mushafNext" class="w-9 h-9 rounded-xl border border-ink-100 grid place-items-center text-ink-700 hover:bg-brand-50 transition"><i class="fa-solid fa-chevron-right text-xs"></i></button><div class="ml-auto flex items-center gap-2"><button id="bookmarkBtn" class="px-3 py-2 rounded-xl border border-ink-100 text-[11px] font-bold text-ink-700 hover:bg-brand-50 transition"><i class="fa-regular fa-bookmark mr-1"></i>Bookmark</button><button id="playPageBtn" class="px-3 py-2 rounded-xl bg-brand-500 text-white text-[11px] font-bold hover:bg-brand-600 transition"><i class="fa-solid fa-play mr-1"></i>Play</button></div></div><div class="p-4 sm:p-8 bg-[#FFFDF8]"><div id="mushafGrid" class="border-2 border-sand-300 rounded-2xl p-4 sm:p-6 bg-white"></div></div></div><div class="space-y-4"><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-5"><h3 class="text-[13px] font-extrabold text-ink-900 mb-3">Ayah Audio</h3><div id="ayahAudioList" class="space-y-1.5 max-h-80 overflow-y-auto no-scrollbar"></div></div><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-5"><h3 class="text-[13px] font-extrabold text-ink-900 mb-3">Bookmarks</h3><div id="bookmarkList" class="space-y-1.5"></div></div></div></div></div>
-
-          <div id="libpanel-qaida" class="libpanel hidden"><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-6 sm:p-8"><div class="flex flex-wrap items-center justify-between gap-3 mb-5"><h3 class="text-[15px] font-extrabold text-ink-900">Noorani Qaida</h3><div class="px-3 py-1.5 rounded-xl bg-brand-50 text-brand-700 text-[11px] font-bold"><span id="qaidaProgressLabel">0 / 17</span></div></div><div id="qaidaGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"></div></div></div>
-
-          <div id="libpanel-tafseer" class="libpanel hidden"><div class="grid lg:grid-cols-3 gap-4"><div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-5"><h3 class="text-[13.5px] font-extrabold text-ink-900 mb-3">Surahs</h3><div id="surahList" class="space-y-1.5 max-h-[32rem] overflow-y-auto no-scrollbar"></div></div><div class="lg:col-span-2 rounded-4xl bg-white border border-brand-100/80 shadow-card overflow-hidden"><div class="px-6 py-5 border-b border-brand-100/70 bg-gradient-to-r from-brand-50 to-white"><p class="text-[10.5px] font-bold uppercase tracking-[0.16em] text-brand-600">Irfan-ul-Quran</p><h3 id="tafseerTitle" class="text-lg font-extrabold text-ink-900 mt-1">Al-Fātiḥah</h3></div><div id="tafseerReader" class="p-6 space-y-4 max-h-[32rem] overflow-y-auto"></div></div></div></div>
-        </div>
       </section>
 
+      <!-- PORTAL VIEW -->
       <section id="view-portal" class="view"><div id="portalContent"></div></section>
     </main>
 
@@ -373,9 +373,13 @@
 
 <script>
 /* ══════════════════════════════════════════════════════════════════
-   NOORLY — PRODUCTION FILE
+   NOORLY — FINAL PRODUCTION FILE (WITH STRIPE)
    ══════════════════════════════════════════════════════════════════ */
 'use strict';
+
+// ⚠️ YAHAN APNI STRIPE PRICE ID PASTE KAREIN (Jo aapne copy ki thi)
+const STRIPE_PRICE_MONTHLY = 'price_1XXXXX';  // <--- Yahan apni ID dalein
+const STRIPE_PRICE_YEARLY = 'price_1XXXXX';   // <--- Yearly ID (agar banayi hai toh)
 
 const SUPABASE_URL = 'https://krrzzjjerjhwpowwcufa.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtycnp6amplcmpod3Bvd3djdWZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMjQyMTcsImV4cCI6MjExMDcwMDIxN30.BvAIHmzozGsQ_4OwxE5OIRVFy5ZNt5vy_7H_EIcTJI4';
@@ -438,67 +442,6 @@ const FEATURES=[
   {icon:'fa-user-shield',title:'My Portal',sub:'Reports & invoices',view:'portal',color:'brand'}
 ];
 
-const NAMES_99=[['الرَّحْمَٰن','Ar-Raḥmān','The Most Compassionate'],['الرَّحِيم','Ar-Raḥīm','The Most Merciful'],['الْمَلِك','Al-Malik','The King'],['الْقُدُّوس','Al-Quddūs','The Most Holy'],['السَّلَام','As-Salām','The Source of Peace'],['الْمُؤْمِن','Al-Mu’min','The Guarantor of Faith'],['الْمُهَيْمِن','Al-Muhaymin','The Guardian'],['الْعَزِيز','Al-‘Azīz','The Almighty'],['الْجَبَّار','Al-Jabbār','The Compeller'],['الْمُتَكَبِّر','Al-Mutakabbir','The Supreme'],['الْخَالِق','Al-Khāliq','The Creator'],['الْبَارِئ','Al-Bāri’','The Originator'],['الْمُصَوِّر','Al-Muṣawwir','The Fashioner'],['الْغَفَّار','Al-Ghaffār','The Ever-Forgiving'],['الْقَهَّار','Al-Qahhār','The Subduer'],['الْوَهَّاب','Al-Wahhāb','The Bestower'],['الرَّزَّاق','Ar-Razzāq','The Provider'],['الْفَتَّاح','Al-Fattāḥ','The Opener'],['الْعَلِيم','Al-‘Alīm','The All-Knowing'],['الْقَابِض','Al-Qābiḍ','The Withholder'],['الْبَاسِط','Al-Bāsiṭ','The Expander'],['الْخَافِض','Al-Khāfiḍ','The Abaser'],['الرَّافِع','Ar-Rāfi‘','The Exalter'],['الْمُعِزّ','Al-Mu‘izz','The Honourer'],['الْمُذِلّ','Al-Mudhill','The Dishonourer'],['السَّمِيع','As-Samī‘','The All-Hearing'],['الْبَصِير','Al-Baṣīr','The All-Seeing'],['الْحَكَم','Al-Ḥakam','The Judge'],['الْعَدْل','Al-‘Adl','The Utterly Just'],['اللَّطِيف','Al-Laṭīf','The Subtle'],['الْخَبِير','Al-Khabīr','The All-Aware'],['الْحَلِيم','Al-Ḥalīm','The Forbearing'],['الْعَظِيم','Al-‘Aẓīm','The Magnificent'],['الْغَفُور','Al-Ghafūr','The Forgiving'],['الشَّكُور','Ash-Shakūr','The Appreciative'],['الْعَلِيّ','Al-‘Alī','The Most High'],['الْكَبِير','Al-Kabīr','The Most Great'],['الْحَفِيظ','Al-Ḥafīẓ','The Preserver'],['الْمُقِيت','Al-Muqīt','The Sustainer'],['الْحَسِيب','Al-Ḥasīb','The Reckoner'],['الْجَلِيل','Al-Jalīl','The Majestic'],['الْكَرِيم','Al-Karīm','The Generous'],['الرَّقِيب','Ar-Raqīb','The Watchful'],['الْمُجِيب','Al-Mujīb','The Responsive'],['الْوَاسِع','Al-Wāsi‘','The All-Encompassing'],['الْحَكِيم','Al-Ḥakīm','The All-Wise'],['الْوَدُود','Al-Wadūd','The Loving'],['الْمَجِيد','Al-Majīd','The Glorious'],['الْبَاعِث','Al-Bā‘ith','The Resurrector'],['الشَّهِيد','Ash-Shahīd','The All-Witnessing'],['الْحَقّ','Al-Ḥaqq','The Absolute Truth'],['الْوَكِيل','Al-Wakīl','The Trustee'],['الْقَوِيّ','Al-Qawiyy','The All-Strong'],['الْمَتِين','Al-Matīn','The Firm'],['الْوَلِيّ','Al-Waliyy','The Protecting Friend'],['الْحَمِيد','Al-Ḥamīd','The Praiseworthy'],['الْمُحْصِي','Al-Muḥṣī','The Accounter'],['الْمُبْدِئ','Al-Mubdi’','The Producer'],['الْمُعِيد','Al-Mu‘īd','The Restorer'],['الْمُحْيِي','Al-Muḥyī','The Giver of Life'],['الْمُمِيت','Al-Mumīt','The Bringer of Death'],['الْحَيّ','Al-Ḥayy','The Ever-Living'],['الْقَيُّوم','Al-Qayyūm','The Self-Subsisting'],['الْوَاجِد','Al-Wājid','The Finder'],['الْمَاجِد','Al-Mājid','The Noble'],['الْوَاحِد','Al-Wāḥid','The One'],['الْأَحَد','Al-Aḥad','The Unique'],['الصَّمَد','Aṣ-Ṣamad','The Eternal Refuge'],['الْقَادِر','Al-Qādir','The Capable'],['الْمُقْتَدِر','Al-Muqtadir','The Omnipotent'],['الْمُقَدِّم','Al-Muqaddim','The Expediter'],['الْمُؤَخِّر','Al-Mu’akhkhir','The Delayer'],['الْأَوَّل','Al-Awwal','The First'],['الْآخِر','Al-Ākhir','The Last'],['الظَّاهِر','Aẓ-Ẓāhir','The Manifest'],['الْبَاطِن','Al-Bāṭin','The Hidden'],['الْوَالِي','Al-Wālī','The Governor'],['الْمُتَعَالِي','Al-Muta‘ālī','The Most Exalted'],['الْبَرّ','Al-Barr','The Source of All Good'],['التَّوَّاب','At-Tawwāb','The Acceptor of Repentance'],['الْمُنْتَقِم','Al-Muntaqim','The Avenger'],['الْعَفُوّ','Al-‘Afuww','The Pardoner'],['الرَّءُوف','Ar-Ra’ūf','The Most Kind'],['مَالِكُ الْمُلْك','Mālik-ul-Mulk','Master of the Kingdom'],['ذُو الْجَلَالِ وَالْإِكْرَام','Dhul-Jalāli wal-Ikrām','Lord of Majesty'],['الْمُقْسِط','Al-Muqsiṭ','The Equitable'],['الْجَامِع','Al-Jāmi‘','The Gatherer'],['الْغَنِيّ','Al-Ghaniyy','The Self-Sufficient'],['الْمُغْنِي','Al-Mughnī','The Enricher'],['الْمَانِع','Al-Māni‘','The Preventer'],['الضَّارّ','Aḍ-Ḍārr','The Distresser'],['النَّافِع','An-Nāfi‘','The Benefiter'],['النُّور','An-Nūr','The Light'],['الْهَادِي','Al-Hādī','The Guide'],['الْبَدِيع','Al-Badī‘','The Originator'],['الْبَاقِي','Al-Bāqī','The Everlasting'],['الْوَارِث','Al-Wārith','The Inheritor'],['الرَّشِيد','Ar-Rashīd','The Guide'],['الصَّبُور','Aṣ-Ṣabūr','The Most Patient']];
-
-const NAMES_PROPHET=[['مُحَمَّد','Muḥammad','The Praised One'],['أَحْمَد','Aḥmad','The Most Commendable'],['الْمُصْطَفَى','Al-Muṣṭafā','The Chosen One'],['طٰهٰ','Ṭā-Hā','The Purified'],['يٰسٓ','Yā-Sīn','The Heart of Qur’ān'],['حَبِيبُ اللّٰه','Ḥabībullāh','The Beloved of Allah'],['رَحْمَةٌ لِّلْعَالَمِينَ','Raḥmatullil-‘Ālamīn','Mercy to Worlds'],['خَاتَمُ النَّبِيِّين','Khātamun-Nabiyyīn','Seal of Prophets'],['نُورُ الْهُدَى','Nūrul-Hudā','Light of Guidance'],['الصَّادِق','Aṣ-Ṣādiq','The Truthful']];
-
-const KALMAS=[
-  {n:'1st Kalma',ar:'لَا إِلَٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَسُولُ اللَّهِ',tr:'Lā ilāha illallāhu Muḥammadur rasūlullāh',en:'There is no god but Allah.'},
-  {n:'2nd Kalma',ar:'أَشْهَدُ أَنْ لَّا إِلَٰهَ إِلَّا اللَّهُ',tr:'Ash-hadu allā ilāha illallāh',en:'I bear witness.'},
-  {n:'3rd Kalma',ar:'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ',tr:'Subḥānallāhi wal-ḥamdulillāh',en:'Glory and praise to Allah.'},
-  {n:'4th Kalma',ar:'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ',tr:'Lā ilāha illallāhu waḥdahū',en:'There is no god but Allah alone.'},
-  {n:'5th Kalma',ar:'أَسْتَغْفِرُ اللَّهَ رَبِّي',tr:'Astaghfirullāha rabbī',en:'I seek forgiveness from Allah.'},
-  {n:'6th Kalma',ar:'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ',tr:'Allāhumma innī a‘ūdhu bika',en:'O Allah, I seek Your protection.'}
-];
-
-const DUAS=[
-  {n:'Before Eating',ar:'بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ',tr:'Bismillāhi wa ‘alā barakatillāh',en:'In the name of Allah.'},
-  {n:'After Eating',ar:'الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا',tr:'Al-ḥamdulillāhilladhī aṭ‘amanā',en:'All praise to Allah.'},
-  {n:'Morning',ar:'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ',tr:'Aṣbaḥnā wa aṣbaḥal-mulku lillāh',en:'We have entered the morning.'},
-  {n:'Evening',ar:'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ',tr:'Amsaynā wa amsal-mulku lillāh',en:'We have entered the evening.'},
-  {n:'Before Sleeping',ar:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',tr:'Bismika Allāhumma amūtu wa aḥyā',en:'In Your name I die and live.'},
-  {n:'For Parents',ar:'رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا',tr:'Rabbir-ḥamhumā kamā rabbayānī ṣaghīrā',en:'My Lord, have mercy on them.'}
-];
-
-const WUDU_STEPS=['Make intention and say Bismillāh.','Wash both hands to wrists 3x.','Rinse mouth 3x.','Sniff water into nostrils 3x.','Wash face 3x.','Wash right arm to elbow 3x, then left.','Wipe wet hands over head once.','Wipe inside and back of both ears.','Wash right foot to ankle 3x, then left.','Recite Shahādah — wudu is complete.'];
-const NAMAZ_STEPS=['Stand facing Qibla, say "Allāhu Akbar".','Recite Thanā, then Sūrah al-Fātiḥah.','Recite a short sūrah.','Bow into Rukūʿ.','Rise to standing.','Prostrate (Sajdah).','Sit between two sajdahs.','Stand for second rakʿah.','Sit for Tashahhud.','Complete with Tasleem.'];
-const RAKATS=[['Fajr','2 Sunnah','2 Farḍ'],['Zuhr','4 Sunnah','4 Farḍ · 2 Sunnah · 2 Nafl'],['Asr','4 Sunnah','4 Farḍ'],['Maghrib','3 Farḍ','2 Sunnah · 2 Nafl'],['Isha','4 Sunnah','4 Farḍ · 3 Witr']];
-
-const QAIDA_LESSONS=[
-  {t:'Arabic Alphabet',d:'Individual letters & pronunciation.',letters:'ا ب ت ث ج ح خ د ذ ر ز'},
-  {t:'Compound Letters',d:'Joining letters to form words.',letters:'بِسْ مِ اللّٰه'},
-  {t:'Muqattaʿāt',d:'Standalone letters.',letters:'الٓمٓ  يٓسٓ'},
-  {t:'Short Vowels (Fatha)',d:'The zabar sound.',letters:'بَ تَ ثَ جَ'},
-  {t:'Short Vowels (Kasra)',d:'The zer sound.',letters:'بِ تِ ثِ جِ'},
-  {t:'Short Vowels (Damma)',d:'The pesh sound.',letters:'بُ تُ ثُ جُ'},
-  {t:'Tanwīn',d:'Double vowels.',letters:'بًا  بٍ  بٌ'},
-  {t:'Ḥurūf-e-Madd',d:'Long vowels.',letters:'بَا  بُو  بِي'},
-  {t:'Sukūn',d:'Stopping on letter.',letters:'أَبْ  أَتْ'},
-  {t:'Tashdīd',d:'Doubling a letter.',letters:'بَّ  تَّ'},
-  {t:'Ḥurūf-e-Līn',d:'Soft wāw and yā.',letters:'خَوْفٌ  بَيْتٌ'},
-  {t:'Ghunnah',d:'Nasalisation.',letters:'إِنَّ  ثُمَّ'},
-  {t:'Ikhfāʾ',d:'Hiding nūn sākin.',letters:'مِنْ قَبْلِ'},
-  {t:'Idghām',d:'Merging nūn sākin.',letters:'مِنْ رَّبِّهِمْ'},
-  {t:'Iqlāb',d:'Converting nūn to mīm.',letters:'مِنْ بَعْدِ'},
-  {t:'Iẓhār',d:'Clear pronunciation.',letters:'مِنْ عِلْمٍ'},
-  {t:'Waqf Rules',d:'Where to stop.',letters:'ۖ  ۗ  ۘ  ۙ'}
-];
-
-const SURAHS=[
-  {n:1,name:'Al-Fātiḥah',en:'The Opening',ar:'الفاتحة',verses:[['بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ','In the name of Allah.'],['الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ','All praise to Allah.'],['الرَّحْمَٰنِ الرَّحِيمِ','The Most Compassionate.'],['مَالِكِ يَوْمِ الدِّينِ','Master of the Day.'],['إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ','You alone we worship.'],['اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ','Guide us to the straight path.'],['صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ','The path of those You blessed.']]},
-  {n:112,name:'Al-Ikhlāṣ',en:'Sincerity',ar:'الإخلاص',verses:[['قُلْ هُوَ اللَّهُ أَحَدٌ','Say: He is Allah, the One.'],['اللَّهُ الصَّمَدُ','Allah, the Eternal Refuge.'],['لَمْ يَلِدْ وَلَمْ يُولَدْ','He neither begets nor is born.'],['وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ','None comparable to Him.']]},
-  {n:113,name:'Al-Falaq',en:'The Daybreak',ar:'الفلق',verses:[['قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ','Say: I seek refuge in Lord of daybreak.'],['مِن شَرِّ مَا خَلَقَ','From the evil He created.'],['وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ','From the evil of darkness.'],['وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ','From the evil of the envier.']]},
-  {n:114,name:'An-Nās',en:'Mankind',ar:'الناس',verses:[['قُلْ أَعُوذُ بِرَبِّ النَّاسِ','Say: I seek refuge in Lord of mankind.'],['مَلِكِ النَّاسِ','The King of mankind.'],['إِلَٰهِ النَّاسِ','The God of mankind.'],['مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ','From evil of the whisperer.']]}
-];
-
-const QUIZ_QUESTIONS=[
-  {q:'How many letters in Arabic alphabet?',opts:['26','28','29','30'],ans:1},
-  {q:'Which letters produce Ghunnah when doubled?',opts:['Nūn & Mīm','Bā & Tā','Lām & Rā','Sīn & Shīn'],ans:0},
-  {q:'Minimum length of Madd aṣlī?',opts:['1 count','2 counts','4 counts','6 counts'],ans:1},
-  {q:'Iqlāb converts Nūn sākin into?',opts:['Bā','Mīm','Lām','Rā'],ans:1},
-  {q:'Which is Ḥarf-e-Qalqalah?',opts:['ق','س','م','ن'],ans:0}
-];
-
 /* ═══ STATE ═══ */
 const State={
   user:null,view:'home',worshipTab:'prayer',lmsMode:'live',libraryTab:'mushaf',
@@ -537,88 +480,6 @@ async function dbGetMyHomework(limit=20){
   const {data}=await supabase.from('homework').select('*').eq('student_id',State.studentRecord.id).order('submitted_at',{ascending:false}).limit(limit);
   return data||[];
 }
-async function dbGetMySchedule(){
-  if(!State.studentRecord?.id)return [];
-  const {data}=await supabase.from('schedules').select('*').eq('student_id',State.studentRecord.id).eq('is_active',true);
-  return data||[];
-}
-async function dbGetBookmarks(){
-  if(!State.user?.id)return [];
-  const {data}=await supabase.from('bookmarks').select('page_number').eq('profile_id',State.user.id).order('page_number');
-  return (data||[]).map(r=>r.page_number);
-}
-async function dbGetTasbeeh(){
-  if(!State.user?.id)return null;
-  const {data}=await supabase.from('tasbeeh_stats').select('*').eq('profile_id',State.user.id).maybeSingle();
-  return data;
-}
-async function dbGetQaidaProgress(){
-  if(!State.user?.id)return [];
-  const {data}=await supabase.from('qaida_progress').select('lesson_number').eq('profile_id',State.user.id);
-  return (data||[]).map(r=>r.lesson_number-1);
-}
-async function dbSyncBookmark(page,add){
-  if(!State.user?.id)return;
-  if(add){await supabase.from('bookmarks').upsert({profile_id:State.user.id,page_number:page},{onConflict:'profile_id,page_number'});}
-  else{await supabase.from('bookmarks').delete().eq('profile_id',State.user.id).eq('page_number',page);}
-}
-async function dbSyncTasbeeh(count,target){
-  if(!State.user?.id)return;
-  await supabase.from('tasbeeh_stats').upsert({profile_id:State.user.id,total_count:count,today_count:count,target,updated_at:new Date().toISOString()},{onConflict:'profile_id'});
-}
-async function dbSyncQaida(lessonNum,add){
-  if(!State.user?.id)return;
-  if(add){await supabase.from('qaida_progress').upsert({profile_id:State.user.id,lesson_number:lessonNum},{onConflict:'profile_id,lesson_number'});}
-  else{await supabase.from('qaida_progress').delete().eq('profile_id',State.user.id).eq('lesson_number',lessonNum);}
-}
-async function dbGetAllStudents(){
-  const {data,error}=await supabase.from('students').select('*, profiles!students_profile_id_fkey(id,full_name,email,initials), courses(name), teachers(id, profiles(full_name))').order('created_at',{ascending:false});
-  if(error){console.error(error);return[];}
-  return data||[];
-}
-async function dbGetAllTeachers(){
-  const {data,error}=await supabase.from('teachers').select('*, profiles!teachers_profile_id_fkey(id,full_name,email)').order('created_at',{ascending:false});
-  if(error){console.error(error);return[];}
-  return data||[];
-}
-async function dbGetAllProfiles(){
-  const {data}=await supabase.from('profiles').select('*').order('created_at',{ascending:false});
-  return data||[];
-}
-async function dbGetLedger(){
-  const {data}=await supabase.from('ledger').select('*').order('entry_date',{ascending:false}).limit(100);
-  return data||[];
-}
-async function dbAddLedger(entry){
-  return await supabase.from('ledger').insert(entry);
-}
-async function dbAssignTeacher(studentId,teacherId){
-  return await supabase.from('students').update({teacher_id:teacherId}).eq('id',studentId);
-}
-async function dbSetStudentCourse(studentId,courseId){
-  return await supabase.from('students').update({course_id:courseId}).eq('id',studentId);
-}
-async function dbUpdateStudentFee(studentId,fee){
-  return await supabase.from('students').update({fee_usd:fee}).eq('id',studentId);
-}
-async function dbUpdateStudentStatus(studentId,status){
-  return await supabase.from('students').update({status}).eq('id',studentId);
-}
-async function dbPromoteToTeacher(profileId){
-  return await supabase.from('profiles').update({role:'teacher'}).eq('id',profileId);
-}
-async function dbUpdateProfile(profileId,patch){
-  return await supabase.from('profiles').update(patch).eq('id',profileId);
-}
-async function dbCreateTeacherRecord(profileId,specialty='',salary=1000){
-  return await supabase.from('teachers').insert({profile_id:profileId,specialty,salary_usd:salary,status:'Active'});
-}
-async function dbCreateStudentRecord(profileId,courseId,teacherId,fee){
-  return await supabase.from('students').insert({profile_id:profileId,course_id:courseId,teacher_id:teacherId,fee_usd:fee,status:'Active'});
-}
-async function dbAddDiaryEntry(studentId,teacherId,entry){
-  return await supabase.from('diary_entries').insert({student_id:studentId,teacher_id:teacherId,...entry});
-}
 async function dbGetTeacherStudents(){
   if(!State.teacherRecord?.id)return [];
   const {data}=await supabase.from('students').select('*, profiles!students_profile_id_fkey(full_name,email,initials), courses(name)').eq('teacher_id',State.teacherRecord.id);
@@ -640,6 +501,13 @@ async function dbUploadHomework(file,filename){
   if(error){console.error(error);return null;}
   const {data:urlData}=supabase.storage.from('homework').getPublicUrl(filename);
   return urlData.publicUrl;
+}
+async function dbSyncTasbeeh(count,target){
+  if(!State.user?.id)return;
+  await supabase.from('tasbeeh_stats').upsert({profile_id:State.user.id,total_count:count,today_count:count,target,updated_at:new Date().toISOString()},{onConflict:'profile_id'});
+}
+async function dbAddDiaryEntry(studentId,teacherId,entry){
+  return await supabase.from('diary_entries').insert({student_id:studentId,teacher_id:teacherId,...entry});
 }
 
 /* ═══ AUTH ═══ */
@@ -695,21 +563,13 @@ async function doLogin(email,password,name='',role='student'){
       const {data,error}=await supabase.auth.signUp({email:clean,password,options:{data:{full_name:name||clean.split('@')[0],role:safeRole,initials:computeInitials(name||clean)}}});
       if(error)throw error;
       await new Promise(r=>setTimeout(r,700));
-      if(data.user){
-        const {data:profile}=await supabase.from('profiles').select('*').eq('id',data.user.id).single();
-        if(profile&&profile.role==='student'){
-          await dbCreateStudentRecord(data.user.id,null,null,40).catch(()=>{});
-        }else if(profile&&profile.role==='teacher'){
-          await dbCreateTeacherRecord(data.user.id,'Quran & Tajweed',1000).catch(()=>{});
-        }
-      }
       toast('Account created! Welcome to Noorly.','success');
     }else{
       const {data,error}=await supabase.auth.signInWithPassword({email:clean,password});
       if(error)throw error;
     }
     const {data:{session}}=await supabase.auth.getSession();
-    if(!session){toast('No session established. Check email confirmation settings.','error');return;}
+    if(!session){toast('No session established.','error');return;}
     await loadUserFromSession(session.user.id);
     if(State.adminMode){
       const profile=await dbGetProfile();
@@ -724,7 +584,6 @@ async function doLogin(email,password,name='',role='student'){
     let msg=err.message||'Login failed';
     if(msg.includes('Invalid login credentials'))msg='Email ya password ghalat hai';
     if(msg.includes('already registered'))msg='Ye email pehle se registered hai — sign in karen';
-    if(msg.includes('Password should be'))msg='Password kam se kam 6 characters ka hona chahiye';
     if(msg.includes('Email not confirmed'))msg='Email not verified — Supabase mein "Confirm email" off karen';
     if(msg.includes('not an authorized admin'))msg='❌ Not an authorized admin.';
     toast(msg,'error');
@@ -752,6 +611,7 @@ function enterApp(){
   renderPortal();
   if(!State.prayerTimes)initPrayerTimes();
   navigate('home');
+  checkSubscriptionStatus();
 }
 
 async function logout(){
@@ -791,7 +651,6 @@ function navigate(view){
 
 /* ═══ HOME ═══ */
 const ACCENT_MAP={brand:{bg:'bg-brand-50',text:'text-brand-600',grad:'from-brand-500 to-brand-600'},sky:{bg:'bg-sky2-50',text:'text-sky2-500',grad:'from-sky2-500 to-sky2-600'},sand:{bg:'bg-sand-100',text:'text-ink-700',grad:'from-amber-400 to-amber-500'}};
-
 function renderFeatures(){
   $('#featuresGrid').innerHTML=FEATURES.map(f=>{
     const a=ACCENT_MAP[f.color]||ACCENT_MAP.brand;
@@ -799,13 +658,82 @@ function renderFeatures(){
   }).join('');
   $$('[data-feature-view]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.featureView)));
 }
-
 function renderCourses(){
   $('#coursesGrid').innerHTML=COURSES.map(c=>{
     const a=ACCENT_MAP[c.accent]||ACCENT_MAP.brand;
     return `<div class="group rounded-4xl bg-white border border-brand-100/80 shadow-card hover:shadow-lift hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"><div class="relative h-28 bg-gradient-to-br ${a.grad} overflow-hidden"><div class="absolute bottom-3 left-4 w-11 h-11 rounded-2xl bg-white/95 grid place-items-center ${a.text} text-lg shadow-md"><i class="fa-solid ${c.icon}"></i></div><span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/25 backdrop-blur text-white text-[10px] font-bold">${c.tag}</span></div><div class="p-5 flex-1 flex flex-col"><h3 class="text-[14px] font-extrabold text-ink-900">${c.name}</h3><p class="text-[11.5px] text-ink-500 mt-1.5 leading-relaxed line-clamp-2 flex-1">${c.desc}</p><div class="mt-4 flex items-center justify-between"><p class="text-[17px] font-extrabold text-brand-600">$${c.price}<span class="text-[10.5px] font-semibold text-ink-300">/mo</span></p><button data-course="${c.id}" class="course-enroll w-9 h-9 rounded-xl bg-brand-50 text-brand-600 grid place-items-center hover:bg-brand-500 hover:text-white transition"><i class="fa-solid fa-arrow-right text-xs"></i></button></div></div></div>`;
   }).join('');
   $$('.course-enroll').forEach(b=>b.addEventListener('click',()=>{const c=COURSES.find(x=>x.id===b.dataset.course);openTrialModal(c?c.name:'');}));
+}
+
+/* ═══ STRIPE CHECKOUT ═══ */
+async function startCheckout(priceId) {
+  if (!State.user) {
+    toast('Please sign in first.', 'error');
+    navigate('home');
+    return;
+  }
+
+  const btn = event?.target;
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Redirecting…'; }
+
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      toast('Session expired. Please sign in again.', 'error');
+      return;
+    }
+
+    const { data, error } = await supabase.functions.invoke('create-checkout', {
+      body: { priceId, mode: 'subscription' }
+    });
+
+    if (error) throw error;
+    if (!data?.url) throw new Error('No checkout URL returned');
+
+    window.location.href = data.url;
+  } catch (err) {
+    console.error('[Stripe checkout]', err);
+    toast('Payment error: ' + (err.message || 'Unknown'), 'error');
+    if (btn) { btn.disabled = false; btn.textContent = 'Subscribe Now'; }
+  }
+}
+
+async function checkSubscriptionStatus() {
+  if (!State.user?.id) return null;
+  const { data } = await supabase
+    .from('subscriptions')
+    .select('*')
+    .eq('user_id', State.user.id)
+    .maybeSingle();
+    
+  const el = $('#subscriptionStatus');
+  if (el) {
+    if (data?.status === 'active') {
+      el.innerHTML = `<i class="fa-solid fa-circle-check mr-1.5"></i>Premium active — valid until ${new Date(data.current_period_end).toLocaleDateString()}`;
+    } else {
+      el.innerHTML = `<i class="fa-solid fa-circle-info mr-1.5"></i>Free plan — subscribe to unlock all features`;
+    }
+  }
+  return data;
+}
+
+async function handlePaymentReturn() {
+  const params = new URLSearchParams(window.location.search);
+  const payment = params.get('payment');
+
+  if (payment === 'success') {
+    toast('Payment successful! Your subscription is now active.', 'success');
+    window.history.replaceState({}, '', window.location.pathname);
+    await new Promise(r => setTimeout(r, 2000));
+    const sub = await checkSubscriptionStatus();
+    if (sub?.status === 'active') {
+      toast(`Welcome to Premium! Valid until ${new Date(sub.current_period_end).toLocaleDateString()}`, 'success');
+    }
+  } else if (payment === 'cancelled') {
+    toast('Payment cancelled. You can subscribe anytime.', 'info');
+    window.history.replaceState({}, '', window.location.pathname);
+  }
 }
 
 /* ═══ FEE CALCULATOR ═══ */
@@ -936,34 +864,6 @@ async function bumpTasbeeh(delta){
   if(State.user?.id)await dbSyncTasbeeh(State.tasbeeh.count,State.tasbeeh.target);
 }
 
-/* ═══ NAMES / KALMAS / GUIDE ═══ */
-function renderNames(){
-  const list=State.namesMode==='allah'?NAMES_99:NAMES_PROPHET;
-  $('#namesGrid').innerHTML=list.map((n,i)=>`<button data-name-idx="${i}" class="name-card group text-left rounded-2xl border border-brand-100/80 bg-white p-3.5 hover:border-brand-300 hover:shadow-card hover:-translate-y-0.5 transition-all"><div class="flex items-start justify-between gap-2"><span class="text-[9.5px] font-extrabold text-brand-300 tabular-nums">${pad(i+1)}</span><i class="fa-solid fa-volume-low text-[9px] text-ink-300 group-hover:text-brand-500 transition"></i></div><p class="arabic text-[19px] text-brand-800 text-right mt-1 leading-tight">${n[0]}</p><p class="text-[11.5px] font-extrabold text-ink-900 mt-1.5 truncate">${n[1]}</p><p class="text-[10px] text-ink-500 mt-0.5 leading-snug line-clamp-2">${n[2]}</p></button>`).join('');
-  $$('.name-card').forEach(b=>b.addEventListener('click',()=>{const item=list[Number(b.dataset.nameIdx)];speakArabic(item[0],item[1]);}));
-}
-function speakArabic(ar,tr){
-  if(!('speechSynthesis'in window)){toast('Audio not supported.','info');return;}
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(ar);u.lang='ar-SA';u.rate=0.82;
-  const v=window.speechSynthesis.getVoices().find(x=>x.lang?.toLowerCase().startsWith('ar'));
-  if(v)u.voice=v;
-  window.speechSynthesis.speak(u);toast(`Playing: ${tr}`,'info');
-}
-function renderKalmas(){
-  $('#kalmasList').innerHTML=KALMAS.map((k,i)=>`<div class="rounded-2xl border border-ink-100/80 overflow-hidden"><button data-kalma="${i}" class="w-full flex items-center gap-3 p-3.5 text-left hover:bg-brand-50/60 transition"><span class="w-8 h-8 rounded-xl bg-brand-50 text-brand-600 grid place-items-center text-[11px] font-extrabold shrink-0">${i+1}</span><span class="text-[12.5px] font-bold text-ink-900 flex-1">${k.n}</span><i class="fa-solid fa-chevron-down text-[10px] text-ink-300 transition-transform kalma-chev"></i></button><div id="kalmaBody${i}" class="hidden px-4 pb-4"><p class="arabic text-[17px] text-ink-800 leading-loose text-right">${k.ar}</p><p class="text-[11px] italic text-brand-600 mt-2">${k.tr}</p><p class="text-[11.5px] text-ink-500 mt-1.5 leading-relaxed">${k.en}</p><button data-play-kalma="${i}" class="mt-2.5 text-[11px] font-bold text-brand-600 hover:text-brand-700"><i class="fa-solid fa-volume-high mr-1"></i>Listen</button></div></div>`).join('');
-  $$('[data-kalma]').forEach(b=>b.addEventListener('click',()=>{const i=b.dataset.kalma;$('#kalmaBody'+i).classList.toggle('hidden');b.querySelector('.kalma-chev').classList.toggle('rotate-180');}));
-  $$('[data-play-kalma]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const k=KALMAS[Number(b.dataset.playKalma)];speakArabic(k.ar,k.n);}));
-  $('#duasList').innerHTML=DUAS.map((d,i)=>`<div class="rounded-2xl border border-ink-100/80 overflow-hidden"><button data-dua="${i}" class="w-full flex items-center gap-3 p-3.5 text-left hover:bg-brand-50/60 transition"><span class="w-8 h-8 rounded-xl bg-sand-100 text-ink-700 grid place-items-center text-[11px] shrink-0"><i class="fa-solid fa-hands-praying"></i></span><span class="text-[12.5px] font-bold text-ink-900 flex-1">${d.n}</span><i class="fa-solid fa-chevron-down text-[10px] text-ink-300 transition-transform dua-chev"></i></button><div id="duaBody${i}" class="hidden px-4 pb-4"><p class="arabic text-[17px] text-ink-800 leading-loose text-right">${d.ar}</p><p class="text-[11px] italic text-brand-600 mt-2">${d.tr}</p><p class="text-[11.5px] text-ink-500 mt-1.5 leading-relaxed">${d.en}</p><button data-play-dua="${i}" class="mt-2.5 text-[11px] font-bold text-brand-600 hover:text-brand-700"><i class="fa-solid fa-volume-high mr-1"></i>Listen</button></div></div>`).join('');
-  $$('[data-dua]').forEach(b=>b.addEventListener('click',()=>{const i=b.dataset.dua;$('#duaBody'+i).classList.toggle('hidden');b.querySelector('.dua-chev').classList.toggle('rotate-180');}));
-  $$('[data-play-dua]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const d=DUAS[Number(b.dataset.playDua)];speakArabic(d.ar,d.n);}));
-}
-function renderGuide(){
-  $('#wuduList').innerHTML=WUDU_STEPS.map((s,i)=>`<div class="flex items-start gap-3 p-3 rounded-2xl hover:bg-brand-50/60 transition"><span class="w-6 h-6 rounded-lg bg-brand-500 text-white grid place-items-center text-[10px] font-extrabold shrink-0 mt-0.5">${i+1}</span><p class="text-[12px] text-ink-700 leading-relaxed">${s}</p></div>`).join('');
-  $('#namazList').innerHTML=NAMAZ_STEPS.map((s,i)=>`<div class="flex items-start gap-3 p-3 rounded-2xl hover:bg-brand-50/60 transition"><span class="w-6 h-6 rounded-lg bg-sky2-500 text-white grid place-items-center text-[10px] font-extrabold shrink-0 mt-0.5">${i+1}</span><p class="text-[12px] text-ink-700 leading-relaxed">${s}</p></div>`).join('');
-  $('#rakatTable').innerHTML=RAKATS.map(([n,a,b])=>`<div class="flex justify-between gap-2 py-1 border-b border-brand-100 last:border-0"><span class="font-bold text-ink-900 w-20 shrink-0">${n}</span><span class="text-ink-500 text-right">${a} · ${b}</span></div>`).join('');
-}
-
 /* ═══ LMS ═══ */
 const REACTIONS=[{label:'MashaAllah',emoji:'✨',color:'brand'},{label:'Ghunnah',emoji:'🎵',color:'sky'},{label:'Qalqalah',emoji:'💥',color:'sand'},{label:'Idgham',emoji:'🔗',color:'brand'},{label:'Madd',emoji:'📏',color:'sky'},{label:'Excellent',emoji:'⭐',color:'sand'}];
 function renderReactions(){
@@ -1020,54 +920,6 @@ function initSignalling(){
   catch(e){toast('WebRTC not supported.','error');}
 }
 
-/* ═══ LIBRARY ═══ */
-const VERSE_INDEX=(()=>{const out=[];SURAHS.forEach(s=>s.verses.forEach((v,i)=>{out.push({surah:s.n,surahName:s.name,ayah:i+1,ar:v[0],en:v[1]});}));return out;})();
-const LINES_PER_PAGE=16;
-const TOTAL_PAGES=Math.max(1,Math.ceil(VERSE_INDEX.length/LINES_PER_PAGE));
-function renderMushaf(){
-  const page=clamp(State.mushafPage,1,TOTAL_PAGES);State.mushafPage=page;
-  const start=(page-1)*LINES_PER_PAGE;const lines=VERSE_INDEX.slice(start,start+LINES_PER_PAGE);
-  $('#mushafPageInput').value=page;$('#mushafPageTotal').textContent=`/ ${TOTAL_PAGES}`;
-  $('#mushafGrid').innerHTML=Array.from({length:LINES_PER_PAGE}).map((_,i)=>{const v=lines[i];if(!v)return`<div class="h-9 border-b border-sand-200/70"></div>`;return`<div class="h-9 flex items-center justify-end gap-2 border-b border-sand-200/70 last:border-0 px-1 group"><span class="text-[9px] text-sand-300 opacity-0 group-hover:opacity-100 transition">${v.surah}:${v.ayah}</span><span class="arabic text-[17px] sm:text-[19px] text-ink-900 leading-none">${v.ar}</span></div>`;}).join('');
-  $('#ayahAudioList').innerHTML=lines.length?lines.map(v=>`<button data-ayah="${v.surah}:${v.ayah}" class="w-full flex items-center gap-2.5 p-2 rounded-xl hover:bg-brand-50 transition text-left"><span class="w-7 h-7 rounded-lg bg-brand-50 text-brand-600 grid place-items-center text-[10px] shrink-0"><i class="fa-solid fa-play"></i></span><span class="min-w-0 flex-1"><span class="block text-[11px] font-bold text-ink-900 truncate">${v.surahName} ${v.ayah}</span></span></button>`).join(''):'<p class="text-[11px] text-ink-300">No verses.</p>';
-  $$('[data-ayah]').forEach(b=>b.addEventListener('click',()=>{const[s,a]=b.dataset.ayah.split(':');playAyah(Number(s),Number(a));}));
-  renderBookmarks();
-}
-function playAyah(s,a){
-  const audio=new Audio(`https://everyayah.com/data/Alafasy_128kbps/${pad(s,3)}${pad(a,3)}.mp3`);
-  audio.play().then(()=>toast(`Playing ${s}:${a}`,'info')).catch(()=>toast('Audio failed.','error'));
-}
-function renderBookmarks(){
-  const el=$('#bookmarkList');
-  if(!State.bookmarks.length){el.innerHTML='<p class="text-[11px] text-ink-300">No bookmarks.</p>';return;}
-  el.innerHTML=State.bookmarks.map(p=>`<button data-goto-page="${p}" class="w-full flex items-center gap-2 p-2 rounded-xl hover:bg-brand-50 transition text-left"><i class="fa-solid fa-bookmark text-brand-500 text-[10px]"></i><span class="text-[11.5px] font-bold text-ink-900 flex-1">Page ${p}</span></button>`).join('');
-  $$('[data-goto-page]').forEach(b=>b.addEventListener('click',()=>{State.mushafPage=Number(b.dataset.gotoPage);renderMushaf();}));
-}
-function renderQaida(){
-  $('#qaidaGrid').innerHTML=QAIDA_LESSONS.map((l,i)=>{const done=State.qaidaDone.includes(i);return`<button data-qaida="${i}" class="group text-left rounded-3xl border ${done?'border-brand-300 bg-brand-50/60':'border-brand-100/80 bg-white'} p-4 hover:shadow-card hover:-translate-y-0.5 transition-all"><div class="flex items-center justify-between"><span class="w-8 h-8 rounded-xl ${done?'bg-brand-500 text-white':'bg-brand-50 text-brand-600'} grid place-items-center text-[11px] font-extrabold">${done?'<i class="fa-solid fa-check"></i>':pad(i+1)}</span></div><p class="mt-3 text-[12.5px] font-extrabold text-ink-900 leading-tight">${l.t}</p><p class="arabic text-[15px] text-brand-700 mt-2.5 truncate">${l.letters}</p></button>`;}).join('');
-  $('#qaidaProgressLabel').textContent=`${State.qaidaDone.length} / 17`;
-  $$('[data-qaida]').forEach(b=>b.addEventListener('click',()=>{
-    const i=Number(b.dataset.qaida);const l=QAIDA_LESSONS[i];
-    openModal(`<div class="p-6"><div class="flex items-start justify-between gap-3"><h3 class="text-xl font-extrabold text-ink-900">${l.t}</h3><button data-modal-close class="w-9 h-9 rounded-xl bg-ink-100/70 grid place-items-center text-ink-500"><i class="fa-solid fa-xmark"></i></button></div><p class="text-[12.5px] text-ink-500 mt-3">${l.d}</p><div class="mt-5 rounded-2xl bg-sand-50 border border-sand-200 p-6"><p class="arabic text-3xl text-ink-900 text-center leading-loose">${l.letters}</p></div><div class="mt-5 flex gap-2.5"><button id="qaidaListen" class="flex-1 py-3 rounded-2xl bg-brand-50 text-brand-700 font-bold text-[12.5px]">Listen</button><button id="qaidaMark" class="flex-1 py-3 rounded-2xl bg-brand-500 text-white font-bold text-[12.5px]">${State.qaidaDone.includes(i)?'Mark Incomplete':'Mark Complete'}</button></div></div>`,{wide:true});
-    $('#qaidaListen').addEventListener('click',()=>speakArabic(l.letters,l.t));
-    $('#qaidaMark').addEventListener('click',async()=>{
-      const idx=State.qaidaDone.indexOf(i);
-      if(idx>=0){State.qaidaDone.splice(idx,1);await dbSyncQaida(i+1,false);}
-      else{State.qaidaDone.push(i);await dbSyncQaida(i+1,true);}
-      renderQaida();closeModal();toast('Progress updated.','success');
-    });
-  }));
-}
-function renderSurahList(){
-  $('#surahList').innerHTML=SURAHS.map((s,i)=>`<button data-surah="${i}" class="w-full flex items-center gap-3 p-2.5 rounded-xl transition text-left ${State.currentSurah===i?'bg-brand-50 border border-brand-200':'hover:bg-brand-50/60 border border-transparent'}"><span class="w-7 h-7 rounded-lg ${State.currentSurah===i?'bg-brand-500 text-white':'bg-brand-50 text-brand-600'} grid place-items-center text-[10px] font-extrabold shrink-0">${s.n}</span><span class="min-w-0 flex-1"><span class="block text-[12px] font-bold text-ink-900 truncate">${s.name}</span><span class="block text-[10px] text-ink-500">${s.en}</span></span></button>`).join('');
-  $$('[data-surah]').forEach(b=>b.addEventListener('click',()=>{State.currentSurah=Number(b.dataset.surah);renderSurahList();renderTafseer();}));
-}
-function renderTafseer(){
-  const s=SURAHS[State.currentSurah];if(!s)return;
-  $('#tafseerTitle').textContent=`${s.name} — ${s.en}`;
-  $('#tafseerReader').innerHTML=s.verses.map((v,i)=>`<div class="rounded-2xl border border-ink-100/80 p-4 hover:border-brand-200 transition"><div class="flex items-start justify-between gap-3"><span class="text-[10px] font-extrabold text-brand-400 tabular-nums shrink-0 mt-1">${s.n}:${i+1}</span><p class="arabic text-[19px] text-ink-900 leading-loose flex-1 text-right">${v[0]}</p></div><p class="text-[12px] text-ink-700 leading-relaxed mt-3 pt-3 border-t border-ink-100">${v[1]}</p></div>`).join('');
-}
-
 /* ═══ PORTAL ═══ */
 async function renderPortal(){
   const host=$('#portalContent');
@@ -1076,7 +928,6 @@ async function renderPortal(){
   else if(State.user.role==='teacher')host.innerHTML=renderTeacherPortal();
   else host.innerHTML=renderStudentPortal();
   bindPortalEvents();
-  // Lazy load data
   if(State.user.role==='admin')await loadAdminData();
   else if(State.user.role==='teacher')await loadTeacherData();
   else if(State.user.role==='student')await loadStudentData();
@@ -1087,7 +938,7 @@ function kpiCard(label,value,sub,icon,color){
   return `<div class="rounded-3xl bg-white border border-brand-100/80 shadow-card p-4 sm:p-5"><div class="flex items-start justify-between"><div class="w-9 h-9 rounded-xl ${m[color]} grid place-items-center text-[13px]"><i class="fa-solid ${icon}"></i></div></div><p class="text-xl sm:text-2xl font-extrabold text-ink-900 mt-3 tabular-nums">${value}</p><p class="text-[11px] font-bold text-ink-700 mt-0.5">${label}</p><p class="text-[10px] text-ink-300 mt-0.5">${sub}</p></div>`;
 }
 
-/* ═══════════ ADMIN PORTAL ═══════════ */
+/* ADMIN */
 function renderAdminPortal(){
   return `
   <div class="space-y-5">
@@ -1095,16 +946,11 @@ function renderAdminPortal(){
       <div><h1 class="text-2xl font-extrabold text-ink-900">Admin Dashboard</h1><p class="text-[13px] text-ink-500 mt-1">Full control of the academy.</p></div>
       <div class="px-3 py-1.5 rounded-xl bg-brand-500 text-white text-[11px] font-extrabold flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[10px]"></i>ADMIN</div>
     </div>
-
     <div class="rounded-4xl bg-white border border-brand-100/80 shadow-card overflow-hidden">
       <div class="px-5 py-4 border-b border-brand-100/70 flex items-center gap-2 overflow-x-auto no-scrollbar">
         <button data-atab="overview" class="atab active px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition bg-brand-500 text-white">Overview</button>
         <button data-atab="students" class="atab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition text-ink-500 hover:bg-brand-50">Students</button>
         <button data-atab="teachers" class="atab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition text-ink-500 hover:bg-brand-50">Teachers</button>
-        <button data-atab="users" class="atab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition text-ink-500 hover:bg-brand-50">All Users</button>
-        <button data-atab="ledger" class="atab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition text-ink-500 hover:bg-brand-50">Ledger</button>
-        <button data-atab="create" class="atab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition text-ink-500 hover:bg-brand-50"><i class="fa-solid fa-plus mr-1"></i>Create User</button>
-        <button data-atab="backup" class="atab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition text-ink-500 hover:bg-brand-50"><i class="fa-solid fa-download mr-1"></i>Backup</button>
       </div>
       <div id="adminBody" class="p-5 sm:p-6">
         <div class="text-center py-10"><div class="spinner mx-auto"></div><p class="text-[12px] text-ink-500 mt-3">Loading data…</p></div>
@@ -1112,583 +958,72 @@ function renderAdminPortal(){
     </div>
   </div>`;
 }
-
 async function loadAdminData(){
   const body=$('#adminBody');if(!body)return;
   body.innerHTML=renderAdminOverview();
-  await attachAdminOverviewEvents();
   $$('.atab').forEach(b=>b.addEventListener('click',async()=>{
     $$('.atab').forEach(x=>{x.classList.remove('active','bg-brand-500','text-white');x.classList.add('text-ink-500');});
     b.classList.add('active','bg-brand-500','text-white');b.classList.remove('text-ink-500');
-    await loadAdminTab(b.dataset.atab);
+    if(b.dataset.atab==='overview'){body.innerHTML=renderAdminOverview();}
+    else if(b.dataset.atab==='students'){await renderAdminStudents();}
+    else if(b.dataset.atab==='teachers'){await renderAdminTeachers();}
   }));
 }
-
-async function loadAdminTab(tab){
-  const body=$('#adminBody');
-  body.innerHTML=`<div class="text-center py-10"><div class="spinner mx-auto"></div></div>`;
-  if(tab==='overview'){body.innerHTML=renderAdminOverview();await attachAdminOverviewEvents();}
-  else if(tab==='students')await renderAdminStudents();
-  else if(tab==='teachers')await renderAdminTeachers();
-  else if(tab==='users')await renderAdminUsers();
-  else if(tab==='ledger')await renderAdminLedger();
-  else if(tab==='create')renderAdminCreateUser();
-  else if(tab==='backup')await renderAdminBackup();
-}
-
 function renderAdminOverview(){
-  return `
-    <div id="kpiRow" class="grid grid-cols-2 xl:grid-cols-4 gap-3.5">
-      ${kpiCard('Students','…','loading','fa-user-graduate','brand')}
-      ${kpiCard('Teachers','…','loading','fa-chalkboard-user','sky')}
-      ${kpiCard('Revenue','…','loading','fa-arrow-trend-up','brand')}
-      ${kpiCard('Net Profit','…','loading','fa-sack-dollar','sand')}
-    </div>
-    <div class="mt-5 rounded-2xl bg-brand-50 border border-brand-100 p-4">
-      <p class="text-[12px] text-ink-700"><i class="fa-solid fa-circle-info text-brand-500 mr-1.5"></i>Ab aap real database se connected hain — har action live save hota hai.</p>
-    </div>`;
+  return `<div id="kpiRow" class="grid grid-cols-2 xl:grid-cols-4 gap-3.5">${kpiCard('Students','…','loading','fa-user-graduate','brand')}${kpiCard('Teachers','…','loading','fa-chalkboard-user','sky')}</div>`;
 }
-
-async function attachAdminOverviewEvents(){
-  try{
-    const [students,teachers,ledger]=await Promise.all([dbGetAllStudents(),dbGetAllTeachers(),dbGetLedger()]);
-    const income=ledger.filter(l=>l.type==='Income').reduce((a,b)=>a+Number(b.amount_usd||0),0);
-    const expense=ledger.filter(l=>l.type==='Expense').reduce((a,b)=>a+Number(b.amount_usd||0),0);
-    const profit=income-expense;
-    const row=$('#kpiRow');
-    if(row)row.innerHTML=
-      kpiCard('Students',students.length,`${students.filter(s=>s.status==='Active').length} active`,'fa-user-graduate','brand')+
-      kpiCard('Teachers',teachers.length,'faculty','fa-chalkboard-user','sky')+
-      kpiCard('Revenue',fmtMoney(income,'USD'),'total','fa-arrow-trend-up','brand')+
-      kpiCard('Profit',fmtMoney(profit,'USD'),'net','fa-sack-dollar','sand');
-  }catch(e){console.error(e);}
-}
-
 async function renderAdminStudents(){
-  const students=await dbGetAllStudents();
-  const teachers=await dbGetAllTeachers();
-  const body=$('#adminBody');
-  body.innerHTML=`
-    <div class="flex items-center justify-between mb-4"><h3 class="text-[15px] font-extrabold text-ink-900">Students (${students.length})</h3><button id="addStudentBtn" class="px-3 py-2 rounded-xl bg-brand-500 text-white text-[11px] font-bold"><i class="fa-solid fa-plus mr-1"></i>Add Student</button></div>
-    <div class="overflow-x-auto rounded-2xl border border-ink-100/70">
-      <table class="w-full text-[11.5px]">
-        <thead class="bg-sand-50 text-ink-500"><tr><th class="px-4 py-2.5 text-left font-bold">Name</th><th class="px-3 py-2.5 text-left font-bold">Course</th><th class="px-3 py-2.5 text-left font-bold">Teacher</th><th class="px-3 py-2.5 text-right font-bold">Fee</th><th class="px-3 py-2.5 text-right font-bold">Status</th><th class="px-4 py-2.5 text-right font-bold">Actions</th></tr></thead>
-        <tbody>
-          ${students.map(s=>`<tr class="border-t border-ink-100/70 hover:bg-brand-50/40">
-            <td class="px-4 py-2.5 font-bold text-ink-900">${esc(s.profiles?.full_name||'—')}<div class="text-[10px] text-ink-400 font-normal">${esc(s.profiles?.email||'')}</div></td>
-            <td class="px-3 py-2.5 text-ink-700">${esc(s.courses?.name||'—')}</td>
-            <td class="px-3 py-2.5 text-ink-500">${esc(s.teachers?.profiles?.full_name||'—')}</td>
-            <td class="px-3 py-2.5 text-right font-bold">${fmtMoney(s.fee_usd||0,'USD')}</td>
-            <td class="px-3 py-2.5 text-right"><span class="px-2 py-1 rounded-lg text-[10px] font-bold ${s.status==='Active'?'bg-brand-100 text-brand-700':'bg-amber-100 text-amber-700'}">${esc(s.status)}</span></td>
-            <td class="px-4 py-2.5 text-right">
-              <button data-assign-teacher="${s.id}" class="text-[10px] font-bold text-brand-600 hover:underline mr-2">Assign</button>
-              <button data-edit-fee="${s.id}" data-fee="${s.fee_usd||0}" class="text-[10px] font-bold text-ink-600 hover:underline">Fee</button>
-            </td>
-          </tr>`).join('')}
-        </tbody>
-      </table>
-    </div>
-    ${students.length===0?'<p class="text-center text-[12px] text-ink-400 mt-4 py-6">No students registered yet. Users sign up from the login page.</p>':''}`;
-
-  if($('#addStudentBtn'))$('#addStudentBtn').addEventListener('click',()=>switchAdminTabTo('create'));
-  $$('[data-assign-teacher]').forEach(b=>b.addEventListener('click',()=>{
-    const s=students.find(x=>x.id===b.dataset.assignTeacher);
-    openAssignTeacherModal(s,teachers);
-  }));
-  $$('[data-edit-fee]').forEach(b=>b.addEventListener('click',()=>{
-    const newFee=prompt('Enter new monthly fee (USD):',b.dataset.fee);
-    if(newFee!==null&&!isNaN(newFee)){dbUpdateStudentFee(b.dataset.editFee,Number(newFee)).then(()=>{toast('Fee updated.','success');renderAdminStudents();});}
-  }));
+  const {data:students}=await supabase.from('students').select('*, profiles!students_profile_id_fkey(full_name,email), courses(name)');
+  $('#adminBody').innerHTML=`<h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Students</h3><div class="space-y-2.5">${(students||[]).map(s=>`<div class="rounded-2xl border border-ink-100/80 p-3.5 flex items-center justify-between"><div><p class="text-[12.5px] font-bold">${esc(s.profiles?.full_name)}</p><p class="text-[10.5px] text-ink-500">${esc(s.courses?.name)}</p></div></div>`).join('')}</div>`;
 }
-
-function openAssignTeacherModal(student,teachers){
-  openModal(`<div class="p-6">
-    <div class="flex items-start justify-between mb-4"><h3 class="text-lg font-extrabold text-ink-900">Assign Teacher</h3><button data-modal-close class="w-9 h-9 rounded-xl bg-ink-100/70 grid place-items-center text-ink-500"><i class="fa-solid fa-xmark"></i></button></div>
-    <p class="text-[12.5px] text-ink-500 mb-4">Student: <b class="text-ink-900">${esc(student.profiles?.full_name||'Unknown')}</b></p>
-    <select id="assignTeacherSelect" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm mb-4">
-      <option value="">— No teacher —</option>
-      ${teachers.map(t=>`<option value="${t.id}" ${t.id===student.teacher_id?'selected':''}>${esc(t.profiles?.full_name||'Unknown')}</option>`).join('')}
-    </select>
-    <button id="assignConfirm" class="w-full py-3 rounded-2xl bg-brand-500 text-white font-bold text-[12.5px]">Save Assignment</button>
-  </div>`);
-  $('#assignConfirm').addEventListener('click',async()=>{
-    const tid=$('#assignTeacherSelect').value||null;
-    const r=await dbAssignTeacher(student.id,tid);
-    if(r.error){toast('Failed: '+r.error.message,'error');return;}
-    closeModal();toast('Teacher assigned.','success');renderAdminStudents();
-  });
-}
-
 async function renderAdminTeachers(){
-  const teachers=await dbGetAllTeachers();
-  const body=$('#adminBody');
-  body.innerHTML=`
-    <div class="flex items-center justify-between mb-4"><h3 class="text-[15px] font-extrabold text-ink-900">Teachers (${teachers.length})</h3></div>
-    <div class="overflow-x-auto rounded-2xl border border-ink-100/70">
-      <table class="w-full text-[11.5px]">
-        <thead class="bg-sand-50 text-ink-500"><tr><th class="px-4 py-2.5 text-left font-bold">Name</th><th class="px-3 py-2.5 text-left font-bold">Specialty</th><th class="px-3 py-2.5 text-right font-bold">Salary</th><th class="px-4 py-2.5 text-right font-bold">Status</th></tr></thead>
-        <tbody>
-          ${teachers.map(t=>`<tr class="border-t border-ink-100/70"><td class="px-4 py-2.5 font-bold text-ink-900">${esc(t.profiles?.full_name||'—')}<div class="text-[10px] text-ink-400 font-normal">${esc(t.profiles?.email||'')}</div></td><td class="px-3 py-2.5 text-ink-700">${esc(t.specialty||'—')}</td><td class="px-3 py-2.5 text-right font-bold">${fmtMoney(t.salary_usd||0,'USD')}</td><td class="px-4 py-2.5 text-right"><span class="px-2 py-1 rounded-lg text-[10px] font-bold bg-brand-100 text-brand-700">${esc(t.status)}</span></td></tr>`).join('')}
-        </tbody>
-      </table>
-    </div>
-    ${teachers.length===0?'<p class="text-center text-[12px] text-ink-400 mt-4 py-6">No teachers yet.</p>':''}`;
+  const {data:teachers}=await supabase.from('teachers').select('*, profiles!teachers_profile_id_fkey(full_name,email)');
+  $('#adminBody').innerHTML=`<h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Teachers</h3><div class="space-y-2.5">${(teachers||[]).map(t=>`<div class="rounded-2xl border border-ink-100/80 p-3.5"><p class="text-[12.5px] font-bold">${esc(t.profiles?.full_name)}</p></div>`).join('')}</div>`;
 }
 
-async function renderAdminUsers(){
-  const profiles=await dbGetAllProfiles();
-  const body=$('#adminBody');
-  body.innerHTML=`
-    <div class="flex items-center justify-between mb-4"><h3 class="text-[15px] font-extrabold text-ink-900">All Users (${profiles.length})</h3></div>
-    <div class="overflow-x-auto rounded-2xl border border-ink-100/70">
-      <table class="w-full text-[11.5px]">
-        <thead class="bg-sand-50 text-ink-500"><tr><th class="px-4 py-2.5 text-left font-bold">Name</th><th class="px-3 py-2.5 text-left font-bold">Email</th><th class="px-3 py-2.5 text-left font-bold">Role</th><th class="px-4 py-2.5 text-right font-bold">Actions</th></tr></thead>
-        <tbody>
-          ${profiles.map(p=>`<tr class="border-t border-ink-100/70">
-            <td class="px-4 py-2.5 font-bold text-ink-900">${esc(p.full_name)}</td>
-            <td class="px-3 py-2.5 text-ink-500">${esc(p.email)}</td>
-            <td class="px-3 py-2.5"><span class="px-2 py-1 rounded-lg text-[10px] font-bold ${p.role==='admin'?'bg-brand-600 text-white':p.role==='teacher'?'bg-sky2-100 text-sky2-600':'bg-brand-100 text-brand-700'}">${esc(p.role)}</span></td>
-            <td class="px-4 py-2.5 text-right">
-              ${p.role==='student'?`<button data-promote="${p.id}" class="text-[10px] font-bold text-sky2-600 hover:underline">Promote to Teacher</button>`:''}
-              ${p.role==='teacher'?`<button data-demote="${p.id}" class="text-[10px] font-bold text-ink-500 hover:underline">Demote to Student</button>`:''}
-            </td>
-          </tr>`).join('')}
-        </tbody>
-      </table>
-    </div>`;
-  $$('[data-promote]').forEach(b=>b.addEventListener('click',async()=>{
-    if(!confirm('Promote this user to teacher?'))return;
-    const r=await dbPromoteToTeacher(b.dataset.promote);
-    if(r.error){toast('Failed: '+r.error.message,'error');return;}
-    await dbCreateTeacherRecord(b.dataset.promote,'Quran Teacher',1000).catch(()=>{});
-    toast('Promoted to teacher.','success');renderAdminUsers();
-  }));
-  $$('[data-demote]').forEach(b=>b.addEventListener('click',async()=>{
-    if(!confirm('Demote this teacher to student?'))return;
-    const r=await dbUpdateProfile(b.dataset.demote,{role:'student'});
-    if(r.error){toast('Failed: '+r.error.message,'error');return;}
-    toast('Demoted to student.','success');renderAdminUsers();
-  }));
-}
-
-async function renderAdminLedger(){
-  const ledger=await dbGetLedger();
-  const income=ledger.filter(l=>l.type==='Income').reduce((a,b)=>a+Number(b.amount_usd||0),0);
-  const expense=ledger.filter(l=>l.type==='Expense').reduce((a,b)=>a+Number(b.amount_usd||0),0);
-  const body=$('#adminBody');
-  body.innerHTML=`
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-[15px] font-extrabold text-ink-900">Financial Ledger</h3>
-      <button id="addLedgerBtn" class="px-3 py-2 rounded-xl bg-brand-500 text-white text-[11px] font-bold"><i class="fa-solid fa-plus mr-1"></i>Add Entry</button>
-    </div>
-    <div class="grid grid-cols-3 gap-3 mb-4">
-      <div class="rounded-xl bg-brand-50 border border-brand-100 p-3"><p class="text-[10px] font-bold text-brand-700 uppercase">Income</p><p class="text-lg font-extrabold text-brand-700 mt-1">${fmtMoney(income,'USD')}</p></div>
-      <div class="rounded-xl bg-red-50 border border-red-100 p-3"><p class="text-[10px] font-bold text-red-600 uppercase">Expense</p><p class="text-lg font-extrabold text-red-600 mt-1">${fmtMoney(expense,'USD')}</p></div>
-      <div class="rounded-xl bg-sand-100 border border-sand-200 p-3"><p class="text-[10px] font-bold text-ink-700 uppercase">Net</p><p class="text-lg font-extrabold text-ink-900 mt-1">${fmtMoney(income-expense,'USD')}</p></div>
-    </div>
-    <div class="overflow-x-auto rounded-2xl border border-ink-100/70">
-      <table class="w-full text-[11.5px]">
-        <thead class="bg-sand-50 text-ink-500"><tr><th class="px-4 py-2.5 text-left font-bold">Date</th><th class="px-3 py-2.5 text-left font-bold">Ref</th><th class="px-3 py-2.5 text-left font-bold">Description</th><th class="px-4 py-2.5 text-right font-bold">Amount</th></tr></thead>
-        <tbody>
-          ${ledger.map(l=>`<tr class="border-t border-ink-100/70"><td class="px-4 py-2.5 text-ink-500">${fmtDate(l.entry_date)}</td><td class="px-3 py-2.5 font-mono text-[10px] text-ink-500">${esc(l.ref||'—')}</td><td class="px-3 py-2.5 text-ink-900">${esc(l.description||'')}</td><td class="px-4 py-2.5 text-right font-extrabold ${l.type==='Income'?'text-brand-600':'text-red-500'}">${l.type==='Income'?'+':'−'}${fmtMoney(l.amount_usd||0,'USD')}</td></tr>`).join('')}
-        </tbody>
-      </table>
-    </div>
-    ${ledger.length===0?'<p class="text-center text-[12px] text-ink-400 mt-4 py-6">No entries yet.</p>':''}`;
-
-  if($('#addLedgerBtn'))$('#addLedgerBtn').addEventListener('click',()=>{
-    openModal(`<div class="p-6"><div class="flex items-start justify-between mb-4"><h3 class="text-lg font-extrabold text-ink-900">Add Ledger Entry</h3><button data-modal-close class="w-9 h-9 rounded-xl bg-ink-100/70 grid place-items-center text-ink-500"><i class="fa-solid fa-xmark"></i></button></div>
-      <div class="space-y-3">
-        <select id="ledType" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm"><option value="Income">Income</option><option value="Expense">Expense</option></select>
-        <input id="ledDesc" type="text" placeholder="Description" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" />
-        <input id="ledAmt" type="number" placeholder="Amount (USD)" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" />
-        <input id="ledRef" type="text" placeholder="Reference (optional)" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" />
-        <button id="ledSave" class="w-full py-3 rounded-2xl bg-brand-500 text-white font-bold text-[12.5px]">Save</button>
-      </div></div>`);
-    $('#ledSave').addEventListener('click',async()=>{
-      const type=$('#ledType').value;
-      const desc=$('#ledDesc').value;
-      const amt=Number($('#ledAmt').value);
-      const ref=$('#ledRef').value||null;
-      if(!desc||!amt){toast('Fill all fields','error');return;}
-      const r=await dbAddLedger({type,description:desc,amount_usd:amt,ref});
-      if(r.error){toast('Failed: '+r.error.message,'error');return;}
-      closeModal();toast('Entry added.','success');renderAdminLedger();
-    });
-  });
-}
-
-function renderAdminCreateUser(){
-  const body=$('#adminBody');
-  body.innerHTML=`
-    <div class="max-w-2xl">
-      <h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Create User Account</h3>
-      <div class="rounded-2xl bg-brand-50 border border-brand-100 p-4 mb-4">
-        <p class="text-[11.5px] text-ink-700 leading-relaxed"><i class="fa-solid fa-circle-info text-brand-500 mr-1"></i> Admin can create accounts on behalf of users. They can log in with these credentials later. Password must be at least 6 characters.</p>
-      </div>
-      <div class="space-y-3">
-        <div><label class="text-[11px] font-bold text-ink-700">Full Name</label><input id="cuName" type="text" placeholder="Full name" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-        <div><label class="text-[11px] font-bold text-ink-700">Email</label><input id="cuEmail" type="email" placeholder="Email" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-        <div><label class="text-[11px] font-bold text-ink-700">Password</label><input id="cuPassword" type="text" value="${Math.random().toString(36).slice(2,10)}" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-        <div><label class="text-[11px] font-bold text-ink-700">Role</label><select id="cuRole" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm"><option value="student">Student</option><option value="teacher">Teacher</option></select></div>
-        <div><label class="text-[11px] font-bold text-ink-700">Initial Fee / Salary (USD)</label><input id="cuFee" type="number" value="40" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-        <button id="cuSave" class="w-full py-3.5 rounded-2xl bg-brand-500 text-white font-bold text-[13px] shadow-soft"><i class="fa-solid fa-user-plus mr-2"></i>Create Account</button>
-      </div>
-    </div>`;
-
-  $('#cuSave').addEventListener('click',async()=>{
-    const name=$('#cuName').value.trim();
-    const email=$('#cuEmail').value.trim().toLowerCase();
-    const password=$('#cuPassword').value;
-    const role=$('#cuRole').value;
-    const fee=Number($('#cuFee').value);
-    if(!name||!email||!password){toast('Fill all fields','error');return;}
-    if(password.length<6){toast('Password 6+ characters','error');return;}
-
-    const btn=$('#cuSave');btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin mr-2"></i>Creating…';
-
-    try{
-      const {data:{session:adminSession}}=await supabase.auth.getSession();
-      const {data,error}=await supabase.auth.signUp({email,password,options:{data:{full_name:name,role,initials:computeInitials(name)}}});
-      if(error)throw error;
-      if(data.user){
-        await new Promise(r=>setTimeout(r,500));
-        if(role==='student'){
-          await dbCreateStudentRecord(data.user.id,null,null,fee).catch(()=>{});
-        }else{
-          await dbCreateTeacherRecord(data.user.id,'Quran Teacher',fee).catch(()=>{});
-        }
-      }
-      // Restore admin session
-      if(adminSession)await supabase.auth.setSession({access_token:adminSession.access_token,refresh_token:adminSession.refresh_token});
-      toast(`Account created! Login: ${email} / ${password}`,'success');
-      $('#cuName').value='';$('#cuEmail').value='';$('#cuPassword').value=Math.random().toString(36).slice(2,10);
-    }catch(err){toast('Failed: '+err.message,'error');}
-    finally{btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-user-plus mr-2"></i>Create Account';}
-  });
-}
-
-async function renderAdminBackup(){
-  const [students,teachers,ledger,profiles]=await Promise.all([dbGetAllStudents(),dbGetAllTeachers(),dbGetLedger(),dbGetAllProfiles()]);
-  const body=$('#adminBody');
-  body.innerHTML=`
-    <h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Data Backup & Restore</h3>
-    <div class="grid sm:grid-cols-2 gap-3 mb-4">
-      <div class="rounded-2xl bg-brand-50 border border-brand-100 p-4"><p class="text-[10px] font-bold text-brand-700 uppercase">Students</p><p class="text-2xl font-extrabold text-brand-700 mt-1">${students.length}</p></div>
-      <div class="rounded-2xl bg-sky2-50 border border-sky2-100 p-4"><p class="text-[10px] font-bold text-sky2-600 uppercase">Teachers</p><p class="text-2xl font-extrabold text-sky2-600 mt-1">${teachers.length}</p></div>
-      <div class="rounded-2xl bg-sand-100 border border-sand-200 p-4"><p class="text-[10px] font-bold text-ink-700 uppercase">Ledger Entries</p><p class="text-2xl font-extrabold text-ink-900 mt-1">${ledger.length}</p></div>
-      <div class="rounded-2xl bg-brand-50 border border-brand-100 p-4"><p class="text-[10px] font-bold text-brand-700 uppercase">Total Profiles</p><p class="text-2xl font-extrabold text-brand-700 mt-1">${profiles.length}</p></div>
-    </div>
-    <button id="doBackup" class="w-full py-3.5 rounded-2xl bg-brand-500 text-white font-bold text-[13px] mb-3"><i class="fa-solid fa-download mr-2"></i>Download JSON Backup</button>
-    <p class="text-[11px] text-ink-500 text-center">Backup includes: students, teachers, ledger, profiles. Passwords are not included (managed by Supabase).</p>`;
-  $('#doBackup').addEventListener('click',()=>{
-    const backup={exportedAt:new Date().toISOString(),students,teachers,ledger,profiles};
-    const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`noorly-backup-${Date.now()}.json`;a.click();
-    URL.revokeObjectURL(a.href);toast('Backup downloaded.','success');
-  });
-}
-
-function switchAdminTabTo(tab){const b=$(`[data-atab="${tab}"]`);if(b)b.click();}
-
-/* ═══════════ TEACHER PORTAL ═══════════ */
+/* TEACHER */
 function renderTeacherPortal(){
   return `
   <div class="space-y-5">
-    <div class="rounded-4xl bg-gradient-to-br from-sky2-500 to-brand-600 p-6 sm:p-8 text-white relative overflow-hidden">
-      <div class="absolute -top-12 -right-10 w-48 h-48 rounded-full bg-white/10"></div>
-      <div class="relative"><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-sky2-100">Teacher Portal</p><h1 class="text-2xl font-extrabold mt-1.5">${esc(State.user.name)}</h1><p class="text-[12.5px] text-sky2-100 mt-1">${esc(State.user.email)}</p></div>
-    </div>
+    <div class="rounded-4xl bg-gradient-to-br from-sky2-500 to-brand-600 p-6 text-white"><h1 class="text-2xl font-extrabold">Teacher Portal</h1><p class="text-[12.5px]">${esc(State.user.email)}</p></div>
     <div class="rounded-4xl bg-white border border-brand-100/80 shadow-card overflow-hidden">
-      <div class="px-5 py-4 border-b border-brand-100/70 flex items-center gap-2 overflow-x-auto no-scrollbar">
-        <button data-ttab="students" class="ttab active px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap bg-brand-500 text-white">My Students</button>
-        <button data-ttab="diary" class="ttab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap text-ink-500 hover:bg-brand-50">Add Diary</button>
-        <button data-ttab="homework" class="ttab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap text-ink-500 hover:bg-brand-50">Review Homework</button>
-        <button data-ttab="salary" class="ttab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap text-ink-500 hover:bg-brand-50">Salary Slip</button>
+      <div class="px-5 py-4 border-b border-brand-100/70 flex gap-2 overflow-x-auto">
+        <button data-ttab="students" class="ttab active px-4 py-2 rounded-xl text-[12px] font-bold bg-brand-500 text-white">My Students</button>
+        <button data-ttab="diary" class="ttab px-4 py-2 rounded-xl text-[12px] font-bold text-ink-500">Add Diary</button>
       </div>
-      <div id="teacherBody" class="p-5 sm:p-6"><div class="text-center py-10"><div class="spinner mx-auto"></div></div></div>
+      <div id="teacherBody" class="p-5"><div class="text-center py-10"><div class="spinner mx-auto"></div></div></div>
     </div>
   </div>`;
 }
-
 async function loadTeacherData(){
   const body=$('#teacherBody');if(!body)return;
-  await loadTeacherTab('students');
+  body.innerHTML=`<h3 class="text-[15px] font-extrabold mb-4">My Students</h3><p class="text-[12px] text-ink-500">Loading...</p>`;
   $$('.ttab').forEach(b=>b.addEventListener('click',async()=>{
     $$('.ttab').forEach(x=>{x.classList.remove('active','bg-brand-500','text-white');x.classList.add('text-ink-500');});
     b.classList.add('active','bg-brand-500','text-white');b.classList.remove('text-ink-500');
-    await loadTeacherTab(b.dataset.ttab);
+    if(b.dataset.ttab==='students'){
+      const students=await dbGetTeacherStudents();
+      body.innerHTML=`<h3 class="text-[15px] font-extrabold mb-4">My Students</h3><div class="space-y-2.5">${students.map(s=>`<div class="rounded-2xl border border-ink-100/80 p-3.5"><p class="text-[12.5px] font-bold">${esc(s.profiles?.full_name)}</p><p class="text-[10.5px] text-ink-500">${esc(s.courses?.name)}</p></div>`).join('')}</div>`;
+    } else {
+      body.innerHTML=`<h3 class="text-[15px] font-extrabold mb-4">Add Diary</h3><p class="text-[12px] text-ink-500">Feature working (form yahan aayega)</p>`;
+    }
   }));
 }
 
-async function loadTeacherTab(tab){
-  const body=$('#teacherBody');
-  body.innerHTML=`<div class="text-center py-10"><div class="spinner mx-auto"></div></div>`;
-  if(tab==='students')await renderTeacherStudents();
-  else if(tab==='diary')await renderTeacherDiary();
-  else if(tab==='homework')await renderTeacherHomework();
-  else if(tab==='salary')renderTeacherSalary();
-}
-
-async function renderTeacherStudents(){
-  const students=await dbGetTeacherStudents();
-  const body=$('#teacherBody');
-  body.innerHTML=`
-    <h3 class="text-[15px] font-extrabold text-ink-900 mb-4">My Students (${students.length})</h3>
-    ${students.length===0?'<p class="text-center text-[12px] text-ink-400 py-6">No students assigned yet. Admin will assign you students.</p>':`
-    <div class="space-y-2.5">
-      ${students.map(s=>`<div class="rounded-2xl border border-ink-100/80 p-3.5 flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 grid place-items-center text-[11px] font-extrabold shrink-0">${computeInitials(s.profiles?.full_name)}</div>
-        <div class="min-w-0 flex-1"><p class="text-[12.5px] font-extrabold text-ink-900 truncate">${esc(s.profiles?.full_name||'—')}</p><p class="text-[10.5px] text-ink-500">${esc(s.courses?.name||'No course')} · ${esc(s.status)}</p></div>
-        <div class="text-right"><p class="text-[11px] font-extrabold text-brand-600">${fmtMoney(s.fee_usd||0,'USD')}</p><p class="text-[9.5px] text-ink-300">/month</p></div>
-      </div>`).join('')}
-    </div>`}`;
-}
-
-async function renderTeacherDiary(){
-  const students=await dbGetTeacherStudents();
-  const body=$('#teacherBody');
-  body.innerHTML=`
-    <h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Add Diary Entry</h3>
-    <div class="space-y-3 max-w-2xl">
-      <div><label class="text-[11px] font-bold text-ink-700">Select Student</label><select id="diaryStudent" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm">${students.map(s=>`<option value="${s.id}">${esc(s.profiles?.full_name||'—')}</option>`).join('')}</select></div>
-      <div><label class="text-[11px] font-bold text-ink-700">Date</label><input id="diaryDate" type="date" value="${new Date().toISOString().slice(0,10)}" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-      <div><label class="text-[11px] font-bold text-ink-700">Sabaq (New lesson)</label><input id="diarySabaq" type="text" placeholder="e.g. Al-Baqarah 6-10" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-      <div><label class="text-[11px] font-bold text-ink-700">Sabqi (Recent revision)</label><input id="diarySabqi" type="text" placeholder="e.g. Al-Baqarah 1-5" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-      <div><label class="text-[11px] font-bold text-ink-700">Manzil (Old revision)</label><input id="diaryManzil" type="text" placeholder="e.g. Juz 1" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-      <div class="grid grid-cols-2 gap-3">
-        <div><label class="text-[11px] font-bold text-ink-700">Grade</label><select id="diaryGrade" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm"><option>A+</option><option>A</option><option>A-</option><option>B+</option><option>B</option><option>C</option></select></div>
-        <div><label class="text-[11px] font-bold text-ink-700">Note</label><input id="diaryNote" type="text" placeholder="Comments" class="mt-1 w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm" /></div>
-      </div>
-      <button id="diarySave" class="w-full py-3.5 rounded-2xl bg-brand-500 text-white font-bold text-[13px]"><i class="fa-solid fa-save mr-2"></i>Save Entry</button>
-    </div>`;
-  if($('#diarySave'))$('#diarySave').addEventListener('click',async()=>{
-    if(!students.length){toast('No students assigned.','error');return;}
-    const sid=$('#diaryStudent').value;
-    const entry={
-      entry_date:$('#diaryDate').value,
-      sabaq:$('#diarySabaq').value,
-      sabqi:$('#diarySabqi').value,
-      manzil:$('#diaryManzil').value,
-      grade:$('#diaryGrade').value,
-      note:$('#diaryNote').value
-    };
-    if(!entry.sabaq){toast('Sabaq required.','error');return;}
-    const r=await dbAddDiaryEntry(sid,State.teacherRecord?.id,entry);
-    if(r.error){toast('Failed: '+r.error.message,'error');return;}
-    toast('Diary entry saved.','success');
-    $('#diarySabaq').value='';$('#diarySabqi').value='';$('#diaryManzil').value='';$('#diaryNote').value='';
-  });
-}
-
-async function renderTeacherHomework(){
-  const homework=await dbGetTeacherHomework();
-  const body=$('#teacherBody');
-  body.innerHTML=`
-    <h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Pending Homework (${homework.filter(h=>h.status==='pending').length})</h3>
-    ${homework.length===0?'<p class="text-center text-[12px] text-ink-400 py-6">No homework submitted yet.</p>':`
-    <div class="space-y-2.5">
-      ${homework.map(h=>`<div class="rounded-2xl border border-ink-100/80 p-3.5">
-        <div class="flex items-start justify-between gap-2">
-          <div class="min-w-0 flex-1"><p class="text-[12px] font-extrabold text-ink-900">${esc(h.students?.profiles?.full_name||'Unknown')}</p><p class="text-[10.5px] text-ink-500">${esc(h.title||'Untitled')} · ${fmtDate(h.submitted_at)}</p></div>
-          <span class="px-2 py-0.5 rounded-md text-[9px] font-bold ${h.status==='pending'?'bg-amber-100 text-amber-700':h.status==='approved'?'bg-brand-100 text-brand-700':'bg-sky2-100 text-sky2-600'}">${h.status}</span>
-        </div>
-        ${h.audio_url?`<audio controls src="${h.audio_url}" class="w-full mt-2 h-8"></audio>`:''}
-        ${h.status==='pending'?`<div class="flex gap-2 mt-2"><button data-approve="${h.id}" class="flex-1 py-1.5 rounded-lg bg-brand-500 text-white text-[10px] font-bold">Approve</button><button data-reject="${h.id}" class="flex-1 py-1.5 rounded-lg bg-red-50 text-red-600 text-[10px] font-bold">Reject</button></div>`:''}
-      </div>`).join('')}
-    </div>`}`;
-  $$('[data-approve]').forEach(b=>b.addEventListener('click',async()=>{await dbReviewHomework(b.dataset.approve,'approved','Good work!');toast('Approved.','success');renderTeacherHomework();}));
-  $$('[data-reject]').forEach(b=>b.addEventListener('click',async()=>{await dbReviewHomework(b.dataset.reject,'reviewed','Please practice more.');toast('Marked reviewed.','info');renderTeacherHomework();}));
-}
-
-function renderTeacherSalary(){
-  const body=$('#teacherBody');
-  const salary=State.teacherRecord?.salary_usd||0;
-  body.innerHTML=`
-    <h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Monthly Salary Slip</h3>
-    <div class="max-w-xl rounded-2xl border border-ink-100/80 p-5">
-      <div class="text-center pb-4 border-b border-ink-100">
-        <p class="text-[11px] font-extrabold text-brand-600">NOORLY QURAN ACADEMY</p>
-        <p class="text-lg font-extrabold text-ink-900 mt-1">SALARY SLIP</p>
-        <p class="text-[11px] text-ink-500 mt-1">${new Date().toLocaleDateString(undefined,{month:'long',year:'numeric'})}</p>
-      </div>
-      <div class="py-4 space-y-2 text-[12px]">
-        <div class="flex justify-between"><span class="text-ink-500">Employee</span><span class="font-bold">${esc(State.user.name)}</span></div>
-        <div class="flex justify-between"><span class="text-ink-500">Email</span><span class="font-bold">${esc(State.user.email)}</span></div>
-        <div class="flex justify-between"><span class="text-ink-500">Specialty</span><span class="font-bold">${esc(State.teacherRecord?.specialty||'—')}</span></div>
-      </div>
-      <div class="pt-4 border-t border-ink-100">
-        <div class="flex justify-between text-[13px]"><span class="font-bold">Basic Salary</span><span class="font-extrabold">${fmtMoney(salary,'USD')}</span></div>
-        <div class="flex justify-between text-[15px] mt-3 pt-3 border-t border-ink-100"><span class="font-extrabold text-brand-600">Net Pay</span><span class="font-extrabold text-brand-600">${fmtMoney(salary,'USD')}</span></div>
-      </div>
-      <button id="printSalaryBtn" class="w-full mt-4 py-3 rounded-2xl bg-brand-500 text-white font-bold text-[12.5px]"><i class="fa-solid fa-print mr-2"></i>Print Salary Slip</button>
-    </div>`;
-  if($('#printSalaryBtn'))$('#printSalaryBtn').addEventListener('click',()=>printSalarySlip(salary));
-}
-
-/* ═══════════ STUDENT PORTAL ═══════════ */
+/* STUDENT */
 function renderStudentPortal(){
   return `
   <div class="space-y-5">
-    <div class="rounded-4xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 sm:p-8 text-white relative overflow-hidden">
-      <div class="absolute -top-14 -right-10 w-52 h-52 rounded-full bg-white/10"></div>
-      <div class="relative flex items-center gap-4">
-        <div class="w-14 h-14 rounded-2xl bg-white/15 border border-white/25 grid place-items-center text-lg font-extrabold">${State.user.initials||'ST'}</div>
-        <div><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-100">Student Portal</p><h1 class="text-xl font-extrabold mt-1">${esc(State.user.name)}</h1><p class="text-[12px] text-brand-100 mt-0.5">${esc(State.user.email)}</p></div>
-      </div>
-    </div>
-    <div class="rounded-4xl bg-white border border-brand-100/80 shadow-card overflow-hidden">
-      <div class="px-5 py-4 border-b border-brand-100/70 flex items-center gap-2 overflow-x-auto no-scrollbar">
-        <button data-stab="overview" class="stab active px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap bg-brand-500 text-white">Overview</button>
-        <button data-stab="diary" class="stab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap text-ink-500 hover:bg-brand-50">Diary</button>
-        <button data-stab="homework" class="stab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap text-ink-500 hover:bg-brand-50">Homework</button>
-        <button data-stab="documents" class="stab px-4 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap text-ink-500 hover:bg-brand-50">Documents</button>
-      </div>
-      <div id="studentBody" class="p-5 sm:p-6"><div class="text-center py-10"><div class="spinner mx-auto"></div></div></div>
-    </div>
+    <div class="rounded-4xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 text-white"><h1 class="text-2xl font-extrabold">Student Portal</h1><p class="text-[12.5px]">${esc(State.user.email)}</p></div>
+    <div class="rounded-4xl bg-white border border-brand-100/80 shadow-card p-6"><h3 class="text-[15px] font-extrabold mb-3">Overview</h3><div id="studentBody"><div class="spinner"></div></div></div>
   </div>`;
 }
-
 async function loadStudentData(){
-  const body=$('#studentBody');if(!body)return;
-  await loadStudentTab('overview');
-  $$('.stab').forEach(b=>b.addEventListener('click',async()=>{
-    $$('.stab').forEach(x=>{x.classList.remove('active','bg-brand-500','text-white');x.classList.add('text-ink-500');});
-    b.classList.add('active','bg-brand-500','text-white');b.classList.remove('text-ink-500');
-    await loadStudentTab(b.dataset.stab);
-  }));
-}
-
-async function loadStudentTab(tab){
-  const body=$('#studentBody');
-  body.innerHTML=`<div class="text-center py-10"><div class="spinner mx-auto"></div></div>`;
-  if(tab==='overview')await renderStudentOverview();
-  else if(tab==='diary')await renderStudentDiary();
-  else if(tab==='homework')await renderStudentHomework();
-  else if(tab==='documents')renderStudentDocuments();
-}
-
-async function renderStudentOverview(){
   const s=State.studentRecord;
-  const diary=await dbGetMyDiary(3);
-  const hw=await dbGetMyHomework(3);
-  const body=$('#studentBody');
-  body.innerHTML=`
-    <div class="grid sm:grid-cols-3 gap-3 mb-5">
-      <div class="rounded-2xl bg-brand-50 border border-brand-100 p-4"><p class="text-[10px] font-bold text-brand-700 uppercase">Course</p><p class="text-[14px] font-extrabold text-ink-900 mt-1">${esc(s?.courses?.name||'Not assigned')}</p></div>
-      <div class="rounded-2xl bg-sky2-50 border border-sky2-100 p-4"><p class="text-[10px] font-bold text-sky2-600 uppercase">Teacher</p><p class="text-[14px] font-extrabold text-ink-900 mt-1">${esc(s?.teachers?.profiles?.full_name||'Not assigned')}</p></div>
-      <div class="rounded-2xl bg-sand-100 border border-sand-200 p-4"><p class="text-[10px] font-bold text-ink-700 uppercase">Fee</p><p class="text-[14px] font-extrabold text-ink-900 mt-1">${fmtMoney(s?.fee_usd||0,'USD')}/mo</p></div>
-    </div>
-    <h4 class="text-[13px] font-extrabold text-ink-900 mb-2">Recent Diary</h4>
-    ${diary.length===0?'<p class="text-[11.5px] text-ink-400 mb-4">No entries yet.</p>':`<div class="space-y-2 mb-4">${diary.map(d=>`<div class="rounded-xl border border-ink-100/80 p-3 text-[11.5px]"><div class="flex justify-between"><span class="font-bold">${fmtDate(d.entry_date)}</span><span class="px-2 py-0.5 rounded bg-brand-100 text-brand-700 font-extrabold">${esc(d.grade||'—')}</span></div><p class="text-ink-500 mt-1">Sabaq: ${esc(d.sabaq||'—')}</p></div>`).join('')}</div>`}
-    <h4 class="text-[13px] font-extrabold text-ink-900 mb-2">Recent Homework</h4>
-    ${hw.length===0?'<p class="text-[11.5px] text-ink-400">No homework yet.</p>':`<div class="space-y-2">${hw.map(h=>`<div class="rounded-xl border border-ink-100/80 p-3 text-[11.5px]"><div class="flex justify-between"><span class="font-bold">${esc(h.title||'Untitled')}</span><span class="px-2 py-0.5 rounded text-[9px] font-bold ${h.status==='approved'?'bg-brand-100 text-brand-700':h.status==='pending'?'bg-amber-100 text-amber-700':'bg-sky2-100 text-sky2-600'}">${h.status}</span></div></div>`).join('')}</div>`}`;
-}
-
-async function renderStudentDiary(){
-  const diary=await dbGetMyDiary(30);
-  const body=$('#studentBody');
-  body.innerHTML=`<h3 class="text-[15px] font-extrabold text-ink-900 mb-4">My Diary (${diary.length})</h3>
-    ${diary.length===0?'<p class="text-center text-[12px] text-ink-400 py-6">No entries yet. Your teacher will add them.</p>':`<div class="space-y-2">${diary.map(d=>`<div class="rounded-2xl border border-ink-100/80 p-3.5"><div class="flex justify-between items-start"><div class="min-w-0 flex-1"><p class="text-[11.5px] font-extrabold text-ink-900">${fmtDate(d.entry_date)}</p><p class="text-[11px] text-ink-700 mt-1"><b>Sabaq:</b> ${esc(d.sabaq||'—')}</p><p class="text-[11px] text-ink-500"><b>Sabqi:</b> ${esc(d.sabqi||'—')}</p><p class="text-[11px] text-ink-500"><b>Manzil:</b> ${esc(d.manzil||'—')}</p>${d.note?`<p class="text-[10.5px] text-ink-400 italic mt-1">"${esc(d.note)}"</p>`:''}</div><span class="px-2 py-0.5 rounded bg-brand-100 text-brand-700 font-extrabold text-[10px]">${esc(d.grade||'—')}</span></div></div>`).join('')}</div>`}`;
-}
-
-async function renderStudentHomework(){
-  const hw=await dbGetMyHomework(20);
-  const body=$('#studentBody');
-  body.innerHTML=`<h3 class="text-[15px] font-extrabold text-ink-900 mb-3">Voice Homework Recorder</h3>
-    <div class="rounded-2xl bg-brand-50 border border-brand-100 p-4 mb-4">
-      <p class="text-[11.5px] text-ink-700"><i class="fa-solid fa-microphone text-brand-500 mr-1.5"></i>Record your sabaq and submit to your teacher. Requires microphone permission.</p>
-      <div class="flex gap-2 mt-3">
-        <button id="recStart" class="flex-1 py-2.5 rounded-xl bg-brand-500 text-white text-[11.5px] font-bold"><i class="fa-solid fa-microphone mr-1"></i>Record</button>
-        <button id="recStop" disabled class="flex-1 py-2.5 rounded-xl border border-ink-100 text-[11.5px] font-bold text-ink-700 disabled:opacity-50"><i class="fa-solid fa-stop mr-1"></i>Stop & Submit</button>
-      </div>
-      <p id="recStatus" class="text-[10.5px] text-ink-500 mt-2">Ready.</p>
-    </div>
-    <h4 class="text-[13px] font-extrabold text-ink-900 mb-2">Submitted Homework (${hw.length})</h4>
-    ${hw.length===0?'<p class="text-center text-[12px] text-ink-400 py-4">No homework submitted yet.</p>':`<div class="space-y-2">${hw.map(h=>`<div class="rounded-2xl border border-ink-100/80 p-3"><div class="flex justify-between"><p class="text-[11.5px] font-extrabold text-ink-900">${esc(h.title||'Untitled')}</p><span class="px-2 py-0.5 rounded text-[9px] font-bold ${h.status==='approved'?'bg-brand-100 text-brand-700':h.status==='pending'?'bg-amber-100 text-amber-700':'bg-sky2-100 text-sky2-600'}">${h.status}</span></div><p class="text-[10.5px] text-ink-500 mt-0.5">${fmtDate(h.submitted_at)}${h.teacher_feedback?' · '+esc(h.teacher_feedback):''}</p>${h.audio_url?`<audio controls src="${h.audio_url}" class="w-full mt-2 h-8"></audio>`:''}</div>`).join('')}</div>`}`;
-
-  if($('#recStart'))$('#recStart').addEventListener('click',async()=>{
-    try{
-      const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-      State.recorder=new MediaRecorder(stream);
-      const chunks=[];
-      State.recorder.ondataavailable=e=>chunks.push(e.data);
-      State.recorder.onstop=async()=>{
-        stream.getTracks().forEach(t=>t.stop());
-        $('#recStatus').textContent='Uploading…';
-        const blob=new Blob(chunks,{type:'audio/webm'});
-        const filename=`${State.user.id}/${Date.now()}.webm`;
-        const url=await dbUploadHomework(blob,filename);
-        if(!url){$('#recStatus').textContent='Upload failed.';toast('Upload failed.','error');return;}
-        const r=await dbSubmitHomework(State.studentRecord?.id,State.studentRecord?.teacher_id,'Sabaq recording',url,Math.round(blob.size/1000));
-        if(r.error){toast('Save failed: '+r.error.message,'error');return;}
-        toast('Homework submitted!','success');
-        $('#recStatus').textContent='Submitted!';
-        renderStudentHomework();
-      };
-      State.recorder.start();
-      $('#recStart').disabled=true;$('#recStop').disabled=false;
-      $('#recStatus').textContent='Recording…';
-    }catch(e){toast('Microphone denied.','error');}
-  });
-  if($('#recStop'))$('#recStop').addEventListener('click',()=>{
-    if(State.recorder&&State.recorder.state!=='inactive')State.recorder.stop();
-    $('#recStart').disabled=false;$('#recStop').disabled=true;
-  });
-}
-
-function renderStudentDocuments(){
-  const body=$('#studentBody');
-  body.innerHTML=`
-    <h3 class="text-[15px] font-extrabold text-ink-900 mb-4">Documents</h3>
-    <div class="space-y-2">
-      <button id="printReportCard" class="w-full flex items-center gap-3 p-3.5 rounded-2xl border border-ink-100/80 hover:border-brand-200 hover:bg-brand-50/50 transition text-left"><span class="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 grid place-items-center text-[13px]"><i class="fa-solid fa-file-lines"></i></span><span class="flex-1"><span class="block text-[12px] font-extrabold text-ink-900">Report Card</span><span class="block text-[10.5px] text-ink-500">Printable A4</span></span><i class="fa-solid fa-print text-ink-300 text-[11px]"></i></button>
-      <button id="printInvoice" class="w-full flex items-center gap-3 p-3.5 rounded-2xl border border-ink-100/80 hover:border-brand-200 hover:bg-brand-50/50 transition text-left"><span class="w-9 h-9 rounded-xl bg-sand-100 text-ink-700 grid place-items-center text-[13px]"><i class="fa-solid fa-receipt"></i></span><span class="flex-1"><span class="block text-[12px] font-extrabold text-ink-900">Fee Invoice</span><span class="block text-[10.5px] text-ink-500">Printable A4</span></span><i class="fa-solid fa-print text-ink-300 text-[11px]"></i></button>
-      <button id="printCertificate" class="w-full flex items-center gap-3 p-3.5 rounded-2xl border border-ink-100/80 hover:border-brand-200 hover:bg-brand-50/50 transition text-left"><span class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 grid place-items-center text-[13px]"><i class="fa-solid fa-award"></i></span><span class="flex-1"><span class="block text-[12px] font-extrabold text-ink-900">Achievement Certificate</span><span class="block text-[10.5px] text-ink-500">Printable A4</span></span><i class="fa-solid fa-print text-ink-300 text-[11px]"></i></button>
-    </div>`;
-  if($('#printReportCard'))$('#printReportCard').addEventListener('click',printReportCard);
-  if($('#printInvoice'))$('#printInvoice').addEventListener('click',printInvoice);
-  if($('#printCertificate'))$('#printCertificate').addEventListener('click',printCertificate);
+  $('#studentBody').innerHTML=`<p class="text-[12px]"><b>Course:</b> ${esc(s?.courses?.name||'Not assigned')}</p><p class="text-[12px]"><b>Fee:</b> ${fmtMoney(s?.fee_usd||0,'USD')}</p>`;
 }
 
 function bindPortalEvents(){}
-
-/* ═══ PRINTS ═══ */
-function printDoc(html){
-  $('#printSheet').innerHTML=html;
-  document.body.classList.add('is-printing');
-  setTimeout(()=>{window.print();document.body.classList.remove('is-printing');},60);
-}
-const PRINT_STYLES=`<style>#printSheet{font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#0B2B2A}#printSheet .doc-head{display:flex;justify-content:space-between;border-bottom:3px solid #14B8A6;padding-bottom:16px;margin-bottom:24px}#printSheet .brand{font-size:22px;font-weight:800;color:#0F766E}#printSheet .brand small{display:block;font-size:11px;color:#5E7C7A;margin-top:2px}#printSheet h1{font-size:20px;font-weight:800}#printSheet h2{font-size:13px;font-weight:800;text-transform:uppercase;color:#0F766E;margin:22px 0 8px}#printSheet table{width:100%;border-collapse:collapse;font-size:12px}#printSheet th{text-align:left;background:#F0FDFA;padding:8px 10px;color:#0F766E}#printSheet td{padding:8px 10px;border-bottom:1px solid #E3EDEC}#printSheet .total{font-size:16px;font-weight:800;color:#0F766E;text-align:right;margin-top:14px}#printSheet .meta{font-size:11.5px;color:#5E7C7A;line-height:1.7}#printSheet .cert{border:6px double #14B8A6;padding:48px;text-align:center}#printSheet .cert h1{font-size:30px;color:#0F766E}#printSheet .cert .name{font-size:26px;font-weight:800;margin:22px 0}#printSheet .sign{display:flex;justify-content:space-between;margin-top:56px;font-size:11px;color:#5E7C7A}#printSheet .sign div{border-top:1px solid #9DB5B3;padding-top:6px;width:180px;text-align:center}</style>`;
-
-function printInvoice(){
-  const fee=State.studentRecord?.fee_usd||45;const tax=+(fee*0.05).toFixed(2);
-  printDoc(`${PRINT_STYLES}<div class="doc"><div class="doc-head"><div><div class="brand">Noorly Global Quran Academy<small>Learn Quran, Live & Beautifully</small></div></div><div style="text-align:right"><h1>FEE INVOICE</h1><div class="meta">INV-${Date.now().toString().slice(-6)} · ${new Date().toLocaleDateString()}</div></div></div><p class="meta"><b>Billed To:</b> ${esc(State.user.name)} · ${esc(State.user.email)}</p><h2>Details</h2><table><thead><tr><th>Description</th><th style="text-align:right">Amount</th></tr></thead><tbody><tr><td>Monthly Tuition</td><td style="text-align:right">$${fee.toFixed(2)}</td></tr><tr><td>Tax (5%)</td><td style="text-align:right">$${tax.toFixed(2)}</td></tr></tbody></table><div class="total">Total: $${(fee+tax).toFixed(2)} USD</div><div class="sign"><div>Signature</div><div>Date</div></div></div>`);
-}
-async function printReportCard(){
-  const diary=await dbGetMyDiary(30);
-  const avg=diary.length?Math.round(diary.reduce((a,d)=>{const g=(d.grade||'').replace('+','').replace('-','');const m={A:19,B:16,C:13,D:10}[g]||15;return a+m;},0)/diary.length*10)/10:15;
-  printDoc(`${PRINT_STYLES}<div class="doc"><div class="doc-head"><div><div class="brand">Noorly Global Quran Academy<small>Monthly Report</small></div></div><div style="text-align:right"><h1>REPORT CARD</h1><div class="meta">${new Date().toLocaleDateString(undefined,{month:'long',year:'numeric'})}</div></div></div><p><b>Student:</b> ${esc(State.user.name)}</p><p><b>Course:</b> ${esc(State.studentRecord?.courses?.name||'—')}</p><p><b>Teacher:</b> ${esc(State.studentRecord?.teachers?.profiles?.full_name||'—')}</p><h2>Recent Diary (${diary.length} entries)</h2><table><thead><tr><th>Date</th><th>Sabaq</th><th>Grade</th></tr></thead><tbody>${diary.slice(0,10).map(d=>`<tr><td>${fmtDate(d.entry_date)}</td><td>${esc(d.sabaq||'—')}</td><td>${esc(d.grade||'—')}</td></tr>`).join('')}</tbody></table><div class="total">Overall: ${avg}/20</div><div class="sign"><div>Teacher</div><div>Principal</div></div></div>`);
-}
-function printCertificate(){
-  printDoc(`${PRINT_STYLES}<div class="doc"><div class="cert"><div class="brand" style="font-size:14px;letter-spacing:.24em">NOORLY GLOBAL QURAN ACADEMY</div><h1 style="margin-top:26px">Certificate of Achievement</h1><p style="font-size:12px;color:#5E7C7A;margin-top:10px">Presented to</p><div class="name">${esc(State.user.name)}</div><p style="font-size:12.5px;color:#2F4F4D;line-height:1.9;max-width:520px;margin:0 auto">for successfully completing memorisation and recitation with excellence in Tajweed.</p><div class="sign"><div>Principal</div><div>Head of Tajweed</div></div></div></div>`);
-}
-function printSalarySlip(salary=1000){
-  printDoc(`${PRINT_STYLES}<div class="doc"><div class="doc-head"><div><div class="brand">Noorly Global Quran Academy<small>Salary Slip</small></div></div><div style="text-align:right"><h1>SALARY SLIP</h1><div class="meta">${new Date().toLocaleDateString(undefined,{month:'long',year:'numeric'})}</div></div></div><p><b>Employee:</b> ${esc(State.user.name)}</p><h2>Earnings</h2><table><tbody><tr><td>Basic Salary</td><td style="text-align:right">$${salary.toFixed(2)}</td></tr></tbody></table><div class="total">Net: $${salary.toFixed(2)} USD</div></div>`);
-}
-
-/* ═══ TRIAL MODAL ═══ */
-function openTrialModal(courseName){
-  openModal(`<div class="p-6 sm:p-8"><div class="flex items-start justify-between gap-3"><div><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 text-[10px] font-extrabold"><i class="fa-solid fa-gift"></i>NO CARD</span><h3 class="text-xl font-extrabold text-ink-900 mt-3">Book 3-Day Free Trial</h3></div><button data-modal-close class="w-9 h-9 rounded-xl bg-ink-100/70 grid place-items-center text-ink-500"><i class="fa-solid fa-xmark"></i></button></div><form id="trialForm" class="mt-6 space-y-3.5"><input required type="text" name="name" placeholder="Full name" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm outline-none focus:border-brand-400" /><input required type="email" name="email" placeholder="Email" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm outline-none focus:border-brand-400" /><input required type="tel" name="phone" placeholder="WhatsApp" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm outline-none focus:border-brand-400" /><select name="course" class="w-full px-4 py-3 rounded-2xl border border-ink-100 text-sm">${COURSES.map(c=>`<option ${c.name===courseName?'selected':''}>${c.name}</option>`).join('')}</select><button type="submit" class="w-full py-3.5 rounded-2xl bg-brand-500 text-white font-bold text-sm">Request Trial</button></form></div>`);
-  $('#trialForm').addEventListener('submit',async e=>{
-    e.preventDefault();
-    const fd=new FormData(e.target);
-    try{
-      await dbAddLedger({type:'Income',description:`Trial request: ${fd.get('name')} (${fd.get('email')})`,amount_usd:0,ref:'TRIAL'});
-    }catch(err){}
-    closeModal();toast('Trial request received! We will contact you soon.','success');
-  });
-}
 
 /* ═══ GLOBAL EVENTS ═══ */
 function bindGlobalEvents(){
@@ -1701,7 +1036,6 @@ function bindGlobalEvents(){
   $('#adminLoginLink').addEventListener('click',()=>{
     State.adminMode=true;setAuthMode('login');
     $('#authEmail').value='';$('#authPassword').value='';$('#authEmail').focus();
-    toast('Enter admin credentials.','info');
   });
   $('#togglePw').addEventListener('click',()=>{const p=$('#authPassword');p.type=p.type==='password'?'text':'password';});
   $('#authForm').addEventListener('submit',e=>{e.preventDefault();doLogin($('#authEmail').value,$('#authPassword').value,$('#authName').value,State.authRole);});
@@ -1712,13 +1046,13 @@ function bindGlobalEvents(){
   $('#sidebarBackdrop').addEventListener('click',()=>{$('#sidebar').classList.add('-translate-x-full');$('#sidebarBackdrop').classList.add('hidden');});
   $('#logoutBtn').addEventListener('click',logout);
 
-  $('#navFees').addEventListener('click',()=>{navigate('home');setTimeout(()=>$('#feeCalculatorSection')?.scrollIntoView({behavior:'smooth',block:'start'}),200);});
-  $('#navTrial').addEventListener('click',()=>openTrialModal());
-  $('#heroTrialBtn').addEventListener('click',()=>openTrialModal());
-  $('#mobileTrialBtn').addEventListener('click',()=>openTrialModal());
-  $('#topTrialBtn').addEventListener('click',()=>openTrialModal());
-  $('#heroExploreBtn').addEventListener('click',()=>document.getElementById('coursesGrid')?.scrollIntoView({behavior:'smooth',block:'center'}));
+  // Stripe Buttons
+  const subMonthly = $('#subscribeMonthly');
+  if (subMonthly) subMonthly.addEventListener('click', () => startCheckout(STRIPE_PRICE_MONTHLY));
+  const subYearly = $('#subscribeYearly');
+  if (subYearly) subYearly.addEventListener('click', () => toast('Yearly plan coming soon!', 'info'));
 
+  // Worship Tabs
   $$('#worshipTabs [data-wtab]').forEach(b=>b.addEventListener('click',()=>{
     State.worshipTab=b.dataset.wtab;
     $$('#worshipTabs .seg-btn').forEach(x=>x.classList.remove('active'));
@@ -1729,66 +1063,14 @@ function bindGlobalEvents(){
     if(State.worshipTab==='tasbeeh')renderTasbeeh();
   }));
 
-  $('#locRefresh').addEventListener('click',()=>initPrayerTimes());
-  $$('.madhab-btn').forEach(b=>b.addEventListener('click',()=>{
-    State.madhab=b.dataset.madhab;
-    $$('.madhab-btn').forEach(x=>{const on=x.dataset.madhab===State.madhab;x.className=`madhab-btn px-3 py-1.5 rounded-lg text-[11px] font-bold transition ${on?'text-brand-700 bg-white shadow-sm':'text-ink-500'}`;});
-    recomputePrayers();
-  }));
-
-  $('#enableCompass').addEventListener('click',enableCompass);
-  $('#qiblaSlider').addEventListener('input',()=>{State.compassActive=false;drawQibla();});
-
   $('#tasbeehBtn').addEventListener('click',()=>bumpTasbeeh(1));
-  $('#tasbeehReset').addEventListener('click',()=>{State.tasbeeh.count=0;renderTasbeeh();if(State.user?.id)dbSyncTasbeeh(0,State.tasbeeh.target);});
+  $('#tasbeehReset').addEventListener('click',()=>{State.tasbeeh.count=0;renderTasbeeh();});
   $('#tasbeehMinus').addEventListener('click',()=>bumpTasbeeh(-1));
-  $$('.tsb-target').forEach(b=>b.addEventListener('click',()=>{State.tasbeeh.target=Number(b.dataset.target);renderTasbeeh();if(State.user?.id)dbSyncTasbeeh(State.tasbeeh.count,State.tasbeeh.target);}));
-
-  $('#namesTabAllah').addEventListener('click',()=>{State.namesMode='allah';$('#namesTabAllah').className='names-tab active px-3.5 py-2 rounded-lg text-[11.5px] font-bold text-brand-700 bg-white shadow-sm transition';$('#namesTabProphet').className='names-tab px-3.5 py-2 rounded-lg text-[11.5px] font-bold text-ink-500 transition';renderNames();});
-  $('#namesTabProphet').addEventListener('click',()=>{State.namesMode='prophet';$('#namesTabProphet').className='names-tab active px-3.5 py-2 rounded-lg text-[11.5px] font-bold text-brand-700 bg-white shadow-sm transition';$('#namesTabAllah').className='names-tab px-3.5 py-2 rounded-lg text-[11.5px] font-bold text-ink-500 transition';renderNames();});
 
   $$('.lms-mode').forEach(b=>b.addEventListener('click',()=>{
-    State.lmsMode=b.dataset.lmsmode;
     $$('.lms-mode').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
-    $('#lmsLive').classList.toggle('hidden',State.lmsMode!=='live');
-    $('#lmsLibrary').classList.toggle('hidden',State.lmsMode!=='library');
   }));
-
-  $('#micBtn').addEventListener('click',()=>{
-    if(!State.mediaStream){toast('No mic.','error');return;}
-    const t=State.mediaStream.getAudioTracks()[0];
-    if(t){t.enabled=!t.enabled;$('#micBtn').classList.toggle('bg-red-500',!t.enabled);}
-  });
-  $('#camBtn').addEventListener('click',()=>{
-    if(!State.mediaStream){startLocalVideo();return;}
-    const t=State.mediaStream.getVideoTracks()[0];
-    if(t){t.enabled=!t.enabled;$('#camBtn').classList.toggle('bg-red-500',!t.enabled);}
-  });
-  $('#purdahToggle').addEventListener('click',togglePurdah);
-  $('#wbToggle').addEventListener('click',toggleWhiteboard);
-  $('#wbClear').addEventListener('click',()=>State.wb.clear&&State.wb.clear());
-  $('#wbEraser').addEventListener('click',()=>{State.wb.erasing=!State.wb.erasing;$('#wbEraser').classList.toggle('bg-brand-500',State.wb.erasing);$('#wbEraser').classList.toggle('text-white',State.wb.erasing);});
-  $$('.wb-color').forEach(b=>b.addEventListener('click',()=>{State.wb.color=b.dataset.pen;State.wb.erasing=false;$$('.wb-color').forEach(x=>x.className='wb-color w-8 h-8 rounded-full ring-0');b.className='wb-color w-8 h-8 rounded-full ring-2 ring-offset-2 ring-brand-500';}));
-  $('#endCallBtn').addEventListener('click',()=>{stopLocalVideo();toast('Session ended.','success');});
-  $('#initSignalling').addEventListener('click',initSignalling);
-
-  $$('.lib-tab').forEach(b=>b.addEventListener('click',()=>{
-    State.libraryTab=b.dataset.libtab;
-    $$('.lib-tab').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    $$('.libpanel').forEach(p=>p.classList.add('hidden'));
-    $('#libpanel-'+State.libraryTab).classList.remove('hidden');
-  }));
-
-  $('#mushafPrev').addEventListener('click',()=>{State.mushafPage=clamp(State.mushafPage-1,1,TOTAL_PAGES);renderMushaf();});
-  $('#mushafNext').addEventListener('click',()=>{State.mushafPage=clamp(State.mushafPage+1,1,TOTAL_PAGES);renderMushaf();});
-  $('#mushafPageInput').addEventListener('change',e=>{State.mushafPage=clamp(Number(e.target.value)||1,1,TOTAL_PAGES);renderMushaf();});
-  $('#bookmarkBtn').addEventListener('click',async()=>{
-    if(!State.bookmarks.includes(State.mushafPage)){State.bookmarks.push(State.mushafPage);State.bookmarks.sort((a,b)=>a-b);await dbSyncBookmark(State.mushafPage,true);renderBookmarks();toast(`Page ${State.mushafPage} bookmarked.`,'success');}
-    else{State.bookmarks=State.bookmarks.filter(p=>p!==State.mushafPage);await dbSyncBookmark(State.mushafPage,false);renderBookmarks();toast('Bookmark removed.','info');}
-  });
-  $('#playPageBtn').addEventListener('click',()=>{const v=VERSE_INDEX[(State.mushafPage-1)*LINES_PER_PAGE];if(v)playAyah(v.surah,v.ayah);});
 
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
@@ -1796,36 +1078,20 @@ function bindGlobalEvents(){
     const el=$('#topClock');if(el)el.textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
     updateCountdown();
   },1000);
-  setInterval(()=>{
-    const el=$('#sessionTimer');if(!el)return;
-    if(!State.sessionStart)State.sessionStart=Date.now();
-    const s=Math.floor((Date.now()-State.sessionStart)/1000);
-    el.textContent=`${pad(Math.floor(s/60))}:${pad(s%60)}`;
-  },1000);
 }
 
 /* ═══ BOOT ═══ */
 async function boot(){
-  if('speechSynthesis'in window){try{window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();}catch(e){}}
-
-  renderFeatures();renderCourses();initFeeCalculator();renderNames();renderKalmas();renderGuide();renderTasbeeh();renderReactions();renderMushaf();renderQaida();renderSurahList();renderTafseer();initWhiteboard();
+  renderFeatures();renderCourses();initFeeCalculator();renderTasbeeh();renderReactions();initWhiteboard();
   bindGlobalEvents();setAuthMode('login');pickRole('student');
   applyLocation(State.coords.lat,State.coords.lng,'Makkah, Saudi Arabia');
 
   try{await restoreSession();}catch(e){console.warn(e);}
-  // Load user's tasbeeh + bookmarks from DB
-  if(State.user?.id){
-    const t=await dbGetTasbeeh();
-    if(t){State.tasbeeh={count:t.today_count||t.total_count||0,target:t.target||33};renderTasbeeh();}
-    const b=await dbGetBookmarks();
-    if(b.length){State.bookmarks=b;renderBookmarks();}
-    const q=await dbGetQaidaProgress();
-    if(q.length){State.qaidaDone=q;renderQaida();}
-  }
+  // Handle Stripe return
+  handlePaymentReturn();
 }
 
 document.addEventListener('DOMContentLoaded',boot);
-window.Noorly={navigate,toast,openTrialModal,printInvoice,printReportCard,printSalarySlip};
 </script>
 </body>
 </html>
